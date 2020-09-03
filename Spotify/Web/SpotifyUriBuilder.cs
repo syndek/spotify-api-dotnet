@@ -84,7 +84,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(String name, IEnumerable<TElement>? elements, String separator)
+        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(String name, String separator, IEnumerable<TElement>? elements)
         {
             if (elements is not null)
             {
@@ -94,7 +94,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(String name, IEnumerable<TElement>? elements, Char separator)
+        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(String name, Char separator, IEnumerable<TElement>? elements)
         {
             if (elements is not null)
             {

@@ -1,25 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Spotify.ObjectModel.EnumConverters
 {
     internal static class AlbumGroupConverter : Object
     {
-        internal static AlbumGroup FromSpotifyString(String albumGroup) => albumGroup.ToLower() switch
+        internal static AlbumGroups FromSpotifyString(String albumGroup) => albumGroup.ToLower() switch
         {
-            "album" => AlbumGroup.Album,
-            "single" => AlbumGroup.Single,
-            "compilation" => AlbumGroup.Compilation,
-            "appears_on" => AlbumGroup.AppearsOn,
-            _ => throw new ArgumentException($"Invalid {nameof(AlbumGroup)} string value: {albumGroup}", nameof(albumGroup))
+            "album" => AlbumGroups.Album,
+            "single" => AlbumGroups.Single,
+            "compilation" => AlbumGroups.Compilation,
+            "appears_on" => AlbumGroups.AppearsOn,
+            _ => throw new ArgumentException($"Invalid {nameof(AlbumGroups)} string value: {albumGroup}", nameof(albumGroup))
         };
 
-        internal static String ToSpotifyString(this AlbumGroup albumGroup) => albumGroup switch
+        internal static AlbumGroups FromSpotifyStrings(IEnumerable<String> albumGroups) =>
+            albumGroups.Aggregate(
+                new AlbumGroups(),
+                (current, albumGroups) => current | AlbumGroupConverter.FromSpotifyString(albumGroups));
+
+        internal static String ToSpotifyString(this AlbumGroups albumGroup) => albumGroup switch
         {
-            AlbumGroup.Album => "album",
-            AlbumGroup.Single => "single",
-            AlbumGroup.Compilation => "compilation",
-            AlbumGroup.AppearsOn => "appears_on",
-            _ => throw new ArgumentException($"Invalid {nameof(AlbumGroup)} value: {albumGroup}", nameof(albumGroup))
+            AlbumGroups.Album => "album",
+            AlbumGroups.Single => "single",
+            AlbumGroups.Compilation => "compilation",
+            AlbumGroups.AppearsOn => "appears_on",
+            _ => throw new ArgumentException($"Invalid {nameof(AlbumGroups)} value: {albumGroup}", nameof(albumGroup))
         };
+
+        internal static IEnumerable<String> ToSpotifyStrings(this AlbumGroups albumGroups) =>
+            albumGroups.GetFlags().Select(AlbumGroupConverter.ToSpotifyString);
     }
 }

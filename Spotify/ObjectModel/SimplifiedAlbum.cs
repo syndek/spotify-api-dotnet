@@ -11,7 +11,7 @@ namespace Spotify.ObjectModel
             Uri href,
             String name,
             AlbumType type,
-            AlbumGroup? group,
+            AlbumGroups? group,
             IReadOnlyList<Image> images,
             IReadOnlyList<SimplifiedArtist> artists,
             DateTime releaseDate,
@@ -35,7 +35,7 @@ namespace Spotify.ObjectModel
         public Uri Href { get; init; }
         public String Name { get; init; }
         public AlbumType Type { get; init; }
-        public AlbumGroup? Group { get; init; }
+        public AlbumGroups? Group { get; init; }
         public IReadOnlyList<Image> Images { get; init; }
         public IReadOnlyList<SimplifiedArtist> Artists { get; init; }
         public DateTime ReleaseDate { get; init; }

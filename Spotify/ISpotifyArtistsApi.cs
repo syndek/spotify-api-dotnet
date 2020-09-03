@@ -25,7 +25,7 @@ namespace Spotify
 
         Task<Paging<Album>> GetArtistAlbumsAsync(
             String id,
-            AlbumGroup? includeGroups = null,
+            AlbumGroups? includeGroups = null,
             CountryCode? market = null,
             Int32? limit = null,
             Int32? offset = null,

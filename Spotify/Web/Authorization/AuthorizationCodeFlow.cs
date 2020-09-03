@@ -95,7 +95,7 @@ namespace Spotify.Web.Authorization
                 .AppendToQuery("response_type", "code")
                 .AppendToQuery("redirect_uri", redirectUri)
                 .AppendToQueryIfNotNull("state", state)
-                .AppendJoinToQueryIfNotNull("scope", scopes?.ToSpotifyStrings(), "%20")
+                .AppendJoinToQueryIfNotNull("scope", "%20", scopes?.ToSpotifyStrings())
                 .AppendToQueryIfNotNull("show_dialog", showDialog)
                 .Build();
         }

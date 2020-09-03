@@ -54,7 +54,7 @@ namespace Spotify.Web
         /// <inheritdoc/>
         public Task<Paging<Album>> GetArtistAlbumsAsync(
             String id,
-            AlbumGroup? includeGroups = null,
+            AlbumGroups? includeGroups = null,
             CountryCode? market = null,
             Int32? limit = null,
             Int32? offset = null,
@@ -62,7 +62,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/artists/{id}/albums")
-                .AppendJoinToQueryIfNotNull("include_groups", includeGroups?.GetFlags().Select(AlbumGroupConverter.ToSpotifyString), ',')
+                .AppendJoinToQueryIfNotNull("include_groups", ',', includeGroups?.ToSpotifyStrings())
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString())
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);

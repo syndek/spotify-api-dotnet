@@ -22,7 +22,7 @@ namespace Spotify.ObjectModel.JsonConverters
             Uri href = null!;
             String name = String.Empty;
             AlbumType type = default;
-            AlbumGroup? group = null;
+            AlbumGroups? group = null;
             IReadOnlyList<Image> images = null!;
             IReadOnlyList<SimplifiedArtist> artists = null!;
             DateTime releaseDate = default;
