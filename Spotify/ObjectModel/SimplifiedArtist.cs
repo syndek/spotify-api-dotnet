@@ -11,11 +11,9 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="SimplifiedArtist"/> class with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID for the artist.</param>
-        /// <param name="uri">A <see cref="String"/> representing the Spotify URI for the artist.</param>
-        /// <param name="href">
-        /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of the artist.
-        /// </param>
+        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the artist.</param>
+        /// <param name="uri">The Spotify URI of the artist.</param>
+        /// <param name="href">A link to the Spotify Web API endpoint providing full details of the artist.</param>
         /// <param name="name">A <see cref="String"/> representing the name of the artist.</param>
         /// <param name="externalUrls">
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known

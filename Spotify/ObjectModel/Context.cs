@@ -11,7 +11,7 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="Context"/> record with the specified values.
         /// </summary>
-        /// <param name="uri">A <see cref="String"/> representing the Spotify URI for the context.</param>
+        /// <param name="uri">A <see cref="String"/> representing the Spotify URI of the context.</param>
         /// <param name="href">
         /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of
         /// the <see cref="Track"/>.
@@ -31,7 +31,7 @@ namespace Spotify.ObjectModel
         /// Gets or sets the <see href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</see>
         /// for the <see cref="Context"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the Spotify URI for the context.</returns>
+        /// <returns>A <see cref="String"/> representing the Spotify URI of the context.</returns>
         public Uri Uri { get; init; }
         /// <summary>
         /// Gets or sets a link to the Spotify Web API endpoint providing full details of <see cref="Track"/>.
