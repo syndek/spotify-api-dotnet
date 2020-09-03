@@ -11,7 +11,7 @@ namespace Spotify.Web.Authorization
     /// Represents an <see href="https://spotify.dev/documentation/general/guides/authorization-guide/#authorization-flows">authorization flow</see>
     /// for the Spotify Web API.
     /// </summary>
-    public abstract class SpotifyAuthorizationFlow : Object, IAccessTokenProvider
+    public abstract class SpotifyAuthorizationFlow : Object, IAccessTokenProvider, IDisposable
     {
         /// <summary>
         /// The <see cref="Uri"/> of the Spotify Accounts service <c>/api/token</c> endpoint. This field is read-only.
@@ -59,5 +59,14 @@ namespace Spotify.Web.Authorization
         /// request and cache a new <see cref="AccessToken"/> from the Spotify Accounts service.
         /// </remarks>
         public abstract ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Disposes the <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.
+        /// </summary>
+        public void Dispose()
+        {
+            this.HttpClient.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }
