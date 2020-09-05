@@ -30,6 +30,8 @@ namespace Spotify.ObjectModel.JsonConverters
             converters.Add(ImageConverter.Instance);
             converters.Add(PrivateUserConverter.Instance);
             converters.Add(PublicUserConverter.Instance);
+            converters.Add(RecommendationsConverter.Instance);
+            converters.Add(RecommendationSeedConverter.Instance);
             converters.Add(SearchResultConverter.Instance);
             converters.Add(ShowConverter.Instance);
             converters.Add(SimplifiedAlbumConverter.Instance);

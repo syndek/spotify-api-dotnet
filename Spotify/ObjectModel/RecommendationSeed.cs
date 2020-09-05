@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel
     {
         internal RecommendationSeed(
             String id,
-            Uri href,
+            Uri? href,
             RecommendationSeedType type,
             Int32 initialPoolSize,
             Int32 afterFilteringSize,
@@ -20,7 +20,7 @@ namespace Spotify.ObjectModel
             this.AfterRelinkingSize = afterRelinkingSize;
         }
 
-        public Uri Href { get; init; }
+        public Uri? Href { get; init; }
         public RecommendationSeedType Type { get; init; }
         public Int32 InitialPoolSize { get; init; }
         public Int32 AfterFilteringSize { get; init; }
