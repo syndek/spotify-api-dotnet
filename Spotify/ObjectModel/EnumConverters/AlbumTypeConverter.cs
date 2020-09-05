@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel.EnumConverters
 {
     internal static class AlbumTypeConverter : Object
     {
-        internal static AlbumType FromSpotifyString(String albumType) => albumType.ToLower() switch
+        internal static AlbumType FromSpotifyString(String albumType) => albumType switch
         {
             "album" => AlbumType.Album,
             "single" => AlbumType.Single,

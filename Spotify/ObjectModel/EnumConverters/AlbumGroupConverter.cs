@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel.EnumConverters
 {
     internal static class AlbumGroupConverter : Object
     {
-        internal static AlbumGroups FromSpotifyString(String albumGroup) => albumGroup.ToLower() switch
+        internal static AlbumGroups FromSpotifyString(String albumGroup) => albumGroup switch
         {
             "album" => AlbumGroups.Album,
             "single" => AlbumGroups.Single,
