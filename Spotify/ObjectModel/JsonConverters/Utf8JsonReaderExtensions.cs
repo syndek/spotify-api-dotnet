@@ -3,117 +3,117 @@ using System.Text.Json;
 
 namespace Spotify.ObjectModel.JsonConverters
 {
-    public static class Utf8JsonReaderExtensions : Object
+    internal static class Utf8JsonReaderExtensions : Object
     {
-        public static Boolean ReadBoolean(ref this Utf8JsonReader reader)
+        internal static Boolean ReadBoolean(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetBoolean();
         }
 
-        public static Byte ReadByte(ref this Utf8JsonReader reader)
+        internal static Byte ReadByte(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetByte();
         }
 
-        public static SByte ReadSByte(ref this Utf8JsonReader reader)
+        internal static SByte ReadSByte(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetSByte();
         }
 
-        public static Int16 ReadInt16(ref this Utf8JsonReader reader)
+        internal static Int16 ReadInt16(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetInt16();
         }
 
-        public static UInt16 ReadUInt16(ref this Utf8JsonReader reader)
+        internal static UInt16 ReadUInt16(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetUInt16();
         }
 
-        public static Int32 ReadInt32(ref this Utf8JsonReader reader)
+        internal static Int32 ReadInt32(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetInt32();
         }
 
-        public static UInt32 ReadUInt32(ref this Utf8JsonReader reader)
+        internal static UInt32 ReadUInt32(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetUInt32();
         }
 
-        public static Int64 ReadInt64(ref this Utf8JsonReader reader)
+        internal static Int64 ReadInt64(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetInt64();
         }
 
-        public static UInt64 ReadUInt64(ref this Utf8JsonReader reader)
+        internal static UInt64 ReadUInt64(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetUInt64();
         }
 
-        public static Single ReadSingle(ref this Utf8JsonReader reader)
+        internal static Single ReadSingle(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetSingle();
         }
 
-        public static Double ReadDouble(ref this Utf8JsonReader reader)
+        internal static Double ReadDouble(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetDouble();
         }
 
-        public static Decimal ReadDecimal(ref this Utf8JsonReader reader)
+        internal static Decimal ReadDecimal(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetDecimal();
         }
 
-        public static Guid ReadGuid(ref this Utf8JsonReader reader)
+        internal static Guid ReadGuid(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetGuid();
         }
 
-        public static DateTime ReadDateTime(ref this Utf8JsonReader reader)
+        internal static DateTime ReadDateTime(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetDateTime();
         }
 
-        public static DateTimeOffset ReadDateTimeOffset(ref this Utf8JsonReader reader)
+        internal static DateTimeOffset ReadDateTimeOffset(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetDateTimeOffset();
         }
 
-        public static Byte[] ReadBytesFromBase64(ref this Utf8JsonReader reader)
+        internal static Byte[] ReadBytesFromBase64(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetBytesFromBase64();
         }
 
-        public static String? ReadString(ref this Utf8JsonReader reader)
+        internal static String? ReadString(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetString();
         }
 
-        public static String ReadComment(ref this Utf8JsonReader reader)
+        internal static String ReadComment(ref this Utf8JsonReader reader)
         {
             reader.Read();
             return reader.GetComment();
         }
 
-        public static String ReadPropertyName(ref this Utf8JsonReader reader)
+        internal static String ReadPropertyName(ref this Utf8JsonReader reader)
         {
             reader.Read(JsonTokenType.PropertyName);
             return reader.GetString()!;
@@ -126,7 +126,7 @@ namespace Spotify.ObjectModel.JsonConverters
         /// <param name="reader">The <see cref="Utf8JsonReader"/> to read from.</param>
         /// <param name="expectedTokenType">The expected <see cref="JsonTokenType"/> of the next token.</param>
         /// <returns><see langword="true"/> if a token was read successfully; otherwise, <see langword="false"/>.</returns>
-        public static Boolean Read(ref this Utf8JsonReader reader, JsonTokenType expectedTokenType)
+        internal static Boolean Read(ref this Utf8JsonReader reader, JsonTokenType expectedTokenType)
         {
             if (reader.Read())
             {
@@ -146,7 +146,7 @@ namespace Spotify.ObjectModel.JsonConverters
         /// <exception cref="JsonException">
         /// The current <see cref="Utf8JsonReader.TokenType"/> of <paramref name="reader"/> is not <paramref name="expectedTokenType"/>.
         /// </exception>
-        public static void AssertTokenType(ref this Utf8JsonReader reader, JsonTokenType expectedTokenType)
+        internal static void AssertTokenType(ref this Utf8JsonReader reader, JsonTokenType expectedTokenType)
         {
             if (reader.TokenType != expectedTokenType)
             {
