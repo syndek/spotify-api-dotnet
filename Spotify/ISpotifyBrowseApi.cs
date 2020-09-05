@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,6 +37,9 @@ namespace Spotify
             CancellationToken cancellationToken = default);
 
         Task<Recommendations> GetRecommendationsAsync(
+            IReadOnlyList<String> seedArtists,
+            IReadOnlyList<String> seedTracks,
+            IReadOnlyList<String> seedGenres,
             Int32? limit = null,
             CountryCode? market = null,
             TuneableTrackAttributes? minValues = null,

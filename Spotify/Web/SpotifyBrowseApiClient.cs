@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -85,6 +86,9 @@ namespace Spotify.Web
 
         /// <inheritdoc/>
         public Task<Recommendations> GetRecommendationsAsync(
+            IReadOnlyList<String> seedArtists,
+            IReadOnlyList<String> seedTracks,
+            IReadOnlyList<String> seedGenres,
             Int32? limit = null,
             CountryCode? market = null,
             TuneableTrackAttributes? minValues = null,
@@ -93,7 +97,51 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            static IEnumerable<(String, ValueType?)> GetAttributeQueryStrings(String prefix, TuneableTrackAttributes attributes)
+            {
+                yield return ($"{prefix}_popularity", attributes.Popularity);
+                yield return ($"{prefix}_duration", attributes.Duration);
+                yield return ($"{prefix}_time_signature", attributes.TimeSignature);
+                yield return ($"{prefix}_key", attributes.Key);
+                yield return ($"{prefix}_mode", attributes.Mode);
+                yield return ($"{prefix}_acousticness", attributes.Acousticness);
+                yield return ($"{prefix}_danceability", attributes.Danceability);
+                yield return ($"{prefix}_energy", attributes.Energy);
+                yield return ($"{prefix}_instrumentalness", attributes.Instrumentalness);
+                yield return ($"{prefix}_liveness", attributes.Liveness);
+                yield return ($"{prefix}_loudness", attributes.Loudness);
+                yield return ($"{prefix}_speechiness", attributes.Speechiness);
+                yield return ($"{prefix}_tempo", attributes.Tempo);
+                yield return ($"{prefix}_valence", attributes.Valence);
+            }
+
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/recommendations")
+                .AppendJoinToQuery("seed_artists", ',', seedArtists)
+                .AppendJoinToQuery("seed_tracks", ',', seedTracks)
+                .AppendJoinToQuery("seed_genres", ',', seedGenres)
+                .AppendToQueryIfNotNull("limit", limit)
+                .AppendToQueryIfNotNull("market", market);
+
+            void AppendAttributesToUriBuilderIfNotNull(String prefix, TuneableTrackAttributes? attributes)
+            {
+                if (attributes is not null)
+                {
+                    foreach (var (name, attribute) in GetAttributeQueryStrings(prefix, attributes))
+                    {
+                        uriBuilder.AppendToQueryIfNotNull(name, attribute);
+                    }
+                }
+            }
+
+            AppendAttributesToUriBuilderIfNotNull("min", minValues);
+            AppendAttributesToUriBuilderIfNotNull("max", maxValues);
+            AppendAttributesToUriBuilderIfNotNull("target", targetValues);
+
+            return base.SendAsync<Recommendations>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
