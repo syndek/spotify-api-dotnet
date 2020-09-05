@@ -54,14 +54,19 @@ namespace Spotify.ObjectModel.JsonConverters
 
         internal static Uri ReadUri(ref this Utf8JsonReader reader)
         {
-            reader.AssertTokenType(JsonTokenType.String);
+            reader.Read(JsonTokenType.String);
             return new(reader.GetString()!);
         }
 
         internal static Uri? ReadNullableUri(ref this Utf8JsonReader reader)
         {
-            reader.AssertTokenType(JsonTokenType.String);
-            
+            reader.Read();
+
+            if ((reader.TokenType != JsonTokenType.String) && (reader.TokenType != JsonTokenType.Null))
+            {
+                throw new JsonException();
+            }
+
             var uriString = reader.GetString();
             if (uriString is not null)
             {
