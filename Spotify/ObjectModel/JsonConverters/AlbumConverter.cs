@@ -9,7 +9,7 @@ namespace Spotify.ObjectModel.JsonConverters
 {
     internal sealed class AlbumConverter : JsonConverter<Album>
     {
-        internal static readonly AlbumConverter Instance = new AlbumConverter();
+        internal static readonly AlbumConverter Instance = new();
 
         private AlbumConverter() : base() { }
 
