@@ -20,8 +20,8 @@ namespace Spotify.ObjectModel
 
         public IReadOnlyList<TimeInterval> Bars { get; init; }
         public IReadOnlyList<TimeInterval> Beats { get; init; }
-        public IReadOnlyList<TimeInterval> Sections { get; init; }
-        public IReadOnlyList<TimeInterval> Segments { get; init; }
+        public IReadOnlyList<Section> Sections { get; init; }
+        public IReadOnlyList<Segment> Segments { get; init; }
         public IReadOnlyList<TimeInterval> Tatums { get; init; }
     }
 }
