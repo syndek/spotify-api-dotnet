@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -27,7 +28,7 @@ namespace Spotify.ObjectModel.JsonConverters
 
             reader.Read(JsonTokenType.EndObject);
 
-            return new Error(status, message);
+            return new((HttpStatusCode) status, message);
         }
 
         public override void Write(Utf8JsonWriter writer, Error value, JsonSerializerOptions options) => throw new NotSupportedException();
