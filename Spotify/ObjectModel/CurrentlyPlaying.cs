@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel
 {
-    public sealed class CurrentlyPlaying : Object
+    public record CurrentlyPlaying : SpotifyObject
     {
         internal CurrentlyPlaying(
             CurrentlyPlayingType type,
@@ -21,11 +21,11 @@ namespace Spotify.ObjectModel
             this.Timestamp = timestamp;
         }
 
-        public CurrentlyPlayingType Type { get; }
-        public IPlayable? Item { get; }
-        public Boolean IsPlaying { get; }
-        public Int32? Progress { get; }
-        public Context? Context { get; }
-        public Int32 Timestamp { get; }
+        public CurrentlyPlayingType Type { get; init; }
+        public IPlayable? Item { get; init; }
+        public Boolean IsPlaying { get; init; }
+        public Int32? Progress { get; init; }
+        public Context? Context { get; init; }
+        public Int32 Timestamp { get; init; }
     }
 }
