@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ using Spotify.Web.Authorization;
 
 namespace Spotify.Navigation
 {
-    public static class TrackNavigation
+    public static class TrackNavigationExtensions : Object
     {
         public static Task<Track> GetTrackAsync(
             this AudioFeatures audioFeatures,

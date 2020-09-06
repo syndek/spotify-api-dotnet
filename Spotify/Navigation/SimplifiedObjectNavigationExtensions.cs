@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ using Spotify.Web.Authorization;
 
 namespace Spotify.Navigation
 {
-    public static class SimplifiedObjectNavigationExtensions
+    public static class SimplifiedObjectNavigationExtensions : Object
     {
         public static Task<Artist> GetFullDetailsAsync(
             this SimplifiedArtist artist,
