@@ -21,6 +21,7 @@ namespace Spotify.ObjectModel.JsonConverters
             // Add converters for ObjectModel types.
             converters.Add(AlbumConverter.Instance);
             converters.Add(ArtistConverter.Instance);
+            converters.Add(AudioAnalysisConverter.Instance);
             converters.Add(AudioFeaturesConverter.Instance);
             converters.Add(CategoryConverter.Instance);
             converters.Add(ContextConverter.Instance);
@@ -33,12 +34,15 @@ namespace Spotify.ObjectModel.JsonConverters
             converters.Add(RecommendationsConverter.Instance);
             converters.Add(RecommendationSeedConverter.Instance);
             converters.Add(SearchResultConverter.Instance);
+            converters.Add(SectionConverter.Instance);
+            converters.Add(SegmentConverter.Instance);
             converters.Add(ShowConverter.Instance);
             converters.Add(SimplifiedAlbumConverter.Instance);
             converters.Add(SimplifiedArtistConverter.Instance);
             converters.Add(SimplifiedEpisodeConverter.Instance);
             converters.Add(SimplifiedShowConverter.Instance);
             converters.Add(SimplifiedTrackConverter.Instance);
+            converters.Add(TimeIntervalConverter.Instance);
             converters.Add(TrackConverter.Instance);
 
             // Add converters for custom types belonging to the library.
