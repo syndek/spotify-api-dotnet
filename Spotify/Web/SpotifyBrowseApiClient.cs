@@ -145,11 +145,11 @@ namespace Spotify.Web
         }
 
         /// <inheritdoc/>
-        public Task<GenreSeedList> GetRecommendationGenresAsync(
+        public Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<GenreSeedList>(
+            return base.SendAsync<IReadOnlyList<String>>(
                 new($"{SpotifyApiClient.BaseUri}/recommendations/available-genre-seeds"),
                 HttpMethod.Get,
                 accessTokenProvider,

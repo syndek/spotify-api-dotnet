@@ -48,7 +48,7 @@ namespace Spotify
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task<GenreSeedList> GetRecommendationGenresAsync(
+        Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
             IAccessTokenProvider? accessTokenProvider = null, 
             CancellationToken cancellationToken = default);
 

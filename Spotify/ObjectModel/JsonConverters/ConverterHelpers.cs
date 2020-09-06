@@ -51,11 +51,11 @@ namespace Spotify.ObjectModel.JsonConverters
             converters.Add(AccessTokenConverter.Instance);
             converters.Add(AccessRefreshTokenConverter.Instance);
             converters.Add(ArrayConverter<Track>.Instance);
+            converters.Add(NamedArrayConverter<String>.Instance);
             converters.Add(NullableArrayConverter<Album>.Instance);
             converters.Add(PagingConverter<SimplifiedTrack>.Instance);
             converters.Add(PagingConverter<Artist>.Instance);
             converters.Add(PagingConverter<Track>.Instance);
-            converters.Add(GenreSeedListConverter.Instance);
         }
 
         internal static Uri ReadUri(ref this Utf8JsonReader reader)
