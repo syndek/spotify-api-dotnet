@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Spotify.Web
 {
-    internal sealed class SpotifyUriBuilder : Object
+    internal class SpotifyUriBuilder : Object
     {
         private readonly String path;
 

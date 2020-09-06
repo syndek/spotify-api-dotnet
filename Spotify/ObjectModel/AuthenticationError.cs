@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel
 {
-    internal sealed record AuthenticationError : SpotifyObject
+    internal record AuthenticationError : SpotifyObject
     {
         internal AuthenticationError(String error, String? errorDescription) : base()
         {
