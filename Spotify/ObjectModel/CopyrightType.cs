@@ -11,7 +11,6 @@ namespace Spotify.ObjectModel
         /// The copyright.
         /// </summary>
         Copyright,
-
         /// <summary>
         /// The sound recording (performance) copyright.
         /// </summary>
