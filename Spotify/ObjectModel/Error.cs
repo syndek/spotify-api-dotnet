@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Spotify.ObjectModel
 {
-    internal record Error : Object
+    internal record Error : SpotifyObject
     {
         internal Error(HttpStatusCode statusCode, String message) : base()
         {

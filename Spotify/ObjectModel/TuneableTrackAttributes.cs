@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel
     /// Represents a collection of values used in calls to <see cref="ISpotifyBrowseApi.GetRecommendationsAsync"/>.
     /// </summary>
     /// <seealso href="https://spotify.dev/documentation/web-api/reference/browse/get-recommendations/#tuneable-track-attributes"/>
-    public record TuneableTrackAttributes : Object
+    public record TuneableTrackAttributes : SpotifyObject
     {
         /// <summary>
         /// Gets or sets the popularity of the track.

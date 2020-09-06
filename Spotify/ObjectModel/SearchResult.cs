@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Spotify.ObjectModel
+﻿namespace Spotify.ObjectModel
 {
-    public record SearchResult : Object
+    public record SearchResult : SpotifyObject
     {
         internal SearchResult(
             Paging<Artist>? artists,
