@@ -11,10 +11,8 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="Context"/> record with the specified values.
         /// </summary>
-        /// <param name="uri">A <see cref="String"/> representing the Spotify URI of the context.</param>
-        /// <param name="href">
-        /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of
-        /// the <see cref="Track"/>.
+        /// <param name="uri">The Spotify URI of the context.</param>
+        /// <param name="href">A link to the Spotify Web API endpoint providing full details of the context.
         /// </param>
         /// <param name="externalUrls">
         /// A <see cref="IReadOnlyDictionary{TKey,TValue}"/> containing the known external URLs for the
@@ -29,19 +27,17 @@ namespace Spotify.ObjectModel
 
         /// <summary>
         /// Gets or sets the <see href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</see>
-        /// for the <see cref="Context"/>.
+        /// of the <see cref="Context"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the Spotify URI of the context.</returns>
+        /// <returns>The Spotify URI of the <see cref="Context"/>.</returns>
         public Uri Uri { get; init; }
         /// <summary>
-        /// Gets or sets a link to the Spotify Web API endpoint providing full details of <see cref="Track"/>.
+        /// Gets or sets a link to the Spotify Web API endpoint providing full details of the <see cref="Context"/>.
         /// </summary>
-        /// <returns>
-        /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of the <see cref="Track"/>.
-        /// </returns>
+        /// <returns>A link to the Spotify Web API endpoint providing full details of the <see cref="Context"/>.</returns>
         public Uri Href { get; init; }
         /// <summary>
-        /// Gets or sets the known external URLs for the <see cref="Context"/>
+        /// Gets or sets the known external URLs for the <see cref="Context"/>.
         /// </summary>
         /// <returns>
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known external URLs for the

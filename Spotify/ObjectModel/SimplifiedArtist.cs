@@ -9,7 +9,7 @@ namespace Spotify.ObjectModel
     public record SimplifiedArtist : LocatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SimplifiedArtist"/> class with the specified values.
+        /// Initializes a new instance of the <see cref="SimplifiedArtist"/> record with the specified values.
         /// </summary>
         /// <param name="id">A <see cref="String"/> representing the Spotify ID of the artist.</param>
         /// <param name="uri">The Spotify URI of the artist.</param>
@@ -27,21 +27,21 @@ namespace Spotify.ObjectModel
         }
 
         /// <summary>
-        /// Gets or sets a link to the Spotify Web API endpoint providing full details of <see cref="Artist"/>.
+        /// Gets or sets a link to the Spotify Web API endpoint providing full details of <see cref="SimplifiedArtist"/>.
         /// </summary>
-        /// <returns>A link to the Spotify Web API endpoint providing full details of the <see cref="Artist"/>.</returns>
+        /// <returns>A link to the Spotify Web API endpoint providing full details of the <see cref="SimplifiedArtist"/>.</returns>
         public Uri Href { get; init; }
         /// <summary>
-        /// Gets or sets the name of the <see cref="Artist"/>.
+        /// Gets or sets the name of the <see cref="SimplifiedArtist"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the name of the <see cref="Artist"/>.</returns>
+        /// <returns>A <see cref="String"/> representing the name of the <see cref="SimplifiedArtist"/>.</returns>
         public String Name { get; init; }
         /// <summary>
-        /// Gets or sets the known external URLs for the <see cref="Artist"/>.
+        /// Gets or sets the known external URLs for the <see cref="SimplifiedArtist"/>.
         /// </summary>
         /// <returns>
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
-        /// external URLs for the <see cref="Artist"/>, keyed by the type of the URL.
+        /// external URLs for the <see cref="SimplifiedArtist"/>, keyed by the type of the URL.
         /// </returns>
         public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
     }

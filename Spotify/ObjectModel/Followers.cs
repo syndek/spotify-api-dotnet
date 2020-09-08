@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel
         public static readonly Followers None = new(null, 0);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Followers"/> with the specified values.
+        /// Initializes a new instance of the <see cref="Followers"/> record with the specified values.
         /// </summary>
         /// <param name="href">
         /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of
@@ -27,11 +27,11 @@ namespace Spotify.ObjectModel
         }
 
         /// <summary>
-        /// Gets or sets a link to the Spotify Web API endpoint providing full details of the followers.
+        /// Gets or sets a link to the Spotify Web API endpoint providing full details of the <see cref="Followers"/>.
         /// </summary>
         /// <returns>
         /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of the
-        /// followers, or <see langword="null"/> if unavailable.
+        /// <see cref="Followers"/>, or <see langword="null"/> if unavailable.
         /// </returns>
         /// <remarks>Currently always <see langword="null"/>, as the API does not yet support it.</remarks>
         public String? Href { get; init; }

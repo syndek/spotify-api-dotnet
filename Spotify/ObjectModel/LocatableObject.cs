@@ -9,7 +9,7 @@ namespace Spotify.ObjectModel
     public record LocatableObject : IdentifiableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocatableObject"/> class
+        /// Initializes a new instance of the <see cref="LocatableObject"/> record
         /// with the specified <paramref name="id"/> and <paramref name="uri"/>.
         /// </summary>
         /// <param name="id">A <see cref="String"/> representing the Spotify ID of the object.</param>
@@ -21,7 +21,7 @@ namespace Spotify.ObjectModel
 
         /// <summary>
         /// Gets or sets the <see href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</see>
-        /// for the <see cref="LocatableObject"/>.
+        /// of the <see cref="LocatableObject"/>.
         /// </summary>
         /// <returns>The Spotify URI of the <see cref="LocatableObject"/>.</returns>
         public Uri Uri { get; init; }

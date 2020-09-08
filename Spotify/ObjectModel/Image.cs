@@ -8,7 +8,7 @@ namespace Spotify.ObjectModel
     public record Image : SpotifyObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Image"/> class with the specified values.
+        /// Initializes a new instance of the <see cref="Image"/> record with the specified values.
         /// </summary>
         /// <param name="url">The source URL of the image.</param>
         /// <param name="width">The width in pixels of the image, or <see langword="null"/> if unknown.</param>
