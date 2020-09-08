@@ -8,11 +8,11 @@ namespace Spotify.ObjectModel
     public enum CopyrightType : Int32
     {
         /// <summary>
-        /// The copyright.
+        /// The <see cref="ObjectModel.Copyright"/> is the regular copyright.
         /// </summary>
         Copyright,
         /// <summary>
-        /// The sound recording (performance) copyright.
+        /// The <see cref="ObjectModel.Copyright"/> is the sound recording (performance) copyright.
         /// </summary>
         PerformanceCopyright
     }
