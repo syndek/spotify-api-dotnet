@@ -14,7 +14,7 @@ namespace Spotify.ObjectModel.JsonConverters
         {
             reader.AssertTokenType(JsonTokenType.StartObject);
 
-            String? href = null;
+            Uri? href = null;
             Int32 total = default;
 
             while (reader.Read())
@@ -32,7 +32,7 @@ namespace Spotify.ObjectModel.JsonConverters
                 switch (reader.GetString())
                 {
                     case "href":
-                        href = reader.ReadString();
+                        href = reader.ReadNullableUri();
                         break;
                     case "total":
                         total = reader.ReadInt32();

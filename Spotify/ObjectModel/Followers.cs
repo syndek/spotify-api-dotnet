@@ -16,11 +16,11 @@ namespace Spotify.ObjectModel
         /// Initializes a new instance of the <see cref="Followers"/> record with the specified values.
         /// </summary>
         /// <param name="href">
-        /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of
-        /// the followers, or <see langword="null"/> if unavailable.
+        /// A link to the Spotify Web API endpoint providing full details of the followers,
+        /// or <see langword="null"/> if unavailable.
         /// </param>
         /// <param name="total">The total number of followers.</param>
-        internal Followers(String? href, Int32 total) : base()
+        internal Followers(Uri? href, Int32 total) : base()
         {
             this.Href = href;
             this.Total = total;
@@ -30,11 +30,11 @@ namespace Spotify.ObjectModel
         /// Gets or sets a link to the Spotify Web API endpoint providing full details of the <see cref="Followers"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="String"/> representing a link to the Spotify Web API endpoint providing full details of the
-        /// <see cref="Followers"/>, or <see langword="null"/> if unavailable.
+        /// A link to the Spotify Web API endpoint providing full details of the <see cref="Followers"/>,
+        /// or <see langword="null"/> if unavailable.
         /// </returns>
         /// <remarks>Currently always <see langword="null"/>, as the API does not yet support it.</remarks>
-        public String? Href { get; init; }
+        public Uri? Href { get; init; }
         /// <summary>
         /// Gets or sets the total number of followers.
         /// </summary>
