@@ -85,25 +85,6 @@ namespace Spotify.ObjectModel.JsonConverters
         internal static IReadOnlyList<TObject> ReadArray<TObject>(ref this Utf8JsonReader reader) =>
             ArrayConverter<TObject>.Instance.Read(ref reader, typeof(IReadOnlyList<TObject>), ConverterHelpers.JsonSerializerOptions);
 
-        internal static IReadOnlyList<String> ReadStringArray(ref this Utf8JsonReader reader)
-        {
-            reader.AssertTokenType(JsonTokenType.StartArray);
-
-            var strings = new List<String>();
-
-            while (reader.Read())
-            {
-                if (reader.TokenType == JsonTokenType.EndArray)
-                {
-                    break;
-                }
-
-                strings.Add(reader.GetString()!);
-            }
-
-            return strings.AsReadOnly();
-        }
-
         internal static IReadOnlyDictionary<String, String> ReadStringDictionary(ref this Utf8JsonReader reader)
         {
             reader.AssertTokenType(JsonTokenType.StartObject);

@@ -67,7 +67,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         isExplicit = reader.ReadBoolean();
                         break;
                     case "languages":
-                        languages = reader.ReadStringArray();
+                        languages = reader.ReadArray<String>();
                         break;
                     case "available_markets":
                         availableMarkets = reader.ReadCountryCodeArray();

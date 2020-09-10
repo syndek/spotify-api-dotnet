@@ -87,7 +87,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "languages":
                         reader.Read(JsonTokenType.StartArray);
-                        languages = reader.ReadStringArray();
+                        languages = reader.ReadArray<String>();
                         break;
                     case "audio_preview_url":
                         audioPreviewUrl = reader.ReadNullableUri();

@@ -61,7 +61,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "genres":
                         reader.Read(JsonTokenType.StartArray);
-                        genres = reader.ReadStringArray();
+                        genres = reader.ReadArray<String>();
                         break;
                     case "popularity":
                         popularity = reader.ReadInt32();
