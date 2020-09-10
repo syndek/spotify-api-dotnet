@@ -61,6 +61,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         country = CountryCodeConverter.FromSpotifyString(reader.ReadString()!);
                         break;
                     case "images":
+                        reader.Read(JsonTokenType.StartArray);
                         images = reader.ReadArray<Image>();
                         break;
                     case "product":
