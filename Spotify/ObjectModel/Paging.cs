@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Represents an empty <see cref="Paging{TItem}"/>. This field is read-only.
         /// </summary>
-        public static readonly Paging<TItem> Empty = new(Array.Empty<TItem>(), 0, 0, 0, new(String.Empty), null, null);
+        public static readonly Paging<TItem> Empty = new(Array.Empty<TItem>(), 0, 0, 0, null!, null, null);
 
         private readonly IReadOnlyList<TItem> items;
 
