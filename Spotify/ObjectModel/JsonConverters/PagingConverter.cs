@@ -39,7 +39,7 @@ namespace Spotify.ObjectModel.JsonConverters
                 {
                     case "items":
                         reader.Read(JsonTokenType.StartArray);
-                        items = ArrayConverter<TItem>.Instance.Read(ref reader, typeof(IReadOnlyList<TItem>), options);
+                        items = reader.ReadArray<TItem>();
                         break;
                     case "total":
                         total = reader.ReadInt32();

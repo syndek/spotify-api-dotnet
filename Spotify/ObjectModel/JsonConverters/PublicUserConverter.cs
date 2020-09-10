@@ -50,7 +50,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         displayName = reader.ReadString();
                         break;
                     case "images":
-                        images = ArrayConverter<Image>.Instance.Read(ref reader, typeof(IReadOnlyList<Image>), options);
+                        images = reader.ReadArray<Image>();
                         break;
                     case "followers":
                         followers = FollowersConverter.Instance.Read(ref reader, typeof(Followers), options);

@@ -65,7 +65,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "images":
                         reader.Read(JsonTokenType.StartArray);
-                        images = ArrayConverter<Image>.Instance.Read(ref reader, typeof(IReadOnlyList<Image>), options);
+                        images = reader.ReadArray<Image>();
                         break;
                     case "duration":
                         duration = reader.ReadInt32();

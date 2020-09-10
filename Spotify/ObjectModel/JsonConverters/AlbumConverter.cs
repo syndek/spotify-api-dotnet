@@ -66,11 +66,11 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "images":
                         reader.Read(JsonTokenType.StartArray);
-                        images = ArrayConverter<Image>.Instance.Read(ref reader, typeof(IReadOnlyList<Image>), options);
+                        images = reader.ReadArray<Image>();
                         break;
                     case "artists":
                         reader.Read(JsonTokenType.StartArray);
-                        artists = ArrayConverter<SimplifiedArtist>.Instance.Read(ref reader, typeof(IReadOnlyList<SimplifiedArtist>), options);
+                        artists = reader.ReadArray<SimplifiedArtist>();
                         break;
                     case "release_date":
                         releaseDate = reader.ReadDateTime();
@@ -98,7 +98,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "copyrights":
                         reader.Read(JsonTokenType.StartArray);
-                        copyrights = ArrayConverter<Copyright>.Instance.Read(ref reader, typeof(IReadOnlyList<Copyright>), options);
+                        copyrights = reader.ReadArray<Copyright>();
                         break;
                     case "external_ids":
                         reader.Read(JsonTokenType.StartObject);

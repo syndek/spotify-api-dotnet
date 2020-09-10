@@ -64,7 +64,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "artists":
                         reader.Read(JsonTokenType.StartArray);
-                        artists = ArrayConverter<SimplifiedArtist>.Instance.Read(ref reader, typeof(IReadOnlyList<SimplifiedArtist>), options);
+                        artists = reader.ReadArray<SimplifiedArtist>();
                         break;
                     case "duration":
                         duration = reader.ReadInt32();

@@ -17,7 +17,7 @@ namespace Spotify.ObjectModel.JsonConverters
 
             reader.Read(JsonTokenType.PropertyName);
             reader.Read(JsonTokenType.StartArray);
-            var array = ArrayConverter<TElement>.Instance.Read(ref reader, typeof(IReadOnlyList<TElement>), options);
+            var array = reader.ReadArray<TElement>();
 
             reader.Read(JsonTokenType.EndObject);
 

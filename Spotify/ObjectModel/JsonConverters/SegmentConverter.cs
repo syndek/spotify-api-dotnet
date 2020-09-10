@@ -62,11 +62,11 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "pitches":
                         reader.Read(JsonTokenType.StartArray);
-                        pitches = ArrayConverter<Single>.Instance.Read(ref reader, typeof(IReadOnlyList<Single>), options);
+                        pitches = reader.ReadArray<Single>();
                         break;
                     case "timbre":
                         reader.Read(JsonTokenType.StartArray);
-                        timbre = ArrayConverter<Single>.Instance.Read(ref reader, typeof(IReadOnlyList<Single>), options);
+                        timbre = reader.ReadArray<Single>();
                         break;
                     default:
                         reader.Skip();

@@ -34,11 +34,11 @@ namespace Spotify.ObjectModel.JsonConverters
                 {
                     case "seeds":
                         reader.Read(JsonTokenType.StartArray);
-                        seeds = ArrayConverter<RecommendationSeed>.Instance.Read(ref reader, typeof(IReadOnlyList<RecommendationSeed>), options);
+                        seeds = reader.ReadArray<RecommendationSeed>();
                         break;
                     case "tracks":
                         reader.Read(JsonTokenType.StartArray);
-                        tracks = ArrayConverter<SimplifiedTrack>.Instance.Read(ref reader, typeof(IReadOnlyList<SimplifiedTrack>), options);
+                        tracks = reader.ReadArray<SimplifiedTrack>();
                         break;
                     default:
                         reader.Skip();

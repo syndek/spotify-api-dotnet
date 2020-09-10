@@ -45,7 +45,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "icons":
                         reader.Read(JsonTokenType.StartArray);
-                        images = ArrayConverter<Image>.Instance.Read(ref reader, typeof(IReadOnlyList<Image>), options);
+                        images = reader.ReadArray<Image>();
                         break;
                     default:
                         reader.Skip();

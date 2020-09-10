@@ -37,23 +37,23 @@ namespace Spotify.ObjectModel.JsonConverters
                 {
                     case "bars":
                         reader.Read(JsonTokenType.StartArray);
-                        bars = ArrayConverter<TimeInterval>.Instance.Read(ref reader, typeof(IReadOnlyList<TimeInterval>), options);
+                        bars = reader.ReadArray<TimeInterval>();
                         break;
                     case "beats":
                         reader.Read(JsonTokenType.StartArray);
-                        beats = ArrayConverter<TimeInterval>.Instance.Read(ref reader, typeof(IReadOnlyList<TimeInterval>), options);
+                        beats = reader.ReadArray<TimeInterval>();
                         break;
                     case "sections":
                         reader.Read(JsonTokenType.StartArray);
-                        sections = ArrayConverter<Section>.Instance.Read(ref reader, typeof(IReadOnlyList<Section>), options);
+                        sections = reader.ReadArray<Section>();
                         break;
                     case "segments":
                         reader.Read(JsonTokenType.StartArray);
-                        segments = ArrayConverter<Segment>.Instance.Read(ref reader, typeof(IReadOnlyList<Segment>), options);
+                        segments = reader.ReadArray<Segment>();
                         break;
                     case "tatums":
                         reader.Read(JsonTokenType.StartArray);
-                        tatums = ArrayConverter<TimeInterval>.Instance.Read(ref reader, typeof(IReadOnlyList<TimeInterval>), options);
+                        tatums = reader.ReadArray<TimeInterval>();
                         break;
                     default:
                         reader.Skip();
