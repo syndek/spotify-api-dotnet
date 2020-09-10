@@ -64,11 +64,11 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "images":
                         reader.Read(JsonTokenType.StartArray);
-                        images = ArrayConverter<Image>.Instance.Read(ref reader, typeof(Image), options);
+                        images = ArrayConverter<Image>.Instance.Read(ref reader, typeof(IReadOnlyList<Image>), options);
                         break;
                     case "artists":
                         reader.Read(JsonTokenType.StartArray);
-                        artists = ArrayConverter<SimplifiedArtist>.Instance.Read(ref reader, typeof(SimplifiedArtist), options);
+                        artists = ArrayConverter<SimplifiedArtist>.Instance.Read(ref reader, typeof(IReadOnlyList<SimplifiedArtist>), options);
                         break;
                     case "release_date":
                         var date = reader.ReadString()!.Split('-');
