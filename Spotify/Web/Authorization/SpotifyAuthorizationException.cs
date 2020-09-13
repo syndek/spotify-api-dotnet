@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 
 namespace Spotify.Web.Authorization
 {
     /// <summary>
     /// The exception that is thrown when an error occurrs during authorization with the Spotify Accounts service.
     /// </summary>
-    internal class SpotifyAuthorizationException : Exception
+    internal class SpotifyAuthorizationException : HttpRequestException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAuthorizationException"/> class
@@ -15,8 +17,10 @@ namespace Spotify.Web.Authorization
         /// <param name="errorDescription">
         /// A <see cref="String"/> representing a description of the error, or <see langword="null"/> if none was provided.
         /// </param>
-        internal SpotifyAuthorizationException(String error, String? errorDescription) :
-            base($"{error}: {errorDescription ?? "No description"}")
+        /// <param name="inner">The inner <see cref="Exception"/>.</param>
+        /// <param name="statusCode">The <see cref="HttpStatusCode"/> of the response.</param>
+        internal SpotifyAuthorizationException(String error, String? errorDescription, Exception? inner, HttpStatusCode? statusCode) :
+            base($"{error}: {errorDescription ?? "No description"}", inner, statusCode)
         { }
     }
 }
