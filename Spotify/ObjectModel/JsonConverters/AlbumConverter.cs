@@ -80,7 +80,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "tracks":
                         reader.Read(JsonTokenType.StartArray);
-                        tracks = PagingConverter<SimplifiedTrack>.Instance.Read(ref reader, typeof(Paging<SimplifiedTrack>), options);
+                        tracks = reader.ReadPaging<SimplifiedTrack>();
                         break;
                     case "genres":
                         reader.Read(JsonTokenType.StartArray);

@@ -66,7 +66,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         break;
                     case "episodes":
                         reader.Read(JsonTokenType.StartObject);
-                        episodes = PagingConverter<SimplifiedEpisode>.Instance.Read(ref reader, typeof(IReadOnlyList<SimplifiedEpisode>), options);
+                        episodes = reader.ReadPaging<SimplifiedEpisode>();
                         break;
                     case "explicit":
                         isExplicit = reader.ReadBoolean();

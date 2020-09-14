@@ -37,27 +37,27 @@ namespace Spotify.ObjectModel.JsonConverters
                 {
                     case "artists":
                         reader.Read(JsonTokenType.StartObject);
-                        artists = PagingConverter<Artist>.Instance.Read(ref reader, typeof(Paging<Artist>), options);
+                        artists = reader.ReadPaging<Artist>();
                         break;
                     case "albums":
                         reader.Read(JsonTokenType.StartObject);
-                        albums = PagingConverter<SimplifiedAlbum>.Instance.Read(ref reader, typeof(Paging<SimplifiedAlbum>), options);
+                        albums = reader.ReadPaging<SimplifiedAlbum>();
                         break;
                     case "tracks":
                         reader.Read(JsonTokenType.StartObject);
-                        tracks = PagingConverter<Track>.Instance.Read(ref reader, typeof(Paging<Track>), options);
+                        tracks = reader.ReadPaging<Track>();
                         break;
                     case "shows":
                         reader.Read(JsonTokenType.StartObject);
-                        shows = PagingConverter<SimplifiedShow>.Instance.Read(ref reader, typeof(Paging<SimplifiedShow>), options);
+                        shows = reader.ReadPaging<SimplifiedShow>();
                         break;
                     case "episodes":
                         reader.Read(JsonTokenType.StartObject);
-                        episodes = PagingConverter<SimplifiedEpisode>.Instance.Read(ref reader, typeof(Paging<SimplifiedEpisode>), options);
+                        episodes = reader.ReadPaging<SimplifiedEpisode>();
                         break;
                     case "playlists":
                         reader.Read(JsonTokenType.StartObject);
-                        playlists = PagingConverter<Playlist>.Instance.Read(ref reader, typeof(Paging<Playlist>), options);
+                        playlists = reader.ReadPaging<Playlist>();
                         break;
                     default:
                         reader.Skip();
