@@ -12,8 +12,8 @@ namespace Spotify.ObjectModel
             String? displayName,
             IReadOnlyList<Image> images,
             Followers followers,
-            IReadOnlyDictionary<String, Uri> externalUrls)
-            : base(id, uri)
+            IReadOnlyDictionary<String, Uri> externalUrls) :
+            base(id, uri)
         {
             this.Href = href;
             this.DisplayName = displayName;

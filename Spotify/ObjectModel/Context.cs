@@ -15,8 +15,8 @@ namespace Spotify.ObjectModel
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the context.
         /// </param>
         /// <param name="externalUrls">
-        /// A <see cref="IReadOnlyDictionary{TKey,TValue}"/> containing the known external URLs for the
-        /// context, keyed by the type of the URL.
+        /// A <see cref="IReadOnlyDictionary{TKey,TValue}"/> containing the known
+        /// external URLs for the context, keyed by the type of the URL.
         /// </param>
         internal Context(Uri uri, Uri href, IReadOnlyDictionary<String, Uri> externalUrls) : base()
         {
