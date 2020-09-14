@@ -29,9 +29,11 @@ namespace Spotify.Web
                     .ConfigureAwait(false);
             }
 
-            return await response.Content
+            var result = await response.Content
                 .ReadFromJsonAsync<TObject>(ConverterHelpers.JsonSerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
+
+            return result ?? throw new InvalidOperationException($"Failed to deserialize response to an instance of {typeof(TObject).Name}.");
         }
 
         internal static async Task SendMessageAsync<TError>(
