@@ -29,11 +29,11 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets a link to the Spotify Web API endpoint providing full details of the <see cref="Followers"/>.
         /// </summary>
+        /// <remarks>Currently always <see langword="null"/>, as the API does not yet support it.</remarks>
         /// <returns>
         /// A link to the Spotify Web API endpoint providing full details of the <see cref="Followers"/>,
         /// or <see langword="null"/> if unavailable.
         /// </returns>
-        /// <remarks>Currently always <see langword="null"/>, as the API does not yet support it.</remarks>
         public Uri? Href { get; init; }
         /// <summary>
         /// Gets or sets the total number of followers.

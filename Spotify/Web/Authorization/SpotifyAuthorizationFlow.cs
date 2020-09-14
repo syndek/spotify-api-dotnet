@@ -53,11 +53,11 @@ namespace Spotify.Web.Authorization
         /// Asynchronously retrieves an <see cref="AccessToken"/>.
         /// </summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
-        /// <returns>A <see cref="ValueTask{TResult}"/> representing the asynchronous operation.</returns>
         /// <remarks>
         /// This method may either use an existing <see cref="AccessToken"/>, or if it has expired,
         /// request and cache a new <see cref="AccessToken"/> from the Spotify Accounts service.
         /// </remarks>
+        /// <returns>A <see cref="ValueTask{TResult}"/> representing the asynchronous operation.</returns>
         public abstract ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default);
 
         /// <summary>

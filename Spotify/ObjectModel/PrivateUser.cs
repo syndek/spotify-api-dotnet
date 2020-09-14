@@ -34,7 +34,7 @@ namespace Spotify.ObjectModel
         /// The Spotify <see cref="ObjectModel.Product"/> of the user,
         /// or <see langword="null"/> if not provided.
         /// </param>
-        /// <param name="followers">The <see cref="ObjectModel.Followers"/> of the user.</param>
+        /// <param name="followers">The <see cref="Followers"/> of the user.</param>
         /// <param name="externalUrls">
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the user, keyed by the type of the URL.
