@@ -82,7 +82,7 @@ namespace Spotify.Web
             var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/me/following")
                 .AppendToQuery("type", "artist");
 
-            using var content = new StringContent(JsonSerializer.Serialize(new { ids }), Encoding.UTF8, MediaTypeNames.Application.Json);
+            var content = new StringContent(JsonSerializer.Serialize(new { ids }), Encoding.UTF8, MediaTypeNames.Application.Json);
 
             return base.SendAsync(
                 uriBuilder.Build(),

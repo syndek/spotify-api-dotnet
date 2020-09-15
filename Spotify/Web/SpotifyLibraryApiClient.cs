@@ -180,7 +180,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
-            using var content = new StringContent($"[{String.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json);
+            var content = new StringContent($"[{String.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json);
 
             return base.SendAsync(
                 new($"{SpotifyApiClient.BaseUri}/me/{objectType}s"),
@@ -196,7 +196,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
-            using var content = new StringContent($"[{String.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json);
+            var content = new StringContent($"[{String.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json);
 
             return base.SendAsync(
                 new($"{SpotifyApiClient.BaseUri}/me/{objectType}s"),
