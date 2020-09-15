@@ -42,6 +42,7 @@ namespace Spotify.ObjectModel.JsonConverters
             converters.Add(SimplifiedAlbumConverter.Instance);
             converters.Add(SimplifiedArtistConverter.Instance);
             converters.Add(SimplifiedEpisodeConverter.Instance);
+            converters.Add(SimplifiedPlaylistConverter.Instance);
             converters.Add(SimplifiedShowConverter.Instance);
             converters.Add(SimplifiedTrackConverter.Instance);
             converters.Add(TimeIntervalConverter.Instance);
