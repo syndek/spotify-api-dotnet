@@ -9,7 +9,7 @@ namespace Spotify.Web.Authorization
     /// </summary>
     public class SimpleAccessTokenProvider : Object, IAccessTokenProvider
     {
-        private readonly ValueTask<AccessToken> task;
+        private readonly String accessToken;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleAccessTokenProvider"/> class with the specified <paramref name="accessToken"/>.
@@ -17,10 +17,11 @@ namespace Spotify.Web.Authorization
         /// <param name="accessToken">A <see cref="String"/> representing the access token to use.</param>
         public SimpleAccessTokenProvider(String accessToken) : base()
         {
-            this.task = ValueTask.FromResult(new AccessToken(accessToken, default, default));
+            this.accessToken = accessToken;
         }
 
         /// <inheritdoc/>
-        public ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default) => this.task;
+        public ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default) =>
+            ValueTask.FromResult(new AccessToken(accessToken, default, default));
     }
 }
