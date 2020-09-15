@@ -29,6 +29,8 @@ namespace Spotify.ObjectModel.JsonConverters
             converters.Add(EpisodeConverter.Instance);
             converters.Add(FollowersConverter.Instance);
             converters.Add(ImageConverter.Instance);
+            converters.Add(PlaylistConverter.Instance);
+            converters.Add(PlaylistTrackConverter.Instance);
             converters.Add(PrivateUserConverter.Instance);
             converters.Add(PublicUserConverter.Instance);
             converters.Add(RecommendationsConverter.Instance);
