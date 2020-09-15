@@ -68,9 +68,11 @@ namespace Spotify.ObjectModel.JsonConverters
                         product = ProductConverter.FromSpotifyString(reader.ReadString()!);
                         break;
                     case "followers":
+                        reader.Read(JsonTokenType.StartObject);
                         followers = FollowersConverter.Instance.Read(ref reader, typeof(Followers), options);
                         break;
                     case "external_urls":
+                        reader.Read(JsonTokenType.StartObject);
                         externalUrls = reader.ReadExternalUrls();
                         break;
                     default:

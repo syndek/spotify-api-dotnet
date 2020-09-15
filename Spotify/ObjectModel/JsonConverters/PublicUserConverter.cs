@@ -50,12 +50,15 @@ namespace Spotify.ObjectModel.JsonConverters
                         displayName = reader.ReadString();
                         break;
                     case "images":
+                        reader.Read(JsonTokenType.StartArray);
                         images = reader.ReadArray<Image>();
                         break;
                     case "followers":
+                        reader.Read(JsonTokenType.StartObject);
                         followers = FollowersConverter.Instance.Read(ref reader, typeof(Followers), options);
                         break;
                     case "external_urls":
+                        reader.Read(JsonTokenType.StartObject);
                         externalUrls = reader.ReadExternalUrls();
                         break;
                     default:
