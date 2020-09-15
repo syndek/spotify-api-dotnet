@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     public record PlaylistTrack : SpotifyObject
     {
-        internal PlaylistTrack(DateTime addedAt, PublicUser addedBy, Boolean isLocal, Object track) : base()
+        internal PlaylistTrack(DateTime addedAt, PublicUser addedBy, Boolean isLocal, IPlayable track) : base()
         {
             this.AddedAt = addedAt;
             this.AddedBy = addedBy;
@@ -15,6 +15,6 @@ namespace Spotify.ObjectModel
         public DateTime AddedAt { get; init; }
         public PublicUser AddedBy { get; init; }
         public Boolean IsLocal { get; init; }
-        public Object Track { get; init; }
+        public IPlayable Track { get; init; }
     }
 }
