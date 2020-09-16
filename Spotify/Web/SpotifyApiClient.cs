@@ -75,24 +75,6 @@ namespace Spotify.Web
                 .ConfigureAwait(false);
         }
 
-        private async ValueTask<AuthenticationHeaderValue> GetAuthenticationHeaderAsync(
-            IAccessTokenProvider? accessTokenProvider,
-            CancellationToken cancellationToken)
-        {
-            var provider = accessTokenProvider ??
-                this.DefaultAccessTokenProvider ??
-                throw new InvalidOperationException($"No {nameof(IAccessTokenProvider)} provided to acquire access token from.");
-
-            var accessToken = await provider.GetAccessTokenAsync(cancellationToken).ConfigureAwait(false);
-
-            if (this.currentAuthenticationHeader?.Parameter != accessToken.Value)
-            {
-                this.currentAuthenticationHeader = new("Bearer", accessToken.Value);
-            }
-
-            return this.currentAuthenticationHeader;
-        }
-
         private async ValueTask<HttpRequestMessage> CreateAuthenticatedHttpRequestMessageAsync(
             Uri uri,
             HttpMethod method,
@@ -101,9 +83,21 @@ namespace Spotify.Web
             CancellationToken cancellationToken)
         {
             var message = new HttpRequestMessage(method, uri) { Content = content };
-            message.Headers.Authorization = await this
-                .GetAuthenticationHeaderAsync(accessTokenProvider, cancellationToken)
-                .ConfigureAwait(false);
+
+            // Refresh current access token if necessary.
+            var provider = accessTokenProvider ??
+                this.DefaultAccessTokenProvider ??
+                throw new InvalidOperationException($"No {nameof(IAccessTokenProvider)} provided to acquire access token from.");
+
+            var accessToken = await provider.GetAccessTokenAsync(cancellationToken).ConfigureAwait(false);
+
+            if (this.currentAuthenticationHeader?.Parameter != accessToken.Value)
+            {
+                // Cache an instance of AuthenticationHeaderValue so one doesn't need to be created every time a request is made.
+                this.currentAuthenticationHeader = new("Bearer", accessToken.Value);
+            }
+
+            message.Headers.Authorization = this.currentAuthenticationHeader;
             return message;
         }
     }
