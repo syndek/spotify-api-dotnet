@@ -27,7 +27,15 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/tracks")
+                .AppendJoinToQuery("ids", ',', ids)
+                .AppendToQueryIfNotNull("market", market);
+
+            return base.SendAsync<IReadOnlyList<Track>>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -36,7 +44,14 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/audio-features")
+                .AppendJoinToQuery("ids", ',', ids);
+
+            return base.SendAsync<IReadOnlyList<AudioFeatures>>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -46,7 +61,14 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/tracks/{id}")
+                .AppendToQueryIfNotNull("market", market);
+
+            return base.SendAsync<Track>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -55,7 +77,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return base.SendAsync<AudioAnalysis>(
+                new($"{SpotifyApiClient.BaseUrl}/audio-analysis/{id}"),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -64,7 +90,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return base.SendAsync<AudioFeatures>(
+                new($"{SpotifyApiClient.BaseUrl}/audio-features/{id}"),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
     }
 }
