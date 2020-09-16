@@ -31,7 +31,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/browse/categories")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/categories")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("locale", locale)
                 .AppendToQueryIfNotNull("limit", limit)
@@ -52,7 +52,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/browse/categories/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/categories/{id}")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("locale", locale);
 
@@ -72,7 +72,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/browse/categories/{id}/playlists")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/categories/{id}/playlists")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
@@ -115,7 +115,7 @@ namespace Spotify.Web
                 yield return ($"{prefix}_valence", attributes.Valence);
             }
 
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/recommendations")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/recommendations")
                 .AppendJoinToQuery("seed_artists", ',', seedArtists)
                 .AppendJoinToQuery("seed_tracks", ',', seedTracks)
                 .AppendJoinToQuery("seed_genres", ',', seedGenres)
@@ -150,7 +150,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             return base.SendAsync<IReadOnlyList<String>>(
-                new($"{SpotifyApiClient.BaseUri}/recommendations/available-genre-seeds"),
+                new($"{SpotifyApiClient.BaseUrl}/recommendations/available-genre-seeds"),
                 HttpMethod.Get,
                 accessTokenProvider,
                 cancellationToken);
@@ -166,7 +166,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/browse/featured-playlists")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/featured-playlists")
                 .AppendToQueryIfNotNull("locale", locale)
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("timestamp", timestamp)
@@ -188,7 +188,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/browse/new-releases")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/new-releases")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);

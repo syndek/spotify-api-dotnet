@@ -33,7 +33,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/search")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/search")
                 .AppendToQuery("query", query.Replace(" ", "%20"))
                 .AppendJoinToQuery("type", ',', types.GetFlags().Select(value => value.GetName().ToLower()))
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString())

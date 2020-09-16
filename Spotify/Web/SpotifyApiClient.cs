@@ -14,7 +14,7 @@ namespace Spotify.Web
     /// </summary>
     public abstract class SpotifyApiClient : Object, IDisposable
     {
-        internal const String BaseUri = "https://api.spotify.com/v1";
+        internal const String BaseUrl = "https://api.spotify.com/v1";
 
         private readonly HttpClient httpClient;
         private AuthenticationHeaderValue? currentAuthenticationHeader;

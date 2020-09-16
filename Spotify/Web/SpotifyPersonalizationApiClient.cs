@@ -28,7 +28,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/me/top/artists")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/top/artists")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("time_range", timeRange?.ToSpotifyString());
@@ -48,7 +48,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/me/top/tracks")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/top/tracks")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("time_range", timeRange?.ToSpotifyString());

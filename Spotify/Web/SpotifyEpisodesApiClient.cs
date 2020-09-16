@@ -27,7 +27,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/episodes/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/episodes/{id}")
                 .AppendToQueryIfNotNull("market", market);
 
             return base.SendAsync<Episode>(
@@ -44,7 +44,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/episodes")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/episodes")
                 .AppendJoinToQuery("ids", ',', ids)
                 .AppendToQueryIfNotNull("market", market);
 

@@ -25,7 +25,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             return base.SendAsync<PrivateUser>(
-                new($"{SpotifyApiClient.BaseUri}/me"),
+                new($"{SpotifyApiClient.BaseUrl}/me"),
                 HttpMethod.Get,
                 accessTokenProvider,
                 cancellationToken);
@@ -38,7 +38,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             return base.SendAsync<PublicUser>(
-                new($"{SpotifyApiClient.BaseUri}/users/{id}"),
+                new($"{SpotifyApiClient.BaseUrl}/users/{id}"),
                 HttpMethod.Get,
                 accessTokenProvider,
                 cancellationToken);

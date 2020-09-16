@@ -28,7 +28,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/me/following/contains")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following/contains")
                 .AppendToQuery("type", "artist")
                 .AppendJoinToQuery("ids", ',', ids);
 
@@ -45,7 +45,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/me/following/contains")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following/contains")
                 .AppendToQuery("type", "user")
                 .AppendJoinToQuery("ids", ',', ids);
 
@@ -63,7 +63,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/playlists/{playlistId}/followers/contains")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{playlistId}/followers/contains")
                 .AppendJoinToQuery("ids", ',', ids);
 
             return base.SendAsync<IReadOnlyList<Boolean>>(
@@ -79,7 +79,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/me/following")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following")
                 .AppendToQuery("type", "artist");
 
             var content = new StringContent(JsonSerializer.Serialize(new { ids }), Encoding.UTF8, MediaTypeNames.Application.Json);
@@ -136,7 +136,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             return base.SendAsync(
-                new($"{SpotifyApiClient.BaseUri}/playlists/{id}/followers"),
+                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/followers"),
                 HttpMethod.Delete,
                 content: null,
                 accessTokenProvider,

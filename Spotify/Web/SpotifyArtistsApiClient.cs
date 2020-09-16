@@ -27,7 +27,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/artists")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/artists")
                 .AppendJoinToQuery("ids", ',', ids);
 
             return base.SendAsync<IReadOnlyList<Artist>>(
@@ -44,7 +44,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             return base.SendAsync<Artist>(
-                new($"{SpotifyApiClient.BaseUri}/artists/{id}"),
+                new($"{SpotifyApiClient.BaseUrl}/artists/{id}"),
                 HttpMethod.Get,
                 accessTokenProvider,
                 cancellationToken);
@@ -60,7 +60,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/artists/{id}/albums")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/artists/{id}/albums")
                 .AppendJoinToQueryIfNotNull("include_groups", ',', includeGroups?.ToSpotifyStrings())
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString())
                 .AppendToQueryIfNotNull("limit", limit)
@@ -80,7 +80,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/artists/{id}/top-tracks")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/artists/{id}/top-tracks")
                 .AppendToQuery("country", market);
 
             return base.SendAsync<IReadOnlyList<Track>>(
@@ -97,7 +97,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             return base.SendAsync<IReadOnlyList<Artist>>(
-                new($"{SpotifyApiClient.BaseUri}/artists/{id}/related-artists"),
+                new($"{SpotifyApiClient.BaseUrl}/artists/{id}/related-artists"),
                 HttpMethod.Get,
                 accessTokenProvider,
                 cancellationToken);

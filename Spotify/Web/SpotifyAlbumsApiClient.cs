@@ -28,7 +28,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/albums")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/albums")
                 .AppendJoinToQuery("ids", ',', ids)
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
 
@@ -46,7 +46,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/albums/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/albums/{id}")
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
 
             return base.SendAsync<Album>(
@@ -65,7 +65,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUri}/albums/{id}/tracks")
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/albums/{id}/tracks")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
