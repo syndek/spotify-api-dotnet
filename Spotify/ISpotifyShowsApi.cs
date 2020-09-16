@@ -19,7 +19,7 @@ namespace Spotify
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task GetShowAsync(
+        Task<Show> GetShowAsync(
             String id,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,

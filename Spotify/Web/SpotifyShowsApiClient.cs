@@ -31,7 +31,7 @@ namespace Spotify.Web
         }
 
         /// <inheritdoc/>
-        public Task GetShowAsync(
+        public Task<Show> GetShowAsync(
             String id,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
