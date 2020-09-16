@@ -46,11 +46,12 @@ namespace Spotify.Web
         protected async Task<TObject> SendAsync<TObject>(
             Uri uri,
             HttpMethod method,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default)
+            HttpContent? content,
+            IAccessTokenProvider? accessTokenProvider,
+            CancellationToken cancellationToken)
         {
             using var message = await this
-                .CreateAuthenticatedHttpRequestMessageAsync(uri, method, null, accessTokenProvider, cancellationToken)
+                .CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
                 .ConfigureAwait(false);
 
             return await this.httpClient
@@ -62,8 +63,8 @@ namespace Spotify.Web
             Uri uri,
             HttpMethod method,
             HttpContent? content,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default)
+            IAccessTokenProvider? accessTokenProvider,
+            CancellationToken cancellationToken)
         {
             using var message = await this
                 .CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
@@ -75,8 +76,8 @@ namespace Spotify.Web
         }
 
         private async ValueTask<AuthenticationHeaderValue> GetAuthenticationHeaderAsync(
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default)
+            IAccessTokenProvider? accessTokenProvider,
+            CancellationToken cancellationToken)
         {
             var provider = accessTokenProvider ??
                 this.DefaultAccessTokenProvider ??
@@ -96,8 +97,8 @@ namespace Spotify.Web
             Uri uri,
             HttpMethod method,
             HttpContent? content,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default)
+            IAccessTokenProvider? accessTokenProvider,
+            CancellationToken cancellationToken)
         {
             var message = new HttpRequestMessage(method, uri) { Content = content };
             message.Headers.Authorization = await this

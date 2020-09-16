@@ -33,6 +33,7 @@ namespace Spotify.Web
             return base.SendAsync<Episode>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -51,6 +52,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Episode>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }

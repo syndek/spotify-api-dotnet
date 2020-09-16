@@ -36,6 +36,7 @@ namespace Spotify.Web
             return base.SendAsync<Paging<Artist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -56,6 +57,7 @@ namespace Spotify.Web
             return base.SendAsync<Paging<Track>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }

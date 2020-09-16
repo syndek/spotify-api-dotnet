@@ -40,6 +40,7 @@ namespace Spotify.Web
             return base.SendAsync<Paging<Category>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -59,6 +60,7 @@ namespace Spotify.Web
             return base.SendAsync<Category>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -80,6 +82,7 @@ namespace Spotify.Web
             return base.SendAsync<Paging<SimplifiedPlaylist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -140,6 +143,7 @@ namespace Spotify.Web
             return base.SendAsync<Recommendations>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -152,6 +156,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<String>>(
                 new($"{SpotifyApiClient.BaseUrl}/recommendations/available-genre-seeds"),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -176,6 +181,7 @@ namespace Spotify.Web
             return base.SendAsync<Paging<SimplifiedPlaylist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -196,6 +202,7 @@ namespace Spotify.Web
             return base.SendAsync<Paging<SimplifiedAlbum>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }

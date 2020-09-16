@@ -34,6 +34,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Track>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -50,6 +51,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<AudioFeatures>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -67,6 +69,7 @@ namespace Spotify.Web
             return base.SendAsync<Track>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -80,6 +83,7 @@ namespace Spotify.Web
             return base.SendAsync<AudioAnalysis>(
                 new($"{SpotifyApiClient.BaseUrl}/audio-analysis/{id}"),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -93,6 +97,7 @@ namespace Spotify.Web
             return base.SendAsync<AudioFeatures>(
                 new($"{SpotifyApiClient.BaseUrl}/audio-features/{id}"),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }

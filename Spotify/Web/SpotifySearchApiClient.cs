@@ -44,6 +44,7 @@ namespace Spotify.Web
             return base.SendAsync<SearchResult>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }

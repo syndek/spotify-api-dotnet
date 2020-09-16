@@ -33,6 +33,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Artist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -46,6 +47,7 @@ namespace Spotify.Web
             return base.SendAsync<Artist>(
                 new($"{SpotifyApiClient.BaseUrl}/artists/{id}"),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -69,6 +71,7 @@ namespace Spotify.Web
             return base.SendAsync<Paging<Album>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -86,6 +89,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Track>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -99,6 +103,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Artist>>(
                 new($"{SpotifyApiClient.BaseUrl}/artists/{id}/related-artists"),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }

@@ -27,6 +27,7 @@ namespace Spotify.Web
             return base.SendAsync<PrivateUser>(
                 new($"{SpotifyApiClient.BaseUrl}/me"),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -40,6 +41,7 @@ namespace Spotify.Web
             return base.SendAsync<PublicUser>(
                 new($"{SpotifyApiClient.BaseUrl}/users/{id}"),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }

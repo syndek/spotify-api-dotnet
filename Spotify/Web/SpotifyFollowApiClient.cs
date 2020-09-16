@@ -35,6 +35,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Boolean>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -52,6 +53,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Boolean>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
@@ -69,6 +71,7 @@ namespace Spotify.Web
             return base.SendAsync<IReadOnlyList<Boolean>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
