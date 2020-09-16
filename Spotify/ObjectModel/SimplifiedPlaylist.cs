@@ -79,7 +79,7 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets the description of the <see cref="SimplifiedPlaylist"/>.
         /// </summary>
-        /// <remarks>Only present in modified, verified playlists. Will always be <see langword="null"/> for user-created playlists.</remarks>
+        /// <remarks>Only present in modified, verified playlists, otherwise <see langword="null"/>.</remarks>
         /// <returns>
         /// A <see cref="String"/> representing the description of the <see cref="SimplifiedPlaylist"/>,
         /// or <see langword="null"/> if none is provided.
