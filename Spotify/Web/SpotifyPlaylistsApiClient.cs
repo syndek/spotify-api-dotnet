@@ -97,6 +97,7 @@ namespace Spotify.Web
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public Task SetPlaylistCoverImageAsync(
             String id,
             String base64Image,
@@ -129,6 +130,7 @@ namespace Spotify.Web
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public Task<String> AddItemsToPlaylistAsync(
             String id,
             IEnumerable<String> uris,
