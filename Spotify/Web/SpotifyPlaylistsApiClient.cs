@@ -21,7 +21,7 @@ namespace Spotify.Web
         public SpotifyPlaylistsApiClient(HttpClient httpClient) : base(httpClient) { }
 
         /// <inheritdoc/>
-        public Task CreatePlaylistAsync(
+        public Task<Playlist> CreatePlaylistAsync(
             String id,
             String name,
             String? description = null,
@@ -56,7 +56,7 @@ namespace Spotify.Web
         }
 
         /// <inheritdoc/>
-        public Task<Paging<Playlist>> GetCurrentUserPlaylistsAsync(
+        public Task<Paging<SimplifiedPlaylist>> GetCurrentUserPlaylistsAsync(
             Int32? limit = null,
             Int32? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -66,7 +66,7 @@ namespace Spotify.Web
         }
 
         /// <inheritdoc/>
-        public Task<Paging<Playlist>> GetUserPlaylistsAsync(
+        public Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
             String id,
             Int32? limit = null,
             Int32? offset = null,
@@ -107,7 +107,7 @@ namespace Spotify.Web
         }
 
         /// <inheritdoc/>
-        public Task ReorderPlaylistItemsAsync(
+        public Task<String> ReorderPlaylistItemsAsync(
             String id,
             Int32 rangeStart,
             Int32 insertBefore,
@@ -129,7 +129,7 @@ namespace Spotify.Web
             throw new NotImplementedException();
         }
 
-        public Task AddItemsToPlaylistAsync(
+        public Task<String> AddItemsToPlaylistAsync(
             String id,
             IEnumerable<String> uris,
             Int32? position = null,
@@ -140,7 +140,7 @@ namespace Spotify.Web
         }
 
         /// <inheritdoc/>
-        public Task RemoveItemsFromPlaylistAsync(
+        public Task<String> RemoveItemsFromPlaylistAsync(
             String id,
             IEnumerable<String> uris,
             String? snapshotId = null,

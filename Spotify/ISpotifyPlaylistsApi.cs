@@ -13,7 +13,7 @@ namespace Spotify
     /// </summary>
     public interface ISpotifyPlaylistsApi
     {
-        Task CreatePlaylistAsync(
+        Task<Playlist> CreatePlaylistAsync(
             String id,
             String name,
             String? description = null,
@@ -36,13 +36,13 @@ namespace Spotify
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task<Paging<Playlist>> GetCurrentUserPlaylistsAsync(
+        Task<Paging<SimplifiedPlaylist>> GetCurrentUserPlaylistsAsync(
             Int32? limit = null,
             Int32? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task<Paging<Playlist>> GetUserPlaylistsAsync(
+        Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
             String id,
             Int32? limit = null,
             Int32? offset = null,
@@ -68,7 +68,7 @@ namespace Spotify
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task ReorderPlaylistItemsAsync(
+        Task<String> ReorderPlaylistItemsAsync(
             String id,
             Int32 rangeStart,
             Int32 insertBefore,
@@ -83,14 +83,14 @@ namespace Spotify
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task AddItemsToPlaylistAsync(
+        Task<String> AddItemsToPlaylistAsync(
             String id,
             IEnumerable<String> uris,
             Int32? position = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task RemoveItemsFromPlaylistAsync(
+        Task<String> RemoveItemsFromPlaylistAsync(
             String id,
             IEnumerable<String> uris,
             String? snapshotId = null,
