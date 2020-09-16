@@ -27,7 +27,7 @@ namespace Spotify.Web
         internal static async Task<TObject> SendMessageAsync<TObject, TError>(
             this HttpClient client,
             HttpRequestMessage message,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken)
         {
             using var response = await client
                 .SendAsync(message, cancellationToken)
@@ -50,7 +50,7 @@ namespace Spotify.Web
         internal static async Task SendMessageAsync<TError>(
             this HttpClient client,
             HttpRequestMessage message,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken)
         {
             using var response = await client
                 .SendAsync(message, cancellationToken)
@@ -68,7 +68,7 @@ namespace Spotify.Web
             this HttpClient httpClient,
             Uri uri,
             IAccessTokenProvider accessTokenProvider,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken)
         {
             var accessToken = await accessTokenProvider
                 .GetAccessTokenAsync(cancellationToken)
@@ -85,7 +85,7 @@ namespace Spotify.Web
         private static async Task<HttpRequestException> ConstructExceptionAsync<TError>(
             HttpContent content,
             HttpStatusCode statusCode,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken)
         {
             var errorObject = await content
                 .ReadFromJsonAsync<TError>(HttpClientExtensions.ErrorSerializerOptions, cancellationToken)
