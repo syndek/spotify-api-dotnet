@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
+using Spotify.Web.Authorization;
 
 namespace Spotify.Web
 {
@@ -23,6 +24,7 @@ namespace Spotify.Web
         public Task<IReadOnlyList<SimplifiedShow>> GetShowsAsync(
             IEnumerable<String> ids,
             CountryCode? market = null,
+            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
@@ -32,6 +34,7 @@ namespace Spotify.Web
         public Task GetShowAsync(
             String id,
             CountryCode? market = null,
+            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
@@ -43,6 +46,7 @@ namespace Spotify.Web
             Int32? limit = null,
             Int32? offset = null,
             CountryCode? market = null,
+            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
