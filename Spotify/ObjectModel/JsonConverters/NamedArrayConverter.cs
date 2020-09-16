@@ -1,29 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.JsonConverters
 {
-    internal sealed class NamedArrayConverter<TElement> : JsonConverter<IReadOnlyList<TElement>>
+    internal sealed class NamedArrayConverter<TElement> : JsonConverter<NamedArray<TElement>>
     {
         internal static readonly NamedArrayConverter<TElement> Instance = new();
 
         private NamedArrayConverter() : base() { }
 
-        public override IReadOnlyList<TElement> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override NamedArray<TElement> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             reader.AssertTokenType(JsonTokenType.StartObject);
 
-            reader.Read(JsonTokenType.PropertyName);
+            var name = reader.ReadString()!;
+
             reader.Read(JsonTokenType.StartArray);
-            var array = reader.ReadArray<TElement>();
+            var elements = reader.ReadArray<TElement>();
 
             reader.Read(JsonTokenType.EndObject);
 
-            return array;
+            return new(name, elements);
         }
 
-        public override void Write(Utf8JsonWriter writer, IReadOnlyList<TElement> value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, NamedArray<TElement> value, JsonSerializerOptions options)
+        {
+            var elementConverter = (JsonConverter<TElement>) options.GetConverter(typeof(TElement));
+
+            writer.WriteStartObject();
+
+            writer.WritePropertyName(value.Name);
+            writer.WriteStartArray();
+
+            foreach (var element in value)
+            {
+                elementConverter.Write(writer, element, options);
+            }
+
+            writer.WriteEndArray();
+
+            writer.WriteEndObject();
+        }
     }
 }
