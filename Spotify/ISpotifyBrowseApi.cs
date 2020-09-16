@@ -37,9 +37,9 @@ namespace Spotify
             CancellationToken cancellationToken = default);
 
         Task<Recommendations> GetRecommendationsAsync(
-            IReadOnlyList<String> seedArtists,
-            IReadOnlyList<String> seedTracks,
-            IReadOnlyList<String> seedGenres,
+            IEnumerable<String> seedArtists,
+            IEnumerable<String> seedTracks,
+            IEnumerable<String> seedGenres,
             Int32? limit = null,
             CountryCode? market = null,
             TuneableTrackAttributes? minValues = null,
@@ -49,7 +49,7 @@ namespace Spotify
             CancellationToken cancellationToken = default);
 
         Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
-            IAccessTokenProvider? accessTokenProvider = null, 
+            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedAlbum>> GetNewReleasesAsync(

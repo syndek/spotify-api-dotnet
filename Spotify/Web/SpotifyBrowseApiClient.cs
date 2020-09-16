@@ -89,9 +89,9 @@ namespace Spotify.Web
 
         /// <inheritdoc/>
         public Task<Recommendations> GetRecommendationsAsync(
-            IReadOnlyList<String> seedArtists,
-            IReadOnlyList<String> seedTracks,
-            IReadOnlyList<String> seedGenres,
+            IEnumerable<String> seedArtists,
+            IEnumerable<String> seedTracks,
+            IEnumerable<String> seedGenres,
             Int32? limit = null,
             CountryCode? market = null,
             TuneableTrackAttributes? minValues = null,

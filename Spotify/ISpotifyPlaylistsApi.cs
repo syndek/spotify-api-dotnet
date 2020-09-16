@@ -14,7 +14,7 @@ namespace Spotify
     public interface ISpotifyPlaylistsApi
     {
         Task<Playlist> CreatePlaylistAsync(
-            String id,
+            String userId,
             String name,
             String? description = null,
             Boolean? isPublic = null,
@@ -43,7 +43,7 @@ namespace Spotify
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
-            String id,
+            String userId,
             Int32? limit = null,
             Int32? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,

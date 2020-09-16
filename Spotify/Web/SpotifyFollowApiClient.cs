@@ -60,13 +60,13 @@ namespace Spotify.Web
 
         /// <inheritdoc/>
         public Task<IReadOnlyList<Boolean>> CheckUsersFollowPlaylistAsync(
-            String playlistId,
-            IEnumerable<String> ids,
+            String id,
+            IEnumerable<String> userIds,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{playlistId}/followers/contains")
-                .AppendJoinToQuery("ids", ',', ids);
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{id}/followers/contains")
+                .AppendJoinToQuery("ids", ',', userIds);
 
             return base.SendAsync<IReadOnlyList<Boolean>>(
                 uriBuilder.Build(),

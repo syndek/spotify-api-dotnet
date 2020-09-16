@@ -23,8 +23,8 @@ namespace Spotify
             CancellationToken cancellationToken = default);
 
         Task<IReadOnlyList<Boolean>> CheckUsersFollowPlaylistAsync(
-            String playlistId,
-            IEnumerable<String> ids,
+            String id,
+            IEnumerable<String> userIds,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 

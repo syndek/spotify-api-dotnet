@@ -22,7 +22,7 @@ namespace Spotify.Web
 
         /// <inheritdoc/>
         public Task<Playlist> CreatePlaylistAsync(
-            String id,
+            String userId,
             String name,
             String? description = null,
             Boolean? isPublic = null,
@@ -67,7 +67,7 @@ namespace Spotify.Web
 
         /// <inheritdoc/>
         public Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
-            String id,
+            String userId,
             Int32? limit = null,
             Int32? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
