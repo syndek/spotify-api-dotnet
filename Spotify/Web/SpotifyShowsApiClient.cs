@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
+using Spotify.ObjectModel.EnumConverters;
 using Spotify.Web.Authorization;
 
 namespace Spotify.Web
@@ -27,7 +28,15 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/shows")
+                .AppendJoinToQuery("ids", ',', ids)
+                .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
+
+            return base.SendAsync<IReadOnlyList<SimplifiedShow>>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -37,7 +46,14 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/shows/{id}")
+                .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
+
+            return base.SendAsync<Show>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -49,7 +65,16 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/shows/{id}")
+                .AppendToQueryIfNotNull("limit", limit)
+                .AppendToQueryIfNotNull("offset", offset)
+                .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
+
+            return base.SendAsync<Paging<SimplifiedEpisode>>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                accessTokenProvider,
+                cancellationToken);
         }
     }
 }
