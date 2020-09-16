@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +14,16 @@ namespace Spotify.Web
 {
     internal static class HttpClientExtensions : Object
     {
+        private static readonly JsonSerializerOptions ErrorSerializerOptions = new();
+
+        static HttpClientExtensions()
+        {
+            var converters = HttpClientExtensions.ErrorSerializerOptions.Converters;
+
+            converters.Add(ErrorConverter.Instance);
+            converters.Add(AuthenticationErrorConverter.Instance);
+        }
+
         internal static async Task<TObject> SendMessageAsync<TObject, TError>(
             this HttpClient client,
             HttpRequestMessage message,
@@ -77,7 +88,7 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             var errorObject = await content
-                .ReadFromJsonAsync<TError>(ConverterHelpers.JsonSerializerOptions, cancellationToken)
+                .ReadFromJsonAsync<TError>(HttpClientExtensions.ErrorSerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
 
             throw errorObject switch

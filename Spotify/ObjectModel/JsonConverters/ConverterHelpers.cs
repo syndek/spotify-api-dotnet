@@ -49,8 +49,6 @@ namespace Spotify.ObjectModel.JsonConverters
             converters.Add(TrackConverter.Instance);
 
             // Add converters for custom types belonging to the library.
-            converters.Add(ErrorConverter.Instance);
-            converters.Add(AuthenticationErrorConverter.Instance);
             converters.Add(AccessTokenConverter.Instance);
             converters.Add(AccessRefreshTokenConverter.Instance);
             converters.Add(ArrayConverter<Track>.Instance);
