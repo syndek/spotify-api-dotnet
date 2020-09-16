@@ -60,6 +60,7 @@ namespace Spotify.ObjectModel.JsonConverters
             converters.Add(PagingConverter<Artist>.Instance);
             converters.Add(PagingConverter<Track>.Instance);
             converters.Add(PlaylistDetailsConverter.Instance);
+            converters.Add(ReorderPlaylistItemsParametersConverter.Instance);
         }
 
         internal static Uri ReadUri(ref this Utf8JsonReader reader)
