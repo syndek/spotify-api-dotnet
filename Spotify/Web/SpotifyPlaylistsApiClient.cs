@@ -25,8 +25,8 @@ namespace Spotify.Web
             String id,
             String name,
             String? description = null,
-            Boolean? publicPlaylist = null,
-            Boolean? collaborative = null,
+            Boolean? isPublic = null,
+            Boolean? isCollaborative = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -81,7 +81,7 @@ namespace Spotify.Web
             String id,
             String? name = null,
             String? description = null,
-            Boolean? publicPlaylist = null,
+            Boolean? isPublic = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
