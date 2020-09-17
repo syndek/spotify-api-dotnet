@@ -93,8 +93,8 @@ namespace Spotify.Web
 
             throw errorObject switch
             {
-                AuthenticationError error => new SpotifyAuthorizationException(error.Error, error.ErrorDescription, null, statusCode),
-                Error error => new HttpRequestException(error.Message, null, statusCode),
+                AuthenticationError error => new SpotifyAuthorizationException(statusCode, error.Error, error.ErrorDescription),
+                Error error => new SpotifyHttpRequestException(statusCode, error.Message),
                 _ => new HttpRequestException($"Unknown error: {errorObject}", null, statusCode)
             };
         }
