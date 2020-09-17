@@ -14,7 +14,7 @@ namespace Spotify.ObjectModel
         /// <param name="start">A <see cref="Single"/> representing the starting point (in seconds) of the time interval.</param>
         /// <param name="duration">A <see cref="Single"/> representing the duration (in seconds) of the time interval.</param>
         /// <param name="confidence">A <see cref="Single"/> representing the confidence of the reliability of the time interval.</param>
-        internal TimeInterval(Single start, Single duration, Single confidence) : base()
+        public TimeInterval(Single start, Single duration, Single confidence) : base()
         {
             this.Start = start;
             this.Duration = duration;

@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel
         /// <param name="url">The source URL of the image.</param>
         /// <param name="width">The width in pixels of the image, or <see langword="null"/> if unknown.</param>
         /// <param name="height">The height in pixels of the image, or <see langword="null"/> if unknown.</param>
-        internal Image(Uri url, Int32? width, Int32? height) : base()
+        public Image(Uri url, Int32? width, Int32? height) : base()
         {
             this.Url = url;
             this.Width = width;

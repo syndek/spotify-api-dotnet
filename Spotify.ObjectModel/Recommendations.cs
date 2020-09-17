@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     public record Recommendations : SpotifyObject
     {
-        internal Recommendations(IReadOnlyList<RecommendationSeed> seeds, IReadOnlyList<SimplifiedTrack> tracks) : base()
+        public Recommendations(IReadOnlyList<RecommendationSeed> seeds, IReadOnlyList<SimplifiedTrack> tracks) : base()
         {
             this.Seeds = seeds;
             this.Tracks = tracks;

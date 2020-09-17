@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
 {
     public record Segment : TimeInterval
     {
-        internal Segment(
+        public Segment(
             Single start,
             Single duration,
             Single confidence,

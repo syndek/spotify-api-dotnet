@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     public record RecommendationSeed : IdentifiableObject
     {
-        internal RecommendationSeed(
+        public RecommendationSeed(
             String id,
             Uri? href,
             RecommendationSeedType type,

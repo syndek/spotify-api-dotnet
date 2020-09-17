@@ -12,7 +12,7 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <param name="text">The text of the copyright.</param>
         /// <param name="type">The type of the copyright.</param>
-        internal Copyright(String text, CopyrightType type) : base()
+        public Copyright(String text, CopyrightType type) : base()
         {
             this.Text = text;
             this.Type = type;

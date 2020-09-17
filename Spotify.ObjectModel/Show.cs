@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
 {
     public record Show : SimplifiedShow, ISaveable
     {
-        internal Show(
+        public Show(
             String id,
             Uri uri,
             Uri href,

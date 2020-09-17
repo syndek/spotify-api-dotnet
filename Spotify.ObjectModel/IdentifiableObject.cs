@@ -12,7 +12,7 @@ namespace Spotify.ObjectModel
         /// Initializes a new instance of the <see cref="IdentifiableObject"/> record with the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">A <see cref="String"/> representing the Spotify ID of the object.</param>
-        internal IdentifiableObject(String id) : base()
+        public IdentifiableObject(String id) : base()
         {
             this.Id = id;
         }

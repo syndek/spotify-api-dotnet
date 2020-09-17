@@ -35,7 +35,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the album, keyed by the type of the URL.
         /// </param>
-        internal SimplifiedAlbum(
+        public SimplifiedAlbum(
             String id,
             Uri uri,
             Uri href,

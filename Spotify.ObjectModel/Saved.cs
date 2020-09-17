@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     public record Saved<TSaved> : SpotifyObject where TSaved : ISaveable
     {
-        internal Saved(TSaved savedObject, DateTime savedAt) : base()
+        public Saved(TSaved savedObject, DateTime savedAt) : base()
         {
             this.SavedObject = savedObject;
             this.SavedAt = savedAt;

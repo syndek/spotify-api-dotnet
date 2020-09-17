@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     public record AudioAnalysis : SpotifyObject
     {
-        internal AudioAnalysis(
+        public AudioAnalysis(
             IReadOnlyList<TimeInterval> bars,
             IReadOnlyList<TimeInterval> beats,
             IReadOnlyList<Section> sections,

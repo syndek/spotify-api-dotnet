@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
 {
     public record Album : SimplifiedAlbum, ISaveable
     {
-        internal Album(
+        public Album(
             String id,
             Uri uri,
             Uri href,

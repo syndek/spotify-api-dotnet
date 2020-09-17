@@ -27,7 +27,7 @@ namespace Spotify.ObjectModel
         /// <param name="href">A link to the Spotify Web API endpoint returning the full result of the request.</param>
         /// <param name="previous">The URL for the previous page of items, or <see langword="null"/> if none.</param>
         /// <param name="next">The URL for the next page of items, or <see langword="null"/> if none.</param>
-        internal Paging(IReadOnlyList<TItem> items, Int32 total, Int32 limit, Int32 offset, Uri href, Uri? previous, Uri? next) : base()
+        public Paging(IReadOnlyList<TItem> items, Int32 total, Int32 limit, Int32 offset, Uri href, Uri? previous, Uri? next) : base()
         {
             this.items = items;
             this.Total = total;

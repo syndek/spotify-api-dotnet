@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     public record ResumePoint : SpotifyObject
     {
-        internal ResumePoint(Int32 resumePosition, Boolean isFullyPlayed) : base()
+        public ResumePoint(Int32 resumePosition, Boolean isFullyPlayed) : base()
         {
             this.ResumePosition = resumePosition;
             this.IsFullyPlayed = isFullyPlayed;

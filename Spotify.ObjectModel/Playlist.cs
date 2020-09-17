@@ -40,7 +40,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the playlist, keyed by the type of the URL.
         /// </param>
-        internal Playlist(
+        public Playlist(
             String id,
             Uri uri,
             Uri href,

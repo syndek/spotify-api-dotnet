@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
 {
     public record SimplifiedEpisode : LocatableObject
     {
-        internal SimplifiedEpisode(
+        public SimplifiedEpisode(
             String id,
             Uri uri,
             Uri href,

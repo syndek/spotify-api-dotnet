@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     public record AudioFeatures : LocatableObject
     {
-        internal AudioFeatures(
+        public AudioFeatures(
             String id,
             Uri uri,
             Uri trackHref,

@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
 {
     public record Episode : SimplifiedEpisode, IPlayable
     {
-        internal Episode(
+        public Episode(
             String id,
             Uri uri,
             Uri href,

@@ -26,7 +26,7 @@
         /// <param name="playlists">
         /// A <see cref="Paging{TItem}"/> of returned <see cref="Playlist"/> objects, or <see langword="null"/> if not included.
         /// </param>
-        internal SearchResult(
+        public SearchResult(
             Paging<Artist>? artists,
             Paging<SimplifiedAlbum>? albums,
             Paging<Track>? tracks,
