@@ -79,7 +79,7 @@ namespace Spotify.ObjectModel.JsonConverters
                         releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.ReadString()!);
                         break;
                     case "tracks":
-                        reader.Read(JsonTokenType.StartArray);
+                        reader.Read(JsonTokenType.StartObject);
                         tracks = reader.ReadPaging<SimplifiedTrack>();
                         break;
                     case "genres":
