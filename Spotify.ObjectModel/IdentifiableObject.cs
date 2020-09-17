@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents a <see cref="SpotifyObject"/> with a unique
-    /// <see href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</see>.
+    /// <see href="https://spotify.dev/documentation/web-api/#spotify-uris-and-ids">Spotify ID</see>.
     /// </summary>
     public abstract record IdentifiableObject : SpotifyObject
     {
@@ -18,7 +18,7 @@ namespace Spotify.ObjectModel
         }
 
         /// <summary>
-        /// Gets or sets the <see href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify ID</see>
+        /// Gets or sets the <see href="https://spotify.dev/documentation/web-api/#spotify-uris-and-ids">Spotify ID</see>
         /// of the <see cref="IdentifiableObject"/>.
         /// </summary>
         /// <returns>A <see cref="String"/> representing the Spotify ID of the <see cref="IdentifiableObject"/>.</returns>

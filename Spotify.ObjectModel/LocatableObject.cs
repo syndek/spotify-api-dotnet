@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents an <see cref="IdentifiableObject"/> with a designated
-    /// <see href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</see>.
+    /// <see href="https://spotify.dev/documentation/web-api/#spotify-uris-and-ids">Spotify URI</see>.
     /// </summary>
     public record LocatableObject : IdentifiableObject
     {
@@ -20,7 +20,7 @@ namespace Spotify.ObjectModel
         }
 
         /// <summary>
-        /// Gets or sets the <see href="https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids">Spotify URI</see>
+        /// Gets or sets the <see href="https://spotify.dev/documentation/web-api/#spotify-uris-and-ids">Spotify URI</see>
         /// of the <see cref="LocatableObject"/>.
         /// </summary>
         /// <returns>The Spotify URI of the <see cref="LocatableObject"/>.</returns>
