@@ -66,7 +66,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="String"/> objects representing genres the <see cref="Artist"/> is associated with.
         /// </returns>
         public IReadOnlyList<String> Genres { get; init; }
-        /// <summary>        
+        /// <summary>
         /// Gets or sets the popularity of the <see cref="Artist"/>.
         /// Popularity values will be between <c>0</c> and <c>100</c>, with <c>100</c> being the most popular.
         /// </summary>

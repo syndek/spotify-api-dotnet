@@ -84,13 +84,13 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets an <see cref="IEnumerator{T}"/> that iterates through the items of the <see cref="Paging{TItem}"/>.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}"/> that iterates through the items of the <see cref="Paging{TItem}"/></returns>
+        /// <returns>An <see cref="IEnumerator{T}"/> that iterates through the items of the <see cref="Paging{TItem}"/>.</returns>
         public IEnumerator<TItem> GetEnumerator() => this.items.GetEnumerator();
 
         /// <summary>
         /// Gets an <see cref="IEnumerator"/> that iterates through the items of the <see cref="Paging{TItem}"/>.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator"/> that iterates through the items of the <see cref="Paging{TItem}"/></returns>
+        /// <returns>An <see cref="IEnumerator"/> that iterates through the items of the <see cref="Paging{TItem}"/>.</returns>
         IEnumerator IEnumerable.GetEnumerator() => this.items.GetEnumerator();
     }
 }

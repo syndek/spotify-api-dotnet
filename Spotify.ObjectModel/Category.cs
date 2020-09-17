@@ -9,7 +9,7 @@ namespace Spotify.ObjectModel
     public record Category : IdentifiableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Category"/> record with the specified values. 
+        /// Initializes a new instance of the <see cref="Category"/> record with the specified values.
         /// </summary>
         /// <param name="id">A <see cref="String"/> representing the Spotify ID of the category.</param>
         /// <param name="href">A link to the Spotify Web API endpoint returning full details of the category.</param>
