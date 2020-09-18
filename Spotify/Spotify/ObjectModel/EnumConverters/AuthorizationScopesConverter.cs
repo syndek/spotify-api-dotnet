@@ -6,7 +6,7 @@ using Spotify.Web.Authorization;
 
 namespace Spotify.ObjectModel.EnumConverters
 {
-    internal static class AuthorizationScopeConverter : Object
+    internal static class AuthorizationScopesConverter : Object
     {
         internal static AuthorizationScopes FromSpotifyString(String authorizationScope) => authorizationScope switch
         {
@@ -35,7 +35,7 @@ namespace Spotify.ObjectModel.EnumConverters
         internal static AuthorizationScopes FromSpotifyStrings(IEnumerable<String> authorizationScopes) =>
             authorizationScopes.Aggregate(
                 new AuthorizationScopes(),
-                (current, authorizationScope) => current | AuthorizationScopeConverter.FromSpotifyString(authorizationScope));
+                (current, authorizationScope) => current | AuthorizationScopesConverter.FromSpotifyString(authorizationScope));
 
         internal static String ToSpotifyString(this AuthorizationScopes authorizationScope) => authorizationScope switch
         {
@@ -62,6 +62,6 @@ namespace Spotify.ObjectModel.EnumConverters
         };
 
         internal static IEnumerable<String> ToSpotifyStrings(this AuthorizationScopes authorizationScopes) =>
-            authorizationScopes.GetFlags().Select(AuthorizationScopeConverter.ToSpotifyString);
+            authorizationScopes.GetFlags().Select(AuthorizationScopesConverter.ToSpotifyString);
     }
 }

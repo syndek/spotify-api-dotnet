@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Spotify.ObjectModel.EnumConverters
 {
-    internal static class AlbumGroupConverter : Object
+    internal static class AlbumGroupsConverter : Object
     {
         internal static AlbumGroups FromSpotifyString(String albumGroup) => albumGroup switch
         {
@@ -18,7 +18,7 @@ namespace Spotify.ObjectModel.EnumConverters
         internal static AlbumGroups FromSpotifyStrings(IEnumerable<String> albumGroups) =>
             albumGroups.Aggregate(
                 new AlbumGroups(),
-                (current, albumGroups) => current | AlbumGroupConverter.FromSpotifyString(albumGroups));
+                (current, albumGroups) => current | AlbumGroupsConverter.FromSpotifyString(albumGroups));
 
         internal static String ToSpotifyString(this AlbumGroups albumGroup) => albumGroup switch
         {
@@ -30,6 +30,6 @@ namespace Spotify.ObjectModel.EnumConverters
         };
 
         internal static IEnumerable<String> ToSpotifyStrings(this AlbumGroups albumGroups) =>
-            albumGroups.GetFlags().Select(AlbumGroupConverter.ToSpotifyString);
+            albumGroups.GetFlags().Select(AlbumGroupsConverter.ToSpotifyString);
     }
 }
