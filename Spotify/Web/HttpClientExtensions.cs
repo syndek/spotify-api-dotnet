@@ -64,24 +64,6 @@ namespace Spotify.Web
             }
         }
 
-        internal static async Task<TObject> GetAsync<TObject>(
-            this HttpClient httpClient,
-            Uri uri,
-            IAccessTokenProvider accessTokenProvider,
-            CancellationToken cancellationToken)
-        {
-            var accessToken = await accessTokenProvider
-                .GetAccessTokenAsync(cancellationToken)
-                .ConfigureAwait(false);
-
-            using var message = new HttpRequestMessage(HttpMethod.Get, uri);
-            message.Headers.Authorization = new("Bearer", accessToken.Value);
-
-            return await httpClient
-                .SendMessageAsync<TObject, Error>(message, cancellationToken)
-                .ConfigureAwait(false);
-        }
-
         private static async Task<HttpRequestException> ConstructExceptionAsync<TError>(
             HttpContent content,
             HttpStatusCode statusCode,

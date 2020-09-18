@@ -4,4 +4,7 @@
         <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Spotify\Spotify.csproj" />
+    </ItemGroup>
 </Project>
