@@ -101,5 +101,37 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyTracksApi Implementation
+        Task<IReadOnlyList<Track>> ISpotifyTracksApi.GetTracksAsync(
+            IReadOnlyList<String> ids,
+            CountryCode? market,
+            CancellationToken cancellationToken)
+        {
+            return this.GetTracksAsync(ids, market, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<AudioFeatures>> ISpotifyTracksApi.GetAudioFeaturesForTracksAsync(
+            IEnumerable<String> ids,
+            CancellationToken cancellationToken)
+        {
+            return this.GetAudioFeaturesForTracksAsync(ids, null, cancellationToken);
+        }
+
+        Task<Track> ISpotifyTracksApi.GetTrackAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return this.GetTrackAsync(id, market, null, cancellationToken);
+        }
+
+        Task<AudioAnalysis> ISpotifyTracksApi.GetAudioAnalysisForTrackAsync(String id, CancellationToken cancellationToken)
+        {
+            return this.GetAudioAnalysisForTrackAsync(id, null, cancellationToken);
+        }
+
+        Task<AudioFeatures> ISpotifyTracksApi.GetAudioFeaturesForTrackAsync(String id, CancellationToken cancellationToken)
+        {
+            return this.GetAudioFeaturesForTrackAsync(id, null, cancellationToken);
+        }
+        #endregion
     }
 }

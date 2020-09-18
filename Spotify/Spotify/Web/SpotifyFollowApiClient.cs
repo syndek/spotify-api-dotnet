@@ -145,5 +145,59 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyFollowApi Implementation
+        Task<IReadOnlyList<Boolean>> ISpotifyFollowApi.CheckCurrentUserFollowsArtistsAsync(
+            IEnumerable<String> ids,
+            CancellationToken cancellationToken)
+        {
+            return this.CheckCurrentUserFollowsArtistsAsync(ids, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Boolean>> ISpotifyFollowApi.CheckCurrentUserFollowsUsersAsync(
+            IEnumerable<String> ids,
+            CancellationToken cancellationToken)
+        {
+            return this.CheckCurrentUserFollowsUsersAsync(ids, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Boolean>> ISpotifyFollowApi.CheckUsersFollowPlaylistAsync(
+            String id,
+            IEnumerable<String> userIds,
+            CancellationToken cancellationToken)
+        {
+            return this.CheckUsersFollowPlaylistAsync(id, userIds, null, cancellationToken);
+        }
+
+        Task ISpotifyFollowApi.FollowArtistsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.FollowArtistsAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyFollowApi.FollowUsersAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.FollowUsersAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyFollowApi.FollowPlaylistAsync(String id, Boolean? publicFollow, CancellationToken cancellationToken)
+        {
+            return this.FollowPlaylistAsync(id, publicFollow, null, cancellationToken);
+        }
+
+        Task ISpotifyFollowApi.UnfollowArtistsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.UnfollowArtistsAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyFollowApi.UnfollowUsersAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.UnfollowUsersAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyFollowApi.UnfollowPlaylistAsync(String id, CancellationToken cancellationToken)
+        {
+            return this.UnfollowPlaylistAsync(id, null, cancellationToken);
+        }
+        #endregion
     }
 }

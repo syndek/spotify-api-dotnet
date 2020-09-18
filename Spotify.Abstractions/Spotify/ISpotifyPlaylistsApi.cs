@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
-using Spotify.Web.Authorization;
 
 namespace Spotify
 {
@@ -19,34 +18,26 @@ namespace Spotify
             String? description = null,
             Boolean? isPublic = null,
             Boolean? isCollaborative = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task<Playlist> GetPlaylistAsync(
-            String id,
-            CountryCode? market = null,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default);
+        Task<Playlist> GetPlaylistAsync(String id, CountryCode? market = null, CancellationToken cancellationToken = default);
 
         Task<Paging<IPlayable>> GetPlaylistItemsAsync(
             String id,
             Int32? limit = null,
             Int32? offset = null,
             CountryCode? market = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetCurrentUserPlaylistsAsync(
             Int32? limit = null,
             Int32? offset = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
             String userId,
             Int32? limit = null,
             Int32? offset = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task ChangePlaylistDetailsAsync(
@@ -54,19 +45,11 @@ namespace Spotify
             String? name = null,
             String? description = null,
             Boolean? isPublic = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(
-            String id,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(String id, CancellationToken cancellationToken = default);
 
-        Task SetPlaylistCoverImageAsync(
-            String id,
-            String base64Image,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default);
+        Task SetPlaylistCoverImageAsync(String id, String base64Image, CancellationToken cancellationToken = default);
 
         Task<String> ReorderPlaylistItemsAsync(
             String id,
@@ -74,27 +57,20 @@ namespace Spotify
             Int32 insertBefore,
             Int32? rangeLength = null,
             String? snapshotId = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task ReplacePlaylistItemsAsync(
-            String id,
-            IEnumerable<String> uris,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default);
+        Task ReplacePlaylistItemsAsync(String id, IEnumerable<String> uris, CancellationToken cancellationToken = default);
 
         Task<String> AddItemsToPlaylistAsync(
             String id,
             IEnumerable<String> uris,
             Int32? position = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<String> RemoveItemsFromPlaylistAsync(
             String id,
             IEnumerable<String> uris,
             String? snapshotId = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
     }
 }

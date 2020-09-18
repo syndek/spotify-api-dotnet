@@ -228,5 +228,67 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyLibraryApi Implementation
+        Task ISpotifyLibraryApi.SaveAlbumsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.SaveAlbumsAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyLibraryApi.RemoveAlbumsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.RemoveAlbumsAsync(ids, null, cancellationToken);
+        }
+
+        Task<Paging<Saved<Album>>> ISpotifyLibraryApi.GetSavedAlbumsAsync(Int32? limit, Int32? offset, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return this.GetSavedAlbumsAsync(limit, offset, market, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Boolean>> ISpotifyLibraryApi.CheckSavedAlbumsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.CheckSavedAlbumsAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyLibraryApi.SaveTracksAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.SaveTracksAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyLibraryApi.RemoveTracksAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.RemoveTracksAsync(ids, null, cancellationToken);
+        }
+
+        Task<Paging<Saved<Track>>> ISpotifyLibraryApi.GetSavedTracksAsync(Int32? limit, Int32? offset, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return this.GetSavedTracksAsync(limit, offset, market, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Boolean>> ISpotifyLibraryApi.CheckSavedTracksAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.CheckSavedTracksAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyLibraryApi.SaveShowsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.SaveShowsAsync(ids, null, cancellationToken);
+        }
+
+        Task ISpotifyLibraryApi.RemoveShowsAsync(IEnumerable<String> ids, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return this.RemoveShowsAsync(ids, market, null, cancellationToken);
+        }
+
+        Task<Paging<Saved<Show>>> ISpotifyLibraryApi.GetSavedShowsAsync(Int32? limit, Int32? offset, CancellationToken cancellationToken)
+        {
+            return this.GetSavedShowsAsync(limit, offset, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Boolean>> ISpotifyLibraryApi.CheckSavedShowsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.CheckSavedShowsAsync(ids, null, cancellationToken);
+        }
+        #endregion
     }
 }

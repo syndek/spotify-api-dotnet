@@ -61,5 +61,25 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyPersonalizationApi Implementation
+        Task<Paging<Artist>> ISpotifyPersonalizationApi.GetTopArtistsForCurrentUserAsync(
+            Int32? limit,
+            Int32? offset,
+            TimeRange? timeRange,
+            CancellationToken cancellationToken)
+        {
+            return this.GetTopArtistsForCurrentUserAsync(limit, offset, timeRange, null, cancellationToken);
+        }
+
+        Task<Paging<Track>> ISpotifyPersonalizationApi.GetTopTracksForCurrentUserAsync(
+            Int32? limit,
+            Int32? offset,
+            TimeRange? timeRange,
+            CancellationToken cancellationToken)
+        {
+            return this.GetTopTracksForCurrentUserAsync(limit, offset, timeRange, null, cancellationToken);
+        }
+        #endregion
     }
 }

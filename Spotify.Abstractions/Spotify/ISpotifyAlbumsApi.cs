@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
-using Spotify.Web.Authorization;
 
 namespace Spotify
 {
@@ -24,13 +23,11 @@ namespace Spotify
         /// An optional <see cref="CountryCode"/> to apply
         /// <see href="https://spotify.dev/documentation/general/guides/track-relinking-guide/">track relinking</see>.
         /// </param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<IReadOnlyList<Album?>> GetAlbumsAsync(
             IEnumerable<String> ids,
             CountryCode? market = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -41,14 +38,9 @@ namespace Spotify
         /// An optional <see cref="CountryCode"/> to apply
         /// <see href="https://spotify.dev/documentation/general/guides/track-relinking-guide/">track relinking</see>.
         /// </param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
-        Task<Album> GetAlbumAsync(
-            String id,
-            CountryCode? market = null,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default);
+        Task<Album> GetAlbumAsync(String id, CountryCode? market = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Asynchronously get the tracks of an <see cref="Album"/> from the Spotify catalog.
@@ -60,7 +52,6 @@ namespace Spotify
         /// An optional <see cref="CountryCode"/> to apply
         /// <see href="https://spotify.dev/documentation/general/guides/track-relinking-guide/">track relinking</see>.
         /// </param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<Paging<SimplifiedTrack>> GetAlbumTracksAsync(
@@ -68,7 +59,6 @@ namespace Spotify
             Int32? limit = null,
             Int32? offset = null,
             CountryCode? market = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
     }
 }

@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
-using Spotify.Web.Authorization;
 
 namespace Spotify
 {
@@ -18,14 +17,12 @@ namespace Spotify
             String? locale = null,
             Int32? limit = null,
             Int32? offset = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<Category> GetCategoryAsync(
             String id,
             CountryCode? country = null,
             String? locale = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetCategoryPlaylistsAsync(
@@ -33,7 +30,6 @@ namespace Spotify
             CountryCode? country = null,
             Int32? limit = null,
             Int32? offset = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<Recommendations> GetRecommendationsAsync(
@@ -45,18 +41,14 @@ namespace Spotify
             TuneableTrackAttributes? minValues = null,
             TuneableTrackAttributes? maxValues = null,
             TuneableTrackAttributes? targetValues = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<String>> GetRecommendationGenresAsync(CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedAlbum>> GetNewReleasesAsync(
             CountryCode? country = null,
             Int32? limit = null,
             Int32? offset = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetFeaturedPlaylistsAsync(
@@ -65,7 +57,6 @@ namespace Spotify
             DateTime? timestamp = null,
             Int32? limit = null,
             Int32? offset = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
     }
 }

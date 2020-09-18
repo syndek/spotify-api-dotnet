@@ -206,5 +206,85 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyBrowseApi Implementation
+        Task<Paging<Category>> ISpotifyBrowseApi.GetCategoriesAsync(
+            CountryCode? country,
+            String? locale,
+            Int32? limit,
+            Int32? offset,
+            CancellationToken cancellationToken)
+        {
+            return this.GetCategoriesAsync(country, locale, limit, offset, null, cancellationToken);
+        }
+
+        Task<Category> ISpotifyBrowseApi.GetCategoryAsync(
+            String id,
+            CountryCode? country,
+            String? locale,
+            CancellationToken cancellationToken)
+        {
+            return this.GetCategoryAsync(id, country, locale, null, cancellationToken);
+        }
+
+        Task<Paging<SimplifiedPlaylist>> ISpotifyBrowseApi.GetCategoryPlaylistsAsync(
+            String id,
+            CountryCode? country,
+            Int32? limit,
+            Int32? offset,
+            CancellationToken cancellationToken)
+        {
+            return this.GetCategoryPlaylistsAsync(id, country, limit, offset, null, cancellationToken);
+        }
+
+        Task<Recommendations> ISpotifyBrowseApi.GetRecommendationsAsync(
+            IEnumerable<String> seedArtists,
+            IEnumerable<String> seedTracks,
+            IEnumerable<String> seedGenres,
+            Int32? limit,
+            CountryCode? market,
+            TuneableTrackAttributes? minValues,
+            TuneableTrackAttributes? maxValues,
+            TuneableTrackAttributes? targetValues,
+            CancellationToken cancellationToken)
+        {
+            return this.GetRecommendationsAsync(
+                seedArtists,
+                seedTracks,
+                seedGenres,
+                limit,
+                market,
+                minValues,
+                maxValues,
+                targetValues,
+                null,
+                cancellationToken);
+        }
+
+        Task<IReadOnlyList<String>> ISpotifyBrowseApi.GetRecommendationGenresAsync(CancellationToken cancellationToken)
+        {
+            return this.GetRecommendationGenresAsync(null, cancellationToken);
+        }
+
+        Task<Paging<SimplifiedAlbum>> ISpotifyBrowseApi.GetNewReleasesAsync(
+            CountryCode? country,
+            Int32? limit,
+            Int32? offset,
+            CancellationToken cancellationToken)
+        {
+            return this.GetNewReleasesAsync(country, limit, offset, null, cancellationToken);
+        }
+
+        Task<Paging<SimplifiedPlaylist>> ISpotifyBrowseApi.GetFeaturedPlaylistsAsync(
+            String? locale,
+            CountryCode? country,
+            DateTime? timestamp,
+            Int32? limit,
+            Int32? offset,
+            CancellationToken cancellationToken)
+        {
+            return this.GetFeaturedPlaylistsAsync(locale, country, timestamp, limit, offset, null, cancellationToken);
+        }
+        #endregion
     }
 }

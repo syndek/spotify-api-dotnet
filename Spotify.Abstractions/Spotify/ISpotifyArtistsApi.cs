@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
-using Spotify.Web.Authorization;
 
 namespace Spotify
 {
@@ -20,24 +19,20 @@ namespace Spotify
         /// An <see cref="IEnumerable{T}"/> of <see cref="String"/> objects
         /// representing the Spotify IDs of the <see cref="Artist"/> objects to get.
         /// </param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<IReadOnlyList<Artist>> GetArtistsAsync(
             IEnumerable<String> ids,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Asynchronously get an <see cref="Artist"/> from the Spotify catalog.
         /// </summary>
         /// <param name="id">A <see cref="String"/> representing the Spotify ID of the <see cref="Artist"/> to get.</param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<Artist> GetArtistAsync(
             String id,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -48,7 +43,6 @@ namespace Spotify
         /// <param name="market">An optional <see cref="CountryCode"/> to limit the result to one particular geographical market.</param>
         /// <param name="limit">The maximum number of results to return.</param>
         /// <param name="offset">The index of the first result to return.</param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<Paging<Album>> GetArtistAlbumsAsync(
@@ -57,7 +51,6 @@ namespace Spotify
             CountryCode? market = null,
             Int32? limit = null,
             Int32? offset = null,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -67,13 +60,11 @@ namespace Spotify
         /// A <see cref="String"/> representing the Spotify ID of the <see cref="Artist"/> to get the top tracks of.
         /// </param>
         /// <param name="market">A <see cref="CountryCode"/> representing the market to get the top tracks for.</param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<IReadOnlyList<Track>> GetArtistTopTracksAsync(
             String id,
             CountryCode market,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -82,12 +73,10 @@ namespace Spotify
         /// <param name="id">
         /// A <see cref="String"/> representing the Spotify ID of the <see cref="Artist"/> to get the related artists of.
         /// </param>
-        /// <param name="accessTokenProvider">The <see cref="IAccessTokenProvider"/> to use instead of the default, if set.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<IReadOnlyList<Artist>> GetArtistRelatedArtistsAsync(
             String id,
-            IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default);
     }
 }

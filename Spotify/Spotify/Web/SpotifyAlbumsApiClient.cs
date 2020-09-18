@@ -79,5 +79,30 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyAlbumsApi Implementation
+        Task<IReadOnlyList<Album?>> ISpotifyAlbumsApi.GetAlbumsAsync(
+            IEnumerable<String> ids,
+            CountryCode? market,
+            CancellationToken cancellationToken)
+        {
+            return this.GetAlbumsAsync(ids, market, null, cancellationToken);
+        }
+
+        Task<Album> ISpotifyAlbumsApi.GetAlbumAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return this.GetAlbumAsync(id, market, null, cancellationToken);
+        }
+
+        Task<Paging<SimplifiedTrack>> ISpotifyAlbumsApi.GetAlbumTracksAsync(
+            String id,
+            Int32? limit,
+            Int32? offset,
+            CountryCode? market,
+            CancellationToken cancellationToken)
+        {
+            return this.GetAlbumTracksAsync(id, limit, offset, market, null, cancellationToken);
+        }
+        #endregion
     }
 }

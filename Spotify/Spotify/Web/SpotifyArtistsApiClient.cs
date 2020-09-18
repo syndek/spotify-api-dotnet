@@ -107,5 +107,41 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyArtistsApi Implementation
+        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        {
+            return this.GetArtistsAsync(ids, null, cancellationToken);
+        }
+
+        Task<Artist> ISpotifyArtistsApi.GetArtistAsync(String id, CancellationToken cancellationToken)
+        {
+            return this.GetArtistAsync(id, null, cancellationToken);
+        }
+
+        Task<Paging<Album>> ISpotifyArtistsApi.GetArtistAlbumsAsync(
+            String id,
+            AlbumGroups? includeGroups,
+            CountryCode? market,
+            Int32? limit,
+            Int32? offset,
+            CancellationToken cancellationToken)
+        {
+            return this.GetArtistAlbumsAsync(id, includeGroups, market, limit, offset, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Track>> ISpotifyArtistsApi.GetArtistTopTracksAsync(
+            String id,
+            CountryCode market,
+            CancellationToken cancellationToken)
+        {
+            return this.GetArtistTopTracksAsync(id, market, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistRelatedArtistsAsync(String id, CancellationToken cancellationToken)
+        {
+            return this.GetArtistRelatedArtistsAsync(id, null, cancellationToken);
+        }
+        #endregion
     }
 }

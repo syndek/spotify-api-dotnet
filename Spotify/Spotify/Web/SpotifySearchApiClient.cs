@@ -48,5 +48,17 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        Task<SearchResult> ISpotifySearchApi.SearchAsync(
+            String query,
+            SearchResultTypes types,
+            CountryCode? market,
+            Int32? limit,
+            Int32? offset,
+            Boolean? includeExternal,
+            CancellationToken cancellationToken)
+        {
+            return this.SearchAsync(query, types, market, limit, offset, includeExternal, null, cancellationToken);
+        }
     }
 }

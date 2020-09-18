@@ -56,5 +56,17 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyEpisodesApi Implementation
+        Task<Episode> ISpotifyEpisodesApi.GetEpisodeAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return this.GetEpisodeAsync(id, market, null, cancellationToken);
+        }
+
+        Task<IReadOnlyList<Episode>> ISpotifyEpisodesApi.GetEpisodesAsync(IEnumerable<String> ids, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return this.GetEpisodesAsync(ids, market, null, cancellationToken);
+        }
+        #endregion
     }
 }

@@ -45,5 +45,17 @@ namespace Spotify.Web
                 accessTokenProvider,
                 cancellationToken);
         }
+
+        #region ISpotifyUserProfileApi Implementation
+        Task<PrivateUser> ISpotifyUserProfileApi.GetCurrentUserProfileAsync(CancellationToken cancellationToken)
+        {
+            return this.GetCurrentUserProfileAsync(null, cancellationToken);
+        }
+
+        Task<PublicUser> ISpotifyUserProfileApi.GetUserProfileAsync(String id, CancellationToken cancellationToken)
+        {
+            return this.GetUserProfileAsync(id, null, cancellationToken);
+        }
+        #endregion
     }
 }
