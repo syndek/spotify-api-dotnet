@@ -4,12 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
-using Spotify.Web;
 using Spotify.Web.Authorization;
 
-namespace Spotify.Navigation
+namespace Spotify.Web
 {
-    internal static class HttpClientExtensions : Object
+    internal static class HttpClientNavigationExtensions : Object
     {
         internal static async Task<TObject> GetAsync<TObject>(
             this HttpClient httpClient,

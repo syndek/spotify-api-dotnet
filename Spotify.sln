@@ -5,14 +5,9 @@ VisualStudioVersion = 16.0.30404.54
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify", "Spotify\Spotify.csproj", "{421AE353-B55F-4065-9054-3226810472D6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A816F3AE-B8A9-47FD-9E6C-85AA60529991}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel", "Spotify.ObjectModel\Spotify.ObjectModel.csproj", "{2D80034B-5DA4-4D72-BD8D-0993CD5394C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Navigation", "Spotify.Navigation\Spotify.Navigation.csproj", "{50A93DB9-9997-4AF5-9EF2-CCE207861E57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Navigation", "Spotify.Navigation\Spotify.Navigation.csproj", "{50A93DB9-9997-4AF5-9EF2-CCE207861E57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
