@@ -5,8 +5,6 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Spotify.Abstractions\Spotify.Abstractions.csproj" />
         <ProjectReference Include="..\Spotify.ObjectModel\Spotify.ObjectModel.csproj" />
-        <ProjectReference Include="..\Spotify.Web.Authorization\Spotify.Web.Authorization.csproj" />
     </ItemGroup>
 </Project>

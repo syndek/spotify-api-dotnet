@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>preview</LangVersion>
@@ -6,7 +6,9 @@
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Spotify.Abstractions\Spotify.Abstractions.csproj" />
+        <ProjectReference Include="..\Spotify.ObjectModel.Serialization\Spotify.ObjectModel.Serialization.csproj" />
         <ProjectReference Include="..\Spotify.ObjectModel\Spotify.ObjectModel.csproj" />
         <ProjectReference Include="..\Spotify.Web.Authorization\Spotify.Web.Authorization.csproj" />
+        <ProjectReference Include="..\Spotify.Web.Common\Spotify.Web.Common.csproj" />
     </ItemGroup>
 </Project>

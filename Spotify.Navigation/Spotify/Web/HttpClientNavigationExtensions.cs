@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Spotify.ObjectModel;
 using Spotify.Web.Authorization;
 
 namespace Spotify.Web
@@ -23,9 +23,18 @@ namespace Spotify.Web
             using var message = new HttpRequestMessage(HttpMethod.Get, uri);
             message.Headers.Authorization = new("Bearer", accessToken.Value);
 
-            return await httpClient
-                .SendMessageAsync<TObject, Error>(message, cancellationToken)
-                .ConfigureAwait(false);
+            var response = await httpClient.SendAsync(message, cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var returned = await response.Content.ReadFromJsonAsync<TObject>(null, cancellationToken);
+                return returned!;
+            }
+            else
+            {
+                var error = await response.Content.ReadFromJsonAsync<Error>(null, cancellationToken);
+                throw new SpotifyHttpRequestException(response.StatusCode, error.Message);
+            }
         }
     }
 }
