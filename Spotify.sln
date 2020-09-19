@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30404.54
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel", "Spotify.ObjectModel\Spotify.ObjectModel.csproj", "{2D80034B-5DA4-4D72-BD8D-0993CD5394C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Navigation", "Spotify.Navigation\Spotify.Web.Navigation.csproj", "{50A93DB9-9997-4AF5-9EF2-CCE207861E57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Navigation", "Spotify.Web.Navigation\Spotify.Web.Navigation.csproj", "{50A93DB9-9997-4AF5-9EF2-CCE207861E57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Authorization", "Spotify.Web.Authorization\Spotify.Web.Authorization.csproj", "{93505A47-48F9-4CB6-9C12-510E4B049A5B}"
 EndProject
