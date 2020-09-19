@@ -3,6 +3,9 @@
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
+        <Authors>Louis Salkeld</Authors>
+        <Description>The core interfaces for the Spotify Web API.</Description>
+        <Company>Syndek</Company>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Spotify.ObjectModel\Spotify.ObjectModel.csproj" />

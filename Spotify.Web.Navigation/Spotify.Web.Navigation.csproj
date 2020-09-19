@@ -3,6 +3,9 @@
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
+        <Authors>Louis Salkeld</Authors>
+        <Company>Syndek</Company>
+        <Description>An optional extension library, Spotify.Web.Navigation defines extension methods for Spotify.ObjectModel types that allow quickly accessing additional sets of data from the Spotify Web API.</Description>
     </PropertyGroup>
     <ItemGroup>
       <ProjectReference Include="..\Spotify.Abstractions\Spotify.Abstractions.csproj" />
