@@ -88,6 +88,31 @@ namespace Spotify.ObjectModel.Serialization
             return new(id, uri, href, name, images, followers, genres, popularity, externalUrls);
         }
 
-        public override void Write(Utf8JsonWriter writer, Artist value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Artist value, JsonSerializerOptions options)
+        {
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var followersConverter = options.GetConverter<Followers>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var stringArrayConverter = options.GetConverter<StringArray>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("uri");
+            uriConverter.Write(writer, value.Uri, options);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            writer.WriteString("name", value.Name);
+            writer.WritePropertyName("images");
+            imageArrayConverter.Write(writer, value.Images, options);
+            writer.WritePropertyName("followers");
+            followersConverter.Write(writer, value.Followers, options);
+            writer.WritePropertyName("genres");
+            stringArrayConverter.Write(writer, value.Genres, options);
+            writer.WriteNumber("popularity", value.Popularity);
+            writer.WritePropertyName("external_urls");
+            externalUrlsConverter.Write(writer, value.ExternalUrls, options);
+            writer.WriteEndObject();
+        }
     }
 }
