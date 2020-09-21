@@ -73,6 +73,38 @@ namespace Spotify.ObjectModel.Serialization
             return new(items, total, limit, offset, href, previous, next);
         }
 
-        public override void Write(Utf8JsonWriter writer, Paging<TItem> value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Paging<TItem> value, JsonSerializerOptions options)
+        {
+            var itemArrayConverter = options.GetConverter<IReadOnlyList<TItem>>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WritePropertyName("items");
+            itemArrayConverter.Write(writer, value, options);
+            writer.WriteNumber("total", value.Total);
+            writer.WriteNumber("limit", value.Limit);
+            writer.WriteNumber("offset", value.Offset);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            if (value.Previous is Uri previous)
+            {
+                writer.WritePropertyName("previous");
+                uriConverter.Write(writer, previous, options);
+            }
+            else
+            {
+                writer.WriteNull("previous");
+            }
+            if (value.Next is Uri next)
+            {
+                writer.WritePropertyName("next");
+                uriConverter.Write(writer, next, options);
+            }
+            else
+            {
+                writer.WriteNull("next");
+            }
+            writer.WriteEndObject();
+        }
     }
 }
