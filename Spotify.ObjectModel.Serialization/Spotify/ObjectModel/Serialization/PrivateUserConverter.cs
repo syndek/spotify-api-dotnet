@@ -7,15 +7,22 @@ using Spotify.ObjectModel.Serialization.EnumConverters;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ImageArray = IReadOnlyList<Image>;
+
     public sealed class PrivateUserConverter : JsonConverter<PrivateUser>
     {
-        public static readonly PrivateUserConverter Instance = new();
-
-        private PrivateUserConverter() : base() { }
-
-        public override PrivateUser Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override PrivateUser? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var followersConverter = options.GetConverter<Followers>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
@@ -23,57 +30,58 @@ namespace Spotify.ObjectModel.Serialization
             String? email = null;
             String? displayName = null;
             CountryCode? country = null;
-            IReadOnlyList<Image> images = Array.Empty<Image>();
+            ImageArray images = Array.Empty<Image>();
             Product? product = null;
             Followers followers = Followers.None;
-            IReadOnlyDictionary<String, Uri> externalUrls = null!;
+            ExternalUrls externalUrls = null!;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     case "email":
-                        email = reader.ReadString();
+                        email = reader.GetString();
                         break;
                     case "display_name":
-                        displayName = reader.ReadString();
+                        displayName = reader.GetString();
                         break;
                     case "country":
-                        country = CountryCodeConverter.FromSpotifyString(reader.ReadString()!);
+                        country = EnumConverters.CountryCodeConverter.FromSpotifyString(reader.GetString()!);
                         break;
                     case "images":
-                        reader.Read(JsonTokenType.StartArray);
-                        images = reader.ReadArray<Image>();
+                        images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
                         break;
                     case "product":
-                        product = ProductConverter.FromSpotifyString(reader.ReadString()!);
+                        product = ProductConverter.FromSpotifyString(reader.GetString()!);
                         break;
                     case "followers":
-                        reader.Read(JsonTokenType.StartObject);
-                        followers = FollowersConverter.Instance.Read(ref reader, typeof(Followers), options);
+                        followers = followersConverter.Read(ref reader, typeof(Followers), options)!;
                         break;
                     case "external_urls":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalUrls = reader.ReadExternalUrls();
+                        externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     default:
                         reader.Skip();

@@ -5,55 +5,61 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using SectionArray = IReadOnlyList<Section>;
+    using SegmentArray = IReadOnlyList<Segment>;
+    using TimeIntervalArray = IReadOnlyList<TimeInterval>;
+
     public sealed class AudioAnalysisConverter : JsonConverter<AudioAnalysis>
     {
-        public static readonly AudioAnalysisConverter Instance = new();
-
-        private AudioAnalysisConverter() : base() { }
-
-        public override AudioAnalysis Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override AudioAnalysis? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
 
-            IReadOnlyList<TimeInterval> bars = Array.Empty<TimeInterval>();
-            IReadOnlyList<TimeInterval> beats = Array.Empty<TimeInterval>();
-            IReadOnlyList<Section> sections = Array.Empty<Section>();
-            IReadOnlyList<Segment> segments = Array.Empty<Segment>();
-            IReadOnlyList<TimeInterval> tatums = Array.Empty<TimeInterval>();
+            var sectionArrayConverter = options.GetConverter<SectionArray>();
+            var segmentArrayConverter = options.GetConverter<SegmentArray>();
+            var timeIntervalArrayConverter = options.GetConverter<TimeIntervalArray>();
+
+            TimeIntervalArray bars = Array.Empty<TimeInterval>();
+            TimeIntervalArray beats = Array.Empty<TimeInterval>();
+            SectionArray sections = Array.Empty<Section>();
+            SegmentArray segments = Array.Empty<Segment>();
+            TimeIntervalArray tatums = Array.Empty<TimeInterval>();
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "bars":
-                        reader.Read(JsonTokenType.StartArray);
-                        bars = reader.ReadArray<TimeInterval>();
+                        bars = timeIntervalArrayConverter.Read(ref reader, typeof(TimeIntervalArray), options)!;
                         break;
                     case "beats":
-                        reader.Read(JsonTokenType.StartArray);
-                        beats = reader.ReadArray<TimeInterval>();
+                        beats = timeIntervalArrayConverter.Read(ref reader, typeof(TimeIntervalArray), options)!;
                         break;
                     case "sections":
-                        reader.Read(JsonTokenType.StartArray);
-                        sections = reader.ReadArray<Section>();
+                        sections = sectionArrayConverter.Read(ref reader, typeof(SectionArray), options)!;
                         break;
                     case "segments":
-                        reader.Read(JsonTokenType.StartArray);
-                        segments = reader.ReadArray<Segment>();
+                        segments = segmentArrayConverter.Read(ref reader, typeof(SegmentArray), options)!;
                         break;
                     case "tatums":
-                        reader.Read(JsonTokenType.StartArray);
-                        tatums = reader.ReadArray<TimeInterval>();
+                        tatums = timeIntervalArrayConverter.Read(ref reader, typeof(TimeIntervalArray), options)!;
                         break;
                     default:
                         reader.Skip();

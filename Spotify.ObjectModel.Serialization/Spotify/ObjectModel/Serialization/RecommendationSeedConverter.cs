@@ -8,13 +8,14 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class RecommendationSeedConverter : JsonConverter<RecommendationSeed>
     {
-        public static readonly RecommendationSeedConverter Instance = new();
-
-        private RecommendationSeedConverter() : base() { }
-
-        public override RecommendationSeed Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override RecommendationSeed? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri? href = null;
@@ -25,36 +26,40 @@ namespace Spotify.ObjectModel.Serialization
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "href":
-                        href = reader.ReadNullableUri();
+                        href = (reader.TokenType is JsonTokenType.Null) ? null : uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "type":
                         // For some reason, the Spotify Web API returns the type in uppercase. So much for consistency.
-                        type = RecommendationSeedTypeConverter.FromSpotifyString(reader.ReadString()!.ToLower());
+                        type = RecommendationSeedTypeConverter.FromSpotifyString(reader.GetString()!.ToLower());
                         break;
                     case "initialPoolSize":
-                        initialPoolSize = reader.ReadInt32();
+                        initialPoolSize = reader.GetInt32();
                         break;
                     case "afterFilteringSize":
-                        afterFilteringSize = reader.ReadInt32();
+                        afterFilteringSize = reader.GetInt32();
                         break;
                     case "afterRelinkingSize":
-                        afterRelinkingSize = reader.ReadInt32();
+                        afterRelinkingSize = reader.GetInt32();
                         break;
                     default:
                         reader.Skip();

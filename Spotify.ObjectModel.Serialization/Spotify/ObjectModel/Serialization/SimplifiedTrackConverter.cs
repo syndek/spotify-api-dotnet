@@ -5,85 +5,94 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using CountryCodeArray = IReadOnlyList<CountryCode>;
+    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using SimplifiedArtistArray = IReadOnlyList<SimplifiedArtist>;
+
     public sealed class SimplifiedTrackConverter : JsonConverter<SimplifiedTrack>
     {
-        public static readonly SimplifiedTrackConverter Instance = new();
-
-        private SimplifiedTrackConverter() : base() { }
-
-        public override SimplifiedTrack Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override SimplifiedTrack? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var countryCodeArrayConverter = options.GetConverter<CountryCodeArray>();
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var simplifiedArtistArrayConverter = options.GetConverter<SimplifiedArtistArray>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
             Uri href = null!;
             String name = String.Empty;
-            IReadOnlyList<SimplifiedArtist> artists = Array.Empty<SimplifiedArtist>();
+            SimplifiedArtistArray artists = Array.Empty<SimplifiedArtist>();
             Int32 duration = default;
             Int32 trackNumber = default;
             Int32 discNumber = default;
             Boolean isExplicit = default;
             Boolean isLocal = default;
-            IReadOnlyList<CountryCode> availableMarkets = Array.Empty<CountryCode>();
+            CountryCodeArray availableMarkets = Array.Empty<CountryCode>();
             String previewUrl = String.Empty;
-            IReadOnlyDictionary<String, Uri> externalUrls = null!;
+            ExternalUrls externalUrls = null!;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "name":
-                        name = reader.ReadString()!;
+                        name = reader.GetString()!;
                         break;
                     case "artists":
-                        reader.Read(JsonTokenType.StartArray);
-                        artists = reader.ReadArray<SimplifiedArtist>();
+                        artists = simplifiedArtistArrayConverter.Read(ref reader, typeof(SimplifiedArtistArray), options)!;
                         break;
                     case "duration":
-                        duration = reader.ReadInt32();
+                        duration = reader.GetInt32();
                         break;
                     case "track_number":
-                        trackNumber = reader.ReadInt32();
+                        trackNumber = reader.GetInt32();
                         break;
                     case "disc_number":
-                        discNumber = reader.ReadInt32();
+                        discNumber = reader.GetInt32();
                         break;
                     case "explicit":
-                        isExplicit = reader.ReadBoolean();
+                        isExplicit = reader.GetBoolean();
                         break;
                     case "is_local":
-                        isLocal = reader.ReadBoolean();
+                        isLocal = reader.GetBoolean();
                         break;
                     case "available_markets":
-                        reader.Read(JsonTokenType.StartArray);
-                        availableMarkets = reader.ReadCountryCodeArray();
+                        availableMarkets = countryCodeArrayConverter.Read(ref reader, typeof(CountryCodeArray), options)!;
                         break;
                     case "preview_url":
-                        previewUrl = reader.ReadString()!;
+                        previewUrl = reader.GetString()!;
                         break;
                     case "external_urls":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalUrls = reader.ReadExternalUrls();
+                        externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     default:
                         reader.Skip();

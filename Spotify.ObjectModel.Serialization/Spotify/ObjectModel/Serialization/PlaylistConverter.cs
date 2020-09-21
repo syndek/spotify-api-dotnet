@@ -5,94 +5,101 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ImageArray = IReadOnlyList<Image>;
+
     public sealed class PlaylistConverter : JsonConverter<Playlist>
     {
-        public static readonly PlaylistConverter Instance = new();
-
-        private PlaylistConverter() : base() { }
-
-        public override Playlist Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Playlist? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var followersConverter = options.GetConverter<Followers>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var playlistTrackPagingConverter = options.GetConverter<Paging<PlaylistTrack>>();
+            var publicUserConverter = options.GetConverter<PublicUser>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
             Uri href = null!;
             String name = String.Empty;
             String? description = null;
-            IReadOnlyList<Image> images = Array.Empty<Image>();
+            ImageArray images = Array.Empty<Image>();
             PublicUser owner = null!;
             Followers followers = Followers.None;
             Paging<PlaylistTrack> tracks = Paging<PlaylistTrack>.Empty;
             Boolean? isPublic = null;
             Boolean isCollaborative = default;
             String snapshotId = String.Empty;
-            IReadOnlyDictionary<String, Uri> externalUrls = null!;
+            ExternalUrls externalUrls = null!;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "name":
-                        name = reader.ReadString()!;
+                        name = reader.GetString()!;
                         break;
                     case "description":
-                        description = reader.ReadString();
+                        description = reader.GetString()!;
                         break;
                     case "images":
-                        reader.Read(JsonTokenType.StartArray);
-                        images = reader.ReadArray<Image>();
+                        images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
                         break;
                     case "owner":
-                        reader.Read(JsonTokenType.StartObject);
-                        owner = PublicUserConverter.Instance.Read(ref reader, typeof(PublicUser), options);
+                        owner = publicUserConverter.Read(ref reader, typeof(PublicUser), options)!;
                         break;
                     case "followers":
-                        reader.Read(JsonTokenType.StartObject);
-                        followers = FollowersConverter.Instance.Read(ref reader, typeof(Followers), options);
+                        followers = followersConverter.Read(ref reader, typeof(Followers), options)!;
                         break;
                     case "tracks":
-                        reader.Read(JsonTokenType.StartObject);
-                        tracks = reader.ReadPaging<PlaylistTrack>();
+                        tracks = playlistTrackPagingConverter.Read(ref reader, typeof(Paging<PlaylistTrack>), options)!;
                         break;
                     case "public":
-                        reader.Read();
                         isPublic = reader.TokenType switch
                         {
                             JsonTokenType.Null => null,
                             JsonTokenType.True => true,
                             JsonTokenType.False => false,
-                            _ => throw new JsonException("Invalid public value.")
+                            _ => throw new JsonException()
                         };
                         break;
                     case "collaborative":
-                        isCollaborative = reader.ReadBoolean();
+                        isCollaborative = reader.GetBoolean();
                         break;
                     case "snapshot_id":
-                        snapshotId = reader.ReadString()!;
+                        snapshotId = reader.GetString()!;
                         break;
                     case "external_urls":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalUrls = reader.ReadExternalUrls();
+                        externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     default:
                         reader.Skip();

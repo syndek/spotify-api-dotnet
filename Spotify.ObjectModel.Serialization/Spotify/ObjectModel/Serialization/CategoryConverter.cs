@@ -5,47 +5,54 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using ImageArray = IReadOnlyList<Image>;
+
     public sealed class CategoryConverter : JsonConverter<Category>
     {
-        public static readonly CategoryConverter Instance = new();
-
-        private CategoryConverter() : base() { }
-
-        public override Category Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Category? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri href = null!;
             String name = String.Empty;
-            IReadOnlyList<Image> images = Array.Empty<Image>();
+            ImageArray images = Array.Empty<Image>();
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "name":
-                        name = reader.ReadString()!;
+                        name = reader.GetString()!;
                         break;
                     case "icons":
-                        reader.Read(JsonTokenType.StartArray);
-                        images = reader.ReadArray<Image>();
+                        images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
                         break;
                     default:
                         reader.Skip();

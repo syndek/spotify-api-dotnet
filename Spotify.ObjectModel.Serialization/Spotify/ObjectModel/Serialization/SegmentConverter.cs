@@ -5,15 +5,18 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using SingleArray = IReadOnlyList<Single>;
+
     public sealed class SegmentConverter : JsonConverter<Segment>
     {
-        public static readonly SegmentConverter Instance = new();
-
-        private SegmentConverter() : base() { }
-
-        public override Segment Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Segment? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var singleArrayConverter = options.GetConverter<SingleArray>();
 
             Single start = default;
             Single duration = default;
@@ -22,8 +25,8 @@ namespace Spotify.ObjectModel.Serialization
             Single loudnessEnd = default;
             Single loudnessMax = default;
             Single loudnessMaxTime = default;
-            IReadOnlyList<Single> pitches = Array.Empty<Single>();
-            IReadOnlyList<Single> timbre = Array.Empty<Single>();
+            SingleArray pitches = Array.Empty<Single>();
+            SingleArray timbre = Array.Empty<Single>();
 
             while (reader.Read())
             {
@@ -37,36 +40,38 @@ namespace Spotify.ObjectModel.Serialization
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "start":
-                        start = reader.ReadSingle();
+                        start = reader.GetSingle();
                         break;
                     case "duration":
-                        duration = reader.ReadSingle();
+                        duration = reader.GetSingle();
                         break;
                     case "confidence":
-                        confidence = reader.ReadSingle();
+                        confidence = reader.GetSingle();
                         break;
                     case "loudness_start":
-                        loudnessStart = reader.ReadSingle();
+                        loudnessStart = reader.GetSingle();
                         break;
                     case "loudness_end":
-                        loudnessEnd = reader.ReadSingle();
+                        loudnessEnd = reader.GetSingle();
                         break;
                     case "loudness_max":
-                        loudnessMax = reader.ReadSingle();
+                        loudnessMax = reader.GetSingle();
                         break;
                     case "loudness_max_time":
-                        loudnessMaxTime = reader.ReadSingle();
+                        loudnessMaxTime = reader.GetSingle();
                         break;
                     case "pitches":
-                        reader.Read(JsonTokenType.StartArray);
-                        pitches = reader.ReadArray<Single>();
+                        pitches = singleArrayConverter.Read(ref reader, typeof(SingleArray), options)!;
                         break;
                     case "timbre":
-                        reader.Read(JsonTokenType.StartArray);
-                        timbre = reader.ReadArray<Single>();
+                        timbre = singleArrayConverter.Read(ref reader, typeof(SingleArray), options)!;
                         break;
                     default:
                         reader.Skip();

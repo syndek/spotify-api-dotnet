@@ -5,70 +5,79 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ImageArray = IReadOnlyList<Image>;
+    using StringArray = IReadOnlyList<String>;
+
     public sealed class ArtistConverter : JsonConverter<Artist>
     {
-        public static readonly ArtistConverter Instance = new();
-
-        private ArtistConverter() : base() { }
-
-        public override Artist Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Artist? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartArray)
+            {
+                throw new JsonException();
+            }
+
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var followersConverter = options.GetConverter<Followers>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var stringArrayConverter = options.GetConverter<StringArray>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
             Uri href = null!;
             String name = String.Empty;
-            IReadOnlyList<Image> images = Array.Empty<Image>();
+            ImageArray images = Array.Empty<Image>();
             Followers followers = Followers.None;
-            IReadOnlyList<String> genres = Array.Empty<String>();
+            StringArray genres = Array.Empty<String>();
             Int32 popularity = default;
-            IReadOnlyDictionary<String, Uri> externalUrls = null!;
+            ExternalUrls externalUrls = null!;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "name":
-                        name = reader.ReadString()!;
+                        name = reader.GetString()!;
                         break;
                     case "images":
-                        reader.Read(JsonTokenType.StartArray);
-                        images = reader.ReadArray<Image>();
+                        images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
                         break;
                     case "followers":
-                        reader.Read(JsonTokenType.StartObject);
-                        followers = FollowersConverter.Instance.Read(ref reader, typeof(Followers), options);
+                        followers = followersConverter.Read(ref reader, typeof(Followers), options)!;
                         break;
                     case "genres":
-                        reader.Read(JsonTokenType.StartArray);
-                        genres = reader.ReadArray<String>();
+                        genres = stringArrayConverter.Read(ref reader, typeof(StringArray), options)!;
                         break;
                     case "popularity":
-                        popularity = reader.ReadInt32();
+                        popularity = reader.GetInt32();
                         break;
                     case "external_urls":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalUrls = reader.ReadExternalUrls();
+                        externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     default:
                         reader.Skip();

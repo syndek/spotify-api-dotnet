@@ -5,51 +5,58 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+
     public sealed class SimplifiedArtistConverter : JsonConverter<SimplifiedArtist>
     {
-        public static readonly SimplifiedArtistConverter Instance = new();
-
-        private SimplifiedArtistConverter() : base() { }
-
-        public override SimplifiedArtist Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override SimplifiedArtist? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
             Uri href = null!;
             String name = String.Empty;
-            IReadOnlyDictionary<String, Uri> externalUrls = null!;
+            ExternalUrls externalUrls = null!;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "name":
-                        name = reader.ReadString()!;
+                        name = reader.GetString()!;
                         break;
                     case "external_urls":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalUrls = reader.ReadExternalUrls();
+                        externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     default:
                         reader.Skip();

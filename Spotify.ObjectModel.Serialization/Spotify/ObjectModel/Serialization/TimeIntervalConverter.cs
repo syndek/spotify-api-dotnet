@@ -6,13 +6,12 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class TimeIntervalConverter : JsonConverter<TimeInterval>
     {
-        public static readonly TimeIntervalConverter Instance = new();
-
-        private TimeIntervalConverter() : base() { }
-
-        public override TimeInterval Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override TimeInterval? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
 
             Single start = default;
             Single duration = default;
@@ -20,26 +19,30 @@ namespace Spotify.ObjectModel.Serialization
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "start":
-                        start = reader.ReadSingle();
+                        start = reader.GetSingle();
                         break;
                     case "duration":
-                        duration = reader.ReadSingle();
+                        duration = reader.GetSingle();
                         break;
                     case "confidence":
-                        confidence = reader.ReadSingle();
+                        confidence = reader.GetSingle();
                         break;
                     default:
                         reader.Skip();

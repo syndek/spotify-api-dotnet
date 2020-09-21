@@ -6,36 +6,39 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class ResumePointConverter : JsonConverter<ResumePoint>
     {
-        public static readonly ResumePointConverter Instance = new();
-
-        private ResumePointConverter() : base() { }
-
-        public override ResumePoint Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override ResumePoint? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
 
             Int32 resumePosition = default;
             Boolean isFullyPlayed = default;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "resume_position_ms":
-                        resumePosition = reader.ReadInt32();
+                        resumePosition = reader.GetInt32();
                         break;
                     case "fully_played":
-                        isFullyPlayed = reader.ReadBoolean();
+                        isFullyPlayed = reader.GetBoolean();
                         break;
                     default:
                         reader.Skip();

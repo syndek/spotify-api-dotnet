@@ -7,22 +7,32 @@ using Spotify.ObjectModel.Serialization.EnumConverters;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ImageArray = IReadOnlyList<Image>;
+    using StringArray = IReadOnlyList<String>;
+
     public sealed class EpisodeConverter : JsonConverter<Episode>
     {
-        public static readonly EpisodeConverter Instance = new();
-
-        private EpisodeConverter() : base() { }
-
-        public override Episode Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Episode? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var resumePointConverter = options.GetConverter<ResumePoint>();
+            var simplifiedShowConverter = options.GetConverter<SimplifiedShow>();
+            var stringArrayConverter = options.GetConverter<StringArray>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
             Uri href = null!;
             String name = String.Empty;
             String description = String.Empty;
-            IReadOnlyList<Image> images = Array.Empty<Image>();
+            ImageArray images = Array.Empty<Image>();
             SimplifiedShow show = null!;
             Int32 duration = default;
             DateTime releaseDate = default;
@@ -30,80 +40,79 @@ namespace Spotify.ObjectModel.Serialization
             Boolean isExplicit = default;
             Boolean isPlayable = default;
             Boolean isExternallyHosted = default;
-            IReadOnlyList<String> languages = Array.Empty<String>();
+            StringArray languages = Array.Empty<String>();
             Uri? audioPreviewUrl = null;
-            IReadOnlyDictionary<String, Uri> externalUrls = null!;
+            ExternalUrls externalUrls = null!;
             ResumePoint? resumePoint = null;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Skip to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "name":
-                        name = reader.ReadString()!;
+                        name = reader.GetString()!;
                         break;
                     case "description":
-                        description = reader.ReadString()!;
+                        description = reader.GetString()!;
                         break;
                     case "images":
-                        reader.Read(JsonTokenType.StartArray);
-                        images = reader.ReadArray<Image>();
+                        images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
                         break;
                     case "show":
-                        reader.Read(JsonTokenType.StartObject);
-                        show = SimplifiedShowConverter.Instance.Read(ref reader, typeof(SimplifiedShow), options);
+                        show = simplifiedShowConverter.Read(ref reader, typeof(SimplifiedShow), options)!;
                         break;
                     case "duration_ms":
-                        duration = reader.ReadInt32();
+                        duration = reader.GetInt32();
                         break;
                     case "release_date":
-                        releaseDate = reader.ReadDateTime();
+                        releaseDate = reader.GetDateTime();
                         break;
                     case "release_date_precision":
-                        releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.ReadString()!);
+                        releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.GetString()!);
                         break;
                     case "explicit":
-                        isExplicit = reader.ReadBoolean();
+                        isExplicit = reader.GetBoolean();
                         break;
                     case "is_playable":
-                        isPlayable = reader.ReadBoolean();
+                        isPlayable = reader.GetBoolean();
                         break;
                     case "is_externally_hosted":
-                        isExternallyHosted = reader.ReadBoolean();
+                        isExternallyHosted = reader.GetBoolean();
                         break;
                     case "languages":
-                        reader.Read(JsonTokenType.StartArray);
-                        languages = reader.ReadArray<String>();
+                        languages = stringArrayConverter.Read(ref reader, typeof(StringArray), options)!;
                         break;
                     case "audio_preview_url":
-                        audioPreviewUrl = reader.ReadNullableUri();
+                        audioPreviewUrl = (reader.TokenType is JsonTokenType.Null) ? null : uriConverter.Read(ref reader, typeof(Uri), options!);
                         break;
                     case "external_urls":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalUrls = reader.ReadExternalUrls();
+                        externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     case "resume_point":
-                        reader.Read(JsonTokenType.StartObject);
-                        resumePoint = ResumePointConverter.Instance.Read(ref reader, typeof(ResumePoint), options);
+                        resumePoint = resumePointConverter.Read(ref reader, typeof(ResumePoint), options);
                         break;
                     default:
                         reader.Skip();

@@ -6,13 +6,14 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class AudioFeaturesConverter : JsonConverter<AudioFeatures>
     {
-        public static readonly AudioFeaturesConverter Instance = new();
-
-        private AudioFeaturesConverter() : base() { }
-
-        public override AudioFeatures Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override AudioFeatures? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
@@ -34,68 +35,72 @@ namespace Spotify.ObjectModel.Serialization
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "track_href":
-                        trackHref = reader.ReadUri();
+                        trackHref = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "analysis_url":
-                        analysisUrl = reader.ReadUri();
+                        analysisUrl = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "duration":
-                        duration = reader.ReadInt32();
+                        duration = reader.GetInt32();
                         break;
                     case "time_signature":
-                        timeSignature = reader.ReadInt32();
+                        timeSignature = reader.GetInt32();
                         break;
                     case "key":
-                        key = reader.ReadInt32();
+                        key = reader.GetInt32();
                         break;
                     case "mode":
-                        mode = reader.ReadInt32();
+                        mode = reader.GetInt32();
                         break;
                     case "acousticness":
-                        acousticness = reader.ReadSingle();
+                        acousticness = reader.GetSingle();
                         break;
                     case "danceability":
-                        danceability = reader.ReadSingle();
+                        danceability = reader.GetSingle();
                         break;
                     case "energy":
-                        energy = reader.ReadSingle();
+                        energy = reader.GetSingle();
                         break;
                     case "instrumentalness":
-                        instrumentalness = reader.ReadSingle();
+                        instrumentalness = reader.GetSingle();
                         break;
                     case "liveness":
-                        liveness = reader.ReadSingle();
+                        liveness = reader.GetSingle();
                         break;
                     case "loudness":
-                        loudness = reader.ReadSingle();
+                        loudness = reader.GetSingle();
                         break;
                     case "speechiness":
-                        speechiness = reader.ReadSingle();
+                        speechiness = reader.GetSingle();
                         break;
                     case "tempo":
-                        tempo = reader.ReadSingle();
+                        tempo = reader.GetSingle();
                         break;
                     case "valence":
-                        valence = reader.ReadSingle();
+                        valence = reader.GetSingle();
                         break;
                     default:
                         reader.Skip();

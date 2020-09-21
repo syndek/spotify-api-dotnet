@@ -6,11 +6,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class PlayableConverter : JsonConverter<IPlayable>
     {
-        public static readonly PlayableConverter Instance = new();
-
-        private PlayableConverter() : base() { }
-
-        public override IPlayable Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override IPlayable? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             throw new NotImplementedException();
         }

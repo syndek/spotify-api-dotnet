@@ -6,13 +6,14 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class ImageConverter : JsonConverter<Image>
     {
-        public static readonly ImageConverter Instance = new();
-
-        private ImageConverter() : base() { }
-
-        public override Image Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Image? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var uriConverter = options.GetConverter<Uri>();
 
             Uri url = null!;
             Int32? width = null;
@@ -20,25 +21,32 @@ namespace Spotify.ObjectModel.Serialization
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                switch (reader.GetString())
+                if (reader.TokenType is not JsonTokenType.PropertyName)
+                {
+                    throw new JsonException();
+                }
+
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "url":
-                        url = reader.ReadUri();
+                        url = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "width":
-                        reader.Read();
                         if (reader.TryGetInt32(out var widthValue))
                         {
                             width = widthValue;
                         }
                         break;
                     case "height":
-                        reader.Read();
                         if (reader.TryGetInt32(out var heightValue))
                         {
                             height = heightValue;

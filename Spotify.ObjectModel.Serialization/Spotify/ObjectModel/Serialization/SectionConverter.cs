@@ -6,13 +6,12 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class SectionConverter : JsonConverter<Section>
     {
-        public static readonly SectionConverter Instance = new();
-
-        private SectionConverter() : base() { }
-
-        public override Section Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Section? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
 
             Single start = default;
             Single duration = default;
@@ -29,57 +28,61 @@ namespace Spotify.ObjectModel.Serialization
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "start":
-                        start = reader.ReadSingle();
+                        start = reader.GetSingle();
                         break;
                     case "duration":
-                        duration = reader.ReadSingle();
+                        duration = reader.GetSingle();
                         break;
                     case "confidence":
-                        confidence = reader.ReadSingle();
+                        confidence = reader.GetSingle();
                         break;
                     case "loudness":
-                        loudness = reader.ReadSingle();
+                        loudness = reader.GetSingle();
                         break;
                     case "tempo":
-                        tempo = reader.ReadSingle();
+                        tempo = reader.GetSingle();
                         break;
                     case "tempo_confidence":
-                        tempoConfidence = reader.ReadSingle();
+                        tempoConfidence = reader.GetSingle();
                         break;
                     case "key":
-                        key = reader.ReadInt32();
+                        key = reader.GetInt32();
                         break;
                     case "key_confidence":
-                        keyConfidence = reader.ReadSingle();
+                        keyConfidence = reader.GetSingle();
                         break;
                     case "mode":
-                        var modeValue = reader.ReadInt32();
+                        var modeValue = reader.GetInt32();
                         if (modeValue != -1)
                         {
                             mode = (Modality) modeValue;
                         }
                         break;
                     case "mode_confidence":
-                        modeConfidence = reader.ReadSingle();
+                        modeConfidence = reader.GetSingle();
                         break;
                     case "time_signature":
-                        timeSignature = reader.ReadInt32();
+                        timeSignature = reader.GetInt32();
                         break;
                     case "time_signature_confidence":
-                        timeSignatureConfidence = reader.ReadSingle();
+                        timeSignatureConfidence = reader.GetSingle();
                         break;
                     default:
                         reader.Skip();

@@ -5,40 +5,47 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using RecommendationSeedArray = IReadOnlyList<RecommendationSeed>;
+    using SimplifiedTrackArray = IReadOnlyList<SimplifiedTrack>;
+
     public sealed class RecommendationsConverter : JsonConverter<Recommendations>
     {
-        public static readonly RecommendationsConverter Instance = new();
-
-        private RecommendationsConverter() : base() { }
-
-        public override Recommendations Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Recommendations? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
 
-            IReadOnlyList<RecommendationSeed> seeds = Array.Empty<RecommendationSeed>();
-            IReadOnlyList<SimplifiedTrack> tracks = Array.Empty<SimplifiedTrack>();
+            var recommendationSeedArrayConverter = options.GetConverter<RecommendationSeedArray>();
+            var simplifiedTrackArrayConverter = options.GetConverter<SimplifiedTrackArray>();
+
+            RecommendationSeedArray seeds = Array.Empty<RecommendationSeed>();
+            SimplifiedTrackArray tracks = Array.Empty<SimplifiedTrack>();
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "seeds":
-                        reader.Read(JsonTokenType.StartArray);
-                        seeds = reader.ReadArray<RecommendationSeed>();
+                        seeds = recommendationSeedArrayConverter.Read(ref reader, typeof(RecommendationSeedArray), options)!;
                         break;
                     case "tracks":
-                        reader.Read(JsonTokenType.StartArray);
-                        tracks = reader.ReadArray<SimplifiedTrack>();
+                        tracks = simplifiedTrackArrayConverter.Read(ref reader, typeof(SimplifiedTrackArray), options)!;
                         break;
                     default:
                         reader.Skip();

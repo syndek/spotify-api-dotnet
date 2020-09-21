@@ -6,13 +6,15 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class PlaylistTrackConverter : JsonConverter<PlaylistTrack>
     {
-        public static readonly PlaylistTrackConverter Instance = new();
-
-        private PlaylistTrackConverter() : base() { }
-
-        public override PlaylistTrack Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override PlaylistTrack? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var playableConverter = options.GetConverter<IPlayable>();
+            var publicUserConverter = options.GetConverter<PublicUser>();
 
             DateTime addedAt = default;
             PublicUser addedBy = null!;
@@ -21,31 +23,33 @@ namespace Spotify.ObjectModel.Serialization
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "added_at":
-                        addedAt = reader.ReadDateTime();
+                        addedAt = reader.GetDateTime();
                         break;
                     case "added_by":
-                        reader.Read(JsonTokenType.StartObject);
-                        addedBy = PublicUserConverter.Instance.Read(ref reader, typeof(PublicUser), options);
+                        addedBy = publicUserConverter.Read(ref reader, typeof(PublicUser), options)!;
                         break;
                     case "is_local":
-                        isLocal = reader.ReadBoolean();
+                        isLocal = reader.GetBoolean();
                         break;
                     case "track":
-                        reader.Read(JsonTokenType.StartObject);
-                        track = PlayableConverter.Instance.Read(ref reader, typeof(IPlayable), options);
+                        track = playableConverter.Read(ref reader, typeof(IPlayable), options)!;
                         break;
                     default:
                         reader.Skip();

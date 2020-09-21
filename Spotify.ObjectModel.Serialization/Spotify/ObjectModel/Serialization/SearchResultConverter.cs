@@ -6,13 +6,19 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class SearchResultConverter : JsonConverter<SearchResult>
     {
-        public static readonly SearchResultConverter Instance = new();
-
-        private SearchResultConverter() : base() { }
-
-        public override SearchResult Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override SearchResult? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var artistPagingConverter = options.GetConverter<Paging<Artist>>();
+            var playlistPagingConverter = options.GetConverter<Paging<Playlist>>();
+            var simplifiedAlbumPagingConverter = options.GetConverter<Paging<SimplifiedAlbum>>();
+            var simplifiedEpisodePagingConverter = options.GetConverter<Paging<SimplifiedEpisode>>();
+            var simplifiedShowPagingConverter = options.GetConverter<Paging<SimplifiedShow>>();
+            var trackPagingConverter = options.GetConverter<Paging<Track>>();
 
             Paging<Artist>? artists = null;
             Paging<SimplifiedAlbum>? albums = null;
@@ -23,41 +29,39 @@ namespace Spotify.ObjectModel.Serialization
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "artists":
-                        reader.Read(JsonTokenType.StartObject);
-                        artists = reader.ReadPaging<Artist>();
+                        artists = artistPagingConverter.Read(ref reader, typeof(Paging<Artist>), options)!;
                         break;
                     case "albums":
-                        reader.Read(JsonTokenType.StartObject);
-                        albums = reader.ReadPaging<SimplifiedAlbum>();
+                        albums = simplifiedAlbumPagingConverter.Read(ref reader, typeof(Paging<SimplifiedAlbum>), options)!;
                         break;
                     case "tracks":
-                        reader.Read(JsonTokenType.StartObject);
-                        tracks = reader.ReadPaging<Track>();
+                        tracks = trackPagingConverter.Read(ref reader, typeof(Paging<Track>), options)!;
                         break;
                     case "shows":
-                        reader.Read(JsonTokenType.StartObject);
-                        shows = reader.ReadPaging<SimplifiedShow>();
+                        shows = simplifiedShowPagingConverter.Read(ref reader, typeof(Paging<SimplifiedShow>), options)!;
                         break;
                     case "episodes":
-                        reader.Read(JsonTokenType.StartObject);
-                        episodes = reader.ReadPaging<SimplifiedEpisode>();
+                        episodes = simplifiedEpisodePagingConverter.Read(ref reader, typeof(Paging<SimplifiedEpisode>), options)!;
                         break;
                     case "playlists":
-                        reader.Read(JsonTokenType.StartObject);
-                        playlists = reader.ReadPaging<Playlist>();
+                        playlists = playlistPagingConverter.Read(ref reader, typeof(Paging<Playlist>), options)!;
                         break;
                     default:
                         reader.Skip();

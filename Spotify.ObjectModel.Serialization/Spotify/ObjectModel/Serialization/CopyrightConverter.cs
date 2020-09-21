@@ -8,36 +8,39 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class CopyrightConverter : JsonConverter<Copyright>
     {
-        public static readonly CopyrightConverter Instance = new();
-
-        private CopyrightConverter() : base() { }
-
-        public override Copyright Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Copyright? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
 
             String text = String.Empty;
             CopyrightType type = default;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "text":
-                        text = reader.ReadString()!;
+                        text = reader.GetString()!;
                         break;
                     case "type":
-                        type = CopyrightTypeConverter.FromSpotifyString(reader.ReadString()!);
+                        type = CopyrightTypeConverter.FromSpotifyString(reader.GetString()!);
                         break;
                     default:
                         reader.Skip();

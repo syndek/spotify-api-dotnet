@@ -7,13 +7,12 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class NullableArrayConverter<TElement> : JsonConverter<IReadOnlyList<TElement?>> where TElement : class
     {
-        public static readonly NullableArrayConverter<TElement> Instance = new();
-
-        private NullableArrayConverter() : base() { }
-
-        public override IReadOnlyList<TElement?> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override IReadOnlyList<TElement?>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartArray);
+            if (reader.TokenType is not JsonTokenType.StartArray)
+            {
+                throw new JsonException();
+            }
 
             var elements = new List<TElement?>();
             var elementType = typeof(TElement);

@@ -7,106 +7,119 @@ using Spotify.ObjectModel.Serialization.EnumConverters;
 
 namespace Spotify.ObjectModel.Serialization
 {
+    using CopyrightArray = IReadOnlyList<Copyright>;
+    using CountryCodeArray = IReadOnlyList<CountryCode>;
+    using ExternalIds = IReadOnlyDictionary<String, String>;
+    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ImageArray = IReadOnlyList<Image>;
+    using SimplifiedArtistArray = IReadOnlyList<SimplifiedArtist>;
+    using StringArray = IReadOnlyList<String>;
+
     public sealed class AlbumConverter : JsonConverter<Album>
     {
-        public static readonly AlbumConverter Instance = new();
-
-        private AlbumConverter() : base() { }
-
-        public override Album Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Album? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            reader.AssertTokenType(JsonTokenType.StartObject);
+            if (reader.TokenType is not JsonTokenType.StartObject)
+            {
+                throw new JsonException();
+            }
+
+            var copyrightArrayConverter = options.GetConverter<CopyrightArray>();
+            var countryCodeArrayConverter = options.GetConverter<CountryCodeArray>();
+            var externalIdsConverter = options.GetConverter<ExternalIds>();
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var simplifiedArtistArrayConverter = options.GetConverter<SimplifiedArtistArray>();
+            var simplifiedTrackPagingConverter = options.GetConverter<Paging<SimplifiedTrack>>();
+            var stringArrayConverter = options.GetConverter<StringArray>();
+            var uriConverter = options.GetConverter<Uri>();
 
             String id = String.Empty;
             Uri uri = null!;
             Uri href = null!;
             String name = String.Empty;
             AlbumType type = default;
-            IReadOnlyList<Image> images = Array.Empty<Image>();
-            IReadOnlyList<SimplifiedArtist> artists = Array.Empty<SimplifiedArtist>();
+            ImageArray images = Array.Empty<Image>();
+            SimplifiedArtistArray artists = Array.Empty<SimplifiedArtist>();
             DateTime releaseDate = default;
             ReleaseDatePrecision releaseDatePrecision = default;
-            IReadOnlyList<CountryCode> availableMarkets = Array.Empty<CountryCode>();
-            IReadOnlyList<Copyright> copyrights = Array.Empty<Copyright>();
-            IReadOnlyDictionary<String, String> externalIds = null!;
-            IReadOnlyDictionary<String, Uri> externalUrls = null!;
-            IReadOnlyList<String> genres = Array.Empty<String>();
+            CountryCodeArray availableMarkets = Array.Empty<CountryCode>();
+            CopyrightArray copyrights = Array.Empty<Copyright>();
+            ExternalIds externalIds = null!;
+            ExternalUrls externalUrls = null!;
+            StringArray genres = Array.Empty<String>();
             String label = String.Empty;
             Int32 popularity = default;
             Paging<SimplifiedTrack> tracks = Paging<SimplifiedTrack>.Empty;
 
             while (reader.Read())
             {
-                if (reader.TokenType == JsonTokenType.EndObject)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     break;
                 }
 
-                if (reader.TokenType != JsonTokenType.PropertyName)
+                if (reader.TokenType is not JsonTokenType.PropertyName)
                 {
                     throw new JsonException();
                 }
 
-                switch (reader.GetString())
+                var propertyName = reader.GetString();
+
+                reader.Read(); // Read to next token.
+
+                switch (propertyName)
                 {
                     case "id":
-                        id = reader.ReadString()!;
+                        id = reader.GetString()!;
                         break;
                     case "uri":
-                        uri = reader.ReadUri();
+                        uri = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "href":
-                        href = reader.ReadUri();
+                        href = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "name":
-                        name = reader.ReadString()!;
+                        name = reader.GetString()!;
                         break;
                     case "album_type":
-                        type = AlbumTypeConverter.FromSpotifyString(reader.ReadString()!);
+                        type = AlbumTypeConverter.FromSpotifyString(reader.GetString()!);
                         break;
                     case "images":
-                        reader.Read(JsonTokenType.StartArray);
-                        images = reader.ReadArray<Image>();
+                        images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
                         break;
                     case "artists":
-                        reader.Read(JsonTokenType.StartArray);
-                        artists = reader.ReadArray<SimplifiedArtist>();
+                        artists = simplifiedArtistArrayConverter.Read(ref reader, typeof(SimplifiedArtistArray), options)!;
                         break;
                     case "release_date":
-                        releaseDate = reader.ReadDateTime();
+                        releaseDate = reader.GetDateTime();
                         break;
                     case "release_date_precision":
-                        releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.ReadString()!);
+                        releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.GetString()!);
                         break;
                     case "tracks":
-                        reader.Read(JsonTokenType.StartObject);
-                        tracks = reader.ReadPaging<SimplifiedTrack>();
+                        tracks = simplifiedTrackPagingConverter.Read(ref reader, typeof(Paging<SimplifiedTrack>), options)!;
                         break;
                     case "genres":
-                        reader.Read(JsonTokenType.StartArray);
-                        genres = reader.ReadArray<String>();
+                        genres = stringArrayConverter.Read(ref reader, typeof(StringArray), options)!;
                         break;
                     case "popularity":
-                        popularity = reader.ReadInt32();
+                        popularity = reader.GetInt32();
                         break;
                     case "available_markets":
-                        reader.Read(JsonTokenType.StartArray);
-                        availableMarkets = reader.ReadCountryCodeArray();
+                        availableMarkets = countryCodeArrayConverter.Read(ref reader, typeof(CountryCodeArray), options)!;
                         break;
                     case "label":
-                        label = reader.ReadString()!;
+                        label = reader.GetString()!;
                         break;
                     case "copyrights":
-                        reader.Read(JsonTokenType.StartArray);
-                        copyrights = reader.ReadArray<Copyright>();
+                        copyrights = copyrightArrayConverter.Read(ref reader, typeof(CopyrightArray), options)!;
                         break;
                     case "external_ids":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalIds = reader.ReadStringDictionary();
+                        externalIds = externalIdsConverter.Read(ref reader, typeof(ExternalIds), options)!;
                         break;
                     case "external_urls":
-                        reader.Read(JsonTokenType.StartObject);
-                        externalUrls = reader.ReadExternalUrls();
+                        externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
                         break;
                     default:
                         reader.Skip();
