@@ -88,7 +88,7 @@ namespace Spotify.ObjectModel.Serialization
                         duration = reader.GetInt32();
                         break;
                     case "release_date":
-                        releaseDate = reader.GetDateTime();
+                        releaseDate = reader.GetReleaseDate();
                         break;
                     case "release_date_precision":
                         releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.GetString()!);

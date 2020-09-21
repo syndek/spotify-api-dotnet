@@ -92,7 +92,7 @@ namespace Spotify.ObjectModel.Serialization
                         artists = simplifiedArtistArrayConverter.Read(ref reader, typeof(SimplifiedArtistArray), options)!;
                         break;
                     case "release_date":
-                        releaseDate = reader.GetDateTime();
+                        releaseDate = reader.GetReleaseDate();
                         break;
                     case "release_date_precision":
                         releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.GetString()!);
