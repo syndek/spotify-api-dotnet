@@ -153,6 +153,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteNumber("speechiness", value.Speechiness);
             writer.WriteNumber("tempo", value.Tempo);
             writer.WriteNumber("valence", value.Valence);
+            writer.WriteEndObject();
         }
     }
 }
