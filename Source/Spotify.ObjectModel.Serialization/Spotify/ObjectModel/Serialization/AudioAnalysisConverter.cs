@@ -70,6 +70,24 @@ namespace Spotify.ObjectModel.Serialization
             return new(bars, beats, sections, segments, tatums);
         }
 
-        public override void Write(Utf8JsonWriter writer, AudioAnalysis value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, AudioAnalysis value, JsonSerializerOptions options)
+        {
+            var sectionArrayConverter = options.GetConverter<SectionArray>();
+            var segmentArrayConverter = options.GetConverter<SegmentArray>();
+            var timeIntervalArrayConverter = options.GetConverter<TimeIntervalArray>();
+
+            writer.WriteStartObject();
+            writer.WritePropertyName("bars");
+            timeIntervalArrayConverter.Write(writer, value.Bars, options);
+            writer.WritePropertyName("beats");
+            timeIntervalArrayConverter.Write(writer, value.Beats, options);
+            writer.WritePropertyName("sections");
+            sectionArrayConverter.Write(writer, value.Sections, options);
+            writer.WritePropertyName("segments");
+            segmentArrayConverter.Write(writer, value.Segments, options);
+            writer.WritePropertyName("tatums");
+            timeIntervalArrayConverter.Write(writer, value.Tatums, options);
+            writer.WriteEndObject();
+        }
     }
 }
