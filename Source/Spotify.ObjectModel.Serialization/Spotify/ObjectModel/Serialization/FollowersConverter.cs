@@ -51,6 +51,22 @@ namespace Spotify.ObjectModel.Serialization
             return new(href, total);
         }
 
-        public override void Write(Utf8JsonWriter writer, Followers value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Followers value, JsonSerializerOptions options)
+        {
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            if (value.Href is Uri href)
+            {
+                writer.WritePropertyName("href");
+                uriConverter.Write(writer, href, options);
+            }
+            else
+            {
+                writer.WriteNull("href");
+            }
+            writer.WriteNumber("total", value.Total);
+            writer.WriteEndObject();
+        }
     }
 }
