@@ -11,6 +11,10 @@ namespace Spotify.ObjectModel.Serialization
             throw new NotImplementedException();
         }
 
-        public override void Write(Utf8JsonWriter writer, IPlayable value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, IPlayable value, JsonSerializerOptions options)
+        {
+            var playableConverter = (JsonConverter<IPlayable>) options.GetConverter(value.GetType());
+            playableConverter.Write(writer, value, options);
+        }
     }
 }
