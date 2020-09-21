@@ -123,6 +123,44 @@ namespace Spotify.ObjectModel.Serialization
                 externalUrls);
         }
 
-        public override void Write(Utf8JsonWriter writer, Playlist value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Playlist value, JsonSerializerOptions options)
+        {
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var followersConverter = options.GetConverter<Followers>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var playlistTrackPagingConverter = options.GetConverter<Paging<PlaylistTrack>>();
+            var publicUserConverter = options.GetConverter<PublicUser>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("uri");
+            uriConverter.Write(writer, value.Uri, options);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            writer.WriteString("name", value.Name);
+            writer.WriteString("description", value.Description);
+            writer.WritePropertyName("images");
+            imageArrayConverter.Write(writer, value.Images, options);
+            writer.WritePropertyName("owner");
+            publicUserConverter.Write(writer, value.Owner, options);
+            writer.WritePropertyName("followers");
+            followersConverter.Write(writer, value.Followers, options);
+            writer.WritePropertyName("tracks");
+            playlistTrackPagingConverter.Write(writer, value.Tracks, options);
+            if (value.IsPublic is Boolean isPublic)
+            {
+                writer.WriteBoolean("public", isPublic);
+            }
+            else
+            {
+                writer.WriteNull("public");
+            }
+            writer.WriteBoolean("collaborative", value.IsCollaborative);
+            writer.WriteString("snapshot_id", value.SnapshotId);
+            writer.WritePropertyName("external_urls");
+            externalUrlsConverter.Write(writer, value.ExternalUrls, options);
+            writer.WriteEndObject();
+        }
     }
 }
