@@ -51,6 +51,12 @@ namespace Spotify.ObjectModel.Serialization
             return new(text, type);
         }
 
-        public override void Write(Utf8JsonWriter writer, Copyright value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Copyright value, JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+            writer.WriteString("text", value.Text);
+            writer.WriteString("type", value.Type.ToSpotifyString());
+            writer.WriteEndObject();
+        }
     }
 }
