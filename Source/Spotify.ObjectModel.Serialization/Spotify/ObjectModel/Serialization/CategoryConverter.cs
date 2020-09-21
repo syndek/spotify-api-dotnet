@@ -63,6 +63,19 @@ namespace Spotify.ObjectModel.Serialization
             return new(id, href, name, images);
         }
 
-        public override void Write(Utf8JsonWriter writer, Category value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Category value, JsonSerializerOptions options)
+        {
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            writer.WriteString("name", value.Name);
+            writer.WritePropertyName("icons");
+            imageArrayConverter.Write(writer, value.Icons, options);
+            writer.WriteEndObject();
+        }
     }
 }
