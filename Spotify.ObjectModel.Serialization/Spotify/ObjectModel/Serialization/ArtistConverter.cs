@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel.Serialization
     {
         public override Artist? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType is not JsonTokenType.StartArray)
+            if (reader.TokenType is not JsonTokenType.StartObject)
             {
                 throw new JsonException();
             }

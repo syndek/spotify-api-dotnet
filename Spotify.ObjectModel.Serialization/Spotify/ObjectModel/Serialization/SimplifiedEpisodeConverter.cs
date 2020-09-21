@@ -15,7 +15,7 @@ namespace Spotify.ObjectModel.Serialization
     {
         public override SimplifiedEpisode? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType is not JsonTokenType.Null)
+            if (reader.TokenType is not JsonTokenType.StartObject)
             {
                 throw new JsonException();
             }
