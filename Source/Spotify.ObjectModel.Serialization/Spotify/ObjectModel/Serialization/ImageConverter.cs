@@ -61,6 +61,30 @@ namespace Spotify.ObjectModel.Serialization
             return new(url, width, height);
         }
 
-        public override void Write(Utf8JsonWriter writer, Image value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Image value, JsonSerializerOptions options)
+        {
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WritePropertyName("url");
+            uriConverter.Write(writer, value.Url, options);
+            if (value.Width is Int32 width)
+            {
+                writer.WriteNumber("width", width);
+            }
+            else
+            {
+                writer.WriteNull("width");
+            }
+            if (value.Height is Int32 height)
+            {
+                writer.WriteNumber("height", height);
+            }
+            else
+            {
+                writer.WriteNull("height");
+            }
+            writer.WriteEndObject();
+        }
     }
 }
