@@ -128,6 +128,31 @@ namespace Spotify.ObjectModel.Serialization
                 valence);
         }
 
-        public override void Write(Utf8JsonWriter writer, AudioFeatures value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, AudioFeatures value, JsonSerializerOptions options)
+        {
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("uri");
+            uriConverter.Write(writer, value.Uri, options);
+            writer.WritePropertyName("track_href");
+            uriConverter.Write(writer, value.TrackHref, options);
+            writer.WritePropertyName("analysis_url");
+            uriConverter.Write(writer, value.AnalysisUrl, options);
+            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("time_signature", value.TimeSignature);
+            writer.WriteNumber("key", value.Key);
+            writer.WriteNumber("mode", value.Mode);
+            writer.WriteNumber("acousticness", value.Acousticness);
+            writer.WriteNumber("danceability", value.Danceability);
+            writer.WriteNumber("energy", value.Energy);
+            writer.WriteNumber("instrumentalness", value.Instrumentalness);
+            writer.WriteNumber("liveness", value.Liveness);
+            writer.WriteNumber("loudness", value.Loudness);
+            writer.WriteNumber("speechiness", value.Speechiness);
+            writer.WriteNumber("tempo", value.Tempo);
+            writer.WriteNumber("valence", value.Valence);
+        }
     }
 }
