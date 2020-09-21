@@ -60,6 +60,19 @@ namespace Spotify.ObjectModel.Serialization
             return new(addedAt, addedBy, isLocal, track);
         }
 
-        public override void Write(Utf8JsonWriter writer, PlaylistTrack value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, PlaylistTrack value, JsonSerializerOptions options)
+        {
+            var playableConverter = options.GetConverter<IPlayable>();
+            var publicUserConverter = options.GetConverter<PublicUser>();
+
+            writer.WriteStartObject();
+            writer.WriteString("added_at", value.AddedAt);
+            writer.WritePropertyName("added_by");
+            publicUserConverter.Write(writer, value.AddedBy, options);
+            writer.WriteBoolean("is_local", value.IsLocal);
+            writer.WritePropertyName("track");
+            playableConverter.Write(writer, value.Track, options);
+            writer.WriteEndObject();
+        }
     }
 }
