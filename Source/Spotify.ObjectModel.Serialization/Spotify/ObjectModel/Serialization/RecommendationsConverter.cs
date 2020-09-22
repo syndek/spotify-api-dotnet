@@ -56,6 +56,17 @@ namespace Spotify.ObjectModel.Serialization
             return new(seeds, tracks);
         }
 
-        public override void Write(Utf8JsonWriter writer, Recommendations value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Recommendations value, JsonSerializerOptions options)
+        {
+            var recommendationSeedArrayConverter = options.GetConverter<RecommendationSeedArray>();
+            var simplifiedTrackArrayConverter = options.GetConverter<SimplifiedTrackArray>();
+
+            writer.WriteStartObject();
+            writer.WritePropertyName("seeds");
+            recommendationSeedArrayConverter.Write(writer, value.Seeds, options);
+            writer.WritePropertyName("tracks");
+            simplifiedTrackArrayConverter.Write(writer, value.Tracks, options);
+            writer.WriteEndObject();
+        }
     }
 }
