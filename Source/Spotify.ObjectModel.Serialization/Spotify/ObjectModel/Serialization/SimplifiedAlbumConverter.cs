@@ -119,6 +119,30 @@ namespace Spotify.ObjectModel.Serialization
                 externalUrls);
         }
 
-        public override void Write(Utf8JsonWriter writer, SimplifiedAlbum value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, SimplifiedAlbum value, JsonSerializerOptions options)
+        {
+            var countryCodeArrayConverter = options.GetConverter<CountryCodeArray>();
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("uri");
+            uriConverter.Write(writer, value.Uri, options);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            writer.WriteString("name", value.Name);
+            writer.WriteString("type", value.Type.ToSpotifyString());
+            writer.WritePropertyName("images");
+            imageArrayConverter.Write(writer, value.Images, options);
+            writer.WriteReleaseDate(value.ReleaseDate, value.ReleaseDatePrecision);
+            writer.WriteString("release_date_precision", value.ReleaseDatePrecision.ToSpotifyString());
+            writer.WritePropertyName("available_markets");
+            countryCodeArrayConverter.Write(writer, value.AvailableMarkets, options);
+            writer.WritePropertyName("external_urls");
+            externalUrlsConverter.Write(writer, value.ExternalUrls, options);
+            writer.WriteEndObject();
+        }
     }
 }
