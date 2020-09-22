@@ -88,7 +88,7 @@ namespace Spotify.ObjectModel.Serialization
                     case "disc_number":
                         discNumber = reader.GetInt32();
                         break;
-                    case "is_explicit":
+                    case "explicit":
                         isExplicit = reader.GetBoolean();
                         break;
                     case "is_local":
