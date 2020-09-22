@@ -105,6 +105,22 @@ namespace Spotify.ObjectModel.Serialization
                 timeSignatureConfidence);
         }
 
-        public override void Write(Utf8JsonWriter writer, Section value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Section value, JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+            writer.WriteNumber("start", value.Start);
+            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("confidence", value.Confidence);
+            writer.WriteNumber("loudness", value.Loudness);
+            writer.WriteNumber("tempo", value.Tempo);
+            writer.WriteNumber("tempo_confidence", value.TempoConfidence);
+            writer.WriteNumber("key", value.Key);
+            writer.WriteNumber("key_confidence", value.KeyConfidence);
+            writer.WriteNumber("mode", (Int32) (value.Mode ?? (Modality?) -1));
+            writer.WriteNumber("mode_confidence", value.ModeConfidence);
+            writer.WriteNumber("time_signature", value.TimeSignature);
+            writer.WriteNumber("time_signature_confidence", value.TimeSignatureConfidence);
+            writer.WriteEndObject();
+        }
     }
 }
