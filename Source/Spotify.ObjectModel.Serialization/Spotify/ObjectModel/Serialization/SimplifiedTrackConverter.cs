@@ -116,6 +116,33 @@ namespace Spotify.ObjectModel.Serialization
                 externalUrls);
         }
 
-        public override void Write(Utf8JsonWriter writer, SimplifiedTrack value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, SimplifiedTrack value, JsonSerializerOptions options)
+        {
+            var countryCodeArrayConverter = options.GetConverter<CountryCodeArray>();
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var simplifiedArtistArrayConverter = options.GetConverter<SimplifiedArtistArray>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("uri");
+            uriConverter.Write(writer, value.Uri, options);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            writer.WriteString("name", value.Name);
+            writer.WritePropertyName("artists");
+            simplifiedArtistArrayConverter.Write(writer, value.Artists, options);
+            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("disc_number", value.DiscNumber);
+            writer.WriteNumber("track_number", value.TrackNumber);
+            writer.WriteBoolean("explicit", value.IsExplicit);
+            writer.WriteBoolean("is_local", value.IsLocal);
+            writer.WritePropertyName("available_markets");
+            countryCodeArrayConverter.Write(writer, value.AvailableMarkets, options);
+            writer.WriteString("preview_url", value.PreviewUrl);
+            writer.WritePropertyName("external_urls");
+            externalUrlsConverter.Write(writer, value.ExternalUrls, options);
+            writer.WriteEndObject();
+        }
     }
 }
