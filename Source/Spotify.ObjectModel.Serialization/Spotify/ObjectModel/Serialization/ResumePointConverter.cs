@@ -49,6 +49,12 @@ namespace Spotify.ObjectModel.Serialization
             return new(resumePosition, isFullyPlayed);
         }
 
-        public override void Write(Utf8JsonWriter writer, ResumePoint value, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override void Write(Utf8JsonWriter writer, ResumePoint value, JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+            writer.WriteNumber("resume_position_ms", value.ResumePosition);
+            writer.WriteBoolean("fully_played", value.IsFullyPlayed);
+            writer.WriteEndObject();
+        }
     }
 }
