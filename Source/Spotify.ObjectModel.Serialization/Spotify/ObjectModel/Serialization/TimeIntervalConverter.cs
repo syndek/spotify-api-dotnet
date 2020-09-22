@@ -53,6 +53,13 @@ namespace Spotify.ObjectModel.Serialization
             return new(start, duration, confidence);
         }
 
-        public override void Write(Utf8JsonWriter writer, TimeInterval value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, TimeInterval value, JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+            writer.WriteNumber("start", value.Start);
+            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("confidence", value.Confidence);
+            writer.WriteEndObject();
+        }
     }
 }
