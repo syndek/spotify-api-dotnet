@@ -72,6 +72,36 @@ namespace Spotify.ObjectModel.Serialization
             return new(artists, albums, tracks, shows, episodes, playlists);
         }
 
-        public override void Write(Utf8JsonWriter writer, SearchResult value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, SearchResult value, JsonSerializerOptions options)
+        {
+            void WritePaging<TObject>(String propertyName, Paging<TObject>? value, JsonConverter<Paging<TObject>> converter)
+            {
+                if (value is Paging<TObject> paging)
+                {
+                    writer.WritePropertyName(propertyName);
+                    converter.Write(writer, paging, options);
+                }
+                else
+                {
+                    writer.WriteNull(propertyName);
+                }
+            }
+
+            var artistPagingConverter = options.GetConverter<Paging<Artist>>();
+            var playlistPagingConverter = options.GetConverter<Paging<Playlist>>();
+            var simplifiedAlbumPagingConverter = options.GetConverter<Paging<SimplifiedAlbum>>();
+            var simplifiedEpisodePagingConverter = options.GetConverter<Paging<SimplifiedEpisode>>();
+            var simplifiedShowPagingConverter = options.GetConverter<Paging<SimplifiedShow>>();
+            var trackPagingConverter = options.GetConverter<Paging<Track>>();
+
+            writer.WriteStartObject();
+            WritePaging("artists", value.Artists, artistPagingConverter);
+            WritePaging("albums", value.Albums, simplifiedAlbumPagingConverter);
+            WritePaging("tracks", value.Tracks, trackPagingConverter);
+            WritePaging("shows", value.Shows, simplifiedShowPagingConverter);
+            WritePaging("episodes", value.Episodes, simplifiedEpisodePagingConverter);
+            WritePaging("playlists", value.Playlists, playlistPagingConverter);
+            writer.WriteEndObject();
+        }
     }
 }
