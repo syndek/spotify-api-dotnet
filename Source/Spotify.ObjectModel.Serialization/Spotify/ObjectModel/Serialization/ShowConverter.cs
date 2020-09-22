@@ -86,6 +86,16 @@ namespace Spotify.ObjectModel.Serialization
                     case "explicit":
                         isExplicit = reader.GetBoolean();
                         break;
+                    case "is_externally_hosted":
+                        reader.Read();
+                        isExternallyHosted = reader.TokenType switch
+                        {
+                            JsonTokenType.Null => null,
+                            JsonTokenType.True => true,
+                            JsonTokenType.False => false,
+                            _ => throw new JsonException()
+                        };
+                        break;
                     case "languages":
                         languages = stringArrayConverter.Read(ref reader, typeof(StringArray), options)!;
                         break;
@@ -100,16 +110,6 @@ namespace Spotify.ObjectModel.Serialization
                         break;
                     case "copyrights":
                         copyrights = copyrightArrayConverter.Read(ref reader, typeof(CopyrightArray), options)!;
-                        break;
-                    case "is_externally_hosted":
-                        reader.Read();
-                        isExternallyHosted = reader.TokenType switch
-                        {
-                            JsonTokenType.Null => null,
-                            JsonTokenType.True => true,
-                            JsonTokenType.False => false,
-                            _ => throw new JsonException()
-                        };
                         break;
                     case "external_urls":
                         externalUrls = externalUrlsConverter.Read(ref reader, typeof(ExternalUrls), options)!;
@@ -138,6 +138,48 @@ namespace Spotify.ObjectModel.Serialization
                 externalUrls);
         }
 
-        public override void Write(Utf8JsonWriter writer, Show value, JsonSerializerOptions options) => throw new NotImplementedException();
+        public override void Write(Utf8JsonWriter writer, Show value, JsonSerializerOptions options)
+        {
+            var copyrightArrayConverter = options.GetConverter<CopyrightArray>();
+            var countryCodeArrayConverter = options.GetConverter<CountryCodeArray>();
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var simplifiedEpisodePagingConverter = options.GetConverter<Paging<SimplifiedEpisode>>();
+            var stringArrayConverter = options.GetConverter<StringArray>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("uri");
+            uriConverter.Write(writer, value.Uri, options);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            writer.WriteString("name", value.Name);
+            writer.WriteString("description", value.Description);
+            writer.WritePropertyName("images");
+            imageArrayConverter.Write(writer, value.Images, options);
+            writer.WritePropertyName("episodes");
+            simplifiedEpisodePagingConverter.Write(writer, value.Episodes, options);
+            writer.WriteBoolean("explicit", value.IsExplicit);
+            if (value.IsExternallyHosted is Boolean isExternallyHosted)
+            {
+                writer.WriteBoolean("is_externally_hosted", isExternallyHosted);
+            }
+            else
+            {
+                writer.WriteNull("is_externally_hosted");
+            }
+            writer.WritePropertyName("languages");
+            stringArrayConverter.Write(writer, value.Languages, options);
+            writer.WritePropertyName("available_markets");
+            countryCodeArrayConverter.Write(writer, value.AvailableMarkets, options);
+            writer.WriteString("media_type", value.MediaType);
+            writer.WriteString("publisher", value.Publisher);
+            writer.WritePropertyName("copyrights");
+            copyrightArrayConverter.Write(writer, value.Copyrights, options);
+            writer.WritePropertyName("external_urls");
+            externalUrlsConverter.Write(writer, value.ExternalUrls, options);
+            writer.WriteEndObject();
+        }
     }
 }

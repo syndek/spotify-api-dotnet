@@ -12,7 +12,7 @@ namespace Spotify.ObjectModel
             String name,
             String description,
             IReadOnlyList<Image> images,
-            IReadOnlyList<SimplifiedEpisode> episodes,
+            Paging<SimplifiedEpisode> episodes,
             Boolean isExplicit,
             Boolean? isExternallyHosted,
             IReadOnlyList<String> languages,
@@ -40,6 +40,6 @@ namespace Spotify.ObjectModel
             this.Episodes = episodes;
         }
 
-        public IReadOnlyList<SimplifiedEpisode> Episodes { get; init; }
+        public Paging<SimplifiedEpisode> Episodes { get; init; }
     }
 }
