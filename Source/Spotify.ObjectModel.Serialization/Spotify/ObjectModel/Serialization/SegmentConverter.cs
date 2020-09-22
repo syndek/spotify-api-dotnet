@@ -91,6 +91,23 @@ namespace Spotify.ObjectModel.Serialization
                 timbre);
         }
 
-        public override void Write(Utf8JsonWriter writer, Segment value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, Segment value, JsonSerializerOptions options)
+        {
+            var singleArrayConverter = options.GetConverter<SingleArray>();
+
+            writer.WriteStartObject();
+            writer.WriteNumber("start", value.Start);
+            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("confidence", value.Confidence);
+            writer.WriteNumber("loudness_start", value.LoudnessStart);
+            writer.WriteNumber("loudness_end", value.LoudnessEnd);
+            writer.WriteNumber("loudness_max", value.LoudnessMax);
+            writer.WriteNumber("loudness_max_time", value.LoudnessMaxTime);
+            writer.WritePropertyName("pitches");
+            singleArrayConverter.Write(writer, value.Pitches, options);
+            writer.WritePropertyName("timbre");
+            singleArrayConverter.Write(writer, value.Timbre, options);
+            writer.WriteEndObject();
+        }
     }
 }
