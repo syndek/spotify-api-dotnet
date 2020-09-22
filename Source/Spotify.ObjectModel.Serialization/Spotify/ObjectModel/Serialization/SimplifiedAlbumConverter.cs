@@ -124,6 +124,7 @@ namespace Spotify.ObjectModel.Serialization
             var countryCodeArrayConverter = options.GetConverter<CountryCodeArray>();
             var externalUrlsConverter = options.GetConverter<ExternalUrls>();
             var imageArrayConverter = options.GetConverter<ImageArray>();
+            var simplifiedArtistArrayConverter = options.GetConverter<SimplifiedArtistArray>();
             var uriConverter = options.GetConverter<Uri>();
 
             writer.WriteStartObject();
@@ -136,6 +137,8 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteString("type", value.Type.ToSpotifyString());
             writer.WritePropertyName("images");
             imageArrayConverter.Write(writer, value.Images, options);
+            writer.WritePropertyName("artists");
+            simplifiedArtistArrayConverter.Write(writer, value.Artists, options);
             writer.WriteReleaseDate(value.ReleaseDate, value.ReleaseDatePrecision);
             writer.WriteString("release_date_precision", value.ReleaseDatePrecision.ToSpotifyString());
             writer.WritePropertyName("available_markets");
