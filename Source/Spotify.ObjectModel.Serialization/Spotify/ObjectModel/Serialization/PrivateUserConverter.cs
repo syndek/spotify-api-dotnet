@@ -69,7 +69,9 @@ namespace Spotify.ObjectModel.Serialization
                         displayName = reader.GetString();
                         break;
                     case "country":
-                        country = EnumConverters.CountryCodeConverter.FromSpotifyString(reader.GetString()!);
+                        country = (reader.GetString() is String countryCode)
+                            ? EnumConverters.CountryCodeConverter.FromSpotifyString(countryCode)
+                            : null;
                         break;
                     case "images":
                         images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
@@ -92,6 +94,30 @@ namespace Spotify.ObjectModel.Serialization
             return new(id, uri, href, email, displayName, country, images, product, followers, externalUrls);
         }
 
-        public override void Write(Utf8JsonWriter writer, PrivateUser value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, PrivateUser value, JsonSerializerOptions options)
+        {
+            var externalUrlsConverter = options.GetConverter<ExternalUrls>();
+            var followersConverter = options.GetConverter<Followers>();
+            var imageArrayConverter = options.GetConverter<ImageArray>();
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            writer.WritePropertyName("uri");
+            uriConverter.Write(writer, value.Uri, options);
+            writer.WritePropertyName("href");
+            uriConverter.Write(writer, value.Href, options);
+            writer.WriteString("email", value.Email);
+            writer.WriteString("display_name", value.DisplayName);
+            writer.WriteString("country", value.Country?.ToSpotifyString());
+            writer.WritePropertyName("images");
+            imageArrayConverter.Write(writer, value.Images, options);
+            writer.WriteString("product", value.Product?.ToSpotifyString());
+            writer.WritePropertyName("followers");
+            followersConverter.Write(writer, value.Followers, options);
+            writer.WritePropertyName("external_urls");
+            externalUrlsConverter.Write(writer, value.ExternalUrls, options);
+            writer.WriteEndObject();
+        }
     }
 }
