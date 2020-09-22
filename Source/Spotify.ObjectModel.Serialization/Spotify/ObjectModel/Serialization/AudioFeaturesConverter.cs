@@ -63,7 +63,7 @@ namespace Spotify.ObjectModel.Serialization
                     case "analysis_url":
                         analysisUrl = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
-                    case "duration":
+                    case "duration_ms":
                         duration = reader.GetInt32();
                         break;
                     case "time_signature":
@@ -140,7 +140,7 @@ namespace Spotify.ObjectModel.Serialization
             uriConverter.Write(writer, value.TrackHref, options);
             writer.WritePropertyName("analysis_url");
             uriConverter.Write(writer, value.AnalysisUrl, options);
-            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("duration_ms", value.Duration);
             writer.WriteNumber("time_signature", value.TimeSignature);
             writer.WriteNumber("key", value.Key);
             writer.WriteNumber("mode", value.Mode);

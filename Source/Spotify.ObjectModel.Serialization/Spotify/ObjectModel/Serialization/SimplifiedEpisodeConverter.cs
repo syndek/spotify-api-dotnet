@@ -79,7 +79,7 @@ namespace Spotify.ObjectModel.Serialization
                     case "images":
                         images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
                         break;
-                    case "duration":
+                    case "duration_ms":
                         duration = reader.GetInt32();
                         break;
                     case "release_date":
@@ -152,7 +152,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteString("description", value.Description);
             writer.WritePropertyName("images");
             imageArrayConverter.Write(writer, value.Images, options);
-            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("duration_ms", value.Duration);
             writer.WriteReleaseDate(value.ReleaseDate, value.ReleaseDatePrecision);
             writer.WriteString("release_date_precision", value.ReleaseDatePrecision.ToSpotifyString());
             writer.WriteBoolean("explicit", value.IsExplicit);

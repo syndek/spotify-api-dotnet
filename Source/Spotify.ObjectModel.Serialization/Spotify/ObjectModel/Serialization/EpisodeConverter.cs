@@ -161,7 +161,7 @@ namespace Spotify.ObjectModel.Serialization
             imageArrayConverter.Write(writer, value.Images, options);
             writer.WritePropertyName("show");
             simplifiedShowConverter.Write(writer, value.Show, options);
-            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("duration_ms", value.Duration);
             writer.WriteReleaseDate(value.ReleaseDate, value.ReleaseDatePrecision);
             writer.WriteString("release_date_precision", value.ReleaseDatePrecision.ToSpotifyString());
             writer.WriteBoolean("explicit", value.IsExplicit);

@@ -70,7 +70,7 @@ namespace Spotify.ObjectModel.Serialization
                     case "artists":
                         artists = simplifiedArtistArrayConverter.Read(ref reader, typeof(SimplifiedArtistArray), options)!;
                         break;
-                    case "duration":
+                    case "duration_ms":
                         duration = reader.GetInt32();
                         break;
                     case "track_number":
@@ -132,7 +132,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteString("name", value.Name);
             writer.WritePropertyName("artists");
             simplifiedArtistArrayConverter.Write(writer, value.Artists, options);
-            writer.WriteNumber("duration", value.Duration);
+            writer.WriteNumber("duration_ms", value.Duration);
             writer.WriteNumber("disc_number", value.DiscNumber);
             writer.WriteNumber("track_number", value.TrackNumber);
             writer.WriteBoolean("explicit", value.IsExplicit);
