@@ -70,6 +70,26 @@ namespace Spotify.ObjectModel.Serialization
             return new(id, href, type, initialPoolSize, afterFilteringSize, afterRelinkingSize);
         }
 
-        public override void Write(Utf8JsonWriter writer, RecommendationSeed value, JsonSerializerOptions options) => throw new NotSupportedException();
+        public override void Write(Utf8JsonWriter writer, RecommendationSeed value, JsonSerializerOptions options)
+        {
+            var uriConverter = options.GetConverter<Uri>();
+
+            writer.WriteStartObject();
+            writer.WriteString("id", value.Id);
+            if (value.Href is Uri href)
+            {
+                writer.WritePropertyName("href");
+                uriConverter.Write(writer, href, options);
+            }
+            else
+            {
+                writer.WriteNull("href");
+            }
+            writer.WriteString("type", value.Type.ToSpotifyString());
+            writer.WriteNumber("initialPoolSize", value.InitialPoolSize);
+            writer.WriteNumber("afterFilteringSize", value.AfterFilteringSize);
+            writer.WriteNumber("afterRelinkingSize", value.AfterRelinkingSize);
+            writer.WriteEndObject();
+        }
     }
 }
