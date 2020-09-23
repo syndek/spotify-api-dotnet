@@ -2,15 +2,39 @@
 
 namespace Spotify.ObjectModel
 {
+    /// <summary>
+    /// Represents a user's most recent playback position within an <see cref="Episode"/>.
+    /// </summary>
     public record ResumePoint : SpotifyObject
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResumePoint"/> record with the specified values.
+        /// </summary>
+        /// <param name="resumePosition">
+        /// An <see cref="Int32"/> representing the user's most recent playback position in the <see cref="Episode"/> in milliseconds.
+        /// </param>
+        /// <param name="isFullyPlayed">
+        /// A <see cref="Boolean"/> representing whether or not the <see cref="Episode"/> has been fully played by the user.
+        /// </param>
         public ResumePoint(Int32 resumePosition, Boolean isFullyPlayed) : base()
         {
             this.ResumePosition = resumePosition;
             this.IsFullyPlayed = isFullyPlayed;
         }
 
+        /// <summary>
+        /// Gets or sets the resume position of the <see cref="ResumePoint"/>.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="Int32"/> representing the user's most recent playback position in the <see cref="Episode"/> in milliseconds.
+        /// </returns>
         public Int32 ResumePosition { get; init; }
+        /// <summary>
+        /// Gets or sets a value representing whether or not the <see cref="Episode"/> has been fully played by the user.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="Boolean"/> representing whether or not the <see cref="Episode"/> has been fully played by the user.
+        /// </returns>
         public Boolean IsFullyPlayed { get; init; }
     }
 }
