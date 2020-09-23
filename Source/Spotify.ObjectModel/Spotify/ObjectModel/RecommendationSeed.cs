@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
     /// <summary>
     /// Represents a seed from a <see cref="Recommendations"/> object.
     /// </summary>
-    public record RecommendationSeed : IdentifiableObject
+    public record RecommendationSeed : SpotifyObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecommendationSeed"/> record with the specified values.
@@ -31,9 +31,9 @@ namespace Spotify.ObjectModel
             RecommendationSeedType type,
             Int32 initialPoolSize,
             Int32 afterFilteringSize,
-            Int32 afterRelinkingSize) :
-            base(id)
+            Int32 afterRelinkingSize)
         {
+            this.Id = id;
             this.Href = href;
             this.Type = type;
             this.InitialPoolSize = initialPoolSize;
@@ -41,6 +41,11 @@ namespace Spotify.ObjectModel
             this.AfterRelinkingSize = afterRelinkingSize;
         }
 
+        /// <summary>
+        /// Gets or sets the ID used to select the <see cref="RecommendationSeed"/>.
+        /// </summary>
+        /// <returns>A <see cref="String"/> representing the ID used to select the seed.</returns>
+        public String Id { get; init; }
         /// <summary>
         /// Gets or sets a link to the full track or artist data for the <see cref="RecommendationSeed"/>.
         /// </summary>
