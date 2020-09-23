@@ -8,6 +8,6 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
             (countryCode == "from_token") ? CountryCode.FromToken : Enum.Parse<CountryCode>(countryCode);
 
         public static String ToSpotifyString(this CountryCode countryCode) =>
-            (countryCode == CountryCode.FromToken) ? "from_token" : countryCode.GetName().ToLower();
+            (countryCode == CountryCode.FromToken) ? "from_token" : countryCode.GetName();
     }
 }
