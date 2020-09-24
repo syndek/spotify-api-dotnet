@@ -8,6 +8,8 @@ The Spotify.NET libraries are made up of multiple projects, allowing users to pi
 
 ### `Spotify.Abstractions`
 
+> Depends on `Spotify.ObjectModel`
+
 Contains the core interfaces for the Spotify Web API. The Spotify.NET library provides a default implementation of these in the form of the `Spotify.Web.Requests` library, but feel free to implement your own!
 
 ### `Spotify.ObjectModel`
