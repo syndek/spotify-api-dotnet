@@ -20,7 +20,7 @@ Contains types representing objects from the [Spotify Object Model](https://spot
 
 > Depends on `Spotify.ObjectModel`
 
-Contains types for serializing and deserializing types from the `Spotify.ObjectModel` namespace to and from JSON. All serialization-related functionality is built around the high-performance `System.Text.Json` library, which is included in the .NET standard library as of .NET Core 3.0.
+Contains types for serializing and deserializing types from the `Spotify.ObjectModel` namespace to and from JSON. All serialization-related functionality is built around the high-performance [`System.Text.Json`](https://docs.microsoft.com/en-us/dotnet/api/system.text.json) library, which is included in the .NET standard library as of .NET Core 3.0.
 
 ### `Spotify.Web`
 
