@@ -8,6 +8,6 @@
         <Description>Defines types used to authorize with the Spotify Web API and acquire access tokens.</Description>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Spotify.Web.Common\Spotify.Web.Common.csproj" />
+      <ProjectReference Include="..\Spotify.Web.Common\Spotify.Web.csproj" />
     </ItemGroup>
 </Project>
