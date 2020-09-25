@@ -34,20 +34,20 @@ Contains types used to authorize with the Spotify Web API and acquire access tok
 
 ### `Spotify.Web.Navigation`
 
-> Depends on `Spotify.Abstractions`
-> Depends on `Spotify.ObjectModel`
-> Depends on `Spotify.ObjectModel.Serialization`
-> Depends on `Spotify.Web`
+> Depends on `Spotify.Abstractions`  
+> Depends on `Spotify.ObjectModel`  
+> Depends on `Spotify.ObjectModel.Serialization`  
+> Depends on `Spotify.Web`  
 > Depends on `Spotify.Web.Authorization`
 
 An optional extension library, `Spotify.Web.Navigation` defines extension methods for `Spotify.ObjectModel` types that allow quickly accessing additional sets of data from the Spotify Web API.
 
 ### `Spotify.Web.Requests`
 
-> Depends on `Spotify.Abstractions`
-> Depends on `Spotify.ObjectModel`
-> Depends on `Spotify.ObjectModel.Serialization`
-> Depends on `Spotify.Web`
+> Depends on `Spotify.Abstractions`  
+> Depends on `Spotify.ObjectModel`  
+> Depends on `Spotify.ObjectModel.Serialization`  
+> Depends on `Spotify.Web`  
 > Depends on `Spotify.Web.Authorization`
 
 The Spotify.NET default implementation of the `Spotify.Abstractions` library. This depends on all of the core libraries provided by Spotify.NET, and as such, can be thought of as the 'main' Spotify.NET package.
