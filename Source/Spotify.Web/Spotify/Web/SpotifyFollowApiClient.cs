@@ -83,20 +83,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following")
-                .AppendToQuery("type", "artist");
-
-            var content = new StringContent(
-                $"{{ids:[{String.Join(',', ids.Select(id => $"\"{id}\""))}]}}",
-                Encoding.UTF8,
-                MediaTypeNames.Application.Json);
-
-            return base.SendAsync(
-                uriBuilder.Build(),
-                HttpMethod.Put,
-                content,
-                accessTokenProvider,
-                cancellationToken);
+            return this.Follow("artist", ids, accessTokenProvider, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -105,7 +92,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return this.Follow("user", ids, accessTokenProvider, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -146,6 +133,28 @@ namespace Spotify.Web
                 new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/followers"),
                 HttpMethod.Delete,
                 content: null,
+                accessTokenProvider,
+                cancellationToken);
+        }
+
+        private Task Follow(
+            String type,
+            IEnumerable<String> ids,
+            IAccessTokenProvider? accessTokenProvider,
+            CancellationToken cancellationToken)
+        {
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following")
+                .AppendToQuery("type", type);
+
+            var content = new StringContent(
+                "{ids:[" + String.Join(',', ids.Select(id => '"' + id + '"')) + "]}",
+                Encoding.UTF8,
+                MediaTypeNames.Application.Json);
+
+            return base.SendAsync(
+                uriBuilder.Build(),
+                HttpMethod.Put,
+                content,
                 accessTokenProvider,
                 cancellationToken);
         }
