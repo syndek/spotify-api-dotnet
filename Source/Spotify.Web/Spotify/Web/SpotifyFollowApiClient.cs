@@ -81,7 +81,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return this.Follow("artist", ids, accessTokenProvider, cancellationToken);
+            return this.EditFollowing("artist", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -90,7 +90,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return this.Follow("user", ids, accessTokenProvider, cancellationToken);
+            return this.EditFollowing("user", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -119,7 +119,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return this.EditFollowing("artist", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -128,7 +128,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return this.EditFollowing("user", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -145,8 +145,9 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        private Task Follow(
+        private Task EditFollowing(
             String type,
+            HttpMethod method,
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
@@ -157,7 +158,7 @@ namespace Spotify.Web
 
             return base.SendAsync(
                 uriBuilder.Build(),
-                HttpMethod.Put,
+                method,
                 content: null,
                 accessTokenProvider,
                 cancellationToken);
