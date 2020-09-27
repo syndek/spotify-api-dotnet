@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -154,17 +152,13 @@ namespace Spotify.Web
             CancellationToken cancellationToken)
         {
             var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following")
-                .AppendToQuery("type", type);
-
-            var content = new StringContent(
-                "{ids:[" + String.Join(',', ids.Select(id => '"' + id + '"')) + "]}",
-                Encoding.UTF8,
-                MediaTypeNames.Application.Json);
+                .AppendToQuery("type", type)
+                .AppendJoinToQuery("ids", ',', ids);
 
             return base.SendAsync(
                 uriBuilder.Build(),
                 HttpMethod.Put,
-                content,
+                content: null,
                 accessTokenProvider,
                 cancellationToken);
         }
