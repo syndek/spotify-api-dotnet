@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
@@ -85,7 +86,10 @@ namespace Spotify.Web
             var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following")
                 .AppendToQuery("type", "artist");
 
-            var content = new StringContent(JsonSerializer.Serialize(new { ids }), Encoding.UTF8, MediaTypeNames.Application.Json);
+            var content = new StringContent(
+                $"{{ids:[{String.Join(',', ids.Select(id => $"\"{id}\""))}]}}",
+                Encoding.UTF8,
+                MediaTypeNames.Application.Json);
 
             return base.SendAsync(
                 uriBuilder.Build(),
