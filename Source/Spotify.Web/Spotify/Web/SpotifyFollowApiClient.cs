@@ -102,7 +102,17 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var content = new StringContent(
+                @"{""public"":" + (publicFollow ?? true).ToString().ToLower() + "}",
+                Encoding.UTF8,
+                MediaTypeNames.Application.Json);
+
+            return base.SendAsync(
+                new Uri($"{SpotifyApiClient.BaseUrl}/playlists/{id}/followers"),
+                HttpMethod.Put,
+                content,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
