@@ -20,7 +20,7 @@ namespace Spotify.ObjectModel.Serialization
             var elementType = typeToConvert.GetGenericArguments()[0];
 
             return (JsonConverter) Activator.CreateInstance(
-                typeof(Paging<>).MakeGenericType(new[] { elementType }),
+                typeof(PagingConverter<>).MakeGenericType(new[] { elementType }),
                 BindingFlags.Instance | BindingFlags.Public,
                 binder: null,
                 args: null,
