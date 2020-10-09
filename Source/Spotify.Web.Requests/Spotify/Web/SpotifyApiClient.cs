@@ -2,10 +2,13 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Spotify.ObjectModel.Serialization;
 using Spotify.Web.Authorization;
+using Spotify.Web.RequestObjects.Serialization;
 
 namespace Spotify.Web
 {
@@ -16,8 +19,57 @@ namespace Spotify.Web
     {
         internal const String BaseUrl = "https://api.spotify.com/v1";
 
+        protected static readonly JsonSerializerOptions JsonSerializerOptions;
+
         private readonly HttpClient httpClient;
         private AuthenticationHeaderValue? currentAuthenticationHeader;
+
+        static SpotifyApiClient()
+        {
+            SpotifyApiClient.JsonSerializerOptions = new JsonSerializerOptions
+            {
+                Converters =
+                {
+                    // Add converters from Spotify.ObjectModel.Serialization.
+                    new AlbumConverter(),
+                    new ArtistConverter(),
+                    new AudioAnalysisConverter(),
+                    new AudioFeaturesConverter(),
+                    new CategoryConverter(),
+                    new ContextConverter(),
+                    new CopyrightConverter(),
+                    new CountryCodeConverter(),
+                    new EpisodeConverter(),
+                    new FollowersConverter(),
+                    new ImageConverter(),
+                    new PagingConverterFactory(),
+                    new PlayableConverter(),
+                    new PlaylistConverter(),
+                    new PlaylistTrackConverter(),
+                    new PrivateUserConverter(),
+                    new PublicUserConverter(),
+                    new RecommendationsConverter(),
+                    new RecommendationSeedConverter(),
+                    new ResumePointConverter(),
+                    new SearchResultConverter(),
+                    new SectionConverter(),
+                    new SegmentConverter(),
+                    new ShowConverter(),
+                    new SimplifiedAlbumConverter(),
+                    new SimplifiedArtistConverter(),
+                    new SimplifiedEpisodeConverter(),
+                    new SimplifiedPlaylistConverter(),
+                    new SimplifiedShowConverter(),
+                    new SimplifiedTrackConverter(),
+                    new TimeIntervalConverter(),
+                    new TrackConverter(),
+
+                    // Add converters from Spotify.Web.RequestObjects.Serialization.
+                    new PlaylistDetailsConverter(),
+                    new ReorderPlaylistItemsParametersConverter()
+                }
+            };
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyApiClient"/> class with the specified <paramref name="httpClient"/>.
