@@ -19,7 +19,6 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyUserProfileApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        /// <inheritdoc/>
         public Task<PrivateUser> GetCurrentUserProfileAsync(
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -32,7 +31,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<PublicUser> GetUserProfileAsync(
             String id,
             IAccessTokenProvider? accessTokenProvider = null,

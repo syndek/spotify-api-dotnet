@@ -23,7 +23,6 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyLibraryApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        /// <inheritdoc/>
         public Task SaveAlbumsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -32,7 +31,6 @@ namespace Spotify.Web
             return this.SaveAsync("album", ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task RemoveAlbumsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -41,7 +39,6 @@ namespace Spotify.Web
             return this.RemoveAsync("album", ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<Saved<Album>>> GetSavedAlbumsAsync(
             Int32? limit = null,
             Int32? offset = null,
@@ -52,7 +49,6 @@ namespace Spotify.Web
             return this.GetAsync<Saved<Album>>("album", limit, offset, market, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Boolean>> CheckSavedAlbumsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -61,7 +57,6 @@ namespace Spotify.Web
             return this.CheckAsync("album", ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task SaveTracksAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -70,7 +65,6 @@ namespace Spotify.Web
             return this.SaveAsync("track", ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task RemoveTracksAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -79,7 +73,6 @@ namespace Spotify.Web
             return this.RemoveAsync("track", ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<Saved<Track>>> GetSavedTracksAsync(
             Int32? limit = null,
             Int32? offset = null,
@@ -90,7 +83,6 @@ namespace Spotify.Web
             return this.GetAsync<Saved<Track>>("track", limit, offset, market, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Boolean>> CheckSavedTracksAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -99,7 +91,6 @@ namespace Spotify.Web
             return this.CheckAsync("track", ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task SaveShowsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -116,7 +107,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task RemoveShowsAsync(
             IEnumerable<String> ids,
             CountryCode? market = null,
@@ -135,7 +125,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<Saved<Show>>> GetSavedShowsAsync(
             Int32? limit = null,
             Int32? offset = null,
@@ -154,7 +143,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Boolean>> CheckSavedShowsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,

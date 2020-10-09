@@ -20,7 +20,6 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyPersonalizationApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        /// <inheritdoc/>
         public Task<Paging<Artist>> GetTopArtistsForCurrentUserAsync(
             Int32? limit = null,
             Int32? offset = null,
@@ -41,7 +40,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<Track>> GetTopTracksForCurrentUserAsync(
             Int32? limit = null,
             Int32? offset = null,

@@ -21,7 +21,6 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyFollowApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Boolean>> CheckCurrentUserFollowsArtistsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -39,7 +38,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Boolean>> CheckCurrentUserFollowsUsersAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -57,7 +55,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Boolean>> CheckUsersFollowPlaylistAsync(
             String id,
             IEnumerable<String> userIds,
@@ -75,7 +72,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task FollowArtistsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -84,7 +80,6 @@ namespace Spotify.Web
             return this.EditFollowing("artist", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task FollowUsersAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -93,7 +88,6 @@ namespace Spotify.Web
             return this.EditFollowing("user", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task FollowPlaylistAsync(
             String id,
             Boolean? publicFollow = null,
@@ -113,7 +107,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task UnfollowArtistsAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -122,7 +115,6 @@ namespace Spotify.Web
             return this.EditFollowing("artist", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task UnfollowUsersAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -131,7 +123,6 @@ namespace Spotify.Web
             return this.EditFollowing("user", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task UnfollowPlaylistAsync(
             String id,
             IAccessTokenProvider? accessTokenProvider = null,

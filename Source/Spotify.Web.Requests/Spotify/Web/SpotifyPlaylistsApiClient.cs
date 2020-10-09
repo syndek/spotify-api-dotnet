@@ -24,7 +24,6 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyPlaylistsApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        /// <inheritdoc/>
         public Task<Playlist> CreatePlaylistAsync(
             String userId,
             String name,
@@ -45,7 +44,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Playlist> GetPlaylistAsync(
             String id,
             CountryCode? market = null,
@@ -64,7 +62,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<IPlayable>> GetPlaylistItemsAsync(
             String id,
             Int32? limit = null,
@@ -87,7 +84,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<SimplifiedPlaylist>> GetCurrentUserPlaylistsAsync(
             Int32? limit = null,
             Int32? offset = null,
@@ -106,7 +102,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
             String userId,
             Int32? limit = null,
@@ -126,7 +121,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task ChangePlaylistDetailsAsync(
             String id,
             String? name = null,
@@ -147,7 +141,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(
             String id,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -161,7 +154,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task SetPlaylistCoverImageAsync(
             String id,
             String base64Image,
@@ -176,7 +168,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<String> ReorderPlaylistItemsAsync(
             String id,
             Int32 rangeStart,
@@ -198,7 +189,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task ReplacePlaylistItemsAsync(
             String id,
             IEnumerable<String> uris,
@@ -216,7 +206,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<String> AddItemsToPlaylistAsync(
             String id,
             IEnumerable<String> uris,
@@ -237,7 +226,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<String> RemoveItemsFromPlaylistAsync(
             String id,
             IEnumerable<String> uris,

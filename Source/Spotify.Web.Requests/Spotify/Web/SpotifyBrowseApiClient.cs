@@ -22,7 +22,6 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyBrowseApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        /// <inheritdoc/>
         public Task<Paging<Category>> GetCategoriesAsync(
             CountryCode? country = null,
             String? locale = null,
@@ -45,7 +44,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Category> GetCategoryAsync(
             String id,
             CountryCode? country = null,
@@ -65,7 +63,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<SimplifiedPlaylist>> GetCategoryPlaylistsAsync(
             String id,
             CountryCode? country = null,
@@ -87,7 +84,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Recommendations> GetRecommendationsAsync(
             IEnumerable<String> seedArtists,
             IEnumerable<String> seedTracks,
@@ -148,7 +144,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -161,7 +156,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<SimplifiedPlaylist>> GetFeaturedPlaylistsAsync(
             String? locale = null,
             CountryCode? country = null,
@@ -186,7 +180,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Paging<SimplifiedAlbum>> GetNewReleasesAsync(
             CountryCode? country = null,
             Int32? limit = null,

@@ -20,7 +20,6 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyTracksApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<Track>> GetTracksAsync(
             IReadOnlyList<String> ids,
             CountryCode? market = null,
@@ -39,7 +38,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<IReadOnlyList<AudioFeatures>> GetAudioFeaturesForTracksAsync(
             IEnumerable<String> ids,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -56,7 +54,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<Track> GetTrackAsync(
             String id,
             CountryCode? market = null,
@@ -74,7 +71,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<AudioAnalysis> GetAudioAnalysisForTrackAsync(
             String id,
             IAccessTokenProvider? accessTokenProvider = null,
@@ -88,7 +84,6 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        /// <inheritdoc/>
         public Task<AudioFeatures> GetAudioFeaturesForTrackAsync(
             String id,
             IAccessTokenProvider? accessTokenProvider = null,
