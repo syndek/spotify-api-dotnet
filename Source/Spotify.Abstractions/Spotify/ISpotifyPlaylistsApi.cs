@@ -45,6 +45,7 @@ namespace Spotify
             String? name = null,
             String? description = null,
             Boolean? isPublic = null,
+            Boolean? isCollaborative = null,
             CancellationToken cancellationToken = default);
 
         Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(String id, CancellationToken cancellationToken = default);
