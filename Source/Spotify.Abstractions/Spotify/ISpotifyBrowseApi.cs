@@ -43,7 +43,8 @@ namespace Spotify
             TuneableTrackAttributes? targetValues = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<String>> GetRecommendationGenresAsync(CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
+            CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedAlbum>> GetNewReleasesAsync(
             CountryCode? country = null,

@@ -21,10 +21,17 @@ namespace Spotify
             IEnumerable<String> ids,
             CancellationToken cancellationToken = default);
 
-        Task<Track> GetTrackAsync(String id, CountryCode? market = null, CancellationToken cancellationToken = default);
+        Task<Track> GetTrackAsync(
+            String id,
+            CountryCode? market = null,
+            CancellationToken cancellationToken = default);
 
-        Task<AudioAnalysis> GetAudioAnalysisForTrackAsync(String id, CancellationToken cancellationToken = default);
+        Task<AudioAnalysis> GetAudioAnalysisForTrackAsync(
+            String id,
+            CancellationToken cancellationToken = default);
 
-        Task<AudioFeatures> GetAudioFeaturesForTrackAsync(String id, CancellationToken cancellationToken = default);
+        Task<AudioFeatures> GetAudioFeaturesForTrackAsync(
+            String id,
+            CancellationToken cancellationToken = default);
     }
 }

@@ -20,7 +20,10 @@ namespace Spotify
             Boolean? isCollaborative = null,
             CancellationToken cancellationToken = default);
 
-        Task<Playlist> GetPlaylistAsync(String id, CountryCode? market = null, CancellationToken cancellationToken = default);
+        Task<Playlist> GetPlaylistAsync(
+            String id,
+            CountryCode? market = null,
+            CancellationToken cancellationToken = default);
 
         Task<Paging<IPlayable>> GetPlaylistItemsAsync(
             String id,
@@ -48,9 +51,14 @@ namespace Spotify
             Boolean? isCollaborative = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(String id, CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(
+            String id,
+            CancellationToken cancellationToken = default);
 
-        Task SetPlaylistCoverImageAsync(String id, String base64Image, CancellationToken cancellationToken = default);
+        Task SetPlaylistCoverImageAsync(
+            String id,
+            String base64Image,
+            CancellationToken cancellationToken = default);
 
         Task<String> ReorderPlaylistItemsAsync(
             String id,
@@ -60,7 +68,10 @@ namespace Spotify
             String? snapshotId = null,
             CancellationToken cancellationToken = default);
 
-        Task ReplacePlaylistItemsAsync(String id, IEnumerable<String> uris, CancellationToken cancellationToken = default);
+        Task ReplacePlaylistItemsAsync(
+            String id,
+            IEnumerable<String> uris,
+            CancellationToken cancellationToken = default);
 
         Task<String> AddItemsToPlaylistAsync(
             String id,

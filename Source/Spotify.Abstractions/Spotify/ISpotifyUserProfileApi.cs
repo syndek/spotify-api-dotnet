@@ -11,8 +11,11 @@ namespace Spotify
     /// </summary>
     public interface ISpotifyUserProfileApi
     {
-        Task<PrivateUser> GetCurrentUserProfileAsync(CancellationToken cancellationToken = default);
+        Task<PrivateUser> GetCurrentUserProfileAsync(
+            CancellationToken cancellationToken = default);
 
-        Task<PublicUser> GetUserProfileAsync(String id, CancellationToken cancellationToken = default);
+        Task<PublicUser> GetUserProfileAsync(
+            String id,
+            CancellationToken cancellationToken = default);
     }
 }
