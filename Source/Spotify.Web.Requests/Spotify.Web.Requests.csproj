@@ -12,6 +12,6 @@
         <ProjectReference Include="..\Spotify.ObjectModel.Serialization\Spotify.ObjectModel.Serialization.csproj" />
         <ProjectReference Include="..\Spotify.ObjectModel\Spotify.ObjectModel.csproj" />
         <ProjectReference Include="..\Spotify.Web.Authorization\Spotify.Web.Authorization.csproj" />
-        <ProjectReference Include="..\Spotify.Web.Common\Spotify.Web.csproj" />
+        <ProjectReference Include="..\Spotify.Web\Spotify.Web.csproj" />
     </ItemGroup>
 </Project>
