@@ -94,7 +94,16 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/playlists")
+                .AppendToQueryIfNotNull("limit", limit)
+                .AppendToQueryIfNotNull("offset", offset);
+
+            return base.SendAsync<Paging<SimplifiedPlaylist>>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                content: null,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -105,7 +114,16 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/users/{userId}/playlists")
+                .AppendToQueryIfNotNull("limit", limit)
+                .AppendToQueryIfNotNull("offset", offset);
+
+            return base.SendAsync<Paging<SimplifiedPlaylist>>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                content: null,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -135,7 +153,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return base.SendAsync<IReadOnlyList<Image>>(
+                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/images"),
+                HttpMethod.Get,
+                content: null,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -145,7 +168,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return base.SendAsync<IReadOnlyList<Image>>(
+                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/images"),
+                HttpMethod.Put,
+                new StringContent(base64Image, Encoding.UTF8, MediaTypeNames.Image.Jpeg),
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -158,7 +186,16 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            // TODO: Find a way to make this deserialize a SnapshotId object.
+            return base.SendAsync<String>(
+                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/tracks"),
+                HttpMethod.Put,
+                new StringContent(
+                    JsonSerializer.Serialize(new ReorderPlaylistItemsParameters(rangeStart, insertBefore, rangeLength, snapshotId)),
+                    Encoding.UTF8,
+                    MediaTypeNames.Application.Json),
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -168,7 +205,15 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{id}/tracks")
+                .AppendJoinToQuery("uris", ',', uris);
+
+            return base.SendAsync(
+                uriBuilder.Build(),
+                HttpMethod.Put,
+                content: null,
+                accessTokenProvider,
+                cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -200,6 +245,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
+            // TODO: Implement with respect to https://spotify.dev/documentation/web-api/reference/playlists/remove-tracks-playlist.
             throw new NotImplementedException();
         }
 
