@@ -51,6 +51,7 @@ namespace Spotify.Web
                     new RecommendationsConverter(),
                     new RecommendationSeedConverter(),
                     new ResumePointConverter(),
+                    new SavedConverterFactory(),
                     new SearchResultConverter(),
                     new SectionConverter(),
                     new SegmentConverter(),
