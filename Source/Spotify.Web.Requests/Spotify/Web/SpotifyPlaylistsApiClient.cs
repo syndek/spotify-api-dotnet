@@ -37,7 +37,9 @@ namespace Spotify.Web
                 new($"{SpotifyApiClient.BaseUrl}/users/{userId}/playlists"),
                 HttpMethod.Post,
                 new StringContent(
-                    JsonSerializer.Serialize(new PlaylistDetails(name, description, isPublic, isCollaborative)),
+                    JsonSerializer.Serialize(
+                        new PlaylistDetails(name, description, isPublic, isCollaborative),
+                        SpotifyApiClient.RequestObjectSerializerOptions),
                     Encoding.UTF8,
                     MediaTypeNames.Application.Json),
                 accessTokenProvider,
@@ -134,7 +136,8 @@ namespace Spotify.Web
                 new($"{SpotifyApiClient.BaseUrl}/playlists/{id}"),
                 HttpMethod.Put,
                 new StringContent(
-                    JsonSerializer.Serialize(new PlaylistDetails(name, description, isPublic, isCollaborative)),
+                    JsonSerializer.Serialize(new PlaylistDetails(name, description, isPublic, isCollaborative),
+                    SpotifyApiClient.RequestObjectSerializerOptions),
                     Encoding.UTF8,
                     MediaTypeNames.Application.Json),
                 accessTokenProvider,
@@ -182,7 +185,9 @@ namespace Spotify.Web
                 new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/tracks"),
                 HttpMethod.Put,
                 new StringContent(
-                    JsonSerializer.Serialize(new ReorderPlaylistItemsParameters(rangeStart, insertBefore, rangeLength, snapshotId)),
+                    JsonSerializer.Serialize(
+                        new ReorderPlaylistItemsParameters(rangeStart, insertBefore, rangeLength, snapshotId),
+                        SpotifyApiClient.RequestObjectSerializerOptions),
                     Encoding.UTF8,
                     MediaTypeNames.Application.Json),
                 accessTokenProvider,

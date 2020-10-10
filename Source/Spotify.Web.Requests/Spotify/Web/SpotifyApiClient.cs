@@ -20,11 +20,19 @@ namespace Spotify.Web
     {
         internal const String BaseUrl = "https://api.spotify.com/v1";
 
-        protected static readonly JsonSerializerOptions DefaultSerializerOptions = new()
+        protected static readonly JsonSerializerOptions RequestObjectSerializerOptions = new()
         {
             Converters =
             {
-                // Add converters from Spotify.ObjectModel.Serialization.
+                new PlaylistDetailsConverter(),
+                new ReorderPlaylistItemsParametersConverter()
+            }
+        };
+
+        private static readonly JsonSerializerOptions DefaultSerializerOptions = new()
+        {
+            Converters =
+            {
                 new AlbumConverter(),
                 new ArtistConverter(),
                 new AudioAnalysisConverter(),
@@ -57,14 +65,9 @@ namespace Spotify.Web
                 new SimplifiedShowConverter(),
                 new SimplifiedTrackConverter(),
                 new TimeIntervalConverter(),
-                new TrackConverter(),
-
-                // Add converters from Spotify.Web.RequestObjects.Serialization.
-                new PlaylistDetailsConverter(),
-                new ReorderPlaylistItemsParametersConverter()
+                new TrackConverter()
             }
         };
-
         private static readonly JsonSerializerOptions ErrorSerializerOptions = new()
         {
             Converters = { new ErrorConverter() }
