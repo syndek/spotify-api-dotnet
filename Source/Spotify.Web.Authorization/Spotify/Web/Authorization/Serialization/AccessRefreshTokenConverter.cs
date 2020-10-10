@@ -54,7 +54,7 @@ namespace Spotify.Web.Authorization.Serialization
                 }
             }
 
-            return new(accessToken, refreshToken, AuthorizationScopesConverter.FromSpotifyStrings(scope.Split(' ')), expiresIn);
+            return new(accessToken, AuthorizationScopesConverter.FromSpotifyStrings(scope.Split(' ')), expiresIn, refreshToken);
         }
 
         public override void Write(Utf8JsonWriter writer, AccessRefreshToken value, JsonSerializerOptions options)
