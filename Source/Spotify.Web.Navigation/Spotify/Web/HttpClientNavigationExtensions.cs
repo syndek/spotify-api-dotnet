@@ -1,15 +1,62 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Spotify.ObjectModel.Serialization;
 using Spotify.Web.Authorization;
+using Spotify.Web.Serialization;
 
 namespace Spotify.Web
 {
     internal static class HttpClientNavigationExtensions : Object
     {
+        private static readonly JsonSerializerOptions DefaultSerializerOptions = new()
+        {
+            Converters =
+            {
+                new AlbumConverter(),
+                new ArtistConverter(),
+                new AudioAnalysisConverter(),
+                new AudioFeaturesConverter(),
+                new CategoryConverter(),
+                new ContextConverter(),
+                new CopyrightConverter(),
+                new CountryCodeConverter(),
+                new EpisodeConverter(),
+                new FollowersConverter(),
+                new ImageConverter(),
+                new PagingConverterFactory(),
+                new PlayableConverter(),
+                new PlaylistConverter(),
+                new PlaylistTrackConverter(),
+                new PrivateUserConverter(),
+                new PublicUserConverter(),
+                new RecommendationsConverter(),
+                new RecommendationSeedConverter(),
+                new ResumePointConverter(),
+                new SavedConverterFactory(),
+                new SearchResultConverter(),
+                new SectionConverter(),
+                new SegmentConverter(),
+                new ShowConverter(),
+                new SimplifiedAlbumConverter(),
+                new SimplifiedArtistConverter(),
+                new SimplifiedEpisodeConverter(),
+                new SimplifiedPlaylistConverter(),
+                new SimplifiedShowConverter(),
+                new SimplifiedTrackConverter(),
+                new TimeIntervalConverter(),
+                new TrackConverter()
+            }
+        };
+        private static readonly JsonSerializerOptions ErrorSerializerOptions = new()
+        {
+            Converters = { new ErrorConverter() }
+        };
+
         internal static async Task<TObject> GetAsync<TObject>(
             this HttpClient httpClient,
             Uri uri,
@@ -27,12 +74,18 @@ namespace Spotify.Web
 
             if (response.IsSuccessStatusCode)
             {
-                var returned = await response.Content.ReadFromJsonAsync<TObject>(null, cancellationToken);
+                var returned = await response.Content.ReadFromJsonAsync<TObject>(
+                    HttpClientNavigationExtensions.DefaultSerializerOptions,
+                    cancellationToken);
+
                 return returned!;
             }
             else
             {
-                var error = await response.Content.ReadFromJsonAsync<Error>(null, cancellationToken);
+                var error = await response.Content.ReadFromJsonAsync<Error>(
+                    HttpClientNavigationExtensions.ErrorSerializerOptions,
+                    cancellationToken);
+
                 throw new SpotifyHttpRequestException(response.StatusCode, error.Message);
             }
         }
