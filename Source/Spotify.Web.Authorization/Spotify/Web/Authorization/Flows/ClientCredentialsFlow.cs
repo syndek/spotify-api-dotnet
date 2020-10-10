@@ -43,13 +43,19 @@ namespace Spotify.Web.Authorization.Flows
 
             if (response.IsSuccessStatusCode)
             {
-                var token = await response.Content.ReadFromJsonAsync<AccessToken>(null, cancellationToken);
+                var token = await response.Content.ReadFromJsonAsync<AccessToken>(
+                    SpotifyAuthorizationFlow.AccessTokenSerializerOptions,
+                    cancellationToken);
+
                 base.CurrentAccessToken = token;
                 return token;
             }
             else
             {
-                var error = await response.Content.ReadFromJsonAsync<AuthenticationError>(null, cancellationToken);
+                var error = await response.Content.ReadFromJsonAsync<AuthenticationError>(
+                    SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions,
+                    cancellationToken);
+
                 throw new SpotifyAuthorizationException(response.StatusCode, error.Error, error.ErrorDescription);
             }
         }

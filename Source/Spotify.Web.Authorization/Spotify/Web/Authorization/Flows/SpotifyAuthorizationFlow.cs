@@ -2,8 +2,11 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+
+using Spotify.Web.Authorization.Serialization;
 
 namespace Spotify.Web.Authorization.Flows
 {
@@ -17,6 +20,19 @@ namespace Spotify.Web.Authorization.Flows
         /// The <see cref="Uri"/> of the Spotify Accounts service <c>/api/token</c> endpoint. This field is read-only.
         /// </summary>
         protected static readonly Uri TokenUri = new("https://accounts.spotify.com/api/token");
+
+        protected static readonly JsonSerializerOptions AccessTokenSerializerOptions = new()
+        {
+            Converters =
+            {
+                new AccessTokenConverter(),
+                new AccessRefreshTokenConverter()
+            }
+        };
+        protected static readonly JsonSerializerOptions AuthenticationErrorSerializerOptions = new()
+        {
+            Converters = { new AuthenticationErrorConverter() }
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAuthorizationFlow"/> class with the
