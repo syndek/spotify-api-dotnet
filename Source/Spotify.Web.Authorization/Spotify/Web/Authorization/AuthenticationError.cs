@@ -5,7 +5,7 @@ namespace Spotify.Web.Authorization
     /// <summary>
     /// Represents an authentication error.
     /// </summary>
-    internal struct AuthenticationError
+    internal readonly struct AuthenticationError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationError"/> structure with
