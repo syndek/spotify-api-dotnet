@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Spotify.ObjectModel.Serialization;
 using Spotify.Web.Authorization;
 using Spotify.Web.RequestObjects.Serialization;
+using Spotify.Web.Serialization;
 
 namespace Spotify.Web
 {
@@ -19,7 +20,7 @@ namespace Spotify.Web
     {
         internal const String BaseUrl = "https://api.spotify.com/v1";
 
-        protected static readonly JsonSerializerOptions DefaultSerializerOptions = new JsonSerializerOptions
+        protected static readonly JsonSerializerOptions DefaultSerializerOptions = new()
         {
             Converters =
             {
@@ -64,6 +65,11 @@ namespace Spotify.Web
             }
         };
 
+        private static readonly JsonSerializerOptions ErrorSerializerOptions = new()
+        {
+            Converters = { new ErrorConverter() }
+        };
+
         private readonly HttpClient httpClient;
         private AuthenticationHeaderValue? currentAuthenticationHeader;
 
@@ -105,12 +111,12 @@ namespace Spotify.Web
             var response = await this.httpClient.SendAsync(message, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
-                var returned = await response.Content.ReadFromJsonAsync<TObject>(null, cancellationToken);
+                var returned = await response.Content.ReadFromJsonAsync<TObject>(SpotifyApiClient.DefaultSerializerOptions, cancellationToken);
                 return returned!;
             }
             else
             {
-                var error = await response.Content.ReadFromJsonAsync<Error>(null, cancellationToken);
+                var error = await response.Content.ReadFromJsonAsync<Error>(SpotifyApiClient.ErrorSerializerOptions, cancellationToken);
                 throw new SpotifyHttpRequestException(response.StatusCode, error.Message);
             }
         }
@@ -129,7 +135,7 @@ namespace Spotify.Web
             var response = await this.httpClient.SendAsync(message, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
-                var error = await response.Content.ReadFromJsonAsync<Error>(null, cancellationToken);
+                var error = await response.Content.ReadFromJsonAsync<Error>(SpotifyApiClient.ErrorSerializerOptions, cancellationToken);
                 throw new SpotifyHttpRequestException(response.StatusCode, error.Message);
             }
         }
