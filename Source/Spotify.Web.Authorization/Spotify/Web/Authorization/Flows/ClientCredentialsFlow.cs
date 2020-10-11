@@ -56,7 +56,7 @@ namespace Spotify.Web.Authorization.Flows
                     SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions,
                     cancellationToken);
 
-                throw new SpotifyAuthorizationException(response.StatusCode, error.Error, error.ErrorDescription);
+                throw new HttpRequestException(error.Error + ": " + error.ErrorDescription, null, response.StatusCode);
             }
         }
     }
