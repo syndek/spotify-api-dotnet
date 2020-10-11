@@ -120,7 +120,7 @@ namespace Spotify.Web
             else
             {
                 var error = await response.Content.ReadFromJsonAsync<Error>(SpotifyApiClient.ErrorSerializerOptions, cancellationToken);
-                throw new SpotifyHttpRequestException(response.StatusCode, error.Message);
+                throw new HttpRequestException(error.Message, null, response.StatusCode);
             }
         }
 
@@ -139,7 +139,7 @@ namespace Spotify.Web
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadFromJsonAsync<Error>(SpotifyApiClient.ErrorSerializerOptions, cancellationToken);
-                throw new SpotifyHttpRequestException(response.StatusCode, error.Message);
+                throw new HttpRequestException(error.Message, null, response.StatusCode);
             }
         }
 

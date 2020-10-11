@@ -86,7 +86,7 @@ namespace Spotify.Web
                     HttpClientNavigationExtensions.ErrorSerializerOptions,
                     cancellationToken);
 
-                throw new SpotifyHttpRequestException(response.StatusCode, error.Message);
+                throw new HttpRequestException(error.Message, null, response.StatusCode);
             }
         }
     }
