@@ -41,5 +41,11 @@ namespace Spotify.Web.Authorization
         /// in <see href="https://tools.ietf.org/html/rfc6749#section-4.1.2.1">RFC 6749 Section 4.1.2.1</see>.
         /// </returns>
         internal String? ErrorDescription { get; }
+
+        /// <summary>
+        /// Returns a <see cref="String"/> representing the <see cref="AuthenticationError"/>.
+        /// </summary>
+        /// <returns>A <see cref="String"/> representing the <see cref="AuthenticationError"/>.</returns>
+        public override String ToString() => this.Error + (this.ErrorDescription is null ? String.Empty : ": " + this.ErrorDescription);
     }
 }
