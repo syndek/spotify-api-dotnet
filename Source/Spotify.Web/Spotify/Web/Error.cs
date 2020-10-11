@@ -6,7 +6,7 @@ namespace Spotify.Web
     /// <summary>
     /// Represents an error.
     /// </summary>
-    internal struct Error
+    internal readonly struct Error
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Error"/> structure with the
