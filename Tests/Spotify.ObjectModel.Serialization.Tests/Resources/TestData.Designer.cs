@@ -68,5 +68,14 @@ namespace Spotify.ObjectModel.Serialization.Tests.Resources {
                 return ResourceManager.GetString("ArtistJson", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {&quot;external_urls&quot;:{&quot;spotify&quot;:&quot;https://open.spotify.com/artist/4pb4rqWSoGUgxm63xmJ8xc&quot;},&quot;href&quot;:&quot;https://api.spotify.com/v1/artists/4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;id&quot;:&quot;4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;name&quot;:&quot;Madeon&quot;,&quot;type&quot;:&quot;artist&quot;,&quot;uri&quot;:&quot;spotify:artist:4pb4rqWSoGUgxm63xmJ8xc&quot;}.
+        /// </summary>
+        internal static string SimplifiedArtistJson {
+            get {
+                return ResourceManager.GetString("SimplifiedArtistJson", resourceCulture);
+            }
+        }
     }
 }

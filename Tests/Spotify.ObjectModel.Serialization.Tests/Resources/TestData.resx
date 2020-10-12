@@ -120,4 +120,7 @@
   <data name="ArtistJson" xml:space="preserve">
     <value>{"external_urls":{"spotify":"https://open.spotify.com/artist/4pb4rqWSoGUgxm63xmJ8xc"},"followers":{"href":null,"total":542633},"genres":["big room","complextro","edm","electro house","electropop","filter house","future bass","nantes indie"],"href":"https://api.spotify.com/v1/artists/4pb4rqWSoGUgxm63xmJ8xc","id":"4pb4rqWSoGUgxm63xmJ8xc","images":[{"height":640,"url":"https://i.scdn.co/image/426e0d784cfc0dfe8f3275e32850223232835c14","width":640},{"height":320,"url":"https://i.scdn.co/image/d12113789d3953523b7b2c2f0ef53871605fed1c","width":320},{"height":160,"url":"https://i.scdn.co/image/3f4c99a2932c2e21fc966123050cd92fe4ff0c15","width":160}],"name":"Madeon","popularity":65,"type":"artist","uri":"spotify:artist:4pb4rqWSoGUgxm63xmJ8xc"}</value>
   </data>
+  <data name="SimplifiedArtistJson" xml:space="preserve">
+    <value>{"external_urls":{"spotify":"https://open.spotify.com/artist/4pb4rqWSoGUgxm63xmJ8xc"},"href":"https://api.spotify.com/v1/artists/4pb4rqWSoGUgxm63xmJ8xc","id":"4pb4rqWSoGUgxm63xmJ8xc","name":"Madeon","type":"artist","uri":"spotify:artist:4pb4rqWSoGUgxm63xmJ8xc"}</value>
+  </data>
 </root>
