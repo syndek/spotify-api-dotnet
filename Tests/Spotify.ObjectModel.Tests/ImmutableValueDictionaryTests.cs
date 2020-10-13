@@ -11,7 +11,7 @@ namespace Spotify.ObjectModel.Tests
     public class ImmutableValueDictionaryTests : Object
     {
         [TestMethod]
-        public void StructuralEqualityWithStructuralEqualityElements()
+        public void StructuralEquality_StructuralEqualityElements()
         {
             // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
             var dictionary1 = new Dictionary<String, Int32> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
@@ -29,7 +29,7 @@ namespace Spotify.ObjectModel.Tests
         }
 
         [TestMethod]
-        public void StructuralEqualityWithReferenceEqualityElements()
+        public void StructuralEquality_ReferenceEqualityElements()
         {
             // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
             var dictionary1 = new Dictionary<Object, Object> { { new(), new() }, { new(), new() }, { new(), new() } };
@@ -48,7 +48,7 @@ namespace Spotify.ObjectModel.Tests
         }
 
         [TestMethod]
-        public void StructuralEqualityWithReferenceEqualityKeysAndStructuralEqualityValues()
+        public void StructuralEquality_ReferenceEqualityKeys_StructuralEqualityValues()
         {
             // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
             var dictionary1 = new Dictionary<Object, Int32> { { new(), 1 }, { new(), 2 }, { new(), 3 } };
@@ -67,7 +67,7 @@ namespace Spotify.ObjectModel.Tests
         }
 
         [TestMethod]
-        public void StructuralEqualityWithStructuralEqualityKeysAndReferenceEqualityValues()
+        public void StructuralEquality_StructuralEqualityKeys_ReferenceEqualityValues()
         {
             // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
             var dictionary1 = new Dictionary<String, Object> { { "A", new() }, { "B", new() }, { "C", new() } };

@@ -10,7 +10,7 @@ namespace Spotify.ObjectModel.Tests
     public class ImmutableValueArrayTests : Object
     {
         [TestMethod]
-        public void StructuralEqualityWithStructuralEqualityElements()
+        public void StructuralEquality_StructuralEqualityElements()
         {
             // These 2 arrays *should not* be equal because they *do not* use structural equality.
             var array1 = new[] { "A", "B", "C" };
@@ -28,7 +28,7 @@ namespace Spotify.ObjectModel.Tests
         }
 
         [TestMethod]
-        public void StructuralEqualityWithReferenceEqualityElements()
+        public void StructuralEquality_ReferenceEqualityElements()
         {
             // These 2 arrays *should not* be equal because they *do not* use structural equality.
             var array1 = new Object[] { new(), new(), new() };
