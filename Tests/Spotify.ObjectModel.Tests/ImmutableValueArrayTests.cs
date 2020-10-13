@@ -53,6 +53,7 @@ namespace Spotify.ObjectModel.Tests
 
 
             [TestMethod]
+            [TestCategory("ObjectModelTypeContext")]
             public void ObjectModelTypeContext_StructuralEqualityValues_ShouldBeEqual()
             {
                 // These 2 records *should* be equal as the values inside use structural equality.
@@ -65,6 +66,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
+            [TestCategory("ObjectModelTypeContext")]
             public void ObjectModelTypeContext_ReferenceEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 records *should not* be equal as the values inside use reference equality.
