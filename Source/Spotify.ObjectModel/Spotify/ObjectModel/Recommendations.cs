@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     /// <summary>
@@ -21,8 +23,8 @@ namespace Spotify.ObjectModel
         /// </param>
         public Recommendations(IReadOnlyList<RecommendationSeed> seeds, IReadOnlyList<SimplifiedTrack> tracks) : base()
         {
-            this.Seeds = seeds;
-            this.Tracks = tracks;
+            this.Seeds = new ImmutableValueArray<RecommendationSeed>(seeds);
+            this.Tracks = new ImmutableValueArray<SimplifiedTrack>(tracks);
         }
 
         /// <summary>

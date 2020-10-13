@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     public record Track : SimplifiedTrack, IPlayable, ISaveable
@@ -39,7 +41,7 @@ namespace Spotify.ObjectModel
         {
             this.Album = album;
             this.Popularity = popularity;
-            this.ExternalIds = externalIds;
+            this.ExternalIds = new ImmutableValueDictionary<String, String>(externalIds);
         }
 
         public SimplifiedAlbum Album { get; init; }

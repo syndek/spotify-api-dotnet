@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     /// <summary>
@@ -22,7 +24,7 @@ namespace Spotify.ObjectModel
         {
             this.Uri = uri;
             this.Href = href;
-            this.ExternalUrls = externalUrls;
+            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
         }
 
         /// <summary>

@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     /// <summary>
@@ -29,7 +31,7 @@ namespace Spotify.ObjectModel
         /// <param name="next">The URL for the next page of items, or <see langword="null"/> if none.</param>
         public Paging(IReadOnlyList<TItem> items, Int32 total, Int32 limit, Int32 offset, Uri href, Uri? previous, Uri? next) : base()
         {
-            this.items = items;
+            this.items = new ImmutableValueArray<TItem>(items);
             this.Total = total;
             this.Limit = limit;
             this.Offset = offset;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     /// <summary>
@@ -43,8 +45,8 @@ namespace Spotify.ObjectModel
             this.LoudnessEnd = loudnessEnd;
             this.LoudnessMax = loudnessMax;
             this.LoudnessMaxTime = loudnessMaxTime;
-            this.Pitches = pitches;
-            this.Timbre = timbre;
+            this.Pitches = new ImmutableValueArray<Single>(pitches);
+            this.Timbre = new ImmutableValueArray<Single>(timbre);
         }
 
         /// <summary>

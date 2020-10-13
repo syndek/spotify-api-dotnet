@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     /// <summary>
@@ -40,9 +42,9 @@ namespace Spotify.ObjectModel
             IReadOnlyDictionary<String, Uri> externalUrls) :
             base(id, uri, href, name, externalUrls)
         {
-            this.Images = images;
+            this.Images = new ImmutableValueArray<Image>(images);
             this.Followers = followers;
-            this.Genres = genres;
+            this.Genres = new ImmutableValueArray<String>(genres);
             this.Popularity = popularity;
         }
 

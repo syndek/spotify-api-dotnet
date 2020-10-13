@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     public record SimplifiedTrack : LocatableObject
@@ -23,15 +25,15 @@ namespace Spotify.ObjectModel
         {
             this.Href = href;
             this.Name = name;
-            this.Artists = artists;
+            this.Artists = new ImmutableValueArray<SimplifiedArtist>(artists);
             this.Duration = duration;
             this.DiscNumber = discNumber;
             this.TrackNumber = trackNumber;
             this.IsExplicit = isExplicit;
             this.IsLocal = isLocal;
-            this.AvailableMarkets = availableMarkets;
+            this.AvailableMarkets = new ImmutableValueArray<CountryCode>(availableMarkets);
             this.PreviewUrl = previewUrl;
-            this.ExternalUrls = externalUrls;
+            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
         }
 
         public Uri Href { get; init; }

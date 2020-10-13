@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     /// <summary>
@@ -80,11 +82,11 @@ namespace Spotify.ObjectModel
                 externalUrls)
         {
             this.Tracks = tracks;
-            this.Genres = genres;
+            this.Genres = new ImmutableValueArray<String>(genres);
             this.Popularity = popularity;
             this.Label = label;
-            this.Copyrights = copyrights;
-            this.ExternalIds = externalIds;
+            this.Copyrights = new ImmutableValueArray<Copyright>(copyrights);
+            this.ExternalIds = new ImmutableValueDictionary<String, String>(externalIds);
         }
 
         /// <summary>

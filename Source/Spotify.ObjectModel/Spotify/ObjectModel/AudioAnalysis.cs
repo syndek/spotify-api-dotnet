@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel
 {
     /// <summary>
@@ -38,11 +40,11 @@ namespace Spotify.ObjectModel
             IReadOnlyList<TimeInterval> tatums) :
             base()
         {
-            this.Bars = bars;
-            this.Beats = beats;
-            this.Sections = sections;
-            this.Segments = segments;
-            this.Tatums = tatums;
+            this.Bars = new ImmutableValueArray<TimeInterval>(bars);
+            this.Beats = new ImmutableValueArray<TimeInterval>(beats);
+            this.Sections = new ImmutableValueArray<Section>(sections);
+            this.Segments = new ImmutableValueArray<Segment>(segments);
+            this.Tatums = new ImmutableValueArray<TimeInterval>(tatums);
         }
 
         /// <summary>
