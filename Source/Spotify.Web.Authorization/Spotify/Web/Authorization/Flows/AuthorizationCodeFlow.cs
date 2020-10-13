@@ -89,8 +89,8 @@ namespace Spotify.Web.Authorization.Flows
             Boolean? showDialog = null)
         {
             return new SpotifyUriBuilder(AuthorizationCodeFlow.AuthorizationUrl)
-                .AppendToQuery("client_id", clientId)
                 .AppendToQuery("response_type", "code")
+                .AppendToQuery("client_id", clientId)
                 .AppendToQuery("redirect_uri", redirectUri)
                 .AppendToQueryIfNotNull("state", state)
                 .AppendJoinToQueryIfNotNull("scope", "%20", scopes?.ToSpotifyStrings())
