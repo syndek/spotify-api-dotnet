@@ -16,11 +16,9 @@ namespace Spotify.ObjectModel.Serialization.Tests
             var deserialized = JsonSerializer.Deserialize<TObject>(this.TestJson, this.SerializerOptions);
             var reserialized = JsonSerializer.Serialize(deserialized, this.SerializerOptions);
 
-            this.CompareObjects(
+            Assert.AreEqual(
                 expected: deserialized,
                 actual: JsonSerializer.Deserialize<TObject>(reserialized, this.SerializerOptions));
         }
-
-        protected abstract void CompareObjects(TObject expected, TObject actual);
     }
 }
