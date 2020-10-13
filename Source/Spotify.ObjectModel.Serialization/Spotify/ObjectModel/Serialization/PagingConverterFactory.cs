@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel.Serialization
 {
     public class PagingConverterFactory : JsonConverterFactory

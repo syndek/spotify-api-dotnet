@@ -3,6 +3,8 @@ using System.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel.Serialization.Tests
 {
     internal static class AssertionExtensions : Object

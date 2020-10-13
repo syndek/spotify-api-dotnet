@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Spotify.ObjectModel;
+using Spotify.ObjectModel.Collections;
 using Spotify.ObjectModel.Serialization.EnumConverters;
 using Spotify.Web.Authorization;
 

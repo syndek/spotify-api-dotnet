@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-using Spotify.ObjectModel.Collections;
-
-namespace Spotify.ObjectModel
+namespace Spotify.ObjectModel.Collections
 {
     /// <summary>
     /// Represents a container for a set of requested items that provides links to get further items.

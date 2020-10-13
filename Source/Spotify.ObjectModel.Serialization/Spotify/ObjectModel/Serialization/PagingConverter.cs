@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using Spotify.ObjectModel.Collections;
+
 namespace Spotify.ObjectModel.Serialization
 {
     public sealed class PagingConverter<TItem> : JsonConverter<Paging<TItem>>

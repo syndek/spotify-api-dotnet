@@ -1,4 +1,6 @@
-﻿namespace Spotify.ObjectModel
+﻿using Spotify.ObjectModel.Collections;
+
+namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents the results of a call to <see cref="ISpotifySearchApi.SearchAsync"/>.
