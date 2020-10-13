@@ -15,7 +15,7 @@ namespace Spotify.ObjectModel.Tests
         public class StructuralEqualityTests
         {
             [TestMethod]
-            public void StructuralEqualityElements()
+            public void StructuralEqualityElements_ShouldBeEqual()
             {
                 // These 2 arrays *should not* be equal because they *do not* use structural equality.
                 var array1 = new[] { "A", "B", "C" };
@@ -33,7 +33,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ReferenceEqualityElements()
+            public void ReferenceEqualityElements_ShouldNotBeEqual()
             {
                 // These 2 arrays *should not* be equal because they *do not* use structural equality.
                 var array1 = new Object[] { new(), new(), new() };
@@ -53,7 +53,7 @@ namespace Spotify.ObjectModel.Tests
 
 
             [TestMethod]
-            public void ObjectModelTypeContext_StructuralEqualityValues()
+            public void ObjectModelTypeContext_StructuralEqualityValues_ShouldBeEqual()
             {
                 // These 2 records *should* be equal as the values inside use structural equality.
                 var object1 = new ObjectModelTypeWithList<Int32>(new(1), new(2), new(3));
@@ -65,7 +65,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ObjectModelTypeContext_ReferenceEqualityValues()
+            public void ObjectModelTypeContext_ReferenceEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 records *should not* be equal as the values inside use reference equality.
                 var object1 = new ObjectModelTypeWithList<Object>(new(new()), new(new()), new(new()));

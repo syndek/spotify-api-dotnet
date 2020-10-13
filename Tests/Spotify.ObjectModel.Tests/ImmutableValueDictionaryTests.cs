@@ -15,7 +15,7 @@ namespace Spotify.ObjectModel.Tests
         public class StructuralEqualityTests
         {
             [TestMethod]
-            public void StructuralEqualityElements()
+            public void StructuralEqualityElements_ShouldBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
                 var dictionary1 = new Dictionary<String, Int32> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
@@ -33,7 +33,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ReferenceEqualityElements()
+            public void ReferenceEqualityElements_ShouldNotBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
                 var dictionary1 = new Dictionary<Object, Object> { { new(), new() }, { new(), new() }, { new(), new() } };
@@ -52,7 +52,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ReferenceEqualityKeys_StructuralEqualityValues()
+            public void ReferenceEqualityKeys_StructuralEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
                 var dictionary1 = new Dictionary<Object, Int32> { { new(), 1 }, { new(), 2 }, { new(), 3 } };
@@ -71,7 +71,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void StructuralEqualityKeys_ReferenceEqualityValues()
+            public void StructuralEqualityKeys_ReferenceEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
                 var dictionary1 = new Dictionary<String, Object> { { "A", new() }, { "B", new() }, { "C", new() } };
@@ -90,7 +90,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ObjectModelTypeContext_StructuralEqualityElements()
+            public void ObjectModelTypeContext_StructuralEqualityElements_ShouldBeEqual()
             {
                 // These 2 records *should* be equal as the values inside use structural equality.
                 var object1 = new ObjectModelTypeWithDictionary<String, Int32>(new Dictionary<String, ObjectModelTypeWithValue<Int32>>()
@@ -112,7 +112,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ObjectModelTypeContext_ReferenceEqualityElements()
+            public void ObjectModelTypeContext_ReferenceEqualityElements_ShouldNotBeEqual()
             {
                 // These 2 records *should not* be equal as the values inside use reference equality.
                 var object1 = new ObjectModelTypeWithDictionary<Object, Object>(new Dictionary<Object, ObjectModelTypeWithValue<Object>>()
@@ -134,7 +134,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ObjectModelTypeContext_ReferenceEqualityKeys_StructuralEqualityValues()
+            public void ObjectModelTypeContext_ReferenceEqualityKeys_StructuralEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 records *should not* be equal.
                 // Even though the values within ObjectModelTypeWithValue use structural equality, the keys do not.
@@ -157,7 +157,7 @@ namespace Spotify.ObjectModel.Tests
             }
 
             [TestMethod]
-            public void ObjectModelTypeContext_StructuralEqualityKeys_ReferenceEqualityValues()
+            public void ObjectModelTypeContext_StructuralEqualityKeys_ReferenceEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 records *should not* be equal.
                 // Even though the keys use structural equality, the values within ObjectModelTypeWithValue do not.
