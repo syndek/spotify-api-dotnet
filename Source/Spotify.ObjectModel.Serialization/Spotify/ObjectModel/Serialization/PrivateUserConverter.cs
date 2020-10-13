@@ -32,7 +32,7 @@ namespace Spotify.ObjectModel.Serialization
             CountryCode? country = null;
             ImageArray images = Array.Empty<Image>();
             Product? product = null;
-            Followers followers = Followers.None;
+            Followers followers = null!;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())

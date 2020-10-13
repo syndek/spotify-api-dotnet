@@ -8,11 +8,6 @@ namespace Spotify.ObjectModel
     public record Followers : SpotifyObject
     {
         /// <summary>
-        /// Represents no followers. This field is read-only.
-        /// </summary>
-        public static readonly Followers None = new(null, 0);
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Followers"/> record with the specified values.
         /// </summary>
         /// <param name="href">

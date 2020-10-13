@@ -51,7 +51,7 @@ namespace Spotify.ObjectModel.Serialization
             StringArray genres = Array.Empty<String>();
             String label = String.Empty;
             Int32 popularity = default;
-            Paging<SimplifiedTrack> tracks = Paging<SimplifiedTrack>.Empty;
+            Paging<SimplifiedTrack> tracks = null!;
 
             while (reader.Read())
             {

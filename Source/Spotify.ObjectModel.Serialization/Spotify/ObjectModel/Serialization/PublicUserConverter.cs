@@ -27,7 +27,7 @@ namespace Spotify.ObjectModel.Serialization
             Uri href = null!;
             String? displayName = null;
             ImageArray images = Array.Empty<Image>();
-            Followers followers = Followers.None;
+            Followers followers = null!;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())

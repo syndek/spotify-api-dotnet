@@ -32,7 +32,7 @@ namespace Spotify.ObjectModel.Serialization
             String? description = null;
             ImageArray images = Array.Empty<Image>();
             PublicUser owner = null!;
-            Paging<PlaylistTrack> tracks = Paging<PlaylistTrack>.Empty;
+            Paging<PlaylistTrack> tracks = null!;
             Boolean? isPublic = null;
             Boolean isCollaborative = default;
             String snapshotId = String.Empty;

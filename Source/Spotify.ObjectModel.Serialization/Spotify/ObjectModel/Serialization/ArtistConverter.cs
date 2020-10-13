@@ -29,7 +29,7 @@ namespace Spotify.ObjectModel.Serialization
             Uri href = null!;
             String name = String.Empty;
             ImageArray images = Array.Empty<Image>();
-            Followers followers = Followers.None;
+            Followers followers = null!;
             StringArray genres = Array.Empty<String>();
             Int32 popularity = default;
             ExternalUrls externalUrls = null!;

@@ -36,7 +36,7 @@ namespace Spotify.ObjectModel.Serialization
             String name = String.Empty;
             String description = String.Empty;
             ImageArray images = Array.Empty<Image>();
-            Paging<SimplifiedEpisode> episodes = Paging<SimplifiedEpisode>.Empty;
+            Paging<SimplifiedEpisode> episodes = null!;
             Boolean isExplicit = default;
             StringArray languages = Array.Empty<String>();
             CountryCodeArray availableMarkets = Array.Empty<CountryCode>();
