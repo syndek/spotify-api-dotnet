@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -45,5 +46,42 @@ namespace Spotify.ObjectModel.Tests
             Assert.AreNotSame(valueArray1, valueArray2);
             Assert.AreNotEqual(valueArray1, valueArray2);
         }
+
+
+        [TestMethod]
+        public void StructuralEquality_ObjectModelTypeContext_StructuralEqualityValues()
+        {
+            // These 2 records *should* be equal as the values inside use structural equality.
+            var object1 = new ObjectModelTypeWithList<Int32>(new(1), new(2), new(3));
+            var object2 = new ObjectModelTypeWithList<Int32>(new(1), new(2), new(3));
+
+            Assert.AreNotSame(object1, object2);
+            Assert.AreEqual(object1.Objects, object2.Objects);
+            Assert.AreEqual(object1, object2);
+        }
+
+        [TestMethod]
+        public void StructuralEquality_ObjectModelTypeContext_ReferenceEqualityValues()
+        {
+            // These 2 records *should not* be equal as the values inside use reference equality.
+            var object1 = new ObjectModelTypeWithList<Object>(new(new()), new(new()), new(new()));
+            var object2 = new ObjectModelTypeWithList<Object>(new(new()), new(new()), new(new()));
+
+            Assert.AreNotSame(object1, object2);
+            Assert.AreNotEqual(object1.Objects, object2.Objects);
+            Assert.AreNotEqual(object1, object2);
+        }
+
+        private record ObjectModelTypeWithList<TValue>
+        {
+            public ObjectModelTypeWithList(params ObjectModelTypeWithValue<TValue>[] objects)
+            {
+                this.Objects = new ImmutableValueArray<ObjectModelTypeWithValue<TValue>>(objects);
+            }
+
+            public IReadOnlyList<ObjectModelTypeWithValue<TValue>> Objects { get; }
+        }
+
+        private record ObjectModelTypeWithValue<TValue>(TValue Value);
     }
 }
