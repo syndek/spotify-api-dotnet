@@ -100,7 +100,7 @@ namespace Spotify.ObjectModel.Tests
                     { "B", new(2) },
                     { "C", new(3) }
                 });
-                    var object2 = new ObjectModelTypeWithDictionary<String, Int32>(new Dictionary<String, ObjectModelTypeWithValue<Int32>>()
+                var object2 = new ObjectModelTypeWithDictionary<String, Int32>(new Dictionary<String, ObjectModelTypeWithValue<Int32>>()
                 {
                     { "A", new(1) },
                     { "B", new(2) },
@@ -123,7 +123,7 @@ namespace Spotify.ObjectModel.Tests
                     { new(), new(new()) },
                     { new(), new(new()) }
                 });
-                    var object2 = new ObjectModelTypeWithDictionary<Object, Object>(new Dictionary<Object, ObjectModelTypeWithValue<Object>>()
+                var object2 = new ObjectModelTypeWithDictionary<Object, Object>(new Dictionary<Object, ObjectModelTypeWithValue<Object>>()
                 {
                     { new(), new(new()) },
                     { new(), new(new()) },
@@ -147,7 +147,7 @@ namespace Spotify.ObjectModel.Tests
                     { new(), new(2) },
                     { new(), new(3) }
                 });
-                    var object2 = new ObjectModelTypeWithDictionary<Object, Int32>(new Dictionary<Object, ObjectModelTypeWithValue<Int32>>()
+                var object2 = new ObjectModelTypeWithDictionary<Object, Int32>(new Dictionary<Object, ObjectModelTypeWithValue<Int32>>()
                 {
                     { new(), new(1) },
                     { new(), new(2) },
@@ -171,7 +171,7 @@ namespace Spotify.ObjectModel.Tests
                     { "B", new(new()) },
                     { "C", new(new()) }
                 });
-                    var object2 = new ObjectModelTypeWithDictionary<String, Object>(new Dictionary<String, ObjectModelTypeWithValue<Object>>()
+                var object2 = new ObjectModelTypeWithDictionary<String, Object>(new Dictionary<String, ObjectModelTypeWithValue<Object>>()
                 {
                     { "A", new(new()) },
                     { "B", new(new()) },
