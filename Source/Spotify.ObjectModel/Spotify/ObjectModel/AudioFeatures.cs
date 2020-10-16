@@ -2,8 +2,41 @@
 
 namespace Spotify.ObjectModel
 {
+    /// <summary>
+    /// Represents audio feature information for a <see cref="Track"/>.
+    /// </summary>
     public record AudioFeatures : LocatableObject
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AudioFeatures"/> record with the specified values.
+        /// </summary>
+        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the <see cref="Track"/>.</param>
+        /// <param name="uri">The Spotify URI of the <see cref="Track"/>.</param>
+        /// <param name="trackHref">A link to the Spotify Web API endpoint providing full details of the <see cref="Track"/>.</param>
+        /// <param name="analysisUrl">A link to the full audio analysis of the <see cref="Track"/>.</param>
+        /// <param name="duration">An <see cref="Int32"/> representing the duration of the <see cref="Track"/> in milliseconds.</param>
+        /// <param name="timeSignature">
+        /// An <see cref="Int32"/> representing the estimated overall time signature of the <see cref="Track"/>.
+        /// </param>
+        /// <param name="key">An <see cref="Int32"/> representing the estimated overall key of the <see cref="Track"/>.</param>
+        /// <param name="mode">A <see cref="Modality"/> value representing the modality of the <see cref="Track"/>.</param>
+        /// <param name="acousticness">
+        /// A <see cref="Single"/> representing a confidence measure of whether or not the <see cref="Track"/> is acoustic.
+        /// </param>
+        /// <param name="danceability">
+        /// A <see cref="Single"/> representing a confidence measure of whether or not the <see cref="Track"/> is danceable.
+        /// </param>
+        /// <param name="energy">A <see cref="Single"/> representing how energetic the <see cref="Track"/> is.</param>
+        /// <param name="instrumentalness">
+        /// A <see cref="Single"/> representing a confidence measure of whether or not the <see cref="Track"/> is instrumental.
+        /// </param>
+        /// <param name="liveness">
+        /// A <see cref="Single"/> representing a confidence measure of whether or not the <see cref="Track"/> was performed live.
+        /// </param>
+        /// <param name="loudness">A <see cref="Single"/> representing the loudness of the <see cref="Track"/> in decibels.</param>
+        /// <param name="speechiness">A <see cref="Single"/> representing the presence of spoken words in the <see cref="Track"/>.</param>
+        /// <param name="tempo">A <see cref="Single"/> representing the tempo of the <see cref="Track"/> in beats per minute.</param>
+        /// <param name="valence">A <see cref="Single"/> representing the valence of the <see cref="Track"/>.</param>
         public AudioFeatures(
             String id,
             Uri uri,
