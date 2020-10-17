@@ -35,9 +35,14 @@ namespace Spotify.Web.Authorization.Flows
             }
 
             using var content = new StringContent("grant_type=client_credentials", Encoding.UTF8, "application/x-www-form-urlencoded");
-            using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri);
-            message.Headers.Authorization = base.BasicAuthenticationHeader;
-            message.Content = content;
+            using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
+            {
+                Content = content,
+                Headers =
+                {
+                    Authorization = base.BasicAuthenticationHeader
+                }
+            };
 
             var response = await base.HttpClient
                 .SendAsync(message, cancellationToken)

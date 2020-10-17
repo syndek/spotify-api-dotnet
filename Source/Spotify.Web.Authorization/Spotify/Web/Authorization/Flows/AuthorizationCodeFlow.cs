@@ -103,9 +103,14 @@ namespace Spotify.Web.Authorization.Flows
         {
             async Task GetAccessRefreshToken(HttpContent content)
             {
-                using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri);
-                message.Headers.Authorization = base.BasicAuthenticationHeader;
-                message.Content = content;
+                using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
+                {
+                    Content = content,
+                    Headers =
+                    {
+                        Authorization = base.BasicAuthenticationHeader
+                    }
+                };
 
                 using var response = await base.HttpClient
                     .SendAsync(message, cancellationToken)

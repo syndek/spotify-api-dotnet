@@ -67,8 +67,13 @@ namespace Spotify.Web
                 .GetAccessTokenAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            using var message = new HttpRequestMessage(HttpMethod.Get, uri);
-            message.Headers.Authorization = new("Bearer", accessToken.Value);
+            using var message = new HttpRequestMessage(HttpMethod.Get, uri)
+            {
+                Headers =
+                {
+                    Authorization = new("Bearer", accessToken.Value)
+                }
+            };
 
             var response = await httpClient.SendAsync(message, cancellationToken).ConfigureAwait(false);
 
