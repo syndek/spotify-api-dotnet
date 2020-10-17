@@ -80,7 +80,7 @@ namespace Spotify.Web
         /// Initializes a new instance of the <see cref="SpotifyApiClient"/> class with the specified <paramref name="httpClient"/>.
         /// </summary>
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
-        internal SpotifyApiClient(HttpClient httpClient) : base()
+        protected SpotifyApiClient(HttpClient httpClient) : base()
         {
             this.httpClient = httpClient;
         }

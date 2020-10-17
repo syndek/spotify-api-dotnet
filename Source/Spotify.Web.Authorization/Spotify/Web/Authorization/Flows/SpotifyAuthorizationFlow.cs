@@ -43,7 +43,7 @@ namespace Spotify.Web.Authorization.Flows
         /// </param>
         /// <param name="clientId">A valid Spotify Web API client ID.</param>
         /// <param name="clientSecret">The secret key of the application with the specified client ID.</param>
-        public SpotifyAuthorizationFlow(HttpClient httpClient, String clientId, String clientSecret) : base()
+        protected SpotifyAuthorizationFlow(HttpClient httpClient, String clientId, String clientSecret) : base()
         {
             this.HttpClient = httpClient;
             this.BasicAuthenticationHeader = new("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}")));
