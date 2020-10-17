@@ -30,7 +30,7 @@ namespace Spotify.Web.Authorization.Flows
         /// A <see cref="String"/> representing the authorization code returned from an initial request to the <c>/authorize</c> endpoint.
         /// </param>
         /// <param name="redirectUri">
-        /// A <see cref="String"/> representing the redirect URI supplied in the initial request to the the <c>/authorize</c> endpoint.
+        /// A <see cref="String"/> representing the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
         /// This parameter is used purely for validation and therefore must be an exact match. No actual redirection takes place.
         /// </param>
         public AuthorizationCodeFlow(
@@ -53,10 +53,10 @@ namespace Spotify.Web.Authorization.Flows
         /// </returns>
         protected String Code { get; }
         /// <summary>
-        /// Gets the redirect URI supplied in the initial request to the the <c>/authorize</c> endpoint.
+        /// Gets the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
         /// </summary>
         /// <returns>
-        /// A <see cref="String"/> representing the redirect URI supplied in the initial request to the the <c>/authorize</c> endpoint.
+        /// A <see cref="String"/> representing the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
         /// </returns>
         protected String RedirectUri { get; }
         /// <summary>

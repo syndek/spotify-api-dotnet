@@ -20,7 +20,7 @@ namespace Spotify.Web.Authorization.Flows
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientCredentialsFlow"/> class with the specified values.
-        /// </summary>        
+        /// </summary>
         /// <param name="httpClient">A <see cref="HttpClient"/> instance to use to make requests to the Spotify Accounts service.</param>
         /// <param name="clientId">A valid Spotify Web API client ID.</param>
         /// <param name="clientSecret">The secret key of the application with the specified client ID.</param>
