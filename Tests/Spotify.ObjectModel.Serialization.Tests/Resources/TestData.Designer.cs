@@ -104,5 +104,14 @@ namespace Spotify.ObjectModel.Serialization.Tests.Resources {
                 return ResourceManager.GetString("SimplifiedArtistJson", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {&quot;audio_preview_url&quot;:&quot;https://p.scdn.co/mp3-preview/f13368629f9d4f164e2ad486028e4504aa616bed&quot;,&quot;description&quot;:&quot;Waveform with Marques Brownlee, coming soon! From the mind of Marques Brownlee, better known as MKBHD, comes Waveform, a tech podcast for the gadget lovers and tech heads. MKBHD has made a name for himself on Youtube reviewing everything from Apple iPhones, Samsung Galaxys, the newest laptops, digital cameras and even Tesla electric cars. Pulling from over 10 years of experience covering the tech ind [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SimplifiedEpisodeJson {
+            get {
+                return ResourceManager.GetString("SimplifiedEpisodeJson", resourceCulture);
+            }
+        }
     }
 }
