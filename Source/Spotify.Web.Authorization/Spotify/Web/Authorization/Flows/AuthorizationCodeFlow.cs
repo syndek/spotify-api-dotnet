@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Spotify.Web.Authorization.Flows
 {
     /// <summary>
-    /// Represents a <see cref="SpotifyAuthorizationException"/> suitable for
+    /// Represents a <see cref="SpotifyAuthorizationFlow"/> suitable for
     /// long-running applications in which a user grants permission only once.
     /// </summary>
     public class AuthorizationCodeFlow : SpotifyAuthorizationFlow
