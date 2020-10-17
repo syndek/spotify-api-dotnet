@@ -107,22 +107,24 @@ namespace Spotify.Web.Authorization.Flows
                 message.Headers.Authorization = base.BasicAuthenticationHeader;
                 message.Content = content;
 
-                using var response = await base.HttpClient.SendAsync(message, cancellationToken);
+                using var response = await base.HttpClient
+                    .SendAsync(message, cancellationToken)
+                    .ConfigureAwait(false);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var token = await response.Content.ReadFromJsonAsync<AccessRefreshToken>(
-                        SpotifyAuthorizationFlow.AccessTokenSerializerOptions,
-                        cancellationToken);
+                    var token = await response.Content
+                        .ReadFromJsonAsync<AccessRefreshToken>(SpotifyAuthorizationFlow.AccessTokenSerializerOptions, cancellationToken)
+                        .ConfigureAwait(false);
 
                     this.RefreshToken = token.RefreshToken ?? this.RefreshToken;
                     base.CurrentAccessToken = token.AccessToken;
                 }
                 else
                 {
-                    var error = await response.Content.ReadFromJsonAsync<AuthenticationError>(
-                        SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions,
-                        cancellationToken);
+                    var error = await response.Content
+                        .ReadFromJsonAsync<AuthenticationError>(SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions, cancellationToken)
+                        .ConfigureAwait(false);
 
                     throw new HttpRequestException(error.ToString(), null, response.StatusCode);
                 }
@@ -135,7 +137,7 @@ namespace Spotify.Web.Authorization.Flows
                     Encoding.UTF8,
                     "application/x-www-form-urlencoded");
 
-                await GetAccessRefreshToken(content);
+                await GetAccessRefreshToken(content).ConfigureAwait(false);
             }
             else if (base.CurrentAccessToken.Value.HasExpired)
             {
@@ -149,7 +151,7 @@ namespace Spotify.Web.Authorization.Flows
                     Encoding.UTF8,
                     "application/x-www-form-urlencoded");
 
-                await GetAccessRefreshToken(content);
+                await GetAccessRefreshToken(content).ConfigureAwait(false);
             }
 
             return base.CurrentAccessToken!.Value;

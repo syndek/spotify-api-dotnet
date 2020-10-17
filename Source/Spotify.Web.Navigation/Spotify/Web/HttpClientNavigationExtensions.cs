@@ -70,21 +70,21 @@ namespace Spotify.Web
             using var message = new HttpRequestMessage(HttpMethod.Get, uri);
             message.Headers.Authorization = new("Bearer", accessToken.Value);
 
-            var response = await httpClient.SendAsync(message, cancellationToken);
+            var response = await httpClient.SendAsync(message, cancellationToken).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                var returned = await response.Content.ReadFromJsonAsync<TObject>(
-                    HttpClientNavigationExtensions.DefaultSerializerOptions,
-                    cancellationToken);
+                var returned = await response.Content
+                    .ReadFromJsonAsync<TObject>(HttpClientNavigationExtensions.DefaultSerializerOptions, cancellationToken)
+                    .ConfigureAwait(false);
 
                 return returned!;
             }
             else
             {
-                var error = await response.Content.ReadFromJsonAsync<Error>(
-                    HttpClientNavigationExtensions.ErrorSerializerOptions,
-                    cancellationToken);
+                var error = await response.Content
+                    .ReadFromJsonAsync<Error>(HttpClientNavigationExtensions.ErrorSerializerOptions, cancellationToken)
+                    .ConfigureAwait(false);
 
                 throw new HttpRequestException(error.Message, null, response.StatusCode);
             }

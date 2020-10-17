@@ -39,22 +39,24 @@ namespace Spotify.Web.Authorization.Flows
             message.Headers.Authorization = base.BasicAuthenticationHeader;
             message.Content = content;
 
-            var response = await base.HttpClient.SendAsync(message, cancellationToken);
+            var response = await base.HttpClient
+                .SendAsync(message, cancellationToken)
+                .ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                var token = await response.Content.ReadFromJsonAsync<AccessToken>(
-                    SpotifyAuthorizationFlow.AccessTokenSerializerOptions,
-                    cancellationToken);
+                var token = await response.Content
+                    .ReadFromJsonAsync<AccessToken>(SpotifyAuthorizationFlow.AccessTokenSerializerOptions, cancellationToken)
+                    .ConfigureAwait(false);
 
                 base.CurrentAccessToken = token;
                 return token;
             }
             else
             {
-                var error = await response.Content.ReadFromJsonAsync<AuthenticationError>(
-                    SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions,
-                    cancellationToken);
+                var error = await response.Content
+                    .ReadFromJsonAsync<AuthenticationError>(SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions, cancellationToken)
+                    .ConfigureAwait(false);
 
                 throw new HttpRequestException(error.ToString(), null, response.StatusCode);
             }
