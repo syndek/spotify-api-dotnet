@@ -79,6 +79,15 @@ namespace Spotify.ObjectModel.Serialization.Tests.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {&quot;audio_preview_url&quot;:&quot;https://p.scdn.co/mp3-preview/f13368629f9d4f164e2ad486028e4504aa616bed&quot;,&quot;description&quot;:&quot;Waveform with Marques Brownlee, coming soon! From the mind of Marques Brownlee, better known as MKBHD, comes Waveform, a tech podcast for the gadget lovers and tech heads. MKBHD has made a name for himself on Youtube reviewing everything from Apple iPhones, Samsung Galaxys, the newest laptops, digital cameras and even Tesla electric cars. Pulling from over 10 years of experience covering the tech ind [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string EpisodeJson {
+            get {
+                return ResourceManager.GetString("EpisodeJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {&quot;album_type&quot;:&quot;album&quot;,&quot;artists&quot;:[{&quot;external_urls&quot;:{&quot;spotify&quot;:&quot;https://open.spotify.com/artist/4pb4rqWSoGUgxm63xmJ8xc&quot;},&quot;href&quot;:&quot;https://api.spotify.com/v1/artists/4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;id&quot;:&quot;4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;name&quot;:&quot;Madeon&quot;,&quot;type&quot;:&quot;artist&quot;,&quot;uri&quot;:&quot;spotify:artist:4pb4rqWSoGUgxm63xmJ8xc&quot;}],&quot;available_markets&quot;:[&quot;AD&quot;,&quot;AE&quot;,&quot;AL&quot;,&quot;AR&quot;,&quot;AT&quot;,&quot;AU&quot;,&quot;BA&quot;,&quot;BE&quot;,&quot;BG&quot;,&quot;BH&quot;,&quot;BO&quot;,&quot;BR&quot;,&quot;BY&quot;,&quot;CA&quot;,&quot;CH&quot;,&quot;CL&quot;,&quot;CO&quot;,&quot;CR&quot;,&quot;CY&quot;,&quot;CZ&quot;,&quot;DE&quot;,&quot;DK&quot;,&quot;DO&quot;,&quot;DZ&quot;,&quot;EC&quot;,&quot;EE&quot;,&quot;EG&quot;,&quot;ES&quot;,&quot;FI&quot;,&quot;FR&quot;,&quot;GB&quot;,&quot;GR&quot;,&quot;GT&quot;,&quot;HK&quot;,&quot;HN&quot;,&quot;HR&....
         /// </summary>
         internal static string SimplifiedAlbumJson {
