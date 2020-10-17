@@ -97,7 +97,6 @@ namespace Spotify.ObjectModel.Serialization
                         copyrights = copyrightArrayConverter.Read(ref reader, typeof(CopyrightArray), options)!;
                         break;
                     case "is_externally_hosted":
-                        reader.Read();
                         isExternallyHosted = reader.TokenType switch
                         {
                             JsonTokenType.Null => null,
