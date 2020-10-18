@@ -88,6 +88,15 @@ namespace Spotify.ObjectModel.Serialization.Tests.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {&quot;collaborative&quot;:false,&quot;description&quot;:&quot;A look in to the mind of Dimension, updated monthly. Follow on &lt;a href=\&quot;https://open.spotify.com/artist/1QMgre3BHX161ZHtWMUu6S?si=N9H6fAStQO-hnFHupfgJxg\&quot;&gt;Spotify&lt;/a&gt;.&quot;,&quot;external_urls&quot;:{&quot;spotify&quot;:&quot;https://open.spotify.com/playlist/2yPxcfVbIHU7wDrS3NHOpF&quot;},&quot;followers&quot;:{&quot;href&quot;:null,&quot;total&quot;:3448},&quot;href&quot;:&quot;https://api.spotify.com/v1/playlists/2yPxcfVbIHU7wDrS3NHOpF&quot;,&quot;id&quot;:&quot;2yPxcfVbIHU7wDrS3NHOpF&quot;,&quot;images&quot;:[{&quot;height&quot;:null,&quot;url&quot;:&quot;https://i.scdn.co/image/ab67706c0000bebbbf6ba81 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PlaylistJson {
+            get {
+                return ResourceManager.GetString("PlaylistJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {&quot;album_type&quot;:&quot;album&quot;,&quot;artists&quot;:[{&quot;external_urls&quot;:{&quot;spotify&quot;:&quot;https://open.spotify.com/artist/4pb4rqWSoGUgxm63xmJ8xc&quot;},&quot;href&quot;:&quot;https://api.spotify.com/v1/artists/4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;id&quot;:&quot;4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;name&quot;:&quot;Madeon&quot;,&quot;type&quot;:&quot;artist&quot;,&quot;uri&quot;:&quot;spotify:artist:4pb4rqWSoGUgxm63xmJ8xc&quot;}],&quot;available_markets&quot;:[&quot;AD&quot;,&quot;AE&quot;,&quot;AL&quot;,&quot;AR&quot;,&quot;AT&quot;,&quot;AU&quot;,&quot;BA&quot;,&quot;BE&quot;,&quot;BG&quot;,&quot;BH&quot;,&quot;BO&quot;,&quot;BR&quot;,&quot;BY&quot;,&quot;CA&quot;,&quot;CH&quot;,&quot;CL&quot;,&quot;CO&quot;,&quot;CR&quot;,&quot;CY&quot;,&quot;CZ&quot;,&quot;DE&quot;,&quot;DK&quot;,&quot;DO&quot;,&quot;DZ&quot;,&quot;EC&quot;,&quot;EE&quot;,&quot;EG&quot;,&quot;ES&quot;,&quot;FI&quot;,&quot;FR&quot;,&quot;GB&quot;,&quot;GR&quot;,&quot;GT&quot;,&quot;HK&quot;,&quot;HN&quot;,&quot;HR&....
         /// </summary>
         internal static string SimplifiedAlbumJson {
