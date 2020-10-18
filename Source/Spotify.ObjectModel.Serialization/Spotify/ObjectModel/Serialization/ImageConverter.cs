@@ -41,15 +41,15 @@ namespace Spotify.ObjectModel.Serialization
                         url = uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "width":
-                        if (reader.TryGetInt32(out var widthValue))
+                        if (reader.TokenType is not JsonTokenType.Null)
                         {
-                            width = widthValue;
+                            width = reader.GetInt32();
                         }
                         break;
                     case "height":
-                        if (reader.TryGetInt32(out var heightValue))
+                        if (reader.TokenType is not JsonTokenType.Null)
                         {
-                            height = heightValue;
+                            height = reader.GetInt32();
                         }
                         break;
                     default:
