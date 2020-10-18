@@ -97,6 +97,15 @@ namespace Spotify.ObjectModel.Serialization.Tests.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {&quot;available_markets&quot;:[&quot;AD&quot;,&quot;AE&quot;,&quot;AL&quot;,&quot;AR&quot;,&quot;AT&quot;,&quot;AU&quot;,&quot;BA&quot;,&quot;BE&quot;,&quot;BG&quot;,&quot;BH&quot;,&quot;BO&quot;,&quot;BR&quot;,&quot;CA&quot;,&quot;CH&quot;,&quot;CL&quot;,&quot;CO&quot;,&quot;CR&quot;,&quot;CY&quot;,&quot;CZ&quot;,&quot;DE&quot;,&quot;DK&quot;,&quot;DO&quot;,&quot;DZ&quot;,&quot;EC&quot;,&quot;EE&quot;,&quot;ES&quot;,&quot;FI&quot;,&quot;FR&quot;,&quot;GB&quot;,&quot;GR&quot;,&quot;GT&quot;,&quot;HK&quot;,&quot;HN&quot;,&quot;HR&quot;,&quot;HU&quot;,&quot;ID&quot;,&quot;IE&quot;,&quot;IL&quot;,&quot;IN&quot;,&quot;IS&quot;,&quot;IT&quot;,&quot;JO&quot;,&quot;JP&quot;,&quot;KW&quot;,&quot;LB&quot;,&quot;LI&quot;,&quot;LT&quot;,&quot;LU&quot;,&quot;LV&quot;,&quot;MA&quot;,&quot;MC&quot;,&quot;ME&quot;,&quot;MK&quot;,&quot;MT&quot;,&quot;MX&quot;,&quot;MY&quot;,&quot;NI&quot;,&quot;NL&quot;,&quot;NO&quot;,&quot;NZ&quot;,&quot;OM&quot;,&quot;PA&quot;,&quot;PE&quot;,&quot;PH&quot;,&quot;PL&quot;,&quot;PS&quot;....
+        /// </summary>
+        internal static string ShowJson {
+            get {
+                return ResourceManager.GetString("ShowJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {&quot;album_type&quot;:&quot;album&quot;,&quot;artists&quot;:[{&quot;external_urls&quot;:{&quot;spotify&quot;:&quot;https://open.spotify.com/artist/4pb4rqWSoGUgxm63xmJ8xc&quot;},&quot;href&quot;:&quot;https://api.spotify.com/v1/artists/4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;id&quot;:&quot;4pb4rqWSoGUgxm63xmJ8xc&quot;,&quot;name&quot;:&quot;Madeon&quot;,&quot;type&quot;:&quot;artist&quot;,&quot;uri&quot;:&quot;spotify:artist:4pb4rqWSoGUgxm63xmJ8xc&quot;}],&quot;available_markets&quot;:[&quot;AD&quot;,&quot;AE&quot;,&quot;AL&quot;,&quot;AR&quot;,&quot;AT&quot;,&quot;AU&quot;,&quot;BA&quot;,&quot;BE&quot;,&quot;BG&quot;,&quot;BH&quot;,&quot;BO&quot;,&quot;BR&quot;,&quot;BY&quot;,&quot;CA&quot;,&quot;CH&quot;,&quot;CL&quot;,&quot;CO&quot;,&quot;CR&quot;,&quot;CY&quot;,&quot;CZ&quot;,&quot;DE&quot;,&quot;DK&quot;,&quot;DO&quot;,&quot;DZ&quot;,&quot;EC&quot;,&quot;EE&quot;,&quot;EG&quot;,&quot;ES&quot;,&quot;FI&quot;,&quot;FR&quot;,&quot;GB&quot;,&quot;GR&quot;,&quot;GT&quot;,&quot;HK&quot;,&quot;HN&quot;,&quot;HR&....
         /// </summary>
         internal static string SimplifiedAlbumJson {
