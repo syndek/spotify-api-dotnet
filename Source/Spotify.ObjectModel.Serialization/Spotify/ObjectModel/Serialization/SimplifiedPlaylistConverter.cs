@@ -81,7 +81,6 @@ namespace Spotify.ObjectModel.Serialization
                         tracks = playlistTrackPagingConverter.Read(ref reader, typeof(Paging<PlaylistTrack>), options)!;
                         break;
                     case "public":
-                        reader.Read();
                         isPublic = reader.TokenType switch
                         {
                             JsonTokenType.Null => null,

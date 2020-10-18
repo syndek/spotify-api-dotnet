@@ -89,7 +89,6 @@ namespace Spotify.ObjectModel.Serialization
                         isExplicit = reader.GetBoolean();
                         break;
                     case "is_externally_hosted":
-                        reader.Read();
                         isExternallyHosted = reader.TokenType switch
                         {
                             JsonTokenType.Null => null,
