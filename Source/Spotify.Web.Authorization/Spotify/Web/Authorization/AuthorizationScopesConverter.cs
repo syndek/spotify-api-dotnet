@@ -61,9 +61,9 @@ namespace Spotify.Web.Authorization
 
         internal static IEnumerable<String> ToSpotifyStrings(this AuthorizationScopes authorizationScopes)
         {
-            foreach (AuthorizationScopes value in Enum.GetValues(typeof(AuthorizationScopes)))
+            foreach (var value in Enum.GetValues<AuthorizationScopes>())
             {
-                if (authorizationScopes.HasFlag(value))
+                if ((authorizationScopes & value) == value)
                 {
                     yield return value.ToSpotifyString();
                 }

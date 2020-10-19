@@ -6,9 +6,9 @@ namespace System
     public static class EnumExtensions : Object
     {
         [SuppressMessage("Usage", "CA2248")]
-        public static IEnumerable<TEnum> GetFlags<TEnum>(this TEnum flags) where TEnum : Enum
+        public static IEnumerable<TEnum> GetFlags<TEnum>(this TEnum flags) where TEnum : struct, Enum
         {
-            foreach (TEnum value in Enum.GetValues(flags.GetType()))
+            foreach (var value in Enum.GetValues<TEnum>())
             {
                 if (flags.HasFlag(value))
                 {
@@ -17,7 +17,7 @@ namespace System
             }
         }
 
-        public static String GetName<TEnum>(this TEnum value) where TEnum : Enum =>
-            Enum.GetName(typeof(TEnum), value) ?? throw new ArgumentException($"Invalid enum value: {value}", nameof(value));
+        public static String GetName<TEnum>(this TEnum value) where TEnum : struct, Enum =>
+            Enum.GetName(value) ?? throw new ArgumentException($"Invalid enum value: {value}", nameof(value));
     }
 }
