@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,12 +39,11 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="httpClient">
         /// A <see cref="System.Net.Http.HttpClient"/> instance to use to make requests to the Spotify Accounts service.
         /// </param>
-        /// <param name="clientId">A valid Spotify Web API client ID.</param>
-        /// <param name="clientSecret">The secret key of the application with the specified client ID.</param>
-        protected SpotifyAuthorizationFlow(HttpClient httpClient, String clientId, String clientSecret) : base()
+        /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
+        protected SpotifyAuthorizationFlow(HttpClient httpClient, String clientId) : base()
         {
             this.HttpClient = httpClient;
-            this.BasicAuthenticationHeader = new("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}")));
+            this.ClientId = clientId;
         }
 
         /// <summary>
@@ -55,10 +52,10 @@ namespace Spotify.Web.Authorization.Flows
         /// <returns>The <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.</returns>
         protected HttpClient HttpClient { get; }
         /// <summary>
-        /// Gets the 'Basic' <see cref="AuthenticationHeaderValue"/> used to make requests to the Spotify Accounts service.
+        /// Gets the client ID of the application the <see cref="SpotifyAuthorizationFlow"/> is for.
         /// </summary>
-        /// <returns>The 'Basic' <see cref="AuthenticationHeaderValue"/> used to make requests to the Spotify Accounts service.</returns>
-        protected AuthenticationHeaderValue BasicAuthenticationHeader { get; }
+        /// <returns>A <see cref="String"/> representing the client ID of the application the <see cref="SpotifyAuthorizationFlow"/> is for.</returns>
+        protected String ClientId { get; }
         /// <summary>
         /// Gets or sets the current <see cref="AccessToken"/> being used by the <see cref="SpotifyAuthorizationFlow"/> instance.
         /// </summary>

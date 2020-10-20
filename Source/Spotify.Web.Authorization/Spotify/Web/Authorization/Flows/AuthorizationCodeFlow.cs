@@ -11,7 +11,7 @@ namespace Spotify.Web.Authorization.Flows
     /// Represents a <see cref="SpotifyAuthorizationFlow"/> suitable for
     /// long-running applications in which a user grants permission only once.
     /// </summary>
-    public class AuthorizationCodeFlow : SpotifyAuthorizationFlow
+    public class AuthorizationCodeFlow : SpotifyAuthorizationFlowWithClientSecret
     {
         /// <summary>
         /// Represents the URL of the <c>/authorize</c> endpoint of the Spotify Accounts service. This field is constant.

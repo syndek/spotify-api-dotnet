@@ -16,7 +16,7 @@ namespace Spotify.Web.Authorization.Flows
     /// However, it does allow for a higher rate limit than requests made without an access token.
     /// </remarks>
     /// <seealso cref="AuthorizationCodeFlow"/>
-    public class ClientCredentialsFlow : SpotifyAuthorizationFlow
+    public class ClientCredentialsFlow : SpotifyAuthorizationFlowWithClientSecret
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientCredentialsFlow"/> class with the specified values.
