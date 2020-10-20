@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -137,10 +138,13 @@ namespace Spotify.Web.Authorization.Flows
 
             if (base.CurrentAccessToken is null)
             {
-                using var content = new StringContent(
-                    $"grant_type=authorization_code&code={this.Code}&redirect_uri={this.RedirectUri}",
-                    Encoding.UTF8,
-                    "application/x-www-form-urlencoded");
+                using var content = new FormUrlEncodedContent(
+                    new KeyValuePair<String?, String?>[]
+                    {
+                        new("grant_type", "authorization_code"),
+                        new("code", this.Code),
+                        new("redirect_uri", this.RedirectUri)
+                    });
 
                 await GetAccessRefreshToken(content).ConfigureAwait(false);
             }
@@ -151,10 +155,12 @@ namespace Spotify.Web.Authorization.Flows
                     throw new InvalidOperationException("No refresh token to refresh access token with.");
                 }
 
-                using var content = new StringContent(
-                    $"grant_type=refresh_token&refresh_token={this.RefreshToken}",
-                    Encoding.UTF8,
-                    "application/x-www-form-urlencoded");
+                using var content = new FormUrlEncodedContent(
+                    new KeyValuePair<String?, String?>[]
+                    {
+                        new("grant_type", "refresh_token"),
+                        new("refresh_token", this.RefreshToken)
+                    });
 
                 await GetAccessRefreshToken(content).ConfigureAwait(false);
             }

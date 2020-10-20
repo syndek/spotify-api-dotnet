@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -34,7 +35,11 @@ namespace Spotify.Web.Authorization.Flows
                 return base.CurrentAccessToken.Value;
             }
 
-            using var content = new StringContent("grant_type=client_credentials", Encoding.UTF8, "application/x-www-form-urlencoded");
+            using var content = new FormUrlEncodedContent(
+                new KeyValuePair<String?, String?>[]
+                {
+                    new("grant_type", "client_credentials")
+                });
             using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
             {
                 Content = content,
