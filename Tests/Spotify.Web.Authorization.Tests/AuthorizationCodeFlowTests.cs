@@ -19,7 +19,7 @@ namespace Spotify.Web.Authorization.Tests
 
             Assert.AreEqual(
                 expected: new(AuthorizationUrl),
-                actual: AuthorizationCodeFlow.CreateAuthorizationUrl("CLIENT_ID", "REDIRECT_URI"));
+                actual: AuthorizationCodeFlow.CreateAuthorizationUri("CLIENT_ID", "REDIRECT_URI"));
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace Spotify.Web.Authorization.Tests
 
             Assert.AreEqual(
                 expected: new(AuthorizationUrl),
-                actual: AuthorizationCodeFlow.CreateAuthorizationUrl(
+                actual: AuthorizationCodeFlow.CreateAuthorizationUri(
                     "CLIENT_ID",
                     "REDIRECT_URI",
                     scopes: AuthorizationScopes.UgcImageUpload));
@@ -50,7 +50,7 @@ namespace Spotify.Web.Authorization.Tests
 
             Assert.AreEqual(
                 expected: new(AuthorizationUrl),
-                actual: AuthorizationCodeFlow.CreateAuthorizationUrl(
+                actual: AuthorizationCodeFlow.CreateAuthorizationUri(
                     "CLIENT_ID",
                     "REDIRECT_URI",
                     scopes: AuthorizationScopes.UgcImageUpload | AuthorizationScopes.Streaming | AuthorizationScopes.PlaylistReadCollaborative));

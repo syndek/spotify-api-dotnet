@@ -81,7 +81,7 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="scopes">The <see cref="AuthorizationScopes"/> to authorize the application to use.</param>
         /// <param name="showDialog">Whether or not to force the user to approve the application again if they’ve already done so.</param>
         /// <returns>The created <see cref="Uri"/>.</returns>
-        public static Uri CreateAuthorizationUrl(
+        public static Uri CreateAuthorizationUri(
             String clientId,
             String redirectUri,
             String? state = null,
