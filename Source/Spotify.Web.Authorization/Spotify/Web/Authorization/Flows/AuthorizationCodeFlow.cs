@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,10 +21,10 @@ namespace Spotify.Web.Authorization.Flows
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorizationCodeFlow"/> class with the specified values.
         /// </summary>
-        /// <param name="httpClient">A <see cref="HttpClient"/> instance to use to make requests to the Spotify Accounts service.</param>
+        /// <param name="httpClient">An <see cref="HttpClient"/> instance to use to make requests to the Spotify Accounts service.</param>
         /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
         /// <param name="clientSecret">
-        /// A <see cref="String>"/> representing the secret key of the application with the specified client ID.
+        /// A <see cref="String"/> representing the secret key of the application with the specified <paramref name="clientId"/>.
         /// </param>
         /// <param name="code">
         /// A <see cref="String"/> representing the authorization code returned from an initial request to the <c>/authorize</c> endpoint.

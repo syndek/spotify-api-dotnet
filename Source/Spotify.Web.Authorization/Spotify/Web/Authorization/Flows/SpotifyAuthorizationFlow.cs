@@ -34,10 +34,10 @@ namespace Spotify.Web.Authorization.Flows
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAuthorizationFlow"/> class with the
-        /// specified <paramref name="httpClient"/>, <paramref name="clientId"/>, and <paramref name="clientSecret"/>.
+        /// specified <paramref name="httpClient"/> and <paramref name="clientId"/>.
         /// </summary>
         /// <param name="httpClient">
-        /// A <see cref="System.Net.Http.HttpClient"/> instance to use to make requests to the Spotify Accounts service.
+        /// An <see cref="System.Net.Http.HttpClient"/> instance to use to make requests to the Spotify Accounts service.
         /// </param>
         /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
         protected SpotifyAuthorizationFlow(HttpClient httpClient, String clientId) : base()
