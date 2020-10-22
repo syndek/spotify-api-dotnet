@@ -32,6 +32,8 @@ namespace Spotify.Web.Authorization.Flows
             Converters = { new AuthenticationErrorConverter() }
         };
 
+        private Boolean isDisposed;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAuthorizationFlow"/> class with the
         /// specified <paramref name="httpClient"/> and <paramref name="clientId"/>.
@@ -42,8 +44,17 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
         protected SpotifyAuthorizationFlow(HttpClient httpClient, String clientId) : base()
         {
+            this.isDisposed = false;
             this.HttpClient = httpClient;
             this.ClientId = clientId;
+        }
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="SpotifyAuthorizationFlow"/>.
+        /// </summary>
+        ~SpotifyAuthorizationFlow()
+        {
+            this.Dispose(false);
         }
 
         /// <summary>
@@ -74,12 +85,33 @@ namespace Spotify.Web.Authorization.Flows
         public abstract ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Disposes the <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.
+        /// Releases all resources used by the <see cref="SpotifyAuthorizationFlow"/>.
         /// </summary>
         public void Dispose()
         {
-            this.HttpClient.Dispose();
+            this.Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="SpotifyAuthorizationFlow"/> and optionally releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">
+        /// <see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose(Boolean disposing)
+        {
+            if (this.isDisposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                this.HttpClient.Dispose();
+            }
+
+            this.isDisposed = true;
         }
     }
 }
