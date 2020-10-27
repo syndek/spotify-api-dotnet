@@ -33,11 +33,21 @@ namespace Spotify.ObjectModel.Serialization
 
         public override void Write(Utf8JsonWriter writer, IPlayable value, JsonSerializerOptions options)
         {
-            // No need to examine the IPlayable object here.
-            // Simply get a converter for whatever the underlying type is and use that.
+            // Like with Read(ref Utf8JsonReader, Type, JsonSerializerOptions), if somebody attempts to use this converter
+            // with an IPlayable implementation that is not recognised by this library, there's nothing we can do to help them.
+            // (Custom IPlayable implementations would technically be unintended use of the library types, anyway. Sealed interfaces when?)
 
-            var playableConverter = (JsonConverter<IPlayable>) options.GetConverter(value.GetType());
-            playableConverter.Write(writer, value, options);
+            switch (value)
+            {
+                case Episode episode:
+                    options.GetConverter<Episode>().Write(writer, episode, options);
+                    break;
+                case Track track:
+                    options.GetConverter<Track>().Write(writer, track, options);
+                    break;
+                default:
+                    throw new JsonException();
+            }
         }
     }
 }
