@@ -86,6 +86,7 @@ namespace Spotify.ObjectModel.Serialization
             var uriConverter = options.GetConverter<Uri>();
 
             writer.WriteStartObject();
+            writer.WriteString("type", "user");
             writer.WriteString("id", value.Id);
             writer.WritePropertyName("uri");
             uriConverter.Write(writer, value.Uri, options);

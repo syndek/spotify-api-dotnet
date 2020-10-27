@@ -77,6 +77,7 @@ namespace Spotify.ObjectModel.Serialization
             var timeIntervalArrayConverter = options.GetConverter<TimeIntervalArray>();
 
             writer.WriteStartObject();
+            writer.WriteString("type", "audio_analysis");
             writer.WritePropertyName("bars");
             timeIntervalArrayConverter.Write(writer, value.Bars, options);
             writer.WritePropertyName("beats");
