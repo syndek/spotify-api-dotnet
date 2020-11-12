@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -25,7 +26,7 @@ namespace Spotify.ObjectModel.Serialization
                 ReleaseDatePrecision.Year => $"{releaseDate.Year}",
                 ReleaseDatePrecision.Month => $"{releaseDate.Year}-{releaseDate.Month}",
                 ReleaseDatePrecision.Day => $"{releaseDate.Year}-{releaseDate.Month}-{releaseDate.Day}",
-                _ => releaseDate.ToString()
+                _ => releaseDate.ToString(CultureInfo.InvariantCulture)
             };
 
             writer.WriteString("release_date", stringValue);

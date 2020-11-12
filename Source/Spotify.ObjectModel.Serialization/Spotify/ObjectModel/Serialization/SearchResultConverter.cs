@@ -8,7 +8,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class SearchResultConverter : JsonConverter<SearchResult>
     {
-        public override SearchResult? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override SearchResult Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -76,9 +76,9 @@ namespace Spotify.ObjectModel.Serialization
 
         public override void Write(Utf8JsonWriter writer, SearchResult value, JsonSerializerOptions options)
         {
-            void WritePaging<TObject>(String propertyName, Paging<TObject>? value, JsonConverter<Paging<TObject>> converter)
+            void WritePaging<TObject>(String propertyName, Paging<TObject>? paging, JsonConverter<Paging<TObject>> converter)
             {
-                if (value is Paging<TObject> paging)
+                if (paging is not null)
                 {
                     writer.WritePropertyName(propertyName);
                     converter.Write(writer, paging, options);

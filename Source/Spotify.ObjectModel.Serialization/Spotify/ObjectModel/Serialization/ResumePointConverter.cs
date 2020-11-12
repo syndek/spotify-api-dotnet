@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class ResumePointConverter : JsonConverter<ResumePoint>
     {
-        public override ResumePoint? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override ResumePoint Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {

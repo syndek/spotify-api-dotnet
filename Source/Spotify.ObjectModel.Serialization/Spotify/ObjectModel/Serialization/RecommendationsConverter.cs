@@ -10,7 +10,7 @@ namespace Spotify.ObjectModel.Serialization
 
     public sealed class RecommendationsConverter : JsonConverter<Recommendations>
     {
-        public override Recommendations? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Recommendations Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {

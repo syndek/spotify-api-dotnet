@@ -12,7 +12,7 @@ namespace Spotify.ObjectModel.Serialization
 
     public sealed class SimplifiedPlaylistConverter : JsonConverter<SimplifiedPlaylist>
     {
-        public override SimplifiedPlaylist? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override SimplifiedPlaylist Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -142,14 +142,16 @@ namespace Spotify.ObjectModel.Serialization
             publicUserConverter.Write(writer, value.Owner, options);
             writer.WritePropertyName("tracks");
             playlistTrackPagingConverter.Write(writer, value.Tracks, options);
-            if (value.IsPublic is Boolean isPublic)
+            
+            if (value.IsPublic is not null)
             {
-                writer.WriteBoolean("public", isPublic);
+                writer.WriteBoolean("public", value.IsPublic.Value);
             }
             else
             {
                 writer.WriteNull("public");
             }
+            
             writer.WriteBoolean("collaborative", value.IsCollaborative);
             writer.WriteString("snapshot_id", value.SnapshotId);
             writer.WritePropertyName("external_urls");

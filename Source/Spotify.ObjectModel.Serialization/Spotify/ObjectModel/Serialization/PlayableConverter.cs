@@ -17,18 +17,18 @@ namespace Spotify.ObjectModel.Serialization
             // We don't want to operate on the original reader, so we make a copy of it to parse as the JsonDocument.
             var typeReader = reader;
 
-            if (JsonDocument.ParseValue(ref typeReader).RootElement.TryGetProperty("type", out var value))
+            if (!JsonDocument.ParseValue(ref typeReader).RootElement.TryGetProperty("type", out var value))
             {
-                switch (value.GetString())
-                {
-                    case "episode":
-                        return options.GetConverter<Episode>().Read(ref reader, typeof(Episode), options);
-                    case "track":
-                        return options.GetConverter<Track>().Read(ref reader, typeof(Track), options);
-                }
+                throw new JsonException();
             }
 
-            throw new JsonException();
+            return value.GetString() switch
+            {
+                "episode" => options.GetConverter<Episode>().Read(ref reader, typeof(Episode), options),
+                "track" => options.GetConverter<Track>().Read(ref reader, typeof(Track), options),
+                _ => throw new JsonException()
+            };
+
         }
 
         public override void Write(Utf8JsonWriter writer, IPlayable value, JsonSerializerOptions options)

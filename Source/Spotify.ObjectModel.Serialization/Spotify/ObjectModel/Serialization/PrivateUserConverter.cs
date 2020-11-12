@@ -12,7 +12,7 @@ namespace Spotify.ObjectModel.Serialization
 
     public sealed class PrivateUserConverter : JsonConverter<PrivateUser>
     {
-        public override PrivateUser? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override PrivateUser Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -69,7 +69,8 @@ namespace Spotify.ObjectModel.Serialization
                         displayName = reader.GetString();
                         break;
                     case "country":
-                        country = (reader.GetString() is String countryCode)
+                        var countryCode = reader.GetString();
+                        country = countryCode is not null
                             ? EnumConverters.CountryCodeConverter.FromSpotifyString(countryCode)
                             : null;
                         break;

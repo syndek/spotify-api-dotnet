@@ -8,7 +8,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class RecommendationSeedConverter : JsonConverter<RecommendationSeed>
     {
-        public override RecommendationSeed? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override RecommendationSeed Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -46,7 +46,7 @@ namespace Spotify.ObjectModel.Serialization
                         id = reader.GetString()!;
                         break;
                     case "href":
-                        href = (reader.TokenType is JsonTokenType.Null) ? null : uriConverter.Read(ref reader, typeof(Uri), options)!;
+                        href = reader.TokenType is JsonTokenType.Null ? null : uriConverter.Read(ref reader, typeof(Uri), options)!;
                         break;
                     case "type":
                         // For some reason, the Spotify Web API returns the type in uppercase. So much for consistency.
@@ -76,15 +76,17 @@ namespace Spotify.ObjectModel.Serialization
 
             writer.WriteStartObject();
             writer.WriteString("id", value.Id);
-            if (value.Href is Uri href)
+
+            if (value.Href is not null)
             {
                 writer.WritePropertyName("href");
-                uriConverter.Write(writer, href, options);
+                uriConverter.Write(writer, value.Href, options);
             }
             else
             {
                 writer.WriteNull("href");
             }
+
             writer.WriteString("type", value.Type.ToSpotifyString());
             writer.WriteNumber("initialPoolSize", value.InitialPoolSize);
             writer.WriteNumber("afterFilteringSize", value.AfterFilteringSize);

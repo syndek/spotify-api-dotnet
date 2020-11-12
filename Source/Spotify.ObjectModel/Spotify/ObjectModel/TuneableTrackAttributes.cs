@@ -3,7 +3,7 @@
 namespace Spotify.ObjectModel
 {
     /// <summary>
-    /// Represents a collection of values used in calls to <see cref="ISpotifyBrowseApi.GetRecommendationsAsync"/>.
+    /// Represents a collection of values used to get recommendations from the Spotify Web API.
     /// </summary>
     /// <seealso href="https://spotify.dev/documentation/web-api/reference/browse/get-recommendations/#tuneable-track-attributes"/>
     public record TuneableTrackAttributes : SpotifyObject
@@ -72,7 +72,7 @@ namespace Spotify.ObjectModel
         public Single? Danceability { get; init; }
         /// <summary>
         /// Gets or sets the energy of the track, from <c>0.0</c> to <c>1.0</c>.
-        /// Energy represents a peceptual measure of intensity and activity.
+        /// Energy represents a perceptual measure of intensity and activity.
         /// Typically, an energetic track will feel fast, loud, and noisy.
         /// </summary>
         /// <returns>

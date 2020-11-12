@@ -8,7 +8,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class CopyrightConverter : JsonConverter<Copyright>
     {
-        public override Copyright? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Copyright Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {

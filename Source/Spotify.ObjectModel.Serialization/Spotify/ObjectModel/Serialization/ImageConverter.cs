@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class ImageConverter : JsonConverter<Image>
     {
-        public override Image? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Image Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -68,22 +68,25 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteStartObject();
             writer.WritePropertyName("url");
             uriConverter.Write(writer, value.Url, options);
-            if (value.Width is Int32 width)
+            
+            if (value.Width is not null)
             {
-                writer.WriteNumber("width", width);
+                writer.WriteNumber("width", value.Width.Value);
             }
             else
             {
                 writer.WriteNull("width");
             }
-            if (value.Height is Int32 height)
+            
+            if (value.Height is not null)
             {
-                writer.WriteNumber("height", height);
+                writer.WriteNumber("height", value.Height.Value);
             }
             else
             {
                 writer.WriteNull("height");
             }
+            
             writer.WriteEndObject();
         }
     }

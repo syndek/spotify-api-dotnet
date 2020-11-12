@@ -59,15 +59,7 @@ namespace Spotify.Web.Authorization
             _ => throw new ArgumentException($"Invalid {nameof(AuthorizationScopes)} value: {authorizationScope}", nameof(authorizationScope))
         };
 
-        internal static IEnumerable<String> ToSpotifyStrings(this AuthorizationScopes authorizationScopes)
-        {
-            foreach (var value in Enum.GetValues<AuthorizationScopes>())
-            {
-                if ((authorizationScopes & value) == value)
-                {
-                    yield return value.ToSpotifyString();
-                }
-            }
-        }
+        internal static IEnumerable<String> ToSpotifyStrings(this AuthorizationScopes authorizationScopes) =>
+            from value in Enum.GetValues<AuthorizationScopes>() where authorizationScopes.HasFlag(value) select value.ToSpotifyString();
     }
 }

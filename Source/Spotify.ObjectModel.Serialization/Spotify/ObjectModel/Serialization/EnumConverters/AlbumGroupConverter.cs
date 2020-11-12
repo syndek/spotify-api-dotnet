@@ -18,7 +18,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
         public static AlbumGroups FromSpotifyStrings(IEnumerable<String> albumGroups) =>
             albumGroups.Aggregate(
                 new AlbumGroups(),
-                (current, albumGroups) => current | AlbumGroupConverter.FromSpotifyString(albumGroups));
+                (current, albumGroup) => current | AlbumGroupConverter.FromSpotifyString(albumGroup));
 
         public static String ToSpotifyString(this AlbumGroups albumGroup) => albumGroup switch
         {

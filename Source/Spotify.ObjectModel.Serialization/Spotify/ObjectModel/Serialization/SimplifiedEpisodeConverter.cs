@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel.Serialization
 
     public sealed class SimplifiedEpisodeConverter : JsonConverter<SimplifiedEpisode>
     {
-        public override SimplifiedEpisode? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override SimplifiedEpisode Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -161,26 +161,30 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteBoolean("is_externally_hosted", value.IsExternallyHosted);
             writer.WritePropertyName("languages");
             stringArrayConverter.Write(writer, value.Languages, options);
-            if (value.AudioPreviewUrl is Uri audioPreviewUrl)
+
+            if (value.AudioPreviewUrl is not null)
             {
                 writer.WritePropertyName("audio_preview_url");
-                uriConverter.Write(writer, audioPreviewUrl, options);
+                uriConverter.Write(writer, value.AudioPreviewUrl, options);
             }
             else
             {
                 writer.WriteNull("audio_preview_url");
             }
+
             writer.WritePropertyName("external_urls");
             externalUrlsConverter.Write(writer, value.ExternalUrls, options);
-            if (value.ResumePoint is ResumePoint resumePoint)
+
+            if (value.ResumePoint is not null)
             {
                 writer.WritePropertyName("resume_point");
-                resumePointConverter.Write(writer, resumePoint, options);
+                resumePointConverter.Write(writer, value.ResumePoint, options);
             }
             else
             {
                 writer.WriteNull("resume_point");
             }
+
             writer.WriteEndObject();
         }
     }

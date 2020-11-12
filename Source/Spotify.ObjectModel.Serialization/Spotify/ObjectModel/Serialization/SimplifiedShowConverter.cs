@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel.Serialization
 
     public sealed class SimplifiedShowConverter : JsonConverter<SimplifiedShow>
     {
-        public override SimplifiedShow? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override SimplifiedShow Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -152,14 +152,16 @@ namespace Spotify.ObjectModel.Serialization
             writer.WritePropertyName("images");
             imageArrayConverter.Write(writer, value.Images, options);
             writer.WriteBoolean("explicit", value.IsExplicit);
-            if (value.IsExternallyHosted is Boolean isExternallyHosted)
+
+            if (value.IsExternallyHosted is not null)
             {
-                writer.WriteBoolean("is_externally_hosted", isExternallyHosted);
+                writer.WriteBoolean("is_externally_hosted", value.IsExternallyHosted.Value);
             }
             else
             {
                 writer.WriteNull("is_externally_hosted");
             }
+
             writer.WritePropertyName("languages");
             stringArrayConverter.Write(writer, value.Languages, options);
             writer.WritePropertyName("available_markets");

@@ -9,7 +9,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class PagingConverter<TItem> : JsonConverter<Paging<TItem>>
     {
-        public override Paging<TItem>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Paging<TItem> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
@@ -88,24 +88,27 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteNumber("offset", value.Offset);
             writer.WritePropertyName("href");
             uriConverter.Write(writer, value.Href, options);
-            if (value.Previous is Uri previous)
+            
+            if (value.Previous is not null)
             {
                 writer.WritePropertyName("previous");
-                uriConverter.Write(writer, previous, options);
+                uriConverter.Write(writer, value.Previous, options);
             }
             else
             {
                 writer.WriteNull("previous");
             }
-            if (value.Next is Uri next)
+            
+            if (value.Next is not null)
             {
                 writer.WritePropertyName("next");
-                uriConverter.Write(writer, next, options);
+                uriConverter.Write(writer, value.Next, options);
             }
             else
             {
                 writer.WriteNull("next");
             }
+            
             writer.WriteEndObject();
         }
     }

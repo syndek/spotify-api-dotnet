@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class SavedConverter<TSaved> : JsonConverter<Saved<TSaved>> where TSaved : ISaveable
     {
-        public override Saved<TSaved>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Saved<TSaved> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {

@@ -18,7 +18,7 @@ namespace Spotify.ObjectModel.Serialization
 
     public sealed class AlbumConverter : JsonConverter<Album>
     {
-        public override Album? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Album Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {

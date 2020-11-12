@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public sealed class TimeIntervalConverter : JsonConverter<TimeInterval>
     {
-        public override TimeInterval? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override TimeInterval Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType is not JsonTokenType.StartObject)
             {
