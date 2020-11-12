@@ -56,10 +56,10 @@ namespace Spotify.ObjectModel.Serialization
             var uriConverter = options.GetConverter<Uri>();
 
             writer.WriteStartObject();
-            if (value.Href is Uri href)
+            if (value.Href is not null)
             {
                 writer.WritePropertyName("href");
-                uriConverter.Write(writer, href, options);
+                uriConverter.Write(writer, value.Href, options);
             }
             else
             {

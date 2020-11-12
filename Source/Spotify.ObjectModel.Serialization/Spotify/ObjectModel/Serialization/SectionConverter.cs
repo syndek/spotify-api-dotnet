@@ -70,7 +70,7 @@ namespace Spotify.ObjectModel.Serialization
                         break;
                     case "mode":
                         var modeValue = reader.GetInt32();
-                        if (modeValue != -1)
+                        if (modeValue is not -1)
                         {
                             mode = (Modality) modeValue;
                         }

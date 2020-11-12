@@ -31,7 +31,7 @@ namespace Spotify.Web.Authorization.Flows
         /// <inheritdoc/>
         public override async ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default)
         {
-            if (base.CurrentAccessToken?.HasExpired == false)
+            if (base.CurrentAccessToken?.HasExpired is false)
             {
                 return base.CurrentAccessToken.Value;
             }

@@ -41,7 +41,7 @@ namespace Spotify.ObjectModel.Collections
 
             for (var i = 0; i < this.Count; i++)
             {
-                if (this[i]?.Equals(other[i]) == false)
+                if (this[i]?.Equals(other[i]) is false)
                 {
                     return false;
                 }
