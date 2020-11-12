@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace System
 {
-    public static class EnumExtensions : Object
+    public static class EnumExtensions
     {
         [SuppressMessage("Usage", "CA2248")]
         public static IEnumerable<TEnum> GetFlags<TEnum>(this TEnum flags) where TEnum : struct, Enum

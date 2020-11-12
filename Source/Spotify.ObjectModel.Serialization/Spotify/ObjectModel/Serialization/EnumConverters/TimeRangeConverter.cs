@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class TimeRangeConverter : Object
+    public static class TimeRangeConverter
     {
         public static TimeRange FromSpotifyString(String timeRange) => timeRange switch
         {

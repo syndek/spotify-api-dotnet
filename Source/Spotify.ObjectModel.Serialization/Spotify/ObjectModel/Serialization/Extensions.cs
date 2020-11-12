@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    internal static class Extensions : Object
+    internal static class Extensions
     {
         public static JsonConverter<TValue> GetConverter<TValue>(this JsonSerializerOptions options) =>
             (JsonConverter<TValue>) options.GetConverter(typeof(TValue));

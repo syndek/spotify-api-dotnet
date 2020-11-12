@@ -8,7 +8,7 @@ using Spotify.Web.Authorization;
 
 namespace Spotify.Web.Navigation
 {
-    public static class TrackNavigationExtensions : Object
+    public static class TrackNavigationExtensions
     {
         public static Task<Track> GetTrackAsync(
             this AudioFeatures audioFeatures,

@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class ReleaseDatePrecisionConverter : Object
+    public static class ReleaseDatePrecisionConverter
     {
         public static ReleaseDatePrecision FromSpotifyString(String releaseDatePrecision) => releaseDatePrecision switch
         {

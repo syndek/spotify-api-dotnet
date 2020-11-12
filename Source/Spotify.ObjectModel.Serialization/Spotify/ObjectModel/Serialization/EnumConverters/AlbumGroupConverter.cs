@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class AlbumGroupConverter : Object
+    public static class AlbumGroupConverter
     {
         public static AlbumGroups FromSpotifyString(String albumGroup) => albumGroup switch
         {

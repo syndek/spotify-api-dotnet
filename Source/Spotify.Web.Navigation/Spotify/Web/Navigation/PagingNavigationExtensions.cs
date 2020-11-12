@@ -8,7 +8,7 @@ using Spotify.Web.Authorization;
 
 namespace Spotify.Web.Navigation
 {
-    public static class PagingNavigationExtensions : Object
+    public static class PagingNavigationExtensions
     {
         public static async Task<Paging<TObject>> GetPreviousAsync<TObject>(
             this Paging<TObject> paging,

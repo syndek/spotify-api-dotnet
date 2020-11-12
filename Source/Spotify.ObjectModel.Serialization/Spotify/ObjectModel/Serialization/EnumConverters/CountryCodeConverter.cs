@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class CountryCodeConverter : Object
+    public static class CountryCodeConverter
     {
         public static CountryCode FromSpotifyString(String countryCode) =>
             (countryCode == "from_token") ? CountryCode.FromToken : Enum.Parse<CountryCode>(countryCode);

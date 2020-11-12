@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class CopyrightTypeConverter : Object
+    public static class CopyrightTypeConverter
     {
         public static CopyrightType FromSpotifyString(String copyrightType) => copyrightType switch
         {

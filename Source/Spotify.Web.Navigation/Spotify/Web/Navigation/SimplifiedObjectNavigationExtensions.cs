@@ -8,7 +8,7 @@ using Spotify.Web.Authorization;
 
 namespace Spotify.Web.Navigation
 {
-    public static class SimplifiedObjectNavigationExtensions : Object
+    public static class SimplifiedObjectNavigationExtensions
     {
         public static Task<Artist> GetFullDetailsAsync(
             this SimplifiedArtist artist,

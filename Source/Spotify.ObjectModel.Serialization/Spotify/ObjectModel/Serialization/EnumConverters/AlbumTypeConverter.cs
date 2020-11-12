@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class AlbumTypeConverter : Object
+    public static class AlbumTypeConverter
     {
         public static AlbumType FromSpotifyString(String albumType) => albumType switch
         {

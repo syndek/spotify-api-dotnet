@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class RecommendationSeedTypeConverter : Object
+    public static class RecommendationSeedTypeConverter
     {
         public static RecommendationSeedType FromSpotifyString(String recommendationSeedType) => recommendationSeedType switch
         {

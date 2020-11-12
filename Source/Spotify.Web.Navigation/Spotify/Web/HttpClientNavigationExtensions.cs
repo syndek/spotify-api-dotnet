@@ -11,7 +11,7 @@ using Spotify.Web.Serialization;
 
 namespace Spotify.Web
 {
-    internal static class HttpClientNavigationExtensions : Object
+    internal static class HttpClientNavigationExtensions
     {
         private static readonly JsonSerializerOptions DefaultSerializerOptions = new()
         {
@@ -52,6 +52,7 @@ namespace Spotify.Web
                 new TrackConverter()
             }
         };
+
         private static readonly JsonSerializerOptions ErrorSerializerOptions = new()
         {
             Converters = { new ErrorConverter() }

@@ -2,7 +2,7 @@
 
 namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
-    public static class ProductConverter : Object
+    public static class ProductConverter
     {
         public static Product FromSpotifyString(String product) => product switch
         {

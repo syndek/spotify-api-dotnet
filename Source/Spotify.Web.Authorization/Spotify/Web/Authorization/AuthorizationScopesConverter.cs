@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Spotify.Web.Authorization
 {
-    internal static class AuthorizationScopesConverter : Object
+    internal static class AuthorizationScopesConverter
     {
         internal static AuthorizationScopes FromSpotifyString(String authorizationScope) => authorizationScope switch
         {
