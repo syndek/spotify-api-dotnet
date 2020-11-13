@@ -14,6 +14,9 @@ namespace Spotify.Web.Authorization.Flows
     /// </summary>
     public class AuthorizationCodeFlow : SpotifyAuthorizationFlowWithClientSecret
     {
+        private readonly String code;
+        private readonly String redirectUri;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorizationCodeFlow"/> class with the specified values.
         /// </summary>
@@ -37,8 +40,8 @@ namespace Spotify.Web.Authorization.Flows
             String redirectUri) :
             base(httpClient, clientId, clientSecret)
         {
-            this.Code = code;
-            this.RedirectUri = redirectUri;
+            this.code = code;
+            this.redirectUri = redirectUri;
         }
 
         /// <summary>
@@ -49,21 +52,6 @@ namespace Spotify.Web.Authorization.Flows
         /// <see cref="SpotifyAuthorizationFlow.CurrentAccessToken"/>, or <see langword="null"/> if none was provided.
         /// </returns>
         public String? CurrentRefreshToken { get; private set; }
-        
-        /// <summary>
-        /// The authorization code returned from an initial request to the <c>/authorize</c> endpoint.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="String"/> representing the authorization code returned from an initial request to the <c>/authorize</c> endpoint.
-        /// </returns>
-        protected String Code { get; }
-        /// <summary>
-        /// Gets the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="String"/> representing the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
-        /// </returns>
-        protected String RedirectUri { get; }
 
         /// <summary>
         /// Creates a <see cref="Uri"/> that can be used to allow a user to authorize an application.
@@ -111,8 +99,8 @@ namespace Spotify.Web.Authorization.Flows
                     new KeyValuePair<String?, String?>[]
                     {
                         new("grant_type", "authorization_code"),
-                        new("code", this.Code),
-                        new("redirect_uri", this.RedirectUri)
+                        new("code", this.code),
+                        new("redirect_uri", this.redirectUri)
                     });
 
                 await GetAndStoreTokenAsync(content).ConfigureAwait(false);

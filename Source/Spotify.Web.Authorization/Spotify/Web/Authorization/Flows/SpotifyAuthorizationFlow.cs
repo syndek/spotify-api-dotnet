@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -24,9 +25,8 @@ namespace Spotify.Web.Authorization.Flows
         /// <summary>
         /// The <see cref="Uri"/> of the Spotify Accounts service <c>/api/token</c> endpoint. This field is read-only.
         /// </summary>
-        protected static readonly Uri TokenUri = new("https://accounts.spotify.com/api/token");
-
-        protected static readonly JsonSerializerOptions AccessTokenSerializerOptions = new()
+        private static readonly Uri TokenUri = new("https://accounts.spotify.com/api/token");
+        private static readonly JsonSerializerOptions AccessTokenSerializerOptions = new()
         {
             Converters =
             {
@@ -34,11 +34,12 @@ namespace Spotify.Web.Authorization.Flows
                 new AccessRefreshTokenConverter()
             }
         };
-
-        protected static readonly JsonSerializerOptions AuthenticationErrorSerializerOptions = new()
+        private static readonly JsonSerializerOptions AuthenticationErrorSerializerOptions = new()
         {
             Converters = { new AuthenticationErrorConverter() }
         };
+
+        private readonly HttpClient httpClient;
 
         private Boolean isDisposed;
 
@@ -53,7 +54,7 @@ namespace Spotify.Web.Authorization.Flows
         protected SpotifyAuthorizationFlow(HttpClient httpClient, String clientId) : base()
         {
             this.isDisposed = false;
-            this.HttpClient = httpClient;
+            this.httpClient = httpClient;
             this.ClientId = clientId;
         }
 
@@ -68,11 +69,6 @@ namespace Spotify.Web.Authorization.Flows
         /// <returns>The current <see cref="AccessToken"/>, or <see langword="null"/> if none have been acquired yet.</returns>
         public AccessToken? CurrentAccessToken { get; protected set; }
 
-        /// <summary>
-        /// Gets the <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.
-        /// </summary>
-        /// <returns>The <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.</returns>
-        protected HttpClient HttpClient { get; }
         /// <summary>
         /// Gets the client ID of the application the <see cref="SpotifyAuthorizationFlow"/> is for.
         /// </summary>
@@ -114,7 +110,7 @@ namespace Spotify.Web.Authorization.Flows
 
             if (disposing)
             {
-                this.HttpClient.Dispose();
+                this.httpClient.Dispose();
             }
 
             this.isDisposed = true;
@@ -131,7 +127,7 @@ namespace Spotify.Web.Authorization.Flows
                 Headers = { Authorization = authenticationHeader }
             };
 
-            using var response = await this.HttpClient
+            using var response = await this.httpClient
                 .SendAsync(message, cancellationToken)
                 .ConfigureAwait(false);
 
