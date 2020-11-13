@@ -63,6 +63,12 @@ namespace Spotify.Web.Authorization.Flows
         ~SpotifyAuthorizationFlow() => this.Dispose(false);
 
         /// <summary>
+        /// Gets or sets the current <see cref="AccessToken"/> being used by the <see cref="SpotifyAuthorizationFlow"/> instance.
+        /// </summary>
+        /// <returns>The current <see cref="AccessToken"/>, or <see langword="null"/> if none have been acquired yet.</returns>
+        public AccessToken? CurrentAccessToken { get; protected set; }
+
+        /// <summary>
         /// Gets the <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.
         /// </summary>
         /// <returns>The <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.</returns>
@@ -72,11 +78,6 @@ namespace Spotify.Web.Authorization.Flows
         /// </summary>
         /// <returns>A <see cref="String"/> representing the client ID of the application the <see cref="SpotifyAuthorizationFlow"/> is for.</returns>
         protected String ClientId { get; }
-        /// <summary>
-        /// Gets or sets the current <see cref="AccessToken"/> being used by the <see cref="SpotifyAuthorizationFlow"/> instance.
-        /// </summary>
-        /// <returns>The current <see cref="AccessToken"/>, or <see langword="null"/> if none have been acquired yet.</returns>
-        protected AccessToken? CurrentAccessToken { get; set; }
 
         /// <summary>
         /// Asynchronously retrieves an <see cref="AccessToken"/>.

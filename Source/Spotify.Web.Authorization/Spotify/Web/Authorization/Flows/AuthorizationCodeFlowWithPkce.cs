@@ -29,7 +29,14 @@ namespace Spotify.Web.Authorization.Flows
             this.redirectUri = redirectUri;
         }
 
-        protected String? RefreshToken { get; set; }
+        /// <summary>
+        /// Gets or sets a token that can be used to refresh the <see cref="SpotifyAuthorizationFlow.CurrentAccessToken"/>.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="String"/> representing a token that can be used to refresh the
+        /// <see cref="SpotifyAuthorizationFlow.CurrentAccessToken"/>, or <see langword="null"/> if none was provided.
+        /// </returns>
+        public String? CurrentRefreshToken { get; private set; }
 
         /// <summary>
         /// Creates a <see cref="Uri"/> that can be used to allow a user to authorize an application.
@@ -98,7 +105,7 @@ namespace Spotify.Web.Authorization.Flows
             async Task GetAndStoreTokenAsync(HttpContent content)
             {
                 var token = await base.GetAccessRefreshTokenAsync(content, null, cancellationToken);
-                this.RefreshToken = token.RefreshToken ?? this.RefreshToken;
+                this.CurrentRefreshToken = token.RefreshToken ?? this.CurrentRefreshToken;
                 base.CurrentAccessToken = token.AccessToken;
             }
 
@@ -118,7 +125,7 @@ namespace Spotify.Web.Authorization.Flows
             }
             else if (base.CurrentAccessToken.Value.HasExpired)
             {
-                if (this.RefreshToken is null)
+                if (this.CurrentRefreshToken is null)
                 {
                     throw new InvalidOperationException("No refresh token to refresh access token with.");
                 }
@@ -127,7 +134,7 @@ namespace Spotify.Web.Authorization.Flows
                     new KeyValuePair<String?, String?>[]
                     {
                         new("grant_type", "refresh_token"),
-                        new("refresh_token", this.RefreshToken),
+                        new("refresh_token", this.CurrentRefreshToken),
                         new("client_id", base.ClientId)
                     });
 
