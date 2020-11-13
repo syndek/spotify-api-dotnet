@@ -11,7 +11,7 @@ namespace Spotify.Web.Authorization.Flows
     /// Represents a <see cref="SpotifyAuthorizationFlow"/> for accessing endpoints that do not access user information.
     /// </summary>
     /// <remarks>
-    /// To be able to access user information, an <see cref="AuthorizationCodeFlow"/> should be used instead.
+    /// To be able to access user information, an <see cref="AuthorizationCodeFlow"/> or <see cref="AuthorizationCodeFlowWithPkce"/> should be used instead.
     /// A <see cref="ClientCredentialsFlow"/> does not include user authorization and therefore cannot be used to access user information.
     /// However, it does allow for a higher rate limit than requests made without an access token.
     /// </remarks>

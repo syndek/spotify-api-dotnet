@@ -10,6 +10,10 @@ using System.Xml;
 
 namespace Spotify.Web.Authorization.Flows
 {
+    /// <summary>
+    /// Represents a <see cref="SpotifyAuthorizationFlow"/> for applications where it's unsafe to store your client secret.
+    /// Examples of these would include desktop apps, mobile apps, etc.
+    /// </summary>
     public class AuthorizationCodeFlowWithPkce : SpotifyAuthorizationFlow
     {
         private readonly String code;
