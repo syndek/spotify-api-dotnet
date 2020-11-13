@@ -15,6 +15,11 @@ namespace Spotify.Web.Authorization.Flows
     public abstract class SpotifyAuthorizationFlow : Object, IAccessTokenProvider, IDisposable
     {
         /// <summary>
+        /// Represents the URL of the <c>/authorize</c> endpoint of the Spotify Accounts service. This field is constant.
+        /// </summary>
+        protected const String AuthorizationUrl = "https://accounts.spotify.com/authorize";
+        
+        /// <summary>
         /// The <see cref="Uri"/> of the Spotify Accounts service <c>/api/token</c> endpoint. This field is read-only.
         /// </summary>
         protected static readonly Uri TokenUri = new("https://accounts.spotify.com/api/token");
@@ -27,6 +32,7 @@ namespace Spotify.Web.Authorization.Flows
                 new AccessRefreshTokenConverter()
             }
         };
+
         protected static readonly JsonSerializerOptions AuthenticationErrorSerializerOptions = new()
         {
             Converters = { new AuthenticationErrorConverter() }
@@ -52,10 +58,7 @@ namespace Spotify.Web.Authorization.Flows
         /// <summary>
         /// Releases the unmanaged resources used by the <see cref="SpotifyAuthorizationFlow"/>.
         /// </summary>
-        ~SpotifyAuthorizationFlow()
-        {
-            this.Dispose(false);
-        }
+        ~SpotifyAuthorizationFlow() => this.Dispose(false);
 
         /// <summary>
         /// Gets the <see cref="System.Net.Http.HttpClient"/> being used to make requests to the Spotify Accounts service.

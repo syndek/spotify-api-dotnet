@@ -2,65 +2,33 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Spotify.Web.Authorization.Flows
 {
-    /// <summary>
-    /// Represents a <see cref="SpotifyAuthorizationFlow"/> suitable for
-    /// long-running applications in which a user grants permission only once.
-    /// </summary>
-    public class AuthorizationCodeFlow : SpotifyAuthorizationFlowWithClientSecret
+    public class AuthorizationCodeFlowWithPkce : SpotifyAuthorizationFlow
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationCodeFlow"/> class with the specified values.
-        /// </summary>
-        /// <param name="httpClient">An <see cref="HttpClient"/> instance to use to make requests to the Spotify Accounts service.</param>
-        /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
-        /// <param name="clientSecret">
-        /// A <see cref="String"/> representing the secret key of the application with the specified <paramref name="clientId"/>.
-        /// </param>
-        /// <param name="code">
-        /// A <see cref="String"/> representing the authorization code returned from an initial request to the <c>/authorize</c> endpoint.
-        /// </param>
-        /// <param name="redirectUri">
-        /// A <see cref="String"/> representing the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
-        /// This parameter is used purely for validation and therefore must be an exact match. No actual redirection takes place.
-        /// </param>
-        public AuthorizationCodeFlow(
+        private readonly String code;
+        private readonly String codeVerifier;
+        private readonly String redirectUri;
+
+        public AuthorizationCodeFlowWithPkce(
             HttpClient httpClient,
             String clientId,
-            String clientSecret,
             String code,
+            String codeVerifier,
             String redirectUri) :
-            base(httpClient, clientId, clientSecret)
+            base(httpClient, clientId)
         {
-            this.Code = code;
-            this.RedirectUri = redirectUri;
+            this.code = code;
+            this.codeVerifier = codeVerifier;
+            this.redirectUri = redirectUri;
         }
 
-        /// <summary>
-        /// The authorization code returned from an initial request to the <c>/authorize</c> endpoint.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="String"/> representing the authorization code returned from an initial request to the <c>/authorize</c> endpoint.
-        /// </returns>
-        protected String Code { get; }
-        /// <summary>
-        /// Gets the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="String"/> representing the redirect URI supplied in the initial request to the <c>/authorize</c> endpoint.
-        /// </returns>
-        protected String RedirectUri { get; }
-        /// <summary>
-        /// Gets or sets a token that can be used to refresh the <see cref="SpotifyAuthorizationFlow.CurrentAccessToken"/>.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="String"/> representing a token that can be used to refresh the
-        /// <see cref="SpotifyAuthorizationFlow.CurrentAccessToken"/>, or <see langword="null"/> if none was provided.
-        /// </returns>
         protected String? RefreshToken { get; set; }
 
         /// <summary>
@@ -68,6 +36,7 @@ namespace Spotify.Web.Authorization.Flows
         /// </summary>
         /// <param name="clientId">A <see cref="String"/> representing the Spotify Web API client ID of the application.</param>
         /// <param name="redirectUri">A <see cref="String"/> representing the URI to redirect to after the user grants or denies permission.</param>
+        /// <param name="codeChallenge">A <see cref="String"/> representing a code challenge. See <see cref="CreateCodeVerifierAndChallenge"/>.</param>
         /// <param name="state">
         /// A <see cref="String"/> that can provide protection against attacks such as cross-site request forgery.
         /// See <see href="https://tools.ietf.org/html/rfc6749#section-4.1">RFC-6749</see>.
@@ -79,18 +48,48 @@ namespace Spotify.Web.Authorization.Flows
         public static Uri CreateAuthorizationUri(
             String clientId,
             String redirectUri,
+            String codeChallenge,
             String? state = null,
             AuthorizationScopes? scopes = null,
             Boolean? showDialog = null)
         {
             return new SpotifyUriBuilder(SpotifyAuthorizationFlow.AuthorizationUrl)
-                .AppendToQuery("response_type", "code")
                 .AppendToQuery("client_id", clientId)
+                .AppendToQuery("response_type", "code")
                 .AppendToQuery("redirect_uri", redirectUri)
+                .AppendToQuery("code_challenge_method", "S256")
+                .AppendToQuery("code_challenge", codeChallenge)
                 .AppendToQueryIfNotNull("state", state)
                 .AppendJoinToQueryIfNotNull("scope", "%20", scopes?.ToSpotifyStrings())
                 .AppendToQueryIfNotNull("show_dialog", showDialog)
                 .Build();
+        }
+
+        /// <summary>
+        /// Creates a random code verifier and corresponding code challenge for use with an <see cref="AuthorizationCodeFlowWithPkce"/>.
+        /// </summary>
+        /// <returns>A <see cref="ValueTuple{T1, T2}"/> containing the code verifier and code challenge.</returns>
+        public static (String CodeVerifier, String CodeChallenge) CreateCodeVerifierAndChallenge()
+        {
+            using var generator = RandomNumberGenerator.Create();
+
+            var bytes = new Byte[32];
+
+            generator.GetBytes(bytes);
+
+            var codeVerifier = Convert.ToBase64String(bytes)
+                .TrimEnd('=')
+                .Replace('+', '-')
+                .Replace('/', '_');
+
+            using var sha256 = SHA256.Create();
+
+            var codeChallenge = Convert.ToBase64String(sha256.ComputeHash(Encoding.UTF8.GetBytes(codeVerifier)))
+                .TrimEnd('=')
+                .Replace('+', '-')
+                .Replace('/', '_');
+
+            return (codeVerifier, codeChallenge);
         }
 
         /// <inheritdoc/>
@@ -98,14 +97,7 @@ namespace Spotify.Web.Authorization.Flows
         {
             async Task GetAccessRefreshToken(HttpContent content)
             {
-                using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
-                {
-                    Content = content,
-                    Headers =
-                    {
-                        Authorization = base.BasicAuthenticationHeader
-                    }
-                };
+                using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri) { Content = content };
 
                 using var response = await base.HttpClient
                     .SendAsync(message, cancellationToken)
@@ -136,8 +128,10 @@ namespace Spotify.Web.Authorization.Flows
                     new KeyValuePair<String?, String?>[]
                     {
                         new("grant_type", "authorization_code"),
-                        new("code", this.Code),
-                        new("redirect_uri", this.RedirectUri)
+                        new("code", this.code),
+                        new("code_verifier", this.codeVerifier),
+                        new("client_id", base.ClientId),
+                        new("redirect_uri", this.redirectUri)
                     });
 
                 await GetAccessRefreshToken(content).ConfigureAwait(false);
@@ -153,7 +147,8 @@ namespace Spotify.Web.Authorization.Flows
                     new KeyValuePair<String?, String?>[]
                     {
                         new("grant_type", "refresh_token"),
-                        new("refresh_token", this.RefreshToken)
+                        new("refresh_token", this.RefreshToken),
+                        new("client_id", base.ClientId)
                     });
 
                 await GetAccessRefreshToken(content).ConfigureAwait(false);

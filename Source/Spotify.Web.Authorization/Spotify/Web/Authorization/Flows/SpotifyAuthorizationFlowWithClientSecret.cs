@@ -9,7 +9,7 @@ namespace Spotify.Web.Authorization.Flows
     /// Represents an <see href="https://spotify.dev/documentation/general/guides/authorization-guide/#authorization-flows">authorization flow</see>
     /// for the Spotify Web API that uses an application's secret key.
     /// </summary>
-    public abstract class SpotifyAuthorizationFlowWithClientSecret : SpotifyAuthorizationFlow, IAccessTokenProvider, IDisposable
+    public abstract class SpotifyAuthorizationFlowWithClientSecret : SpotifyAuthorizationFlow
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAuthorizationFlowWithClientSecret"/> class with the

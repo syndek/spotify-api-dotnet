@@ -41,6 +41,7 @@ namespace Spotify.Web.Authorization.Flows
                 {
                     new("grant_type", "client_credentials")
                 });
+
             using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
             {
                 Content = content,
@@ -54,16 +55,7 @@ namespace Spotify.Web.Authorization.Flows
                 .SendAsync(message, cancellationToken)
                 .ConfigureAwait(false);
 
-            if (response.IsSuccessStatusCode)
-            {
-                var token = await response.Content
-                    .ReadFromJsonAsync<AccessToken>(SpotifyAuthorizationFlow.AccessTokenSerializerOptions, cancellationToken)
-                    .ConfigureAwait(false);
-
-                base.CurrentAccessToken = token;
-                return token;
-            }
-            else
+            if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content
                     .ReadFromJsonAsync<AuthenticationError>(SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions, cancellationToken)
@@ -71,6 +63,13 @@ namespace Spotify.Web.Authorization.Flows
 
                 throw new HttpRequestException(error.ToString(), null, response.StatusCode);
             }
+
+            var token = await response.Content
+                .ReadFromJsonAsync<AccessToken>(SpotifyAuthorizationFlow.AccessTokenSerializerOptions, cancellationToken)
+                .ConfigureAwait(false);
+
+            base.CurrentAccessToken = token;
+            return token;
         }
     }
 }
