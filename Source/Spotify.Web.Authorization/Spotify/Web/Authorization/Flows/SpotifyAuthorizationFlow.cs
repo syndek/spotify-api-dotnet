@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +20,7 @@ namespace Spotify.Web.Authorization.Flows
         /// Represents the URL of the <c>/authorize</c> endpoint of the Spotify Accounts service. This field is constant.
         /// </summary>
         protected const String AuthorizationUrl = "https://accounts.spotify.com/authorize";
-        
+
         /// <summary>
         /// The <see cref="Uri"/> of the Spotify Accounts service <c>/api/token</c> endpoint. This field is read-only.
         /// </summary>
@@ -115,6 +117,37 @@ namespace Spotify.Web.Authorization.Flows
             }
 
             this.isDisposed = true;
+        }
+
+        protected async Task<AccessRefreshToken> GetAccessRefreshTokenAsync(
+            HttpContent content,
+            AuthenticationHeaderValue? authenticationHeader,
+            CancellationToken cancellationToken)
+        {
+            using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
+            {
+                Content = content,
+                Headers = { Authorization = authenticationHeader }
+            };
+
+            using var response = await this.HttpClient
+                .SendAsync(message, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content
+                    .ReadFromJsonAsync<AuthenticationError>(SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions, cancellationToken)
+                    .ConfigureAwait(false);
+
+                throw new HttpRequestException(error.ToString(), null, response.StatusCode);
+            }
+
+            var token = await response.Content
+                .ReadFromJsonAsync<AccessRefreshToken>(SpotifyAuthorizationFlow.AccessTokenSerializerOptions, cancellationToken)
+                .ConfigureAwait(false);
+
+            return token;
         }
     }
 }

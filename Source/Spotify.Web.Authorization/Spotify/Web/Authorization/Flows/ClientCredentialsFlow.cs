@@ -42,34 +42,11 @@ namespace Spotify.Web.Authorization.Flows
                     new("grant_type", "client_credentials")
                 });
 
-            using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
-            {
-                Content = content,
-                Headers =
-                {
-                    Authorization = base.BasicAuthenticationHeader
-                }
-            };
+            var token = await base.GetAccessRefreshTokenAsync(content, base.BasicAuthenticationHeader, cancellationToken);
 
-            var response = await base.HttpClient
-                .SendAsync(message, cancellationToken)
-                .ConfigureAwait(false);
+            base.CurrentAccessToken = token.AccessToken;
 
-            if (!response.IsSuccessStatusCode)
-            {
-                var error = await response.Content
-                    .ReadFromJsonAsync<AuthenticationError>(SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions, cancellationToken)
-                    .ConfigureAwait(false);
-
-                throw new HttpRequestException(error.ToString(), null, response.StatusCode);
-            }
-
-            var token = await response.Content
-                .ReadFromJsonAsync<AccessToken>(SpotifyAuthorizationFlow.AccessTokenSerializerOptions, cancellationToken)
-                .ConfigureAwait(false);
-
-            base.CurrentAccessToken = token;
-            return token;
+            return token.AccessToken;
         }
     }
 }
