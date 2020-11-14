@@ -50,7 +50,10 @@ namespace Spotify.Web.Authorization.Serialization
                 }
             }
 
-            return new(accessToken, AuthorizationScopesConverter.FromSpotifyStrings(scope.Split(' ')), expiresIn);
+            return new(
+                accessToken,
+                scope == String.Empty ? 0 : AuthorizationScopesConverter.FromSpotifyStrings(scope.Split(' ')),
+                expiresIn);
         }
 
         public override void Write(Utf8JsonWriter writer, AccessToken value, JsonSerializerOptions options)
