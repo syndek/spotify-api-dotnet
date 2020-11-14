@@ -8,6 +8,7 @@ using Spotify.ObjectModel;
 using Spotify.ObjectModel.Collections;
 using Spotify.ObjectModel.Serialization.EnumConverters;
 using Spotify.Web.Authorization;
+using Spotify.Web.RequestObjects;
 
 namespace Spotify.Web
 {
@@ -138,12 +139,12 @@ namespace Spotify.Web
         /// <param name="accessTokenProvider">An optional <see cref="IAccessTokenProvider"/> to use instead of the default.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
-        public Task<IReadOnlyList<Artist>> GetArtistRelatedArtistsAsync(
+        public async Task<IReadOnlyList<Artist>> GetArtistRelatedArtistsAsync(
             String id,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<IReadOnlyList<Artist>>(
+            return await base.SendAsync<NamedArray<Artist>>(
                 new($"{SpotifyApiClient.BaseUrl}/artists/{id}/related-artists"),
                 HttpMethod.Get,
                 content: null,
