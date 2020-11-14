@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Spotify.Web.RequestObjects
 {
@@ -9,10 +8,10 @@ namespace Spotify.Web.RequestObjects
     {
         private readonly IReadOnlyList<TElement> elements;
 
-        internal NamedArray(String name, IEnumerable<TElement> elements)
+        internal NamedArray(String name, IReadOnlyList<TElement> elements)
         {
             this.Name = name;
-            this.elements = elements.ToArray();
+            this.elements = elements;
         }
 
         public TElement this[Int32 index] => this.elements[index];
