@@ -19,7 +19,7 @@ namespace Spotify.ObjectModel.Serialization
             var itemArrayConverter = options.GetConverter<IReadOnlyList<TItem>>();
             var uriConverter = options.GetConverter<Uri>();
 
-            IReadOnlyList<TItem> items = null!;
+            IReadOnlyList<TItem>? items = null;
             Int32 total = default;
             Int32 limit = default;
             Int32 offset = default;
@@ -72,7 +72,7 @@ namespace Spotify.ObjectModel.Serialization
                 }
             }
 
-            return new(items, total, limit, offset, href, previous, next);
+            return new(items ?? Array.Empty<TItem>(), total, limit, offset, href, previous, next);
         }
 
         public override void Write(Utf8JsonWriter writer, Paging<TItem> value, JsonSerializerOptions options)
