@@ -65,7 +65,10 @@ namespace Spotify.Web
                 new SimplifiedShowConverter(),
                 new SimplifiedTrackConverter(),
                 new TimeIntervalConverter(),
-                new TrackConverter()
+                new TrackConverter(),
+
+                // Non-ObjectModel type converters.
+                new NamedArrayConverterFactory()
             }
         };
         private static readonly JsonSerializerOptions ErrorSerializerOptions = new()
