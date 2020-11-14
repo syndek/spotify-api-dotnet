@@ -71,10 +71,10 @@ namespace Spotify.ObjectModel.Serialization
                         name = reader.GetString()!;
                         break;
                     case "album_type":
-                        type = AlbumTypeConverter.FromSpotifyString(reader.GetString()!);
+                        type = AlbumTypeConverter.FromSpotifyString(reader.GetString()!.ToLower());
                         break;
                     case "album_group":
-                        group = AlbumGroupConverter.FromSpotifyString(reader.GetString()!);
+                        group = AlbumGroupConverter.FromSpotifyString(reader.GetString()!.ToLower());
                         break;
                     case "images":
                         images = imageArrayConverter.Read(ref reader, typeof(ImageArray), options)!;
