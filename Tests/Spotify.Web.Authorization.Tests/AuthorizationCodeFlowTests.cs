@@ -1,13 +1,10 @@
-using System;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using Spotify.Web.Authorization.Flows;
 
 namespace Spotify.Web.Authorization.Tests
 {
     [TestClass]
-    public class AuthorizationCodeFlowTests : object
+    public class AuthorizationCodeFlowTests
     {
         [TestMethod]
         public void CreateAuthorizationUrl_NoScopes()

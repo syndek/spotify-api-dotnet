@@ -1,5 +1,5 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using Spotify.Web.Authorization.Serialization;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -7,15 +7,13 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Spotify.Web.Authorization.Serialization;
-
 namespace Spotify.Web.Authorization.Flows
 {
     /// <summary>
     /// Represents an <see href="https://spotify.dev/documentation/general/guides/authorization-guide/#authorization-flows">authorization flow</see>
     /// for the Spotify Web API.
     /// </summary>
-    public abstract class SpotifyAuthorizationFlow : object, IAccessTokenProvider, IDisposable
+    public abstract class SpotifyAuthorizationFlow : IAccessTokenProvider, IDisposable
     {
         /// <summary>
         /// Represents the URL of the <c>/authorize</c> endpoint of the Spotify Accounts service. This field is constant.

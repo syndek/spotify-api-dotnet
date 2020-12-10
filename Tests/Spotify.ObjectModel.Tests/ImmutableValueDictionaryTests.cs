@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spotify.ObjectModel.Collections;
+using System.Collections.Generic;
 
 namespace Spotify.ObjectModel.Tests
 {
     [TestClass]
-    public class ImmutableValueDictionaryTests : object
+    public class ImmutableValueDictionaryTests
     {
         [TestClass]
         [TestCategory("StructuralEquality")]

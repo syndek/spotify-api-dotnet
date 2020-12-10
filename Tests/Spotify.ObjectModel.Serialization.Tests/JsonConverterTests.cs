@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text.Json;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Spotify.ObjectModel.Serialization.Tests
 {
-    public abstract class JsonConverterTests<TObject> : object
+    public abstract class JsonConverterTests<TObject>
     {
         public abstract string TestJson { get; }
         public abstract JsonSerializerOptions SerializerOptions { get; }

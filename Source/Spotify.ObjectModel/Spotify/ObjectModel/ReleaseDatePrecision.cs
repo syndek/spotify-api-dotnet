@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Spotify.ObjectModel
+﻿namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Defines the precisions with which a release date value can be known.
     /// </summary>
-    public enum ReleaseDatePrecision : int
+    public enum ReleaseDatePrecision
     {
         /// <summary>
         /// Only the year of the release date is known.

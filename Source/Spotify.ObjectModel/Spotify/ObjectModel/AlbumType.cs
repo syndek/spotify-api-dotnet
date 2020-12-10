@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Spotify.ObjectModel
+﻿namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Defines different types of <see cref="ObjectModel.Album"/>.
     /// </summary>
-    public enum AlbumType : int
+    public enum AlbumType
     {
         /// <summary>
         /// The <see cref="ObjectModel.Album"/> is a regular album.

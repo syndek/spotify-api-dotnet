@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
 namespace Spotify.Web.Authorization
@@ -7,7 +6,7 @@ namespace Spotify.Web.Authorization
     /// <summary>
     /// Represents a <see cref="IAccessTokenProvider"/> that simply returns the <see cref="string"/> it was constructed with.
     /// </summary>
-    public class SimpleAccessTokenProvider : object, IAccessTokenProvider
+    public class SimpleAccessTokenProvider : IAccessTokenProvider
     {
         private readonly string accessToken;
 

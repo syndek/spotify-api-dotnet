@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Spotify.ObjectModel
+﻿namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Defines types of <see cref="RecommendationSeed"/>.
     /// </summary>
-    public enum RecommendationSeedType : int
+    public enum RecommendationSeedType
     {
         /// <summary>
         /// The <see cref="RecommendationSeed"/> is an artist seed.
