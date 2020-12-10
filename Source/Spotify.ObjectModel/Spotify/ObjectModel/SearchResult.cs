@@ -34,7 +34,7 @@ namespace Spotify.ObjectModel
             Paging<Track>? tracks,
             Paging<SimplifiedShow>? shows,
             Paging<SimplifiedEpisode>? episodes,
-            Paging<Playlist>? playlists) : base()
+            Paging<Playlist>? playlists)
         {
             Artists = artists;
             Albums = albums;

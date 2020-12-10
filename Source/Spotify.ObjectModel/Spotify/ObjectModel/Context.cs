@@ -19,7 +19,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey,TValue}"/> containing the known
         /// external URLs for the context, keyed by the type of the URL.
         /// </param>
-        public Context(Uri uri, Uri href, IReadOnlyDictionary<string, Uri> externalUrls) : base()
+        public Context(Uri uri, Uri href, IReadOnlyDictionary<string, Uri> externalUrls)
         {
             Uri = uri;
             Href = href;

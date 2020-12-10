@@ -14,7 +14,7 @@ namespace Spotify.Web.Authorization
         /// Initializes a new instance of the <see cref="SimpleAccessTokenProvider"/> class with the specified <paramref name="accessToken"/>.
         /// </summary>
         /// <param name="accessToken">A <see cref="string"/> representing the access token to use.</param>
-        public SimpleAccessTokenProvider(string accessToken) : base()
+        public SimpleAccessTokenProvider(string accessToken)
         {
             this.accessToken = accessToken;
         }

@@ -49,7 +49,7 @@ namespace Spotify.Web.Authorization.Flows
         /// An <see cref="System.Net.Http.HttpClient"/> instance to use to make requests to the Spotify Accounts service.
         /// </param>
         /// <param name="clientId">A <see cref="string"/> representing a valid Spotify Web API client ID.</param>
-        protected SpotifyAuthorizationFlow(HttpClient httpClient, string clientId) : base()
+        protected SpotifyAuthorizationFlow(HttpClient httpClient, string clientId)
         {
             isDisposed = false;
             this.httpClient = httpClient;

@@ -10,7 +10,7 @@ namespace Spotify.Web
 
         private StringBuilder? queryBuilder;
 
-        public SpotifyUriBuilder(string path) : base()
+        public SpotifyUriBuilder(string path)
         {
             this.path = path;
             queryBuilder = null;

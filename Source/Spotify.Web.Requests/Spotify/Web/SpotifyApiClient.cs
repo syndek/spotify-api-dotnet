@@ -82,7 +82,7 @@ namespace Spotify.Web
         /// Initializes a new instance of the <see cref="SpotifyApiClient"/> class with the specified <paramref name="httpClient"/>.
         /// </summary>
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
-        protected SpotifyApiClient(HttpClient httpClient) : base()
+        protected SpotifyApiClient(HttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
@@ -109,7 +109,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
-            using var message = await 
+            using var message = await
                 CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
                 .ConfigureAwait(false);
 
@@ -142,7 +142,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
-            using var message = await 
+            using var message = await
                 CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
                 .ConfigureAwait(false);
 

@@ -14,7 +14,7 @@
         /// <param name="isFullyPlayed">
         /// A <see cref="bool"/> representing whether or not the <see cref="Episode"/> has been fully played by the user.
         /// </param>
-        public ResumePoint(int resumePosition, bool isFullyPlayed) : base()
+        public ResumePoint(int resumePosition, bool isFullyPlayed)
         {
             ResumePosition = resumePosition;
             IsFullyPlayed = isFullyPlayed;

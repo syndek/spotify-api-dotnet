@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <param name="savedObject">An object of type <typeparamref name="TSaved"/> representing the object that was saved.</param>
         /// <param name="savedAt">The <see cref="DateTime"/> at which <paramref name="savedObject"/> was saved.</param>
-        public Saved(TSaved savedObject, DateTime savedAt) : base()
+        public Saved(TSaved savedObject, DateTime savedAt)
         {
             SavedObject = savedObject;
             SavedAt = savedAt;

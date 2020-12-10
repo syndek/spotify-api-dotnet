@@ -20,7 +20,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="SimplifiedTrack"/> objects
         /// representing the recommended tracks of the recommendations.
         /// </param>
-        public Recommendations(IReadOnlyList<RecommendationSeed> seeds, IReadOnlyList<SimplifiedTrack> tracks) : base()
+        public Recommendations(IReadOnlyList<RecommendationSeed> seeds, IReadOnlyList<SimplifiedTrack> tracks)
         {
             Seeds = new ImmutableValueArray<RecommendationSeed>(seeds);
             Tracks = new ImmutableValueArray<SimplifiedTrack>(tracks);

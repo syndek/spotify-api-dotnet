@@ -36,8 +36,7 @@ namespace Spotify.ObjectModel
             IReadOnlyList<TimeInterval> beats,
             IReadOnlyList<Section> sections,
             IReadOnlyList<Segment> segments,
-            IReadOnlyList<TimeInterval> tatums) :
-            base()
+            IReadOnlyList<TimeInterval> tatums)
         {
             Bars = new ImmutableValueArray<TimeInterval>(bars);
             Beats = new ImmutableValueArray<TimeInterval>(beats);

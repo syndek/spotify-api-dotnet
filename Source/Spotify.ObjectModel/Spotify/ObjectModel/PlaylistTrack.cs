@@ -14,7 +14,7 @@ namespace Spotify.ObjectModel
         /// <param name="addedBy">The <see cref="PublicUser"/> who added the <paramref name="track"/> to the playlist.</param>
         /// <param name="isLocal">A <see cref="bool"/> indicating whether or not the <paramref name="track"/> is a local file.</param>
         /// <param name="track">A <see cref="IPlayable"/> object representing the track that is in the playlist.</param>
-        public PlaylistTrack(DateTime addedAt, PublicUser addedBy, bool isLocal, IPlayable track) : base()
+        public PlaylistTrack(DateTime addedAt, PublicUser addedBy, bool isLocal, IPlayable track)
         {
             AddedAt = addedAt;
             AddedBy = addedBy;

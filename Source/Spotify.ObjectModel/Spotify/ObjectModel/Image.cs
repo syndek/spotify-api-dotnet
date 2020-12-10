@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel
         /// <param name="url">The source URL of the image.</param>
         /// <param name="width">The width in pixels of the image, or <see langword="null"/> if unknown.</param>
         /// <param name="height">The height in pixels of the image, or <see langword="null"/> if unknown.</param>
-        public Image(Uri url, int? width, int? height) : base()
+        public Image(Uri url, int? width, int? height)
         {
             Url = url;
             Width = width;

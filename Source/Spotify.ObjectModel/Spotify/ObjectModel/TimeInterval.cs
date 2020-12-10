@@ -12,7 +12,7 @@
         /// <param name="start">A <see cref="float"/> representing the starting point (in seconds) of the time interval.</param>
         /// <param name="duration">A <see cref="float"/> representing the duration (in seconds) of the time interval.</param>
         /// <param name="confidence">A <see cref="float"/> representing the confidence of the reliability of the time interval.</param>
-        public TimeInterval(float start, float duration, float confidence) : base()
+        public TimeInterval(float start, float duration, float confidence)
         {
             Start = start;
             Duration = duration;

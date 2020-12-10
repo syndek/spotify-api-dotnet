@@ -15,7 +15,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if unavailable.
         /// </param>
         /// <param name="total">The total number of followers.</param>
-        public Followers(Uri? href, int total) : base()
+        public Followers(Uri? href, int total)
         {
             Href = href;
             Total = total;

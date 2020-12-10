@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="text">The text of the copyright.</param>
         /// <param name="type">The type of the copyright.</param>
-        public Copyright(string text, CopyrightType type) : base()
+        public Copyright(string text, CopyrightType type)
         {
             Text = text;
             Type = type;

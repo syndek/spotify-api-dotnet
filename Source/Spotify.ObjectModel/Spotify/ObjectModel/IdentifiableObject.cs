@@ -10,7 +10,7 @@
         /// Initializes a new instance of the <see cref="IdentifiableObject"/> record with the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">A <see cref="string"/> representing the Spotify ID of the object.</param>
-        public IdentifiableObject(string id) : base()
+        public IdentifiableObject(string id)
         {
             Id = id;
         }
