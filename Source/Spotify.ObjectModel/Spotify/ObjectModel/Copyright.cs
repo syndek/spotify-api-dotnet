@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spotify.ObjectModel
+﻿namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents a copyright.

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Spotify.ObjectModel.Collections;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
-using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel.Serialization
 {
@@ -163,7 +162,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WritePropertyName("episodes");
             simplifiedEpisodePagingConverter.Write(writer, value.Episodes, options);
             writer.WriteBoolean("explicit", value.IsExplicit);
-            
+
             if (value.IsExternallyHosted is not null)
             {
                 writer.WriteBoolean("is_externally_hosted", value.IsExternallyHosted.Value);
@@ -172,7 +171,7 @@ namespace Spotify.ObjectModel.Serialization
             {
                 writer.WriteNull("is_externally_hosted");
             }
-            
+
             writer.WritePropertyName("languages");
             stringArrayConverter.Write(writer, value.Languages, options);
             writer.WritePropertyName("available_markets");

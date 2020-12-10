@@ -52,7 +52,7 @@ namespace Spotify.Web.Serialization
 
             reader.Read(); // }
 
-            return new((HttpStatusCode) status, message);
+            return new((HttpStatusCode)status, message);
         }
 
         public override void Write(Utf8JsonWriter writer, Error value, JsonSerializerOptions options)
@@ -62,7 +62,7 @@ namespace Spotify.Web.Serialization
             writer.WritePropertyName("error");
             writer.WriteStartObject();
 
-            writer.WriteNumber("status", (int) value.StatusCode);
+            writer.WriteNumber("status", (int)value.StatusCode);
             writer.WriteString("message", value.Message);
 
             writer.WriteEndObject();

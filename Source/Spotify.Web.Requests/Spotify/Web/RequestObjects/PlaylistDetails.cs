@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spotify.Web.RequestObjects
+﻿namespace Spotify.Web.RequestObjects
 {
     internal readonly struct PlaylistDetails
     {

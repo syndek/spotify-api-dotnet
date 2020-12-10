@@ -72,7 +72,7 @@ namespace Spotify.ObjectModel.Serialization
                         var modeValue = reader.GetInt32();
                         if (modeValue is not -1)
                         {
-                            mode = (Modality) modeValue;
+                            mode = (Modality)modeValue;
                         }
                         break;
                     case "mode_confidence":
@@ -116,7 +116,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteNumber("tempo_confidence", value.TempoConfidence);
             writer.WriteNumber("key", value.Key);
             writer.WriteNumber("key_confidence", value.KeyConfidence);
-            writer.WriteNumber("mode", (int?) value.Mode ?? -1);
+            writer.WriteNumber("mode", (int?)value.Mode ?? -1);
             writer.WriteNumber("mode_confidence", value.ModeConfidence);
             writer.WriteNumber("time_signature", value.TimeSignature);
             writer.WriteNumber("time_signature_confidence", value.TimeSignatureConfidence);

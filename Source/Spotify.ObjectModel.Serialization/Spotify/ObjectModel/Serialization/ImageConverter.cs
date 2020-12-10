@@ -68,7 +68,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteStartObject();
             writer.WritePropertyName("url");
             uriConverter.Write(writer, value.Url, options);
-            
+
             if (value.Width is not null)
             {
                 writer.WriteNumber("width", value.Width.Value);
@@ -77,7 +77,7 @@ namespace Spotify.ObjectModel.Serialization
             {
                 writer.WriteNull("width");
             }
-            
+
             if (value.Height is not null)
             {
                 writer.WriteNumber("height", value.Height.Value);
@@ -86,7 +86,7 @@ namespace Spotify.ObjectModel.Serialization
             {
                 writer.WriteNull("height");
             }
-            
+
             writer.WriteEndObject();
         }
     }

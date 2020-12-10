@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Spotify.ObjectModel.Collections;
+using Spotify.Web.Authorization;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Spotify.ObjectModel.Collections;
-using Spotify.Web.Authorization;
 
 namespace Spotify.Web.Navigation
 {

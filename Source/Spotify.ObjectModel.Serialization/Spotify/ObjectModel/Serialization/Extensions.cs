@@ -8,7 +8,7 @@ namespace Spotify.ObjectModel.Serialization
     internal static class Extensions
     {
         public static JsonConverter<TValue> GetConverter<TValue>(this JsonSerializerOptions options) =>
-            (JsonConverter<TValue>) options.GetConverter(typeof(TValue));
+            (JsonConverter<TValue>)options.GetConverter(typeof(TValue));
 
         public static DateTime GetReleaseDate(this ref Utf8JsonReader reader)
         {

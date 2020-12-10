@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Spotify.ObjectModel.Collections;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
-using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel.Serialization
 {
@@ -88,7 +87,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteNumber("offset", value.Offset);
             writer.WritePropertyName("href");
             uriConverter.Write(writer, value.Href, options);
-            
+
             if (value.Previous is not null)
             {
                 writer.WritePropertyName("previous");
@@ -98,7 +97,7 @@ namespace Spotify.ObjectModel.Serialization
             {
                 writer.WriteNull("previous");
             }
-            
+
             if (value.Next is not null)
             {
                 writer.WritePropertyName("next");
@@ -108,7 +107,7 @@ namespace Spotify.ObjectModel.Serialization
             {
                 writer.WriteNull("next");
             }
-            
+
             writer.WriteEndObject();
         }
     }

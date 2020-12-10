@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spotify.ObjectModel
+﻿namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents a user's most recent playback position within an <see cref="Episode"/>.

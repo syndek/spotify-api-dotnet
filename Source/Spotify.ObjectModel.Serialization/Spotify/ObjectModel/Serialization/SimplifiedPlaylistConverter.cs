@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Spotify.ObjectModel.Collections;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
-using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel.Serialization
 {
@@ -142,7 +141,7 @@ namespace Spotify.ObjectModel.Serialization
             publicUserConverter.Write(writer, value.Owner, options);
             writer.WritePropertyName("tracks");
             playlistTrackPagingConverter.Write(writer, value.Tracks, options);
-            
+
             if (value.IsPublic is not null)
             {
                 writer.WriteBoolean("public", value.IsPublic.Value);
@@ -151,7 +150,7 @@ namespace Spotify.ObjectModel.Serialization
             {
                 writer.WriteNull("public");
             }
-            
+
             writer.WriteBoolean("collaborative", value.IsCollaborative);
             writer.WriteString("snapshot_id", value.SnapshotId);
             writer.WritePropertyName("external_urls");

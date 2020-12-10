@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Spotify.ObjectModel;
+using Spotify.ObjectModel.Collections;
+using Spotify.ObjectModel.Serialization.EnumConverters;
+using Spotify.Web.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Spotify.ObjectModel;
-using Spotify.ObjectModel.Collections;
-using Spotify.ObjectModel.Serialization.EnumConverters;
-using Spotify.Web.Authorization;
 
 namespace Spotify.Web
 {

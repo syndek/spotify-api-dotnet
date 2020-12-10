@@ -16,7 +16,7 @@ namespace Spotify.ObjectModel.Serialization
 
             var elements = new List<TElement?>();
             var elementType = typeof(TElement);
-            var elementConverter = (JsonConverter<TElement>) options.GetConverter(elementType);
+            var elementConverter = (JsonConverter<TElement>)options.GetConverter(elementType);
 
             while (reader.Read())
             {

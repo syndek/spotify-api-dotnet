@@ -19,7 +19,7 @@ namespace Spotify.Web.RequestObjects.Serialization
 
             var elementType = typeToConvert.GetGenericArguments()[0];
 
-            return (JsonConverter) Activator.CreateInstance(
+            return (JsonConverter)Activator.CreateInstance(
                 typeof(NamedArrayConverter<>).MakeGenericType(elementType),
                 BindingFlags.Instance | BindingFlags.Public,
                 null,

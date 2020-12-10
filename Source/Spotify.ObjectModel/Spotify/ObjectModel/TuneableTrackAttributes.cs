@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spotify.ObjectModel
+﻿namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents a collection of values used to get recommendations from the Spotify Web API.

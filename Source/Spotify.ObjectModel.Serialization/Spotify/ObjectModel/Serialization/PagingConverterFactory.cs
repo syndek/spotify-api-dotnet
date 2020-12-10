@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Spotify.ObjectModel.Collections;
+using System;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
-using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel.Serialization
 {
@@ -21,7 +20,7 @@ namespace Spotify.ObjectModel.Serialization
 
             var elementType = typeToConvert.GetGenericArguments()[0];
 
-            return (JsonConverter) Activator.CreateInstance(
+            return (JsonConverter)Activator.CreateInstance(
                 typeof(PagingConverter<>).MakeGenericType(elementType),
                 BindingFlags.Instance | BindingFlags.Public,
                 null,

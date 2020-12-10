@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Spotify.ObjectModel;
+using Spotify.ObjectModel.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Spotify.ObjectModel;
-using Spotify.ObjectModel.Collections;
 
 namespace Spotify
 {

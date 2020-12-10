@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-
-using Spotify.ObjectModel.Collections;
+﻿using Spotify.ObjectModel.Collections;
+using System.Collections.Generic;
 
 namespace Spotify.ObjectModel
 {

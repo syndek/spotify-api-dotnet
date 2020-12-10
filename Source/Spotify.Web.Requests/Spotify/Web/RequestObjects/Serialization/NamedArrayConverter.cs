@@ -14,7 +14,7 @@ namespace Spotify.Web.RequestObjects.Serialization
                 throw new JsonException();
             }
 
-            var arrayConverter = (JsonConverter<IReadOnlyList<TElement>>) options.GetConverter(typeof(IReadOnlyList<TElement>));
+            var arrayConverter = (JsonConverter<IReadOnlyList<TElement>>)options.GetConverter(typeof(IReadOnlyList<TElement>));
 
             string name = string.Empty;
             IReadOnlyList<TElement> elements = Array.Empty<TElement>();
@@ -43,7 +43,7 @@ namespace Spotify.Web.RequestObjects.Serialization
 
         public override void Write(Utf8JsonWriter writer, NamedArray<TElement> value, JsonSerializerOptions options)
         {
-            var arrayConverter = (JsonConverter<IReadOnlyList<TElement>>) options.GetConverter(typeof(IReadOnlyList<TElement>));
+            var arrayConverter = (JsonConverter<IReadOnlyList<TElement>>)options.GetConverter(typeof(IReadOnlyList<TElement>));
 
             writer.WriteStartObject();
             writer.WritePropertyName(value.Name);
