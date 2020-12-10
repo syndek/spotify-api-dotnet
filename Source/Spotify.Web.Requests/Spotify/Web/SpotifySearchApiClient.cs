@@ -31,7 +31,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/search")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/search")
                 .AppendToQuery("query", query.Replace(" ", "%20"))
                 .AppendJoinToQuery("type", ',', types.GetFlags().Select(value => value.GetName().ToLower()))
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString())
@@ -39,7 +39,7 @@ namespace Spotify.Web
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("include_external", includeExternal);
 
-            return base.SendAsync<SearchResult>(
+            return SendAsync<SearchResult>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -56,7 +56,7 @@ namespace Spotify.Web
             bool? includeExternal,
             CancellationToken cancellationToken)
         {
-            return this.SearchAsync(query, types, market, limit, offset, includeExternal, null, cancellationToken);
+            return SearchAsync(query, types, market, limit, offset, includeExternal, null, cancellationToken);
         }
     }
 }

@@ -16,10 +16,10 @@ namespace Spotify.ObjectModel
         /// <param name="track">A <see cref="IPlayable"/> object representing the track that is in the playlist.</param>
         public PlaylistTrack(DateTime addedAt, PublicUser addedBy, bool isLocal, IPlayable track) : base()
         {
-            this.AddedAt = addedAt;
-            this.AddedBy = addedBy;
-            this.IsLocal = isLocal;
-            this.Track = track;
+            AddedAt = addedAt;
+            AddedBy = addedBy;
+            IsLocal = isLocal;
+            Track = track;
         }
 
         /// <summary>

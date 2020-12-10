@@ -36,12 +36,12 @@ namespace Spotify.ObjectModel
             Paging<SimplifiedEpisode>? episodes,
             Paging<Playlist>? playlists) : base()
         {
-            this.Artists = artists;
-            this.Albums = albums;
-            this.Tracks = tracks;
-            this.Shows = shows;
-            this.Episodes = episodes;
-            this.Playlists = playlists;
+            Artists = artists;
+            Albums = albums;
+            Tracks = tracks;
+            Shows = shows;
+            Episodes = episodes;
+            Playlists = playlists;
         }
 
         /// <summary>

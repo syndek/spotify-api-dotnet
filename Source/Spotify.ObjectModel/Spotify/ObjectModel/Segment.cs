@@ -39,12 +39,12 @@ namespace Spotify.ObjectModel
             IReadOnlyList<float> timbre) :
             base(start, duration, confidence)
         {
-            this.LoudnessStart = loudnessStart;
-            this.LoudnessEnd = loudnessEnd;
-            this.LoudnessMax = loudnessMax;
-            this.LoudnessMaxTime = loudnessMaxTime;
-            this.Pitches = new ImmutableValueArray<float>(pitches);
-            this.Timbre = new ImmutableValueArray<float>(timbre);
+            LoudnessStart = loudnessStart;
+            LoudnessEnd = loudnessEnd;
+            LoudnessMax = loudnessMax;
+            LoudnessMaxTime = loudnessMaxTime;
+            Pitches = new ImmutableValueArray<float>(pitches);
+            Timbre = new ImmutableValueArray<float>(timbre);
         }
 
         /// <summary>

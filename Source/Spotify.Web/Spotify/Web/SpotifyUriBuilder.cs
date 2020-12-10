@@ -13,29 +13,29 @@ namespace Spotify.Web
         public SpotifyUriBuilder(string path) : base()
         {
             this.path = path;
-            this.queryBuilder = null;
+            queryBuilder = null;
         }
 
-        private StringBuilder QueryBuilder => this.queryBuilder ??= new();
+        private StringBuilder QueryBuilder => queryBuilder ??= new();
 
         public override string ToString()
         {
-            if (this.queryBuilder is null)
+            if (queryBuilder is null)
             {
-                return this.path;
+                return path;
             }
 
-            return $"{this.path}?{this.queryBuilder}";
+            return $"{path}?{queryBuilder}";
         }
 
         public SpotifyUriBuilder AppendToQuery<TElement>(string name, TElement element)
         {
-            if (this.QueryBuilder.Length > 0)
+            if (QueryBuilder.Length > 0)
             {
-                this.QueryBuilder.Append('&');
+                QueryBuilder.Append('&');
             }
 
-            this.QueryBuilder.Append(name).Append('=').Append(element);
+            QueryBuilder.Append(name).Append('=').Append(element);
 
             return this;
         }
@@ -44,7 +44,7 @@ namespace Spotify.Web
         {
             if (element is not null)
             {
-                this.AppendToQuery(name, element);
+                AppendToQuery(name, element);
             }
 
             return this;
@@ -54,7 +54,7 @@ namespace Spotify.Web
         {
             if (element is not null)
             {
-                this.AppendToQuery(name, element.Value);
+                AppendToQuery(name, element.Value);
             }
 
             return this;
@@ -62,24 +62,24 @@ namespace Spotify.Web
 
         public SpotifyUriBuilder AppendJoinToQuery<TElement>(string name, string separator, IEnumerable<TElement> elements)
         {
-            if (this.QueryBuilder.Length > 0)
+            if (QueryBuilder.Length > 0)
             {
-                this.QueryBuilder.Append('&');
+                QueryBuilder.Append('&');
             }
 
-            this.QueryBuilder.Append(name).Append('=').AppendJoin(separator, elements);
+            QueryBuilder.Append(name).Append('=').AppendJoin(separator, elements);
 
             return this;
         }
 
         public SpotifyUriBuilder AppendJoinToQuery<TElement>(string name, char separator, IEnumerable<TElement> elements)
         {
-            if (this.QueryBuilder.Length > 0)
+            if (QueryBuilder.Length > 0)
             {
-                this.QueryBuilder.Append('&');
+                QueryBuilder.Append('&');
             }
 
-            this.QueryBuilder.Append(name).Append('=').AppendJoin(separator, elements);
+            QueryBuilder.Append(name).Append('=').AppendJoin(separator, elements);
 
             return this;
         }
@@ -88,7 +88,7 @@ namespace Spotify.Web
         {
             if (elements is not null)
             {
-                this.AppendJoinToQuery(name, separator, elements);
+                AppendJoinToQuery(name, separator, elements);
             }
 
             return this;
@@ -98,12 +98,12 @@ namespace Spotify.Web
         {
             if (elements is not null)
             {
-                this.AppendJoinToQuery(name, separator, elements);
+                AppendJoinToQuery(name, separator, elements);
             }
 
             return this;
         }
 
-        public Uri Build() => new(this.ToString());
+        public Uri Build() => new(ToString());
     }
 }

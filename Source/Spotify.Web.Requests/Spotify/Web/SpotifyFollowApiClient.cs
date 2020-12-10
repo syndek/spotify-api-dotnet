@@ -25,11 +25,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following/contains")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/me/following/contains")
                 .AppendToQuery("type", "artist")
                 .AppendJoinToQuery("ids", ',', ids);
 
-            return base.SendAsync<IReadOnlyList<Boolean>>(
+            return SendAsync<IReadOnlyList<bool>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -42,11 +42,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following/contains")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/me/following/contains")
                 .AppendToQuery("type", "user")
                 .AppendJoinToQuery("ids", ',', ids);
 
-            return base.SendAsync<IReadOnlyList<Boolean>>(
+            return SendAsync<IReadOnlyList<bool>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -60,10 +60,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{id}/followers/contains")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/playlists/{id}/followers/contains")
                 .AppendJoinToQuery("ids", ',', userIds);
 
-            return base.SendAsync<IReadOnlyList<Boolean>>(
+            return SendAsync<IReadOnlyList<bool>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -76,7 +76,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return this.EditFollowing("artist", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
+            return EditFollowing("artist", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
         }
 
         public Task FollowUsersAsync(
@@ -84,7 +84,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return this.EditFollowing("user", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
+            return EditFollowing("user", HttpMethod.Put, ids, accessTokenProvider, cancellationToken);
         }
 
         public Task FollowPlaylistAsync(
@@ -98,8 +98,8 @@ namespace Spotify.Web
                 Encoding.UTF8,
                 MediaTypeNames.Application.Json);
 
-            return base.SendAsync(
-                new Uri($"{SpotifyApiClient.BaseUrl}/playlists/{id}/followers"),
+            return SendAsync(
+                new Uri($"{BaseUrl}/playlists/{id}/followers"),
                 HttpMethod.Put,
                 content,
                 accessTokenProvider,
@@ -111,7 +111,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return this.EditFollowing("artist", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
+            return EditFollowing("artist", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
         }
 
         public Task UnfollowUsersAsync(
@@ -119,7 +119,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return this.EditFollowing("user", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
+            return EditFollowing("user", HttpMethod.Delete, ids, accessTokenProvider, cancellationToken);
         }
 
         public Task UnfollowPlaylistAsync(
@@ -127,8 +127,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync(
-                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/followers"),
+            return SendAsync(
+                new($"{BaseUrl}/playlists/{id}/followers"),
                 HttpMethod.Delete,
                 content: null,
                 accessTokenProvider,
@@ -142,11 +142,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/following")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/me/following")
                 .AppendToQuery("type", type)
                 .AppendJoinToQuery("ids", ',', ids);
 
-            return base.SendAsync(
+            return SendAsync(
                 uriBuilder.Build(),
                 method,
                 content: null,
@@ -159,14 +159,14 @@ namespace Spotify.Web
             IEnumerable<string> ids,
             CancellationToken cancellationToken)
         {
-            return this.CheckCurrentUserFollowsArtistsAsync(ids, null, cancellationToken);
+            return CheckCurrentUserFollowsArtistsAsync(ids, null, cancellationToken);
         }
 
         Task<IReadOnlyList<bool>> ISpotifyFollowApi.CheckCurrentUserFollowsUsersAsync(
             IEnumerable<string> ids,
             CancellationToken cancellationToken)
         {
-            return this.CheckCurrentUserFollowsUsersAsync(ids, null, cancellationToken);
+            return CheckCurrentUserFollowsUsersAsync(ids, null, cancellationToken);
         }
 
         Task<IReadOnlyList<bool>> ISpotifyFollowApi.CheckUsersFollowPlaylistAsync(
@@ -174,37 +174,37 @@ namespace Spotify.Web
             IEnumerable<string> userIds,
             CancellationToken cancellationToken)
         {
-            return this.CheckUsersFollowPlaylistAsync(id, userIds, null, cancellationToken);
+            return CheckUsersFollowPlaylistAsync(id, userIds, null, cancellationToken);
         }
 
         Task ISpotifyFollowApi.FollowArtistsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
-            return this.FollowArtistsAsync(ids, null, cancellationToken);
+            return FollowArtistsAsync(ids, null, cancellationToken);
         }
 
         Task ISpotifyFollowApi.FollowUsersAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
-            return this.FollowUsersAsync(ids, null, cancellationToken);
+            return FollowUsersAsync(ids, null, cancellationToken);
         }
 
         Task ISpotifyFollowApi.FollowPlaylistAsync(string id, bool? publicFollow, CancellationToken cancellationToken)
         {
-            return this.FollowPlaylistAsync(id, publicFollow, null, cancellationToken);
+            return FollowPlaylistAsync(id, publicFollow, null, cancellationToken);
         }
 
         Task ISpotifyFollowApi.UnfollowArtistsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
-            return this.UnfollowArtistsAsync(ids, null, cancellationToken);
+            return UnfollowArtistsAsync(ids, null, cancellationToken);
         }
 
         Task ISpotifyFollowApi.UnfollowUsersAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
-            return this.UnfollowUsersAsync(ids, null, cancellationToken);
+            return UnfollowUsersAsync(ids, null, cancellationToken);
         }
 
         Task ISpotifyFollowApi.UnfollowPlaylistAsync(string id, CancellationToken cancellationToken)
         {
-            return this.UnfollowPlaylistAsync(id, null, cancellationToken);
+            return UnfollowPlaylistAsync(id, null, cancellationToken);
         }
         #endregion
     }

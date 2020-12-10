@@ -80,7 +80,7 @@ namespace Spotify.Web
             if (response.IsSuccessStatusCode)
             {
                 var returned = await response.Content
-                    .ReadFromJsonAsync<TObject>(HttpClientNavigationExtensions.DefaultSerializerOptions, cancellationToken)
+                    .ReadFromJsonAsync<TObject>(DefaultSerializerOptions, cancellationToken)
                     .ConfigureAwait(false);
 
                 return returned!;
@@ -88,7 +88,7 @@ namespace Spotify.Web
             else
             {
                 var error = await response.Content
-                    .ReadFromJsonAsync<Error>(HttpClientNavigationExtensions.ErrorSerializerOptions, cancellationToken)
+                    .ReadFromJsonAsync<Error>(ErrorSerializerOptions, cancellationToken)
                     .ConfigureAwait(false);
 
                 throw new HttpRequestException(error.Message, null, response.StatusCode);

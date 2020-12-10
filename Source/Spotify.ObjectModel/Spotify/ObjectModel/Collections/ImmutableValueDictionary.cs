@@ -11,25 +11,25 @@ namespace Spotify.ObjectModel.Collections
 
         public ImmutableValueDictionary(IEnumerable<KeyValuePair<TKey, TValue>> elements)
         {
-            this.dictionary = new Dictionary<TKey, TValue>(elements);
+            dictionary = new Dictionary<TKey, TValue>(elements);
         }
 
-        public TValue this[TKey key] => this.dictionary[key];
+        public TValue this[TKey key] => dictionary[key];
 
-        public IEnumerable<TKey> Keys => this.dictionary.Keys;
-        public IEnumerable<TValue> Values => this.dictionary.Values;
-        public int Count => this.dictionary.Count;
+        public IEnumerable<TKey> Keys => dictionary.Keys;
+        public IEnumerable<TValue> Values => dictionary.Values;
+        public int Count => dictionary.Count;
 
-        public override bool Equals(object? obj) => (obj is ImmutableValueDictionary<TKey, TValue> dictionary) && this.Equals(dictionary);
+        public override bool Equals(object? obj) => (obj is ImmutableValueDictionary<TKey, TValue> dictionary) && Equals(dictionary);
 
         // This probably needs to be done better, but will work 'good enough' for now.
-        public override int GetHashCode() => this.dictionary.GetHashCode();
+        public override int GetHashCode() => dictionary.GetHashCode();
 
-        public bool ContainsKey(TKey key) => this.dictionary.ContainsKey(key);
+        public bool ContainsKey(TKey key) => dictionary.ContainsKey(key);
 
         public bool Equals(ImmutableValueDictionary<TKey, TValue> other)
         {
-            if (this.Count != other.Count)
+            if (Count != other.Count)
             {
                 return false;
             }
@@ -52,11 +52,11 @@ namespace Spotify.ObjectModel.Collections
             return true;
         }
 
-        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() => this.dictionary.GetEnumerator();
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() => dictionary.GetEnumerator();
 
-        public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) => this.dictionary.TryGetValue(key, out value);
+        public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) => dictionary.TryGetValue(key, out value);
 
-        IEnumerator IEnumerable.GetEnumerator() => this.dictionary.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => dictionary.GetEnumerator();
 
         public static bool operator ==(ImmutableValueDictionary<TKey, TValue>? left, ImmutableValueDictionary<TKey, TValue>? right) => (left, right) switch
         {

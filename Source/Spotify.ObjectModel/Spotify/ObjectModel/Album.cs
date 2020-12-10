@@ -80,12 +80,12 @@ namespace Spotify.ObjectModel
                 availableMarkets,
                 externalUrls)
         {
-            this.Tracks = tracks;
-            this.Genres = new ImmutableValueArray<string>(genres);
-            this.Popularity = popularity;
-            this.Label = label;
-            this.Copyrights = new ImmutableValueArray<Copyright>(copyrights);
-            this.ExternalIds = new ImmutableValueDictionary<string, string>(externalIds);
+            Tracks = tracks;
+            Genres = new ImmutableValueArray<string>(genres);
+            Popularity = popularity;
+            Label = label;
+            Copyrights = new ImmutableValueArray<Copyright>(copyrights);
+            ExternalIds = new ImmutableValueDictionary<string, string>(externalIds);
         }
 
         /// <summary>

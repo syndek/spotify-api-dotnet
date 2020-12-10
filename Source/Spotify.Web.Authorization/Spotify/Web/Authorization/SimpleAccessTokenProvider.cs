@@ -21,6 +21,6 @@ namespace Spotify.Web.Authorization
 
         /// <inheritdoc/>
         public ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default) =>
-            ValueTask.FromResult(new AccessToken(this.accessToken, default, default));
+            ValueTask.FromResult(new AccessToken(accessToken, default, default));
     }
 }

@@ -16,8 +16,8 @@
         /// </param>
         public ResumePoint(int resumePosition, bool isFullyPlayed) : base()
         {
-            this.ResumePosition = resumePosition;
-            this.IsFullyPlayed = isFullyPlayed;
+            ResumePosition = resumePosition;
+            IsFullyPlayed = isFullyPlayed;
         }
 
         /// <summary>

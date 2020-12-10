@@ -23,18 +23,18 @@ namespace Spotify.ObjectModel
             IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri)
         {
-            this.Href = href;
-            this.Name = name;
-            this.Description = description;
-            this.Images = new ImmutableValueArray<Image>(images);
-            this.IsExplicit = isExplicit;
-            this.IsExternallyHosted = isExternallyHosted;
-            this.Languages = new ImmutableValueArray<string>(languages);
-            this.AvailableMarkets = new ImmutableValueArray<CountryCode>(availableMarkets);
-            this.MediaType = mediaType;
-            this.Publisher = publisher;
-            this.Copyrights = new ImmutableValueArray<Copyright>(copyrights);
-            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
+            Href = href;
+            Name = name;
+            Description = description;
+            Images = new ImmutableValueArray<Image>(images);
+            IsExplicit = isExplicit;
+            IsExternallyHosted = isExternallyHosted;
+            Languages = new ImmutableValueArray<string>(languages);
+            AvailableMarkets = new ImmutableValueArray<CountryCode>(availableMarkets);
+            MediaType = mediaType;
+            Publisher = publisher;
+            Copyrights = new ImmutableValueArray<Copyright>(copyrights);
+            ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         public Uri Href { get; init; }

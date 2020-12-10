@@ -22,9 +22,9 @@ namespace Spotify.ObjectModel
         /// </param>
         public SimplifiedArtist(string id, Uri uri, Uri href, string name, IReadOnlyDictionary<string, Uri> externalUrls) : base(id, uri)
         {
-            this.Href = href;
-            this.Name = name;
-            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
+            Href = href;
+            Name = name;
+            ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         /// <summary>

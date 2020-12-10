@@ -38,11 +38,11 @@ namespace Spotify.ObjectModel
             IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri)
         {
-            this.Href = href;
-            this.DisplayName = displayName;
-            this.Images = new ImmutableValueArray<Image>(images);
-            this.Followers = followers;
-            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
+            Href = href;
+            DisplayName = displayName;
+            Images = new ImmutableValueArray<Image>(images);
+            Followers = followers;
+            ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         /// <summary>

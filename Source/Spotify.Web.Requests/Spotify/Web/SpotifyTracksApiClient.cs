@@ -24,11 +24,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/tracks")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/tracks")
                 .AppendJoinToQuery("ids", ',', ids)
                 .AppendToQueryIfNotNull("market", market);
 
-            return base.SendAsync<IReadOnlyList<Track>>(
+            return SendAsync<IReadOnlyList<Track>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -41,10 +41,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/audio-features")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/audio-features")
                 .AppendJoinToQuery("ids", ',', ids);
 
-            return base.SendAsync<IReadOnlyList<AudioFeatures>>(
+            return SendAsync<IReadOnlyList<AudioFeatures>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -58,10 +58,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/tracks/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/tracks/{id}")
                 .AppendToQueryIfNotNull("market", market);
 
-            return base.SendAsync<Track>(
+            return SendAsync<Track>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -74,8 +74,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<AudioAnalysis>(
-                new($"{SpotifyApiClient.BaseUrl}/audio-analysis/{id}"),
+            return SendAsync<AudioAnalysis>(
+                new($"{BaseUrl}/audio-analysis/{id}"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -87,8 +87,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<AudioFeatures>(
-                new($"{SpotifyApiClient.BaseUrl}/audio-features/{id}"),
+            return SendAsync<AudioFeatures>(
+                new($"{BaseUrl}/audio-features/{id}"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -101,29 +101,29 @@ namespace Spotify.Web
             CountryCode? market,
             CancellationToken cancellationToken)
         {
-            return this.GetTracksAsync(ids, market, null, cancellationToken);
+            return GetTracksAsync(ids, market, null, cancellationToken);
         }
 
         Task<IReadOnlyList<AudioFeatures>> ISpotifyTracksApi.GetAudioFeaturesForTracksAsync(
             IEnumerable<string> ids,
             CancellationToken cancellationToken)
         {
-            return this.GetAudioFeaturesForTracksAsync(ids, null, cancellationToken);
+            return GetAudioFeaturesForTracksAsync(ids, null, cancellationToken);
         }
 
         Task<Track> ISpotifyTracksApi.GetTrackAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
-            return this.GetTrackAsync(id, market, null, cancellationToken);
+            return GetTrackAsync(id, market, null, cancellationToken);
         }
 
         Task<AudioAnalysis> ISpotifyTracksApi.GetAudioAnalysisForTrackAsync(string id, CancellationToken cancellationToken)
         {
-            return this.GetAudioAnalysisForTrackAsync(id, null, cancellationToken);
+            return GetAudioAnalysisForTrackAsync(id, null, cancellationToken);
         }
 
         Task<AudioFeatures> ISpotifyTracksApi.GetAudioFeaturesForTrackAsync(string id, CancellationToken cancellationToken)
         {
-            return this.GetAudioFeaturesForTrackAsync(id, null, cancellationToken);
+            return GetAudioFeaturesForTrackAsync(id, null, cancellationToken);
         }
         #endregion
     }

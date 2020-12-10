@@ -57,21 +57,21 @@ namespace Spotify.ObjectModel
             float valence) :
             base(id, uri)
         {
-            this.TrackHref = trackHref;
-            this.AnalysisUrl = analysisUrl;
-            this.Duration = duration;
-            this.TimeSignature = timeSignature;
-            this.Key = key;
-            this.Mode = mode;
-            this.Acousticness = acousticness;
-            this.Danceability = danceability;
-            this.Energy = energy;
-            this.Instrumentalness = instrumentalness;
-            this.Liveness = liveness;
-            this.Loudness = loudness;
-            this.Speechiness = speechiness;
-            this.Tempo = tempo;
-            this.Valence = valence;
+            TrackHref = trackHref;
+            AnalysisUrl = analysisUrl;
+            Duration = duration;
+            TimeSignature = timeSignature;
+            Key = key;
+            Mode = mode;
+            Acousticness = acousticness;
+            Danceability = danceability;
+            Energy = energy;
+            Instrumentalness = instrumentalness;
+            Liveness = liveness;
+            Loudness = loudness;
+            Speechiness = speechiness;
+            Tempo = tempo;
+            Valence = valence;
         }
 
         public Uri TrackHref { get; init; }

@@ -4,10 +4,10 @@
     {
         internal ReorderPlaylistItemsParameters(int rangeStart, int insertBefore, int? rangeLength, string? snapshotId)
         {
-            this.RangeStart = rangeStart;
-            this.InsertBefore = insertBefore;
-            this.RangeLength = rangeLength;
-            this.SnapshotId = snapshotId;
+            RangeStart = rangeStart;
+            InsertBefore = insertBefore;
+            RangeLength = rangeLength;
+            SnapshotId = snapshotId;
         }
 
         internal int RangeStart { get; }

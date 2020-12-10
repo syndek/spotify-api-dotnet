@@ -51,15 +51,15 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="clientId">A <see cref="string"/> representing a valid Spotify Web API client ID.</param>
         protected SpotifyAuthorizationFlow(HttpClient httpClient, string clientId) : base()
         {
-            this.isDisposed = false;
+            isDisposed = false;
             this.httpClient = httpClient;
-            this.ClientId = clientId;
+            ClientId = clientId;
         }
 
         /// <summary>
         /// Releases the unmanaged resources used by the <see cref="SpotifyAuthorizationFlow"/>.
         /// </summary>
-        ~SpotifyAuthorizationFlow() => this.Dispose(false);
+        ~SpotifyAuthorizationFlow() => Dispose(false);
 
         /// <summary>
         /// Gets or sets the current <see cref="AccessToken"/> being used by the <see cref="SpotifyAuthorizationFlow"/> instance.
@@ -89,7 +89,7 @@ namespace Spotify.Web.Authorization.Flows
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -101,17 +101,17 @@ namespace Spotify.Web.Authorization.Flows
         /// </param>
         protected virtual void Dispose(bool disposing)
         {
-            if (this.isDisposed)
+            if (isDisposed)
             {
                 return;
             }
 
             if (disposing)
             {
-                this.httpClient.Dispose();
+                httpClient.Dispose();
             }
 
-            this.isDisposed = true;
+            isDisposed = true;
         }
 
         protected async Task<AccessRefreshToken> GetAccessRefreshTokenAsync(
@@ -119,27 +119,27 @@ namespace Spotify.Web.Authorization.Flows
             AuthenticationHeaderValue? authenticationHeader,
             CancellationToken cancellationToken)
         {
-            using var message = new HttpRequestMessage(HttpMethod.Post, SpotifyAuthorizationFlow.TokenUri)
+            using var message = new HttpRequestMessage(HttpMethod.Post, TokenUri)
             {
                 Content = content,
                 Headers = { Authorization = authenticationHeader }
             };
 
-            using var response = await this.httpClient
+            using var response = await httpClient
                 .SendAsync(message, cancellationToken)
                 .ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content
-                    .ReadFromJsonAsync<AuthenticationError>(SpotifyAuthorizationFlow.AuthenticationErrorSerializerOptions, cancellationToken)
+                    .ReadFromJsonAsync<AuthenticationError>(AuthenticationErrorSerializerOptions, cancellationToken)
                     .ConfigureAwait(false);
 
                 throw new HttpRequestException(error.ToString(), null, response.StatusCode);
             }
 
             var token = await response.Content
-                .ReadFromJsonAsync<AccessRefreshToken>(SpotifyAuthorizationFlow.AccessTokenSerializerOptions, cancellationToken)
+                .ReadFromJsonAsync<AccessRefreshToken>(AccessTokenSerializerOptions, cancellationToken)
                 .ConfigureAwait(false);
 
             return token;

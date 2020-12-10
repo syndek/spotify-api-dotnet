@@ -18,9 +18,9 @@ namespace Spotify.ObjectModel
         /// <param name="icons">A <see cref="IReadOnlyList{T}"/> of the category's icon in various sizes.</param>
         public Category(string id, Uri href, string name, IReadOnlyList<Image> icons) : base(id)
         {
-            this.Href = href;
-            this.Name = name;
-            this.Icons = new ImmutableValueArray<Image>(icons);
+            Href = href;
+            Name = name;
+            Icons = new ImmutableValueArray<Image>(icons);
         }
 
         /// <summary>

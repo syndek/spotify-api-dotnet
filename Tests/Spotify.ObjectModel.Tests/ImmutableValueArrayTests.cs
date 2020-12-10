@@ -79,7 +79,7 @@ namespace Spotify.ObjectModel.Tests
             {
                 public ObjectModelTypeWithList(params ObjectModelTypeWithValue<TValue>[] objects)
                 {
-                    this.Objects = new ImmutableValueArray<ObjectModelTypeWithValue<TValue>>(objects);
+                    Objects = new ImmutableValueArray<ObjectModelTypeWithValue<TValue>>(objects);
                 }
 
                 public IReadOnlyList<ObjectModelTypeWithValue<TValue>> Objects { get; }

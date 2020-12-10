@@ -35,10 +35,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/episodes/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/episodes/{id}")
                 .AppendToQueryIfNotNull("market", market);
 
-            return base.SendAsync<Episode>(
+            return SendAsync<Episode>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -60,11 +60,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/episodes")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/episodes")
                 .AppendJoinToQuery("ids", ',', ids)
                 .AppendToQueryIfNotNull("market", market);
 
-            return base.SendAsync<IReadOnlyList<Episode>>(
+            return SendAsync<IReadOnlyList<Episode>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -75,12 +75,12 @@ namespace Spotify.Web
         #region ISpotifyEpisodesApi Implementation
         Task<Episode> ISpotifyEpisodesApi.GetEpisodeAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
-            return this.GetEpisodeAsync(id, market, null, cancellationToken);
+            return GetEpisodeAsync(id, market, null, cancellationToken);
         }
 
         Task<IReadOnlyList<Episode>> ISpotifyEpisodesApi.GetEpisodesAsync(IEnumerable<string> ids, CountryCode? market, CancellationToken cancellationToken)
         {
-            return this.GetEpisodesAsync(ids, market, null, cancellationToken);
+            return GetEpisodesAsync(ids, market, null, cancellationToken);
         }
         #endregion
     }

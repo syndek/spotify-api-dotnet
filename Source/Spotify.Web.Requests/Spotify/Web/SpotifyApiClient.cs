@@ -98,7 +98,7 @@ namespace Spotify.Web
         /// </summary>
         public void Dispose()
         {
-            this.httpClient.Dispose();
+            httpClient.Dispose();
             GC.SuppressFinalize(this);
         }
 
@@ -109,18 +109,18 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
-            using var message = await this
-                .CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
+            using var message = await 
+                CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
                 .ConfigureAwait(false);
 
-            var response = await this.httpClient
+            var response = await httpClient
                 .SendAsync(message, cancellationToken)
                 .ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
                 var returned = await response.Content
-                    .ReadFromJsonAsync<TObject>(SpotifyApiClient.DefaultSerializerOptions, cancellationToken)
+                    .ReadFromJsonAsync<TObject>(DefaultSerializerOptions, cancellationToken)
                     .ConfigureAwait(false);
 
                 return returned!;
@@ -128,7 +128,7 @@ namespace Spotify.Web
             else
             {
                 var error = await response.Content
-                    .ReadFromJsonAsync<Error>(SpotifyApiClient.ErrorSerializerOptions, cancellationToken)
+                    .ReadFromJsonAsync<Error>(ErrorSerializerOptions, cancellationToken)
                     .ConfigureAwait(false);
 
                 throw new HttpRequestException(error.Message, null, response.StatusCode);
@@ -142,18 +142,18 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
-            using var message = await this
-                .CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
+            using var message = await 
+                CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
                 .ConfigureAwait(false);
 
-            var response = await this.httpClient
+            var response = await httpClient
                 .SendAsync(message, cancellationToken)
                 .ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content
-                    .ReadFromJsonAsync<Error>(SpotifyApiClient.ErrorSerializerOptions, cancellationToken)
+                    .ReadFromJsonAsync<Error>(ErrorSerializerOptions, cancellationToken)
                     .ConfigureAwait(false);
 
                 throw new HttpRequestException(error.Message, null, response.StatusCode);
@@ -171,18 +171,18 @@ namespace Spotify.Web
 
             // Refresh current access token if necessary.
             var provider = accessTokenProvider ??
-                this.DefaultAccessTokenProvider ??
+                DefaultAccessTokenProvider ??
                 throw new InvalidOperationException($"No {nameof(IAccessTokenProvider)} provided to acquire access token from.");
 
             var accessToken = await provider.GetAccessTokenAsync(cancellationToken).ConfigureAwait(false);
 
-            if (this.currentAuthenticationHeader?.Parameter != accessToken.Value)
+            if (currentAuthenticationHeader?.Parameter != accessToken.Value)
             {
                 // Cache an instance of AuthenticationHeaderValue so one doesn't need to be created every time a request is made.
-                this.currentAuthenticationHeader = new("Bearer", accessToken.Value);
+                currentAuthenticationHeader = new("Bearer", accessToken.Value);
             }
 
-            message.Headers.Authorization = this.currentAuthenticationHeader;
+            message.Headers.Authorization = currentAuthenticationHeader;
             return message;
         }
     }

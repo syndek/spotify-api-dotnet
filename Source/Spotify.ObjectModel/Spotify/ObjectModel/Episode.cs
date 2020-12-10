@@ -41,7 +41,7 @@ namespace Spotify.ObjectModel
                 externalUrls,
                 resumePoint)
         {
-            this.Show = show;
+            Show = show;
         }
 
         public SimplifiedShow Show { get; init; }

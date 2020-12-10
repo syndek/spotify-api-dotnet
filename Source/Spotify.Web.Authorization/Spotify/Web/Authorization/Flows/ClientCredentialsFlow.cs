@@ -29,9 +29,9 @@ namespace Spotify.Web.Authorization.Flows
         /// <inheritdoc/>
         public override async ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default)
         {
-            if (base.CurrentAccessToken?.HasExpired is false)
+            if (CurrentAccessToken?.HasExpired is false)
             {
-                return base.CurrentAccessToken.Value;
+                return CurrentAccessToken.Value;
             }
 
             using var content = new FormUrlEncodedContent(
@@ -40,9 +40,9 @@ namespace Spotify.Web.Authorization.Flows
                     new("grant_type", "client_credentials")
                 });
 
-            var token = await base.GetAccessRefreshTokenAsync(content, base.BasicAuthenticationHeader, cancellationToken);
+            var token = await GetAccessRefreshTokenAsync(content, BasicAuthenticationHeader, cancellationToken);
 
-            base.CurrentAccessToken = token.AccessToken;
+            CurrentAccessToken = token.AccessToken;
 
             return token.AccessToken;
         }

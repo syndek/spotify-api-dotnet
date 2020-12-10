@@ -9,17 +9,17 @@ namespace Spotify.Web.RequestObjects
 
         internal NamedArray(string name, IReadOnlyList<TElement> elements)
         {
-            this.Name = name;
+            Name = name;
             this.elements = elements;
         }
 
-        public TElement this[int index] => this.elements[index];
+        public TElement this[int index] => elements[index];
 
         public string Name { get; }
-        public int Count => this.elements.Count;
+        public int Count => elements.Count;
 
-        public IEnumerator<TElement> GetEnumerator() => this.elements.GetEnumerator();
+        public IEnumerator<TElement> GetEnumerator() => elements.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => this.elements.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => elements.GetEnumerator();
     }
 }

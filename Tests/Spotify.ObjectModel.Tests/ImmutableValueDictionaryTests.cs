@@ -184,7 +184,7 @@ namespace Spotify.ObjectModel.Tests
             {
                 public ObjectModelTypeWithDictionary(IReadOnlyDictionary<TKey, ObjectModelTypeWithValue<TValue>> objects)
                 {
-                    this.Objects = new ImmutableValueDictionary<TKey, ObjectModelTypeWithValue<TValue>>(objects);
+                    Objects = new ImmutableValueDictionary<TKey, ObjectModelTypeWithValue<TValue>>(objects);
                 }
 
                 public IReadOnlyDictionary<TKey, ObjectModelTypeWithValue<TValue>> Objects { get; }

@@ -15,8 +15,8 @@
         /// <param name="refreshToken">A <see cref="string"/> representing a token that can be used to refresh the access token.</param>
         public AccessRefreshToken(string value, AuthorizationScopes scope, int expiresIn, string? refreshToken)
         {
-            this.AccessToken = new(value, scope, expiresIn);
-            this.RefreshToken = refreshToken;
+            AccessToken = new(value, scope, expiresIn);
+            RefreshToken = refreshToken;
         }
 
         /// <summary>

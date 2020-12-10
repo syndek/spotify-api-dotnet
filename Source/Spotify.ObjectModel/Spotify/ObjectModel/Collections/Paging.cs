@@ -25,12 +25,12 @@ namespace Spotify.ObjectModel.Collections
         public Paging(IReadOnlyList<TItem> items, int total, int limit, int offset, Uri href, Uri? previous, Uri? next) : base()
         {
             this.items = new ImmutableValueArray<TItem>(items);
-            this.Total = total;
-            this.Limit = limit;
-            this.Offset = offset;
-            this.Href = href;
-            this.Previous = previous;
-            this.Next = next;
+            Total = total;
+            Limit = limit;
+            Offset = offset;
+            Href = href;
+            Previous = previous;
+            Next = next;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Spotify.ObjectModel.Collections
         /// </summary>
         /// <param name="index">The zero-based index of the item to get.</param>
         /// <returns>The item at the specified <paramref name="index"/> in the <see cref="Paging{TItem}"/>.</returns>
-        public TItem this[int index] => this.items[index];
+        public TItem this[int index] => items[index];
 
         /// <summary>
         /// Gets or sets the maximum number of items available to return.
@@ -74,18 +74,18 @@ namespace Spotify.ObjectModel.Collections
         /// Gets or sets the number of items contained in the <see cref="Paging{TItem}"/>.
         /// </summary>
         /// <returns>The number of items contained in the <see cref="Paging{TItem}"/>.</returns>
-        public int Count => this.items.Count;
+        public int Count => items.Count;
 
         /// <summary>
         /// Gets an <see cref="IEnumerator{T}"/> that iterates through the items of the <see cref="Paging{TItem}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}"/> that iterates through the items of the <see cref="Paging{TItem}"/>.</returns>
-        public IEnumerator<TItem> GetEnumerator() => this.items.GetEnumerator();
+        public IEnumerator<TItem> GetEnumerator() => items.GetEnumerator();
 
         /// <summary>
         /// Gets an <see cref="IEnumerator"/> that iterates through the items of the <see cref="Paging{TItem}"/>.
         /// </summary>
         /// <returns>An <see cref="IEnumerator"/> that iterates through the items of the <see cref="Paging{TItem}"/>.</returns>
-        IEnumerator IEnumerable.GetEnumerator() => this.items.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => items.GetEnumerator();
     }
 }

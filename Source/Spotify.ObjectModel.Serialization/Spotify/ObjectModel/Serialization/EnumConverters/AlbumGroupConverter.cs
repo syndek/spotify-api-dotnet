@@ -18,7 +18,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
         public static AlbumGroups FromSpotifyStrings(IEnumerable<string> albumGroups) =>
             albumGroups.Aggregate(
                 new AlbumGroups(),
-                (current, albumGroup) => current | AlbumGroupConverter.FromSpotifyString(albumGroup));
+                (current, albumGroup) => current | FromSpotifyString(albumGroup));
 
         public static string ToSpotifyString(this AlbumGroups albumGroup) => albumGroup switch
         {
@@ -30,6 +30,6 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
         };
 
         public static IEnumerable<string> ToSpotifyStrings(this AlbumGroups albumGroups) =>
-            albumGroups.GetFlags().Select(AlbumGroupConverter.ToSpotifyString);
+            albumGroups.GetFlags().Select(ToSpotifyString);
     }
 }

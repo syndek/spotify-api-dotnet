@@ -21,9 +21,9 @@ namespace Spotify.ObjectModel
         /// </param>
         public Context(Uri uri, Uri href, IReadOnlyDictionary<string, Uri> externalUrls) : base()
         {
-            this.Uri = uri;
-            this.Href = href;
-            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
+            Uri = uri;
+            Href = href;
+            ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         /// <summary>

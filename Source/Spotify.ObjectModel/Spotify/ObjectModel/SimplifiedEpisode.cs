@@ -25,20 +25,20 @@ namespace Spotify.ObjectModel
             ResumePoint? resumePoint) :
             base(id, uri)
         {
-            this.Href = href;
-            this.Name = name;
-            this.Description = description;
-            this.Images = new ImmutableValueArray<Image>(images);
-            this.Duration = duration;
-            this.ReleaseDate = releaseDate;
-            this.ReleaseDatePrecision = releaseDatePrecision;
-            this.IsExplicit = isExplicit;
-            this.IsPlayable = isPlayable;
-            this.IsExternallyHosted = isExternallyHosted;
-            this.Languages = new ImmutableValueArray<string>(languages);
-            this.AudioPreviewUrl = audioPreviewUrl;
-            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
-            this.ResumePoint = resumePoint;
+            Href = href;
+            Name = name;
+            Description = description;
+            Images = new ImmutableValueArray<Image>(images);
+            Duration = duration;
+            ReleaseDate = releaseDate;
+            ReleaseDatePrecision = releaseDatePrecision;
+            IsExplicit = isExplicit;
+            IsPlayable = isPlayable;
+            IsExternallyHosted = isExternallyHosted;
+            Languages = new ImmutableValueArray<string>(languages);
+            AudioPreviewUrl = audioPreviewUrl;
+            ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
+            ResumePoint = resumePoint;
         }
 
         public Uri Href { get; init; }

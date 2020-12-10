@@ -14,9 +14,9 @@
         /// <param name="confidence">A <see cref="float"/> representing the confidence of the reliability of the time interval.</param>
         public TimeInterval(float start, float duration, float confidence) : base()
         {
-            this.Start = start;
-            this.Duration = duration;
-            this.Confidence = confidence;
+            Start = start;
+            Duration = duration;
+            Confidence = confidence;
         }
 
         /// <summary>

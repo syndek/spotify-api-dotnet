@@ -71,7 +71,7 @@ namespace Spotify.Web.Authorization.Flows
             AuthorizationScopes? scopes = null,
             bool? showDialog = null)
         {
-            return new SpotifyUriBuilder(SpotifyAuthorizationFlow.AuthorizationUrl)
+            return new SpotifyUriBuilder(AuthorizationUrl)
                 .AppendToQuery("response_type", "code")
                 .AppendToQuery("client_id", clientId)
                 .AppendToQuery("redirect_uri", redirectUri)
@@ -86,26 +86,26 @@ namespace Spotify.Web.Authorization.Flows
         {
             async Task GetAndStoreTokenAsync(HttpContent content)
             {
-                var token = await base.GetAccessRefreshTokenAsync(content, base.BasicAuthenticationHeader, cancellationToken);
-                this.CurrentRefreshToken = token.RefreshToken ?? this.CurrentRefreshToken;
-                base.CurrentAccessToken = token.AccessToken;
+                var token = await GetAccessRefreshTokenAsync(content, BasicAuthenticationHeader, cancellationToken);
+                CurrentRefreshToken = token.RefreshToken ?? CurrentRefreshToken;
+                CurrentAccessToken = token.AccessToken;
             }
 
-            if (base.CurrentAccessToken is null)
+            if (CurrentAccessToken is null)
             {
                 using var content = new FormUrlEncodedContent(
                     new KeyValuePair<string?, string?>[]
                     {
                         new("grant_type", "authorization_code"),
-                        new("code", this.code),
-                        new("redirect_uri", this.redirectUri)
+                        new("code", code),
+                        new("redirect_uri", redirectUri)
                     });
 
                 await GetAndStoreTokenAsync(content).ConfigureAwait(false);
             }
-            else if (base.CurrentAccessToken.Value.HasExpired)
+            else if (CurrentAccessToken.Value.HasExpired)
             {
-                if (this.CurrentRefreshToken is null)
+                if (CurrentRefreshToken is null)
                 {
                     throw new InvalidOperationException("No refresh token to refresh access token with.");
                 }
@@ -114,13 +114,13 @@ namespace Spotify.Web.Authorization.Flows
                     new KeyValuePair<string?, string?>[]
                     {
                         new("grant_type", "refresh_token"),
-                        new("refresh_token", this.CurrentRefreshToken)
+                        new("refresh_token", CurrentRefreshToken)
                     });
 
                 await GetAndStoreTokenAsync(content).ConfigureAwait(false);
             }
 
-            return base.CurrentAccessToken!.Value;
+            return CurrentAccessToken!.Value;
         }
     }
 }

@@ -33,12 +33,12 @@ namespace Spotify.ObjectModel
             int afterFilteringSize,
             int afterRelinkingSize)
         {
-            this.Id = id;
-            this.Href = href;
-            this.Type = type;
-            this.InitialPoolSize = initialPoolSize;
-            this.AfterFilteringSize = afterFilteringSize;
-            this.AfterRelinkingSize = afterRelinkingSize;
+            Id = id;
+            Href = href;
+            Type = type;
+            InitialPoolSize = initialPoolSize;
+            AfterFilteringSize = afterFilteringSize;
+            AfterRelinkingSize = afterRelinkingSize;
         }
 
         /// <summary>

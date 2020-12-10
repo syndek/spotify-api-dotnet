@@ -15,8 +15,8 @@ namespace Spotify.ObjectModel
         /// <param name="savedAt">The <see cref="DateTime"/> at which <paramref name="savedObject"/> was saved.</param>
         public Saved(TSaved savedObject, DateTime savedAt) : base()
         {
-            this.SavedObject = savedObject;
-            this.SavedAt = savedAt;
+            SavedObject = savedObject;
+            SavedAt = savedAt;
         }
 
         /// <summary>

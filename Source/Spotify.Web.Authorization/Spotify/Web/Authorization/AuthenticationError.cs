@@ -19,8 +19,8 @@
         /// </param>
         internal AuthenticationError(string error, string? errorDescription)
         {
-            this.Error = error;
-            this.ErrorDescription = errorDescription;
+            Error = error;
+            ErrorDescription = errorDescription;
         }
 
         /// <summary>
@@ -44,6 +44,6 @@
         /// Returns a <see cref="string"/> representing the <see cref="AuthenticationError"/>.
         /// </summary>
         /// <returns>A <see cref="string"/> representing the <see cref="AuthenticationError"/>.</returns>
-        public override string ToString() => this.Error + (this.ErrorDescription is null ? string.Empty : ": " + this.ErrorDescription);
+        public override string ToString() => Error + (ErrorDescription is null ? string.Empty : ": " + ErrorDescription);
     }
 }

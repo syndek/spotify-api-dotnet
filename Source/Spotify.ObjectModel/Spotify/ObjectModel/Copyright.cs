@@ -12,8 +12,8 @@
         /// <param name="type">The type of the copyright.</param>
         public Copyright(string text, CopyrightType type) : base()
         {
-            this.Text = text;
-            this.Type = type;
+            Text = text;
+            Type = type;
         }
 
         /// <summary>

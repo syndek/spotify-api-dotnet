@@ -12,7 +12,7 @@
         /// <param name="id">A <see cref="string"/> representing the Spotify ID of the object.</param>
         public IdentifiableObject(string id) : base()
         {
-            this.Id = id;
+            Id = id;
         }
 
         /// <summary>

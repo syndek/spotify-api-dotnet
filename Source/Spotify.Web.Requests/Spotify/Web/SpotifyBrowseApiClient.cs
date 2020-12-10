@@ -30,13 +30,13 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/categories")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/browse/categories")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("locale", locale)
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return base.SendAsync<Paging<Category>>(
+            return SendAsync<Paging<Category>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -51,11 +51,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/categories/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/browse/categories/{id}")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("locale", locale);
 
-            return base.SendAsync<Category>(
+            return SendAsync<Category>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -71,12 +71,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/categories/{id}/playlists")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/browse/categories/{id}/playlists")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return base.SendAsync<Paging<SimplifiedPlaylist>>(
+            return SendAsync<Paging<SimplifiedPlaylist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -114,7 +114,7 @@ namespace Spotify.Web
                 yield return ($"{prefix}_valence", attributes.Valence);
             }
 
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/recommendations")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/recommendations")
                 .AppendJoinToQuery("seed_artists", ',', seedArtists)
                 .AppendJoinToQuery("seed_tracks", ',', seedTracks)
                 .AppendJoinToQuery("seed_genres", ',', seedGenres)
@@ -136,7 +136,7 @@ namespace Spotify.Web
             AppendAttributesToUriBuilderIfNotNull("max", maxValues);
             AppendAttributesToUriBuilderIfNotNull("target", targetValues);
 
-            return base.SendAsync<Recommendations>(
+            return SendAsync<Recommendations>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -148,8 +148,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<IReadOnlyList<String>>(
-                new($"{SpotifyApiClient.BaseUrl}/recommendations/available-genre-seeds"),
+            return SendAsync<IReadOnlyList<string>>(
+                new($"{BaseUrl}/recommendations/available-genre-seeds"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -165,14 +165,14 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/featured-playlists")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/browse/featured-playlists")
                 .AppendToQueryIfNotNull("locale", locale)
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("timestamp", timestamp)
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return base.SendAsync<Paging<SimplifiedPlaylist>>(
+            return SendAsync<Paging<SimplifiedPlaylist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -187,12 +187,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/browse/new-releases")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/browse/new-releases")
                 .AppendToQueryIfNotNull("country", country?.ToSpotifyString())
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return base.SendAsync<Paging<SimplifiedAlbum>>(
+            return SendAsync<Paging<SimplifiedAlbum>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -208,7 +208,7 @@ namespace Spotify.Web
             int? offset,
             CancellationToken cancellationToken)
         {
-            return this.GetCategoriesAsync(country, locale, limit, offset, null, cancellationToken);
+            return GetCategoriesAsync(country, locale, limit, offset, null, cancellationToken);
         }
 
         Task<Category> ISpotifyBrowseApi.GetCategoryAsync(
@@ -217,7 +217,7 @@ namespace Spotify.Web
             string? locale,
             CancellationToken cancellationToken)
         {
-            return this.GetCategoryAsync(id, country, locale, null, cancellationToken);
+            return GetCategoryAsync(id, country, locale, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyBrowseApi.GetCategoryPlaylistsAsync(
@@ -227,7 +227,7 @@ namespace Spotify.Web
             int? offset,
             CancellationToken cancellationToken)
         {
-            return this.GetCategoryPlaylistsAsync(id, country, limit, offset, null, cancellationToken);
+            return GetCategoryPlaylistsAsync(id, country, limit, offset, null, cancellationToken);
         }
 
         Task<Recommendations> ISpotifyBrowseApi.GetRecommendationsAsync(
@@ -241,7 +241,7 @@ namespace Spotify.Web
             TuneableTrackAttributes? targetValues,
             CancellationToken cancellationToken)
         {
-            return this.GetRecommendationsAsync(
+            return GetRecommendationsAsync(
                 seedArtists,
                 seedTracks,
                 seedGenres,
@@ -256,7 +256,7 @@ namespace Spotify.Web
 
         Task<IReadOnlyList<string>> ISpotifyBrowseApi.GetRecommendationGenresAsync(CancellationToken cancellationToken)
         {
-            return this.GetRecommendationGenresAsync(null, cancellationToken);
+            return GetRecommendationGenresAsync(null, cancellationToken);
         }
 
         Task<Paging<SimplifiedAlbum>> ISpotifyBrowseApi.GetNewReleasesAsync(
@@ -265,7 +265,7 @@ namespace Spotify.Web
             int? offset,
             CancellationToken cancellationToken)
         {
-            return this.GetNewReleasesAsync(country, limit, offset, null, cancellationToken);
+            return GetNewReleasesAsync(country, limit, offset, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyBrowseApi.GetFeaturedPlaylistsAsync(
@@ -276,7 +276,7 @@ namespace Spotify.Web
             int? offset,
             CancellationToken cancellationToken)
         {
-            return this.GetFeaturedPlaylistsAsync(locale, country, timestamp, limit, offset, null, cancellationToken);
+            return GetFeaturedPlaylistsAsync(locale, country, timestamp, limit, offset, null, cancellationToken);
         }
         #endregion
     }

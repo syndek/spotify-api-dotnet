@@ -39,11 +39,11 @@ namespace Spotify.ObjectModel
             IReadOnlyList<TimeInterval> tatums) :
             base()
         {
-            this.Bars = new ImmutableValueArray<TimeInterval>(bars);
-            this.Beats = new ImmutableValueArray<TimeInterval>(beats);
-            this.Sections = new ImmutableValueArray<Section>(sections);
-            this.Segments = new ImmutableValueArray<Segment>(segments);
-            this.Tatums = new ImmutableValueArray<TimeInterval>(tatums);
+            Bars = new ImmutableValueArray<TimeInterval>(bars);
+            Beats = new ImmutableValueArray<TimeInterval>(beats);
+            Sections = new ImmutableValueArray<Section>(sections);
+            Segments = new ImmutableValueArray<Segment>(segments);
+            Tatums = new ImmutableValueArray<TimeInterval>(tatums);
         }
 
         /// <summary>

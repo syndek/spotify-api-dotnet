@@ -38,9 +38,9 @@ namespace Spotify.ObjectModel
                 previewUrl,
                 externalUrls)
         {
-            this.Album = album;
-            this.Popularity = popularity;
-            this.ExternalIds = new ImmutableValueDictionary<string, string>(externalIds);
+            Album = album;
+            Popularity = popularity;
+            ExternalIds = new ImmutableValueDictionary<string, string>(externalIds);
         }
 
         public SimplifiedAlbum Album { get; init; }

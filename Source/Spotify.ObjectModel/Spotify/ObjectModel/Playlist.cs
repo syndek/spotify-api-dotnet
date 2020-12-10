@@ -69,7 +69,7 @@ namespace Spotify.ObjectModel
                 snapshotId,
                 externalUrls)
         {
-            this.Followers = followers;
+            Followers = followers;
         }
 
         /// <summary>

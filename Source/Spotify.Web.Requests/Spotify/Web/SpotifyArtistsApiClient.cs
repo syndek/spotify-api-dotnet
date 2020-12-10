@@ -36,10 +36,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/artists")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/artists")
                 .AppendJoinToQuery("ids", ',', ids);
 
-            return base.SendAsync<IReadOnlyList<Artist>>(
+            return SendAsync<IReadOnlyList<Artist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -59,8 +59,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<Artist>(
-                new($"{SpotifyApiClient.BaseUrl}/artists/{id}"),
+            return SendAsync<Artist>(
+                new($"{BaseUrl}/artists/{id}"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -87,13 +87,13 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/artists/{id}/albums")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/artists/{id}/albums")
                 .AppendJoinToQueryIfNotNull("include_groups", ',', includeGroups?.ToSpotifyStrings())
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString())
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return base.SendAsync<Paging<Album>>(
+            return SendAsync<Paging<Album>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -117,10 +117,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/artists/{id}/top-tracks")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/artists/{id}/top-tracks")
                 .AppendToQuery("country", market);
 
-            return base.SendAsync<IReadOnlyList<Track>>(
+            return SendAsync<IReadOnlyList<Track>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -142,8 +142,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return await base.SendAsync<NamedArray<Artist>>(
-                new($"{SpotifyApiClient.BaseUrl}/artists/{id}/related-artists"),
+            return await SendAsync<NamedArray<Artist>>(
+                new($"{BaseUrl}/artists/{id}/related-artists"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -153,12 +153,12 @@ namespace Spotify.Web
         #region ISpotifyArtistsApi Implementation
         Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
-            return this.GetArtistsAsync(ids, null, cancellationToken);
+            return GetArtistsAsync(ids, null, cancellationToken);
         }
 
         Task<Artist> ISpotifyArtistsApi.GetArtistAsync(string id, CancellationToken cancellationToken)
         {
-            return this.GetArtistAsync(id, null, cancellationToken);
+            return GetArtistAsync(id, null, cancellationToken);
         }
 
         Task<Paging<Album>> ISpotifyArtistsApi.GetArtistAlbumsAsync(
@@ -169,7 +169,7 @@ namespace Spotify.Web
             int? offset,
             CancellationToken cancellationToken)
         {
-            return this.GetArtistAlbumsAsync(id, includeGroups, market, limit, offset, null, cancellationToken);
+            return GetArtistAlbumsAsync(id, includeGroups, market, limit, offset, null, cancellationToken);
         }
 
         Task<IReadOnlyList<Track>> ISpotifyArtistsApi.GetArtistTopTracksAsync(
@@ -177,12 +177,12 @@ namespace Spotify.Web
             CountryCode market,
             CancellationToken cancellationToken)
         {
-            return this.GetArtistTopTracksAsync(id, market, null, cancellationToken);
+            return GetArtistTopTracksAsync(id, market, null, cancellationToken);
         }
 
         Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistRelatedArtistsAsync(string id, CancellationToken cancellationToken)
         {
-            return this.GetArtistRelatedArtistsAsync(id, null, cancellationToken);
+            return GetArtistRelatedArtistsAsync(id, null, cancellationToken);
         }
         #endregion
     }

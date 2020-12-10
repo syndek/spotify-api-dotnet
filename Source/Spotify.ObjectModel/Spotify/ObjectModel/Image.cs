@@ -15,9 +15,9 @@ namespace Spotify.ObjectModel
         /// <param name="height">The height in pixels of the image, or <see langword="null"/> if unknown.</param>
         public Image(Uri url, int? width, int? height) : base()
         {
-            this.Url = url;
-            this.Width = width;
-            this.Height = height;
+            Url = url;
+            Width = width;
+            Height = height;
         }
 
         /// <summary>

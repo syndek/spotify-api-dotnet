@@ -4,10 +4,10 @@
     {
         internal PlaylistDetails(string? name, string? description, bool? isPublic, bool? isCollaborative)
         {
-            this.Name = name;
-            this.Description = description;
-            this.IsPublic = isPublic;
-            this.IsCollaborative = isCollaborative;
+            Name = name;
+            Description = description;
+            IsPublic = isPublic;
+            IsCollaborative = isCollaborative;
         }
 
         internal string? Name { get; }

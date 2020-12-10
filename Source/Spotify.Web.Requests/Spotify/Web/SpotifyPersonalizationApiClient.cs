@@ -26,12 +26,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/top/artists")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/me/top/artists")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("time_range", timeRange?.ToSpotifyString());
 
-            return base.SendAsync<Paging<Artist>>(
+            return SendAsync<Paging<Artist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -46,12 +46,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/top/tracks")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/me/top/tracks")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("time_range", timeRange?.ToSpotifyString());
 
-            return base.SendAsync<Paging<Track>>(
+            return SendAsync<Paging<Track>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -66,7 +66,7 @@ namespace Spotify.Web
             TimeRange? timeRange,
             CancellationToken cancellationToken)
         {
-            return this.GetTopArtistsForCurrentUserAsync(limit, offset, timeRange, null, cancellationToken);
+            return GetTopArtistsForCurrentUserAsync(limit, offset, timeRange, null, cancellationToken);
         }
 
         Task<Paging<Track>> ISpotifyPersonalizationApi.GetTopTracksForCurrentUserAsync(
@@ -75,7 +75,7 @@ namespace Spotify.Web
             TimeRange? timeRange,
             CancellationToken cancellationToken)
         {
-            return this.GetTopTracksForCurrentUserAsync(limit, offset, timeRange, null, cancellationToken);
+            return GetTopTracksForCurrentUserAsync(limit, offset, timeRange, null, cancellationToken);
         }
         #endregion
     }

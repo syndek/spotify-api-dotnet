@@ -33,13 +33,13 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<Playlist>(
-                new($"{SpotifyApiClient.BaseUrl}/users/{userId}/playlists"),
+            return SendAsync<Playlist>(
+                new($"{BaseUrl}/users/{userId}/playlists"),
                 HttpMethod.Post,
                 new StringContent(
                     JsonSerializer.Serialize(
                         new PlaylistDetails(name, description, isPublic, isCollaborative),
-                        SpotifyApiClient.RequestObjectSerializerOptions),
+                        RequestObjectSerializerOptions),
                     Encoding.UTF8,
                     MediaTypeNames.Application.Json),
                 accessTokenProvider,
@@ -52,11 +52,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/playlists/{id}")
                 .AppendToQueryIfNotNull("market", market)
                 .AppendToQuery("additional_types", "episode");
 
-            return base.SendAsync<Playlist>(
+            return SendAsync<Playlist>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -72,13 +72,13 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/playlists/{id}")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("market", market)
                 .AppendToQuery("additional_types", "episode");
 
-            return base.SendAsync<Paging<IPlayable>>(
+            return SendAsync<Paging<IPlayable>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -92,11 +92,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/me/playlists")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/me/playlists")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return base.SendAsync<Paging<SimplifiedPlaylist>>(
+            return SendAsync<Paging<SimplifiedPlaylist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -111,11 +111,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/users/{userId}/playlists")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/users/{userId}/playlists")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return base.SendAsync<Paging<SimplifiedPlaylist>>(
+            return SendAsync<Paging<SimplifiedPlaylist>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -132,12 +132,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync(
-                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}"),
+            return SendAsync(
+                new($"{BaseUrl}/playlists/{id}"),
                 HttpMethod.Put,
                 new StringContent(
                     JsonSerializer.Serialize(new PlaylistDetails(name, description, isPublic, isCollaborative),
-                    SpotifyApiClient.RequestObjectSerializerOptions),
+                    RequestObjectSerializerOptions),
                     Encoding.UTF8,
                     MediaTypeNames.Application.Json),
                 accessTokenProvider,
@@ -149,8 +149,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<IReadOnlyList<Image>>(
-                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/images"),
+            return SendAsync<IReadOnlyList<Image>>(
+                new($"{BaseUrl}/playlists/{id}/images"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -163,8 +163,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<IReadOnlyList<Image>>(
-                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/images"),
+            return SendAsync<IReadOnlyList<Image>>(
+                new($"{BaseUrl}/playlists/{id}/images"),
                 HttpMethod.Put,
                 new StringContent(base64Image, Encoding.UTF8, MediaTypeNames.Image.Jpeg),
                 accessTokenProvider,
@@ -181,13 +181,13 @@ namespace Spotify.Web
             CancellationToken cancellationToken = default)
         {
             // TODO: Find a way to make this deserialize a SnapshotId object.
-            return base.SendAsync<String>(
-                new($"{SpotifyApiClient.BaseUrl}/playlists/{id}/tracks"),
+            return SendAsync<string>(
+                new($"{BaseUrl}/playlists/{id}/tracks"),
                 HttpMethod.Put,
                 new StringContent(
                     JsonSerializer.Serialize(
                         new ReorderPlaylistItemsParameters(rangeStart, insertBefore, rangeLength, snapshotId),
-                        SpotifyApiClient.RequestObjectSerializerOptions),
+                        RequestObjectSerializerOptions),
                     Encoding.UTF8,
                     MediaTypeNames.Application.Json),
                 accessTokenProvider,
@@ -200,10 +200,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{id}/tracks")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/playlists/{id}/tracks")
                 .AppendJoinToQuery("uris", ',', uris);
 
-            return base.SendAsync(
+            return SendAsync(
                 uriBuilder.Build(),
                 HttpMethod.Put,
                 content: null,
@@ -218,12 +218,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/playlists/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/playlists/{id}")
                 .AppendJoinToQuery("uris", ',', uris)
                 .AppendToQueryIfNotNull("position", position);
 
             // TODO: Find a way to make this deserialize a SnapshotId object.
-            return base.SendAsync<String>(
+            return SendAsync<string>(
                 uriBuilder.Build(),
                 HttpMethod.Post,
                 content: null,
@@ -251,12 +251,12 @@ namespace Spotify.Web
             bool? isCollaborative,
             CancellationToken cancellationToken)
         {
-            return this.CreatePlaylistAsync(userId, name, description, isPublic, isCollaborative, null, cancellationToken);
+            return CreatePlaylistAsync(userId, name, description, isPublic, isCollaborative, null, cancellationToken);
         }
 
         Task<Playlist> ISpotifyPlaylistsApi.GetPlaylistAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
-            return this.GetPlaylistAsync(id, market, null, cancellationToken);
+            return GetPlaylistAsync(id, market, null, cancellationToken);
         }
 
         Task<Paging<IPlayable>> ISpotifyPlaylistsApi.GetPlaylistItemsAsync(
@@ -266,7 +266,7 @@ namespace Spotify.Web
             CountryCode? market,
             CancellationToken cancellationToken)
         {
-            return this.GetPlaylistItemsAsync(id, limit, offset, market, null, cancellationToken);
+            return GetPlaylistItemsAsync(id, limit, offset, market, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyPlaylistsApi.GetCurrentUserPlaylistsAsync(
@@ -274,7 +274,7 @@ namespace Spotify.Web
             int? offset,
             CancellationToken cancellationToken)
         {
-            return this.GetCurrentUserPlaylistsAsync(limit, offset, null, cancellationToken);
+            return GetCurrentUserPlaylistsAsync(limit, offset, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyPlaylistsApi.GetUserPlaylistsAsync(
@@ -283,7 +283,7 @@ namespace Spotify.Web
             int? offset,
             CancellationToken cancellationToken)
         {
-            return this.GetUserPlaylistsAsync(userId, limit, offset, null, cancellationToken);
+            return GetUserPlaylistsAsync(userId, limit, offset, null, cancellationToken);
         }
 
         Task ISpotifyPlaylistsApi.ChangePlaylistDetailsAsync(
@@ -294,17 +294,17 @@ namespace Spotify.Web
             bool? isCollaborative,
             CancellationToken cancellationToken)
         {
-            return this.ChangePlaylistDetailsAsync(id, name, description, isPublic, isCollaborative, null, cancellationToken);
+            return ChangePlaylistDetailsAsync(id, name, description, isPublic, isCollaborative, null, cancellationToken);
         }
 
         Task<IReadOnlyList<Image>> ISpotifyPlaylistsApi.GetPlaylistCoverImageAsync(string id, CancellationToken cancellationToken)
         {
-            return this.GetPlaylistCoverImageAsync(id, null, cancellationToken);
+            return GetPlaylistCoverImageAsync(id, null, cancellationToken);
         }
 
         Task ISpotifyPlaylistsApi.SetPlaylistCoverImageAsync(string id, string base64Image, CancellationToken cancellationToken)
         {
-            return this.SetPlaylistCoverImageAsync(id, base64Image, null, cancellationToken);
+            return SetPlaylistCoverImageAsync(id, base64Image, null, cancellationToken);
         }
 
         Task<string> ISpotifyPlaylistsApi.ReorderPlaylistItemsAsync(
@@ -315,12 +315,12 @@ namespace Spotify.Web
             string? snapshotId,
             CancellationToken cancellationToken)
         {
-            return this.ReorderPlaylistItemsAsync(id, rangeStart, insertBefore, rangeLength, snapshotId, null, cancellationToken);
+            return ReorderPlaylistItemsAsync(id, rangeStart, insertBefore, rangeLength, snapshotId, null, cancellationToken);
         }
 
         Task ISpotifyPlaylistsApi.ReplacePlaylistItemsAsync(string id, IEnumerable<string> uris, CancellationToken cancellationToken)
         {
-            return this.ReplacePlaylistItemsAsync(id, uris, null, cancellationToken);
+            return ReplacePlaylistItemsAsync(id, uris, null, cancellationToken);
         }
 
         Task<string> ISpotifyPlaylistsApi.AddItemsToPlaylistAsync(
@@ -329,7 +329,7 @@ namespace Spotify.Web
             int? position,
             CancellationToken cancellationToken)
         {
-            return this.AddItemsToPlaylistAsync(id, uris, position, null, cancellationToken);
+            return AddItemsToPlaylistAsync(id, uris, position, null, cancellationToken);
         }
 
         Task<string> ISpotifyPlaylistsApi.RemoveItemsFromPlaylistAsync(
@@ -338,7 +338,7 @@ namespace Spotify.Web
             string? snapshotId,
             CancellationToken cancellationToken)
         {
-            return this.RemoveItemsFromPlaylistAsync(id, uris, snapshotId, null, cancellationToken);
+            return RemoveItemsFromPlaylistAsync(id, uris, snapshotId, null, cancellationToken);
         }
         #endregion
     }

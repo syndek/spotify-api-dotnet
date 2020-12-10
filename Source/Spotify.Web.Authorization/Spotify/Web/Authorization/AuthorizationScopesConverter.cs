@@ -33,7 +33,7 @@ namespace Spotify.Web.Authorization
         internal static AuthorizationScopes FromSpotifyStrings(IEnumerable<string> authorizationScopes) =>
             authorizationScopes.Aggregate(
                 new AuthorizationScopes(),
-                (current, authorizationScope) => current | AuthorizationScopesConverter.FromSpotifyString(authorizationScope));
+                (current, authorizationScope) => current | FromSpotifyString(authorizationScope));
 
         internal static string ToSpotifyString(this AuthorizationScopes authorizationScope) => authorizationScope switch
         {

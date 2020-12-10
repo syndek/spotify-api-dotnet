@@ -22,8 +22,8 @@ namespace Spotify.ObjectModel
         /// </param>
         public Recommendations(IReadOnlyList<RecommendationSeed> seeds, IReadOnlyList<SimplifiedTrack> tracks) : base()
         {
-            this.Seeds = new ImmutableValueArray<RecommendationSeed>(seeds);
-            this.Tracks = new ImmutableValueArray<SimplifiedTrack>(tracks);
+            Seeds = new ImmutableValueArray<RecommendationSeed>(seeds);
+            Tracks = new ImmutableValueArray<SimplifiedTrack>(tracks);
         }
 
         /// <summary>

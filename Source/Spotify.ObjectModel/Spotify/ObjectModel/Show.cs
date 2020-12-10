@@ -38,7 +38,7 @@ namespace Spotify.ObjectModel
                 copyrights,
                 externalUrls)
         {
-            this.Episodes = episodes;
+            Episodes = episodes;
         }
 
         public Paging<SimplifiedEpisode> Episodes { get; init; }

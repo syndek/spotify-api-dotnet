@@ -52,9 +52,9 @@ namespace Spotify.ObjectModel
             IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri, href, displayName, images, followers, externalUrls)
         {
-            this.Email = email;
-            this.Country = country;
-            this.Product = product;
+            Email = email;
+            Country = country;
+            Product = product;
         }
 
         /// <summary>

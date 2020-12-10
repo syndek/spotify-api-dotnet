@@ -15,9 +15,9 @@ namespace Spotify.Web.Authorization
         /// <param name="expiresIn">The number of seconds after issue at which the access token will expire.</param>
         public AccessToken(string value, AuthorizationScopes scope, int expiresIn)
         {
-            this.Value = value;
-            this.Scope = scope;
-            this.ExpiresAt = DateTime.UtcNow.AddSeconds(expiresIn);
+            Value = value;
+            Scope = scope;
+            ExpiresAt = DateTime.UtcNow.AddSeconds(expiresIn);
         }
 
         /// <summary>
@@ -39,6 +39,6 @@ namespace Spotify.Web.Authorization
         /// Gets a value indicating whether or not the <see cref="AccessToken"/> has expired.
         /// </summary>
         /// <returns><see langword="true"/> if the <see cref="AccessToken"/> has expired; otherwise, <see langword="false"/>.</returns>
-        public bool HasExpired => DateTime.UtcNow >= this.ExpiresAt;
+        public bool HasExpired => DateTime.UtcNow >= ExpiresAt;
     }
 }

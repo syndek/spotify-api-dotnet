@@ -15,8 +15,8 @@ namespace Spotify.Web
         /// <param name="message">A <see cref="string"/> representing a short description of the cause of the error.</param>
         internal Error(HttpStatusCode statusCode, string message)
         {
-            this.StatusCode = statusCode;
-            this.Message = message;
+            StatusCode = statusCode;
+            Message = message;
         }
 
         /// <summary>

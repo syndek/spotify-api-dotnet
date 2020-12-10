@@ -16,7 +16,7 @@ namespace Spotify.ObjectModel
         /// <param name="uri">The Spotify URI of the object.</param>
         public LocatableObject(string id, Uri uri) : base(id)
         {
-            this.Uri = uri;
+            Uri = uri;
         }
 
         /// <summary>

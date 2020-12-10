@@ -48,15 +48,15 @@
             float timeSignatureConfidence) :
             base(start, duration, confidence)
         {
-            this.Loudness = loudness;
-            this.Tempo = tempo;
-            this.TempoConfidence = tempoConfidence;
-            this.Key = key;
-            this.KeyConfidence = keyConfidence;
-            this.Mode = mode;
-            this.ModeConfidence = modeConfidence;
-            this.TimeSignature = timeSignature;
-            this.TimeSignatureConfidence = timeSignatureConfidence;
+            Loudness = loudness;
+            Tempo = tempo;
+            TempoConfidence = tempoConfidence;
+            Key = key;
+            KeyConfidence = keyConfidence;
+            Mode = mode;
+            ModeConfidence = modeConfidence;
+            TimeSignature = timeSignature;
+            TimeSignatureConfidence = timeSignatureConfidence;
         }
 
         /// <summary>

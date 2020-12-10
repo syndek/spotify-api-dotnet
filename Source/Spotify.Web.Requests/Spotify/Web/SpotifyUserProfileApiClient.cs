@@ -21,8 +21,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<PrivateUser>(
-                new($"{SpotifyApiClient.BaseUrl}/me"),
+            return SendAsync<PrivateUser>(
+                new($"{BaseUrl}/me"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -34,8 +34,8 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            return base.SendAsync<PublicUser>(
-                new($"{SpotifyApiClient.BaseUrl}/users/{id}"),
+            return SendAsync<PublicUser>(
+                new($"{BaseUrl}/users/{id}"),
                 HttpMethod.Get,
                 content: null,
                 accessTokenProvider,
@@ -45,12 +45,12 @@ namespace Spotify.Web
         #region ISpotifyUserProfileApi Implementation
         Task<PrivateUser> ISpotifyUserProfileApi.GetCurrentUserProfileAsync(CancellationToken cancellationToken)
         {
-            return this.GetCurrentUserProfileAsync(null, cancellationToken);
+            return GetCurrentUserProfileAsync(null, cancellationToken);
         }
 
         Task<PublicUser> ISpotifyUserProfileApi.GetUserProfileAsync(string id, CancellationToken cancellationToken)
         {
-            return this.GetUserProfileAsync(id, null, cancellationToken);
+            return GetUserProfileAsync(id, null, cancellationToken);
         }
         #endregion
     }

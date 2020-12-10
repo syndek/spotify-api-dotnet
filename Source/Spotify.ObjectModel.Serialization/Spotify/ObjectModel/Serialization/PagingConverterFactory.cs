@@ -13,7 +13,7 @@ namespace Spotify.ObjectModel.Serialization
 
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
-            if (!this.CanConvert(typeToConvert))
+            if (!CanConvert(typeToConvert))
             {
                 throw new ArgumentException($"{typeToConvert} must be a generic Paging type.", nameof(typeToConvert));
             }

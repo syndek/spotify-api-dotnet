@@ -24,7 +24,7 @@ namespace Spotify.Web.Authorization.Flows
         /// </param>
         protected SpotifyAuthorizationFlowWithClientSecret(HttpClient httpClient, string clientId, string clientSecret) : base(httpClient, clientId)
         {
-            this.BasicAuthenticationHeader = new("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}")));
+            BasicAuthenticationHeader = new("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}")));
         }
 
         /// <summary>

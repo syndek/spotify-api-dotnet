@@ -12,7 +12,7 @@ namespace Spotify.Web.RequestObjects.Serialization
 
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
-            if (!this.CanConvert(typeToConvert))
+            if (!CanConvert(typeToConvert))
             {
                 throw new ArgumentException($"{typeToConvert} must be a generic NamedArray type.", nameof(typeToConvert));
             }

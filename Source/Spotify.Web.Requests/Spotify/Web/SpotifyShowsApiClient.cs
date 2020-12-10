@@ -26,11 +26,11 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/shows")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/shows")
                 .AppendJoinToQuery("ids", ',', ids)
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
 
-            return base.SendAsync<IReadOnlyList<SimplifiedShow>>(
+            return SendAsync<IReadOnlyList<SimplifiedShow>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -44,10 +44,10 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/shows/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/shows/{id}")
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
 
-            return base.SendAsync<Show>(
+            return SendAsync<Show>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -63,12 +63,12 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            var uriBuilder = new SpotifyUriBuilder($"{SpotifyApiClient.BaseUrl}/shows/{id}")
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/shows/{id}")
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset)
                 .AppendToQueryIfNotNull("market", market?.ToSpotifyString());
 
-            return base.SendAsync<Paging<SimplifiedEpisode>>(
+            return SendAsync<Paging<SimplifiedEpisode>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -82,12 +82,12 @@ namespace Spotify.Web
             CountryCode? market,
             CancellationToken cancellationToken)
         {
-            return this.GetShowsAsync(ids, market, null, cancellationToken);
+            return GetShowsAsync(ids, market, null, cancellationToken);
         }
 
         Task<Show> ISpotifyShowsApi.GetShowAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
-            return this.GetShowAsync(id, market, null, cancellationToken);
+            return GetShowAsync(id, market, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedEpisode>> ISpotifyShowsApi.GetShowEpisodesAsync(
@@ -97,7 +97,7 @@ namespace Spotify.Web
             CountryCode? market,
             CancellationToken cancellationToken)
         {
-            return this.GetShowEpisodesAsync(id, limit, offset, market, null, cancellationToken);
+            return GetShowEpisodesAsync(id, limit, offset, market, null, cancellationToken);
         }
         #endregion
     }
