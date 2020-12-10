@@ -32,11 +32,13 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>The Spotify URI of the <see cref="Context"/>.</returns>
         public Uri Uri { get; init; }
+
         /// <summary>
         /// Gets or sets a link to the Spotify Web API endpoint providing full details of the <see cref="Context"/>.
         /// </summary>
         /// <returns>A link to the Spotify Web API endpoint providing full details of the <see cref="Context"/>.</returns>
         public Uri Href { get; init; }
+
         /// <summary>
         /// Gets or sets the known external URLs for the <see cref="Context"/>.
         /// </summary>

@@ -36,8 +36,8 @@ namespace Spotify.ObjectModel
             float loudnessMax,
             float loudnessMaxTime,
             IReadOnlyList<float> pitches,
-            IReadOnlyList<float> timbre) :
-            base(start, duration, confidence)
+            IReadOnlyList<float> timbre)
+            : base(start, duration, confidence)
         {
             LoudnessStart = loudnessStart;
             LoudnessEnd = loudnessEnd;
@@ -56,6 +56,7 @@ namespace Spotify.ObjectModel
         /// </remarks>
         /// <returns>A <see cref="float"/> representing the onset loudness (in decibels) of the <see cref="Segment"/>.</returns>
         public float LoudnessStart { get; init; }
+
         /// <summary>
         /// Gets or sets the offset loudness (in decibels) of the <see cref="Segment"/>.
         /// </summary>
@@ -64,6 +65,7 @@ namespace Spotify.ObjectModel
         /// </remarks>
         /// <returns>A <see cref="float"/> representing the offset loudness (in decibels) of the segment.</returns>
         public float LoudnessEnd { get; init; }
+
         /// <summary>
         /// Gets or sets the peak loudness (in decibels) of the <see cref="Segment"/>.
         /// </summary>
@@ -73,6 +75,7 @@ namespace Spotify.ObjectModel
         /// </remarks>
         /// <returns>A <see cref="float"/> representing the peak loudness (in decibels) of the segment.</returns>
         public float LoudnessMax { get; init; }
+
         /// <summary>
         /// Gets or sets the segment-relative offset of the <see cref="LoudnessMax"/> value (in seconds).
         /// </summary>
@@ -84,6 +87,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="float"/> representing the segment-relative offset of the <see cref="LoudnessMax"/> value (in seconds).
         /// </returns>
         public float LoudnessMaxTime { get; init; }
+
         /// <summary>
         /// Gets or sets the pitch values of the <see cref="Segment"/>.
         /// </summary>
@@ -97,6 +101,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="float"/> values representing the pitch content of the <see cref="Segment"/>.
         /// </returns>
         public IReadOnlyList<float> Pitches { get; init; }
+
         /// <summary>
         /// Gets or sets the timbre of the <see cref="Segment"/>.
         /// </summary>

@@ -20,8 +20,8 @@ namespace Spotify.ObjectModel
             string mediaType,
             string publisher,
             IReadOnlyList<Copyright> copyrights,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(id, uri)
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(id, uri)
         {
             Href = href;
             Name = name;

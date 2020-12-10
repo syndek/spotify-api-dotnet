@@ -25,11 +25,13 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>The source URL of the <see cref="Image"/>.</returns>
         public Uri Url { get; init; }
+
         /// <summary>
         /// Gets or sets the width in pixels of the <see cref="Image"/>.
         /// </summary>
         /// <returns>The width in pixels of the <see cref="Image"/>, or <see langword="null"/> if unknown.</returns>
         public int? Width { get; init; }
+
         /// <summary>
         /// Gets or sets the height in pixels of the <see cref="Image"/>.
         /// </summary>

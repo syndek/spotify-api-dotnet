@@ -24,11 +24,13 @@
         /// </summary>
         /// <returns>A <see cref="float"/> representing the starting point (in seconds) of the <see cref="TimeInterval"/>.</returns>
         public float Start { get; init; }
+
         /// <summary>
         /// Gets or sets the duration of the <see cref="TimeInterval"/>.
         /// </summary>
         /// <returns>A <see cref="float"/> representing the duration (in seconds) of the <see cref="TimeInterval"/>.</returns>
         public float Duration { get; init; }
+
         /// <summary>
         /// Gets or sets the confidence, from <c>0.0</c> to <c>1.0</c>, of the <see cref="TimeInterval"/>.
         /// </summary>

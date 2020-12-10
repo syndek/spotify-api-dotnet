@@ -30,6 +30,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if unavailable.
         /// </returns>
         public Uri? Href { get; init; }
+
         /// <summary>
         /// Gets or sets the total number of followers.
         /// </summary>

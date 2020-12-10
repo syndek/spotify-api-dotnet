@@ -25,6 +25,7 @@ namespace Spotify.ObjectModel.Collections
         public Paging(IReadOnlyList<TItem> items, int total, int limit, int offset, Uri href, Uri? previous, Uri? next)
         {
             this.items = new ImmutableValueArray<TItem>(items);
+
             Total = total;
             Limit = limit;
             Offset = offset;
@@ -45,31 +46,37 @@ namespace Spotify.ObjectModel.Collections
         /// </summary>
         /// <returns>The maximum number of items available to return.</returns>
         public int Total { get; init; }
+
         /// <summary>
         /// Gets or sets the maximum number of items in the response (as set in the query or by default).
         /// </summary>
         /// <returns>The maximum number of items in the response.</returns>
         public int Limit { get; init; }
+
         /// <summary>
         /// Gets or sets the offset of the items returned (as set in the query or by default).
         /// </summary>
         /// <returns>The offset of the items returned.</returns>
         public int Offset { get; init; }
+
         /// <summary>
         /// Gets or sets a link to the Spotify Web API endpoint returning the full result of the request.
         /// </summary>
         /// <returns>A link to the Spotify Web API endpoint returning the full result of the request.</returns>
         public Uri Href { get; init; }
+
         /// <summary>
         /// Gets or sets the URL for the previous page of items.
         /// </summary>
         /// <returns>The URL for the previous page of items, or <see langword="null"/> if none.</returns>
         public Uri? Previous { get; init; }
+
         /// <summary>
         /// Gets or sets the URL for the next page of items.
         /// </summary>
         /// <returns>The URL for the next page of items, or <see langword="null"/> if none.</returns>
         public Uri? Next { get; init; }
+
         /// <summary>
         /// Gets or sets the number of items contained in the <see cref="Paging{TItem}"/>.
         /// </summary>

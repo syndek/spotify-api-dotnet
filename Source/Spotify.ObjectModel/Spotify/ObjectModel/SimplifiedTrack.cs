@@ -19,8 +19,8 @@ namespace Spotify.ObjectModel
             bool isLocal,
             IReadOnlyList<CountryCode> availableMarkets,
             string previewUrl,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(id, uri)
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(id, uri)
         {
             Href = href;
             Name = name;

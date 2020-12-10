@@ -54,8 +54,8 @@ namespace Spotify.ObjectModel
             bool? isPublic,
             bool isCollaborative,
             string snapshotId,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(
                 id,
                 uri,
                 href,

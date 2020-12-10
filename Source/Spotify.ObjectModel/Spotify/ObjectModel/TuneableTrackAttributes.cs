@@ -16,6 +16,7 @@
         /// An <see cref="int"/> representing the popularity of the track, or <see langword="null"/> if a value is not provided.
         /// </returns>
         public int? Popularity { get; init; }
+
         /// <summary>
         /// Gets or sets the duration of the track in milliseconds.
         /// </summary>
@@ -24,6 +25,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public int? Duration { get; init; }
+
         /// <summary>
         /// Gets or sets the overall estimated time signature of the track.
         /// The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).
@@ -32,6 +34,7 @@
         /// An <see cref="int"/> representing the time signature of the track, or <see langword="null"/> if a value is not provided.
         /// </returns>
         public int? TimeSignature { get; init; }
+
         /// <summary>
         /// Gets or sets the key of the track.
         /// Numbers map to pitches using standard <see href="https://en.wikipedia.org/wiki/Pitch_class">pitch class notation</see>.
@@ -41,6 +44,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public int? Key { get; init; }
+
         /// <summary>
         /// Gets or sets the modality of the track.
         /// Modality represents the type of scale (either major or minor) from which the track's melodic content is derived.
@@ -49,6 +53,7 @@
         /// A <see cref="Modality"/> value representing the modality of the track, or <see langword="null"/> if a value is not provided.
         /// </returns>
         public Modality? Mode { get; init; }
+
         /// <summary>
         /// Gets or sets the acousticness of the track, from <c>0.0</c> to <c>1.0</c>.
         /// <c>0.0</c> represents low confidence that the track is acoustic, while <c>1.0</c> represents high confidence.
@@ -58,6 +63,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Acousticness { get; init; }
+
         /// <summary>
         /// Gets or sets the danceability of the track, from <c>0.0</c> to <c>1.0</c>.
         /// Danceability describes how suitable a track is for dancing based on a combination of musical elements.
@@ -68,6 +74,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Danceability { get; init; }
+
         /// <summary>
         /// Gets or sets the energy of the track, from <c>0.0</c> to <c>1.0</c>.
         /// Energy represents a perceptual measure of intensity and activity.
@@ -77,6 +84,7 @@
         /// A <see cref="float"/> representing how energetic the track is, or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Energy { get; init; }
+
         /// <summary>
         /// Gets or sets the instrumentalness of the track, from <c>0.0</c> to <c>1.0</c>.
         /// "Ooh" and "aah" sounds are treated as instrumental in this context, while rap or spoken words are clearly 'vocal'.
@@ -88,6 +96,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Instrumentalness { get; init; }
+
         /// <summary>
         /// Gets or sets the liveness of the track, from <c>0.0</c> to <c>1.0</c>.
         /// Liveness represents the presence of an audience in the recording, thus representing the probability that a track was performed live.
@@ -98,6 +107,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Liveness { get; init; }
+
         /// <summary>
         /// Gets or sets the loudness of the track.
         /// The loudness is represented by decibels (dB) and are averaged across the entire track.
@@ -107,6 +117,7 @@
         /// A <see cref="float"/> representing the loudness of the track in decibels, or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Loudness { get; init; }
+
         /// <summary>
         /// Gets or sets the speechiness of the track, from <c>0.0</c> to <c>1.0</c>.
         /// Speechiness represents the presence of spoken words in a track.
@@ -120,6 +131,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Speechiness { get; init; }
+
         /// <summary>
         /// Gets or sets the overall estimated tempo of the track.
         /// Tempo is recorded in beats per minute (BPM) and represents the speed or pace of a given piece.
@@ -129,6 +141,7 @@
         /// or <see langword="null"/> if a value is not provided.
         /// </returns>
         public float? Tempo { get; init; }
+
         /// <summary>
         /// Gets or sets the valence of the track, from <c>0.0</c> to <c>1.0</c>.
         /// Valence represents the musical positiveness conveyed by a track.

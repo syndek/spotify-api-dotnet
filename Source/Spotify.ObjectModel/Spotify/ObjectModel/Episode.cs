@@ -22,8 +22,8 @@ namespace Spotify.ObjectModel
             IReadOnlyList<string> languages,
             Uri? audioPreviewUrl,
             IReadOnlyDictionary<string, Uri> externalUrls,
-            ResumePoint? resumePoint) :
-            base(
+            ResumePoint? resumePoint)
+            : base(
                 id,
                 uri,
                 href,

@@ -27,6 +27,7 @@
         /// An <see cref="int"/> representing the user's most recent playback position in the <see cref="Episode"/> in milliseconds.
         /// </returns>
         public int ResumePosition { get; init; }
+
         /// <summary>
         /// Gets or sets a value representing whether or not the <see cref="Episode"/> has been fully played by the user.
         /// </summary>

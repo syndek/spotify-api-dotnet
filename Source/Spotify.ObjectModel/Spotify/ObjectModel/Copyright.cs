@@ -21,6 +21,7 @@
         /// </summary>
         /// <returns>The text of the <see cref="Copyright"/>.</returns>
         public string Text { get; init; }
+
         /// <summary>
         /// Gets or sets the type of the <see cref="Copyright"/>.
         /// </summary>

@@ -49,8 +49,8 @@ namespace Spotify.ObjectModel
             IReadOnlyList<Image> images,
             Product? product,
             Followers followers,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(id, uri, href, displayName, images, followers, externalUrls)
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(id, uri, href, displayName, images, followers, externalUrls)
         {
             Email = email;
             Country = country;
@@ -65,6 +65,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if not provided.
         /// </returns>
         public string? Email { get; init; }
+
         /// <summary>
         /// Gets or sets the country of the <see cref="PrivateUser"/>.
         /// </summary>
@@ -73,6 +74,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if not provided.
         /// </returns>
         public CountryCode? Country { get; init; }
+
         /// <summary>
         /// Gets or sets the <see cref="ObjectModel.Product"/> of the <see cref="PrivateUser"/>.
         /// </summary>

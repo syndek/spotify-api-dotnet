@@ -51,6 +51,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="Paging{TItem}"/> of returned <see cref="Artist"/> objects, or <see langword="null"/> if not included.
         /// </returns>
         public Paging<Artist>? Artists { get; init; }
+
         /// <summary>
         /// Gets or sets the returned albums of the <see cref="SearchResult"/>.
         /// </summary>
@@ -58,6 +59,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="Paging{TItem}"/> of returned <see cref="SimplifiedAlbum"/> objects, or <see langword="null"/> if not included.
         /// </returns>
         public Paging<SimplifiedAlbum>? Albums { get; init; }
+
         /// <summary>
         /// Gets or sets the returned tracks of the <see cref="SearchResult"/>.
         /// </summary>
@@ -65,6 +67,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="Paging{TItem}"/> of returned <see cref="Track"/> objects, or <see langword="null"/> if not included.
         /// </returns>
         public Paging<Track>? Tracks { get; init; }
+
         /// <summary>
         /// Gets or sets the returned shows of the <see cref="SearchResult"/>.
         /// </summary>
@@ -72,6 +75,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="Paging{TItem}"/> of returned <see cref="SimplifiedShow"/> objects, or <see langword="null"/> if not included.
         /// </returns>
         public Paging<SimplifiedShow>? Shows { get; init; }
+
         /// <summary>
         /// Gets or sets the returned episodes of the <see cref="SearchResult"/>.
         /// </summary>
@@ -79,6 +83,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="Paging{TItem}"/> of returned <see cref="SimplifiedEpisode"/> objects, or <see langword="null"/> if not included.
         /// </returns>
         public Paging<SimplifiedEpisode>? Episodes { get; init; }
+
         /// <summary>
         /// Gets or sets the returned playlists of the <see cref="SearchResult"/>.
         /// </summary>

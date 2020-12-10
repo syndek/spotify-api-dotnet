@@ -52,8 +52,8 @@ namespace Spotify.ObjectModel
             bool? isPublic,
             bool isCollaborative,
             string snapshotId,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(id, uri)
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(id, uri)
         {
             Href = href;
             Name = name;
@@ -72,11 +72,13 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>A link to the Spotify Web API endpoint providing full details of the <see cref="SimplifiedPlaylist"/>.</returns>
         public Uri Href { get; init; }
+
         /// <summary>
         /// Gets or sets the name of the <see cref="SimplifiedPlaylist"/>.
         /// </summary>
         /// <returns>A <see cref="string"/> representing the name of the <see cref="SimplifiedPlaylist"/>.</returns>
         public string Name { get; init; }
+
         /// <summary>
         /// Gets or sets the description of the <see cref="SimplifiedPlaylist"/>.
         /// </summary>
@@ -86,6 +88,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if none is provided.
         /// </returns>
         public string? Description { get; init; }
+
         /// <summary>
         /// Gets or sets the cover art of the <see cref="SimplifiedPlaylist"/>.
         /// </summary>
@@ -94,11 +97,13 @@ namespace Spotify.ObjectModel
         /// representing the cover art of the <see cref="SimplifiedPlaylist"/> in various sizes.
         /// </returns>
         public IReadOnlyList<Image> Images { get; init; }
+
         /// <summary>
         /// Gets or sets the owner of the <see cref="SimplifiedPlaylist"/>.
         /// </summary>
         /// <returns>The <see cref="PublicUser"/> who owns the <see cref="SimplifiedPlaylist"/>.</returns>
         public PublicUser Owner { get; init; }
+
         /// <summary>
         /// Gets or sets the tracks of the <see cref="SimplifiedPlaylist"/>.
         /// </summary>
@@ -107,6 +112,7 @@ namespace Spotify.ObjectModel
         /// representing the tracks of the <see cref="SimplifiedPlaylist"/>.
         /// </returns>
         public Paging<PlaylistTrack> Tracks { get; init; }
+
         /// <summary>
         /// Gets or sets a value indicating whether or not the <see cref="SimplifiedPlaylist"/> is public.
         /// </summary>
@@ -116,6 +122,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if the visibility is not relevant.
         /// </returns>
         public bool? IsPublic { get; init; }
+
         /// <summary>
         /// Gets or sets a value indicating whether or not the <see cref="SimplifiedPlaylist"/> is collaborative.
         /// </summary>
@@ -124,11 +131,13 @@ namespace Spotify.ObjectModel
         /// allows other users to modify the <see cref="SimplifiedPlaylist"/>.
         /// </returns>
         public bool IsCollaborative { get; init; }
+
         /// <summary>
         /// Gets or sets the version identifier of the current <see cref="SimplifiedPlaylist"/>.
         /// </summary>
         /// <returnsA <see cref="string"/> representing the version identifier of the current <see cref="SimplifiedPlaylist"/>.</returns>
         public string SnapshotId { get; init; }
+
         /// <summary>
         /// Gets or sets the known external URLs for the <see cref="SimplifiedPlaylist"/>.
         /// </summary>

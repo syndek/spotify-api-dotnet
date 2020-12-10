@@ -20,7 +20,7 @@ namespace Spotify.ObjectModel.Collections
         public IEnumerable<TValue> Values => dictionary.Values;
         public int Count => dictionary.Count;
 
-        public override bool Equals(object? obj) => (obj is ImmutableValueDictionary<TKey, TValue> dictionary) && Equals(dictionary);
+        public override bool Equals(object? obj) => obj is ImmutableValueDictionary<TKey, TValue> dictionary && Equals(dictionary);
 
         // This probably needs to be done better, but will work 'good enough' for now.
         public override int GetHashCode() => dictionary.GetHashCode();

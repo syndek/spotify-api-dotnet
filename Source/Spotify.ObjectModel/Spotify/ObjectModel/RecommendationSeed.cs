@@ -46,6 +46,7 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>A <see cref="string"/> representing the ID used to select the seed.</returns>
         public string Id { get; init; }
+
         /// <summary>
         /// Gets or sets a link to the full track or artist data for the <see cref="RecommendationSeed"/>.
         /// </summary>
@@ -58,11 +59,13 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if the seed is a genre seed.
         /// </returns>
         public Uri? Href { get; init; }
+
         /// <summary>
         /// Gets or sets the type of the <see cref="RecommendationSeed"/>.
         /// </summary>
         /// <returns>The type of the <see cref="RecommendationSeed"/>.</returns>
         public RecommendationSeedType Type { get; init; }
+
         /// <summary>
         /// Gets or sets the number of recommended tracks available for the seed.
         /// </summary>
@@ -70,6 +73,7 @@ namespace Spotify.ObjectModel
         /// An <see cref="int"/> representing the number of recommended tracks available for the seed.
         /// </returns>
         public int InitialPoolSize { get; init; }
+
         /// <summary>
         /// Gets or sets the number of tracks available after min and max filters have been applied.
         /// </summary>
@@ -77,6 +81,7 @@ namespace Spotify.ObjectModel
         /// An <see cref="int"/> representing the number of tracks available after min and max filters have been applied.
         /// </returns>
         public int AfterFilteringSize { get; init; }
+
         /// <summary>
         /// Gets or sets the number of tracks available after relinking for regional availability.
         /// </summary>

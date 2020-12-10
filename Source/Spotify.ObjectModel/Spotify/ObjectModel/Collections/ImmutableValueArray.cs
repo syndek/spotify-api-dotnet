@@ -18,7 +18,7 @@ namespace Spotify.ObjectModel.Collections
 
         public int Count => elements.Count;
 
-        public override bool Equals(object? obj) => (obj is ImmutableValueArray<TElement> array) && Equals(array);
+        public override bool Equals(object? obj) => obj is ImmutableValueArray<TElement> array && Equals(array);
 
         public override int GetHashCode()
         {

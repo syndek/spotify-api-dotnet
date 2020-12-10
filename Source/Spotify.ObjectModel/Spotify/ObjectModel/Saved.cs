@@ -24,6 +24,7 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>An object of type <typeparamref name="TSaved"/> representing the object that was saved.</returns>
         public TSaved SavedObject { get; init; }
+
         /// <summary>
         /// Gets or sets the <see cref="DateTime"/> at which <see cref="SavedObject"/> was saved.
         /// </summary>

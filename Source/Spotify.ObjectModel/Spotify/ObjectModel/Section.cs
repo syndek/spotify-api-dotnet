@@ -45,8 +45,8 @@
             Modality? mode,
             float modeConfidence,
             int timeSignature,
-            float timeSignatureConfidence) :
-            base(start, duration, confidence)
+            float timeSignatureConfidence)
+            : base(start, duration, confidence)
         {
             Loudness = loudness;
             Tempo = tempo;
@@ -64,28 +64,33 @@
         /// </summary>
         /// <returns>A <see cref="float"/> representing the overall loudness (in decibels) of the <see cref="Section"/>.</returns>
         public float Loudness { get; init; }
+
         /// <summary>
         /// Gets or sets the overall tempo (in beats per minute) of the <see cref="Section"/>.
         /// </summary>
         /// <returns>A <see cref="float"/> representing the overall tempo (in beats per minute) of the <see cref="Section"/>.</returns>
         public float Tempo { get; init; }
+
         /// <summary>
         /// Gets or sets the confidence of the reliability of the <see cref="Tempo"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>
         /// <remarks><c>0.0</c> represents low confidence in the value, while <c>1.0</c> represents high confidence.</remarks>
         /// <returns>A <see cref="float"/> representing the confidence of the reliability of the <see cref="Tempo"/> value.</returns>
         public float TempoConfidence { get; init; }
+
         /// <summary>
         /// Gets or sets the estimated overall key of the <see cref="Section"/>.
         /// </summary>
         /// <returns>An <see cref="int"/> representing the estimated overall key of the <see cref="Section"/>.</returns>
         public int Key { get; init; }
+
         /// <summary>
         /// Gets or sets the confidence of the reliability of the <see cref="Key"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>
         /// <remarks><c>0.0</c> represents low confidence in the value, while <c>1.0</c> represents high confidence.</remarks>
         /// <returns>A <see cref="float"/> representing the confidence of the reliability of the <see cref="Key"/> value.</returns>
         public float KeyConfidence { get; init; }
+
         /// <summary>
         /// Gets or sets the modality of the <see cref="Section"/>.
         /// </summary>
@@ -94,17 +99,20 @@
         /// or <see langword="null"/> if none was provided.
         /// </returns>
         public Modality? Mode { get; init; }
+
         /// <summary>
         /// Gets or sets the confidence of the reliability of the <see cref="Mode"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>
         /// <remarks><c>0.0</c> represents low confidence in the value, while <c>1.0</c> represents high confidence.</remarks>
         /// <returns>A <see cref="float"/> representing the confidence of the reliability of the <see cref="Mode"/> value.</returns>
         public float ModeConfidence { get; init; }
+
         /// <summary>
         /// Gets or sets the estimated overall time signature of the <see cref="Section"/>.
         /// </summary>
         /// <returns>An <see cref="int"/> representing the estimated overall time signature of the <see cref="Section"/>.</returns>
         public int TimeSignature { get; init; }
+
         /// <summary>
         /// Gets or sets the confidence of the reliability of the <see cref="TimeSignature"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>

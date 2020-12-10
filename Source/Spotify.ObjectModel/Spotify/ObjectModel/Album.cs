@@ -65,8 +65,8 @@ namespace Spotify.ObjectModel
             string label,
             IReadOnlyList<Copyright> copyrights,
             IReadOnlyDictionary<string, string> externalIds,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(
                 id,
                 uri,
                 href,
@@ -96,6 +96,7 @@ namespace Spotify.ObjectModel
         /// representing the tracks of the <see cref="Album"/>.
         /// </returns>
         public Paging<SimplifiedTrack> Tracks { get; init; }
+
         /// <summary>
         /// Gets or sets the genres associated with the <see cref="Album"/>.
         /// </summary>
@@ -103,16 +104,19 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="string"/> objects representing genres the <see cref="Artist"/> is associated with.
         /// </returns>
         public IReadOnlyList<string> Genres { get; init; }
+
         /// <summary>
         /// Gets or sets the popularity of the <see cref="Album"/>.
         /// </summary>
         /// <returns>An <see cref="int"/> representing the popularity of the <see cref="Album"/>.</returns>
         public int Popularity { get; init; }
+
         /// <summary>
         /// Gets or sets the name of the label that released the <see cref="Album"/>.
         /// </summary>
         /// <returns>A <see cref="string"/> representing the name of the label that released the <see cref="Album"/>.</returns>
         public string Label { get; init; }
+
         /// <summary>
         /// Gets or sets the copyright statements of the <see cref="Album"/>.
         /// </summary>
@@ -121,6 +125,7 @@ namespace Spotify.ObjectModel
         /// representing the copyright statements of the <see cref="Album"/>.
         /// </returns>
         public IReadOnlyList<Copyright> Copyrights { get; init; }
+
         /// <summary>
         /// Gets or sets the known external IDs for the <see cref="Album"/>.
         /// </summary>

@@ -34,6 +34,7 @@ namespace Spotify.ObjectModel
         /// representing the seeds of the <see cref="Recommendations"/>.
         /// </returns>
         public IReadOnlyList<RecommendationSeed> Seeds { get; init; }
+
         /// <summary>
         /// Gets or sets the recommended tracks of the <see cref="Recommendations"/>.
         /// </summary>

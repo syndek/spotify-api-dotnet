@@ -27,16 +27,19 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>The <see cref="DateTime"/> at which the <see cref="Track"/> was added to the playlist.</returns>
         public DateTime AddedAt { get; init; }
+
         /// <summary>
         /// Gets or sets the <see cref="PublicUser"/> who added the <see cref="Track"/> to the playlist.
         /// </summary>
         /// <returns>The <see cref="PublicUser"/> who added the <see cref="Track"/> to the playlist.</returns>
         public PublicUser AddedBy { get; init; }
+
         /// <summary>
         /// Gets or sets a value indicating whether or not the <see cref="Track"/> is a local file.
         /// </summary>
         /// <returns>A <see cref="bool"/> indicating whether or not the <see cref="Track"/> is a local file.</returns>
         public bool IsLocal { get; init; }
+
         /// <summary>
         /// Gets or sets the track that is in the playlist.
         /// </summary>

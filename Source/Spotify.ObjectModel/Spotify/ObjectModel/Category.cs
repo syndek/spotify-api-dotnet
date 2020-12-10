@@ -28,11 +28,13 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>A link to the Spotify Web API endpoint returning full details of the <see cref="Category"/>.</returns>
         public Uri Href { get; init; }
+
         /// <summary>
         /// Gets or sets the name of the <see cref="Category"/>.
         /// </summary>
         /// <returns>A <see cref="string"/> representing the name of the <see cref="Category"/>.</returns>
         public string Name { get; init; }
+
         /// <summary>
         /// Gets or sets the <see cref="Category"/>'s icon in various sizes.
         /// </summary>

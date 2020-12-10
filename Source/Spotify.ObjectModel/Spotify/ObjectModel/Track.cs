@@ -22,8 +22,8 @@ namespace Spotify.ObjectModel
             int popularity,
             string previewUrl,
             IReadOnlyDictionary<string, string> externalIds,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(
                 id,
                 uri,
                 href,

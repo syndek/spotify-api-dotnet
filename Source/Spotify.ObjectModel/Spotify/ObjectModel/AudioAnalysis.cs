@@ -53,6 +53,7 @@ namespace Spotify.ObjectModel
         /// representing the time intervals of bars throughout the <see cref="Track"/>.
         /// </returns>
         public IReadOnlyList<TimeInterval> Bars { get; init; }
+
         /// <summary>
         /// Gets or sets the beats of the <see cref="AudioAnalysis"/>.
         /// </summary>
@@ -61,6 +62,7 @@ namespace Spotify.ObjectModel
         /// representing the time intervals of beats throughout the <see cref="Track"/>.
         /// </returns>
         public IReadOnlyList<TimeInterval> Beats { get; init; }
+
         /// <summary>
         /// Gets or sets the sections of the <see cref="AudioAnalysis"/>.
         /// </summary>
@@ -69,6 +71,7 @@ namespace Spotify.ObjectModel
         /// representing different sections of the <see cref="Track"/>.
         /// </returns>
         public IReadOnlyList<Section> Sections { get; init; }
+
         /// <summary>
         /// Gets or sets the segments of the <see cref="AudioAnalysis"/>.
         /// </summary>
@@ -77,6 +80,7 @@ namespace Spotify.ObjectModel
         /// representing different segments of the <see cref="Track"/>.
         /// </returns>
         public IReadOnlyList<Segment> Segments { get; init; }
+
         /// <summary>
         /// Gets or sets the tatums of the <see cref="AudioAnalysis"/>.
         /// </summary>

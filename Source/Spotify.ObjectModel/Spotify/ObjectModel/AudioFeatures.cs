@@ -54,8 +54,8 @@ namespace Spotify.ObjectModel
             float loudness,
             float speechiness,
             float tempo,
-            float valence) :
-            base(id, uri)
+            float valence)
+            : base(id, uri)
         {
             TrackHref = trackHref;
             AnalysisUrl = analysisUrl;

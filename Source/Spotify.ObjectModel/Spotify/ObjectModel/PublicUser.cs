@@ -35,8 +35,8 @@ namespace Spotify.ObjectModel
             string? displayName,
             IReadOnlyList<Image> images,
             Followers followers,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(id, uri)
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(id, uri)
         {
             Href = href;
             DisplayName = displayName;
@@ -50,6 +50,7 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>A link to the Spotify Web API endpoint providing full details of the <see cref="PublicUser"/>.</returns>
         public Uri Href { get; init; }
+
         /// <summary>
         /// Gets or sets the display name of the <see cref="PublicUser"/>.
         /// </summary>
@@ -58,6 +59,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if not available.
         /// </returns>
         public string? DisplayName { get; init; }
+
         /// <summary>
         /// Gets or sets the profile image of the <see cref="PublicUser"/>.
         /// </summary>
@@ -66,11 +68,13 @@ namespace Spotify.ObjectModel
         /// representing the profile image of the <see cref="PublicUser"/> in various sizes.
         /// </returns>
         public IReadOnlyList<Image> Images { get; init; }
+
         /// <summary>
         /// Gets or sets the <see cref="ObjectModel.Followers"/> of the <see cref="PublicUser"/>.
         /// </summary>
         /// <returns>The <see cref="ObjectModel.Followers"/> of the <see cref="PublicUser"/>.</returns>
         public Followers Followers { get; init; }
+
         /// <summary>
         /// Gets or sets the known external URLs for the <see cref="PublicUser"/>.
         /// </summary>

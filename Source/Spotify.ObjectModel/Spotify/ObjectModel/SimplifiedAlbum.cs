@@ -48,8 +48,8 @@ namespace Spotify.ObjectModel
             DateTime releaseDate,
             ReleaseDatePrecision releaseDatePrecision,
             IReadOnlyList<CountryCode> availableMarkets,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(id, uri)
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(id, uri)
         {
             Href = href;
             Name = name;
@@ -68,16 +68,19 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <returns>A link to the Spotify Web API endpoint providing full details of the <see cref="SimplifiedAlbum"/>.</returns>
         public Uri Href { get; init; }
+
         /// <summary>
         /// Gets or sets the name of the <see cref="SimplifiedAlbum"/>.
         /// </summary>
         /// <returns>A <see cref="string"/> representing the name of the <see cref="SimplifiedAlbum"/>.</returns>
         public string Name { get; init; }
+
         /// <summary>
         /// Gets or sets the type of the <see cref="SimplifiedAlbum"/>.
         /// </summary>
         /// <returns>The type of the <see cref="SimplifiedAlbum"/>.</returns>
         public AlbumType Type { get; init; }
+
         /// <summary>
         /// Gets or sets the relationship between an artist and the <see cref="SimplifiedAlbum"/>.
         /// </summary>
@@ -86,6 +89,7 @@ namespace Spotify.ObjectModel
         /// or <see langword="null"/> if not applicable in the current context.
         /// </returns>
         public AlbumGroups? Group { get; init; }
+
         /// <summary>
         /// Gets or sets the cover art of the <see cref="SimplifiedAlbum"/>.
         /// </summary>
@@ -94,6 +98,7 @@ namespace Spotify.ObjectModel
         /// representing the cover art of the <see cref="SimplifiedAlbum"/> in various sizes.
         /// </returns>
         public IReadOnlyList<Image> Images { get; init; }
+
         /// <summary>
         /// Gets or sets the artists of the <see cref="SimplifiedAlbum"/>.
         /// </summary>
@@ -102,16 +107,19 @@ namespace Spotify.ObjectModel
         /// representing the artists of the <see cref="SimplifiedAlbum"/>.
         /// </returns>
         public IReadOnlyList<SimplifiedArtist> Artists { get; init; }
+
         /// <summary>
         /// Gets or sets the release date of the <see cref="SimplifiedAlbum"/>.
         /// </summary>
         /// <returns>The release date of the <see cref="SimplifiedAlbum"/>.</returns>
         public DateTime ReleaseDate { get; init; }
+
         /// <summary>
         /// Gets or sets the precision with which the <see cref="ReleaseDate"/> value is known.
         /// </summary>
         /// <returns>The precision with which the <see cref="ReleaseDate"/> value is known.</returns>
         public ReleaseDatePrecision ReleaseDatePrecision { get; init; }
+
         /// <summary>
         /// Gets or sets the markets in which the <see cref="SimplifiedAlbum"/> is available.
         /// </summary>
@@ -120,6 +128,7 @@ namespace Spotify.ObjectModel
         /// the markets in which the <see cref="SimplifiedAlbum"/> is available.
         /// </returns>
         public IReadOnlyList<CountryCode> AvailableMarkets { get; init; }
+
         /// <summary>
         /// Gets or sets the known external URLs for the <see cref="SimplifiedAlbum"/>.
         /// </summary>

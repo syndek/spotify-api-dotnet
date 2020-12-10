@@ -38,8 +38,8 @@ namespace Spotify.ObjectModel
             Followers followers,
             IReadOnlyList<string> genres,
             int popularity,
-            IReadOnlyDictionary<string, Uri> externalUrls) :
-            base(id, uri, href, name, externalUrls)
+            IReadOnlyDictionary<string, Uri> externalUrls)
+            : base(id, uri, href, name, externalUrls)
         {
             Images = new ImmutableValueArray<Image>(images);
             Followers = followers;
@@ -55,11 +55,13 @@ namespace Spotify.ObjectModel
         /// representing images of the <see cref="Artist"/> in various sizes.
         /// </returns>
         public IReadOnlyList<Image> Images { get; init; }
+
         /// <summary>
         /// Gets or sets the <see cref="ObjectModel.Followers"/> of the <see cref="Artist"/>.
         /// </summary>
         /// <returns>The <see cref="ObjectModel.Followers"/> of the <see cref="Artist"/>.</returns>
         public Followers Followers { get; init; }
+
         /// <summary>
         /// Gets or sets the genres associated with the <see cref="Artist"/>.
         /// </summary>
@@ -67,6 +69,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="string"/> objects representing genres the <see cref="Artist"/> is associated with.
         /// </returns>
         public IReadOnlyList<string> Genres { get; init; }
+
         /// <summary>
         /// Gets or sets the popularity of the <see cref="Artist"/>.
         /// Popularity values will be between <c>0</c> and <c>100</c>, with <c>100</c> being the most popular.
