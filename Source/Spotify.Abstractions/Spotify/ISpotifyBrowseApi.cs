@@ -15,50 +15,50 @@ namespace Spotify
     {
         Task<Paging<Category>> GetCategoriesAsync(
             CountryCode? country = null,
-            String? locale = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            string? locale = null,
+            int? limit = null,
+            int? offset = null,
             CancellationToken cancellationToken = default);
 
         Task<Category> GetCategoryAsync(
-            String id,
+            string id,
             CountryCode? country = null,
-            String? locale = null,
+            string? locale = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetCategoryPlaylistsAsync(
-            String id,
+            string id,
             CountryCode? country = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CancellationToken cancellationToken = default);
 
         Task<Recommendations> GetRecommendationsAsync(
-            IEnumerable<String> seedArtists,
-            IEnumerable<String> seedTracks,
-            IEnumerable<String> seedGenres,
-            Int32? limit = null,
+            IEnumerable<string> seedArtists,
+            IEnumerable<string> seedTracks,
+            IEnumerable<string> seedGenres,
+            int? limit = null,
             CountryCode? market = null,
             TuneableTrackAttributes? minValues = null,
             TuneableTrackAttributes? maxValues = null,
             TuneableTrackAttributes? targetValues = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
+        Task<IReadOnlyList<string>> GetRecommendationGenresAsync(
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedAlbum>> GetNewReleasesAsync(
             CountryCode? country = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetFeaturedPlaylistsAsync(
-            String? locale = null,
+            string? locale = null,
             CountryCode? country = null,
             DateTime? timestamp = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CancellationToken cancellationToken = default);
     }
 }

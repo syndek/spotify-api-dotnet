@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
 
     public sealed class ContextConverter : JsonConverter<Context>
     {

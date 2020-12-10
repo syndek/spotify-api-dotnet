@@ -9,7 +9,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public class PagingConverterFactory : JsonConverterFactory
     {
-        public override Boolean CanConvert(Type typeToConvert) =>
+        public override bool CanConvert(Type typeToConvert) =>
             typeToConvert.IsGenericType && typeToConvert.GetGenericTypeDefinition() == typeof(Paging<>);
 
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)

@@ -14,9 +14,9 @@ namespace Spotify.ObjectModel.Serialization
         {
             var date = reader.GetString()!.Split('-');
             return new(
-                date.Length > 0 ? Int32.Parse(date[0]) : 1,
-                date.Length > 1 ? Int32.Parse(date[1]) : 1,
-                date.Length > 2 ? Int32.Parse(date[2]) : 1);
+                date.Length > 0 ? int.Parse(date[0]) : 1,
+                date.Length > 1 ? int.Parse(date[1]) : 1,
+                date.Length > 2 ? int.Parse(date[2]) : 1);
         }
 
         public static void WriteReleaseDate(this Utf8JsonWriter writer, DateTime releaseDate, ReleaseDatePrecision releaseDatePrecision)

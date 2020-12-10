@@ -10,11 +10,11 @@ namespace Spotify.ObjectModel.Serialization
 {
     using CopyrightArray = IReadOnlyList<Copyright>;
     using CountryCodeArray = IReadOnlyList<CountryCode>;
-    using ExternalIds = IReadOnlyDictionary<String, String>;
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalIds = IReadOnlyDictionary<string, string>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using ImageArray = IReadOnlyList<Image>;
     using SimplifiedArtistArray = IReadOnlyList<SimplifiedArtist>;
-    using StringArray = IReadOnlyList<String>;
+    using StringArray = IReadOnlyList<string>;
 
     public sealed class AlbumConverter : JsonConverter<Album>
     {
@@ -35,10 +35,10 @@ namespace Spotify.ObjectModel.Serialization
             var stringArrayConverter = options.GetConverter<StringArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
+            string name = string.Empty;
             AlbumType type = default;
             ImageArray images = Array.Empty<Image>();
             SimplifiedArtistArray artists = Array.Empty<SimplifiedArtist>();
@@ -48,9 +48,9 @@ namespace Spotify.ObjectModel.Serialization
             CopyrightArray copyrights = Array.Empty<Copyright>();
             ExternalIds externalIds = null!;
             ExternalUrls externalUrls = null!;
-            StringArray genres = Array.Empty<String>();
-            String label = String.Empty;
-            Int32 popularity = default;
+            StringArray genres = Array.Empty<string>();
+            string label = string.Empty;
+            int popularity = default;
             Paging<SimplifiedTrack> tracks = null!;
 
             while (reader.Read())

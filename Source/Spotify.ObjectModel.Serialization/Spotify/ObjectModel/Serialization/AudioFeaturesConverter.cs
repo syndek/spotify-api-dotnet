@@ -15,23 +15,23 @@ namespace Spotify.ObjectModel.Serialization
 
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri trackHref = null!;
             Uri analysisUrl = null!;
-            Int32 duration = default;
-            Int32 timeSignature = default;
-            Int32 key = default;
-            Int32 mode = default;
-            Single acousticness = default;
-            Single danceability = default;
-            Single energy = default;
-            Single instrumentalness = default;
-            Single liveness = default;
-            Single loudness = default;
-            Single speechiness = default;
-            Single tempo = default;
-            Single valence = default;
+            int duration = default;
+            int timeSignature = default;
+            int key = default;
+            int mode = default;
+            float acousticness = default;
+            float danceability = default;
+            float energy = default;
+            float instrumentalness = default;
+            float liveness = default;
+            float loudness = default;
+            float speechiness = default;
+            float tempo = default;
+            float valence = default;
 
             while (reader.Read())
             {

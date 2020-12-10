@@ -12,9 +12,9 @@ namespace Spotify.ObjectModel
         /// Initializes a new instance of the <see cref="LocatableObject"/> record
         /// with the specified <paramref name="id"/> and <paramref name="uri"/>.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the object.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the object.</param>
         /// <param name="uri">The Spotify URI of the object.</param>
-        public LocatableObject(String id, Uri uri) : base(id)
+        public LocatableObject(string id, Uri uri) : base(id)
         {
             this.Uri = uri;
         }

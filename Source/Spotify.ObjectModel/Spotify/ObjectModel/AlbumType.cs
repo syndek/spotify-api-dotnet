@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
     /// <summary>
     /// Defines different types of <see cref="ObjectModel.Album"/>.
     /// </summary>
-    public enum AlbumType : Int32
+    public enum AlbumType : int
     {
         /// <summary>
         /// The <see cref="ObjectModel.Album"/> is a regular album.

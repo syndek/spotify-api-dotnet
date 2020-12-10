@@ -8,21 +8,21 @@ namespace Spotify.ObjectModel
     public record Show : SimplifiedShow, ISaveable
     {
         public Show(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
-            String description,
+            string name,
+            string description,
             IReadOnlyList<Image> images,
             Paging<SimplifiedEpisode> episodes,
-            Boolean isExplicit,
-            Boolean? isExternallyHosted,
-            IReadOnlyList<String> languages,
+            bool isExplicit,
+            bool? isExternallyHosted,
+            IReadOnlyList<string> languages,
             IReadOnlyList<CountryCode> availableMarkets,
-            String mediaType,
-            String publisher,
+            string mediaType,
+            string publisher,
             IReadOnlyList<Copyright> copyrights,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(
                 id,
                 uri,

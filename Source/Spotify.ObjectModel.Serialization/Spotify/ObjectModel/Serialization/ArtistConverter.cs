@@ -5,9 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using ImageArray = IReadOnlyList<Image>;
-    using StringArray = IReadOnlyList<String>;
+    using StringArray = IReadOnlyList<string>;
 
     public sealed class ArtistConverter : JsonConverter<Artist>
     {
@@ -24,14 +24,14 @@ namespace Spotify.ObjectModel.Serialization
             var stringArrayConverter = options.GetConverter<StringArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
+            string name = string.Empty;
             ImageArray images = Array.Empty<Image>();
             Followers followers = null!;
-            StringArray genres = Array.Empty<String>();
-            Int32 popularity = default;
+            StringArray genres = Array.Empty<string>();
+            int popularity = default;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())

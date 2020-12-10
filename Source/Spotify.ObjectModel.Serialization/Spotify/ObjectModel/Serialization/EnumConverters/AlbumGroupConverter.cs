@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
     public static class AlbumGroupConverter
     {
-        public static AlbumGroups FromSpotifyString(String albumGroup) => albumGroup switch
+        public static AlbumGroups FromSpotifyString(string albumGroup) => albumGroup switch
         {
             "album" => AlbumGroups.Album,
             "single" => AlbumGroups.Single,
@@ -15,12 +15,12 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
             _ => throw new ArgumentException($"Invalid {nameof(AlbumGroups)} string value: {albumGroup}", nameof(albumGroup))
         };
 
-        public static AlbumGroups FromSpotifyStrings(IEnumerable<String> albumGroups) =>
+        public static AlbumGroups FromSpotifyStrings(IEnumerable<string> albumGroups) =>
             albumGroups.Aggregate(
                 new AlbumGroups(),
                 (current, albumGroup) => current | AlbumGroupConverter.FromSpotifyString(albumGroup));
 
-        public static String ToSpotifyString(this AlbumGroups albumGroup) => albumGroup switch
+        public static string ToSpotifyString(this AlbumGroups albumGroup) => albumGroup switch
         {
             AlbumGroups.Album => "album",
             AlbumGroups.Single => "single",
@@ -29,7 +29,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
             _ => throw new ArgumentException($"Invalid {nameof(AlbumGroups)} value: {albumGroup}", nameof(albumGroup))
         };
 
-        public static IEnumerable<String> ToSpotifyStrings(this AlbumGroups albumGroups) =>
+        public static IEnumerable<string> ToSpotifyStrings(this AlbumGroups albumGroups) =>
             albumGroups.GetFlags().Select(AlbumGroupConverter.ToSpotifyString);
     }
 }

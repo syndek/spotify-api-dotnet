@@ -32,7 +32,7 @@ namespace Spotify.Web
         }
 
         public Task<PublicUser> GetUserProfileAsync(
-            String id,
+            string id,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -50,7 +50,7 @@ namespace Spotify.Web
             return this.GetCurrentUserProfileAsync(null, cancellationToken);
         }
 
-        Task<PublicUser> ISpotifyUserProfileApi.GetUserProfileAsync(String id, CancellationToken cancellationToken)
+        Task<PublicUser> ISpotifyUserProfileApi.GetUserProfileAsync(string id, CancellationToken cancellationToken)
         {
             return this.GetUserProfileAsync(id, null, cancellationToken);
         }

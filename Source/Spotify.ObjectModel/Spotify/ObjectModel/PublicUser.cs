@@ -13,11 +13,11 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="PublicUser"/> record with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the user.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the user.</param>
         /// <param name="uri">The Spotify URI for the user.</param>
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the user.</param>
         /// <param name="displayName">
-        /// A <see cref="String"/> representing the display name of the user,
+        /// A <see cref="string"/> representing the display name of the user,
         /// or <see langword="null"/> if not available.
         /// </param>
         /// <param name="images">
@@ -30,20 +30,20 @@ namespace Spotify.ObjectModel
         /// external URLs for the user, keyed by the type of the URL.
         /// </param>
         public PublicUser(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String? displayName,
+            string? displayName,
             IReadOnlyList<Image> images,
             Followers followers,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri)
         {
             this.Href = href;
             this.DisplayName = displayName;
             this.Images = new ImmutableValueArray<Image>(images);
             this.Followers = followers;
-            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
+            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         /// <summary>
@@ -55,10 +55,10 @@ namespace Spotify.ObjectModel
         /// Gets or sets the display name of the <see cref="PublicUser"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="String"/> representing the display name of the <see cref="PublicUser"/>,
+        /// A <see cref="string"/> representing the display name of the <see cref="PublicUser"/>,
         /// or <see langword="null"/> if not available.
         /// </returns>
-        public String? DisplayName { get; init; }
+        public string? DisplayName { get; init; }
         /// <summary>
         /// Gets or sets the profile image of the <see cref="PublicUser"/>.
         /// </summary>
@@ -79,6 +79,6 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the <see cref="PublicUser"/>, keyed by the type of the URL.
         /// </returns>
-        public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
+        public IReadOnlyDictionary<string, Uri> ExternalUrls { get; init; }
     }
 }

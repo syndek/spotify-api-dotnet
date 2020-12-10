@@ -12,9 +12,9 @@ namespace Spotify.ObjectModel
         /// </summary>
         /// <param name="addedAt">The <see cref="DateTime"/> at which the <paramref name="track"/> was added to the playlist.</param>
         /// <param name="addedBy">The <see cref="PublicUser"/> who added the <paramref name="track"/> to the playlist.</param>
-        /// <param name="isLocal">A <see cref="Boolean"/> indicating whether or not the <paramref name="track"/> is a local file.</param>
+        /// <param name="isLocal">A <see cref="bool"/> indicating whether or not the <paramref name="track"/> is a local file.</param>
         /// <param name="track">A <see cref="IPlayable"/> object representing the track that is in the playlist.</param>
-        public PlaylistTrack(DateTime addedAt, PublicUser addedBy, Boolean isLocal, IPlayable track) : base()
+        public PlaylistTrack(DateTime addedAt, PublicUser addedBy, bool isLocal, IPlayable track) : base()
         {
             this.AddedAt = addedAt;
             this.AddedBy = addedBy;
@@ -35,8 +35,8 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets a value indicating whether or not the <see cref="Track"/> is a local file.
         /// </summary>
-        /// <returns>A <see cref="Boolean"/> indicating whether or not the <see cref="Track"/> is a local file.</returns>
-        public Boolean IsLocal { get; init; }
+        /// <returns>A <see cref="bool"/> indicating whether or not the <see cref="Track"/> is a local file.</returns>
+        public bool IsLocal { get; init; }
         /// <summary>
         /// Gets or sets the track that is in the playlist.
         /// </summary>

@@ -11,11 +11,11 @@ namespace Spotify.Web.Authorization
         /// <summary>
         /// Initializes a new instance of the <see cref="AccessRefreshToken"/> structure with the specified values.
         /// </summary>
-        /// <param name="value">A <see cref="String"/> representing the value of the access token.</param>
+        /// <param name="value">A <see cref="string"/> representing the value of the access token.</param>
         /// <param name="scope">The <see cref="AuthorizationScopes"/> the access token is valid for.</param>
         /// <param name="expiresIn">The number of seconds after issue at which the access token will expire.</param>
-        /// <param name="refreshToken">A <see cref="String"/> representing a token that can be used to refresh the access token.</param>
-        public AccessRefreshToken(String value, AuthorizationScopes scope, Int32 expiresIn, String? refreshToken)
+        /// <param name="refreshToken">A <see cref="string"/> representing a token that can be used to refresh the access token.</param>
+        public AccessRefreshToken(string value, AuthorizationScopes scope, int expiresIn, string? refreshToken)
         {
             this.AccessToken = new(value, scope, expiresIn);
             this.RefreshToken = refreshToken;
@@ -30,9 +30,9 @@ namespace Spotify.Web.Authorization
         /// Gets a token that can be used to refresh the <see cref="AccessToken"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="String"/> representing a token that can be used to refresh the <see cref="AccessToken"/>,
+        /// A <see cref="string"/> representing a token that can be used to refresh the <see cref="AccessToken"/>,
         /// or <see langword="null"/> if none was provided.
         /// </returns>
-        public String? RefreshToken { get; }
+        public string? RefreshToken { get; }
     }
 }

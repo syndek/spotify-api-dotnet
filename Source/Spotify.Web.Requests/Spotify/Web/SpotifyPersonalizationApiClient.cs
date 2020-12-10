@@ -22,8 +22,8 @@ namespace Spotify.Web
         public SpotifyPersonalizationApiClient(HttpClient httpClient) : base(httpClient) { }
 
         public Task<Paging<Artist>> GetTopArtistsForCurrentUserAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             TimeRange? timeRange = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -42,8 +42,8 @@ namespace Spotify.Web
         }
 
         public Task<Paging<Track>> GetTopTracksForCurrentUserAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             TimeRange? timeRange = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -63,8 +63,8 @@ namespace Spotify.Web
 
         #region ISpotifyPersonalizationApi Implementation
         Task<Paging<Artist>> ISpotifyPersonalizationApi.GetTopArtistsForCurrentUserAsync(
-            Int32? limit,
-            Int32? offset,
+            int? limit,
+            int? offset,
             TimeRange? timeRange,
             CancellationToken cancellationToken)
         {
@@ -72,8 +72,8 @@ namespace Spotify.Web
         }
 
         Task<Paging<Track>> ISpotifyPersonalizationApi.GetTopTracksForCurrentUserAsync(
-            Int32? limit,
-            Int32? offset,
+            int? limit,
+            int? offset,
             TimeRange? timeRange,
             CancellationToken cancellationToken)
         {

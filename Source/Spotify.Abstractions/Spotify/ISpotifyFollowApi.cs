@@ -10,42 +10,42 @@ namespace Spotify
     /// </summary>
     public interface ISpotifyFollowApi
     {
-        Task<IReadOnlyList<Boolean>> CheckCurrentUserFollowsArtistsAsync(
-            IEnumerable<String> ids,
+        Task<IReadOnlyList<bool>> CheckCurrentUserFollowsArtistsAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Boolean>> CheckCurrentUserFollowsUsersAsync(
-            IEnumerable<String> ids,
+        Task<IReadOnlyList<bool>> CheckCurrentUserFollowsUsersAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Boolean>> CheckUsersFollowPlaylistAsync(
-            String id,
-            IEnumerable<String> userIds,
+        Task<IReadOnlyList<bool>> CheckUsersFollowPlaylistAsync(
+            string id,
+            IEnumerable<string> userIds,
             CancellationToken cancellationToken = default);
 
         Task FollowArtistsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task FollowUsersAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task FollowPlaylistAsync(
-            String id,
-            Boolean? publicFollow = false,
+            string id,
+            bool? publicFollow = false,
             CancellationToken cancellationToken = default);
 
         Task UnfollowArtistsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task UnfollowUsersAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task UnfollowPlaylistAsync(
-            String id,
+            string id,
             CancellationToken cancellationToken = default);
     }
 }

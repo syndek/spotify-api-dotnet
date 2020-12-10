@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
     public static class RecommendationSeedTypeConverter
     {
-        public static RecommendationSeedType FromSpotifyString(String recommendationSeedType) => recommendationSeedType switch
+        public static RecommendationSeedType FromSpotifyString(string recommendationSeedType) => recommendationSeedType switch
         {
             "artist" => RecommendationSeedType.Artist,
             "track" => RecommendationSeedType.Track,
@@ -14,7 +14,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
                 nameof(recommendationSeedType))
         };
 
-        public static String ToSpotifyString(this RecommendationSeedType recommendationSeedType) => recommendationSeedType switch
+        public static string ToSpotifyString(this RecommendationSeedType recommendationSeedType) => recommendationSeedType switch
         {
             RecommendationSeedType.Artist => "artist",
             RecommendationSeedType.Track => "track",

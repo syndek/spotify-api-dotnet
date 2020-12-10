@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
     /// <summary>
     /// Defines different ranges of time recognised by the Spotify Web API.
     /// </summary>
-    public enum TimeRange : Int32
+    public enum TimeRange : int
     {
         /// <summary>
         /// Approximately the last 4 weeks.

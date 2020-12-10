@@ -13,10 +13,10 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="SimplifiedAlbum"/> record with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the album.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the album.</param>
         /// <param name="uri">The Spotify URI of the album.</param>
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the album.</param>
-        /// <param name="name">A <see cref="String"/> representing the name of the album.</param>
+        /// <param name="name">A <see cref="string"/> representing the name of the album.</param>
         /// <param name="type">The type of the album.</param>
         /// <param name="group">
         /// The relationship between an artist and the album, or <see langword="null"/> if not applicable in the current context.
@@ -38,10 +38,10 @@ namespace Spotify.ObjectModel
         /// external URLs for the album, keyed by the type of the URL.
         /// </param>
         public SimplifiedAlbum(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
+            string name,
             AlbumType type,
             AlbumGroups? group,
             IReadOnlyList<Image> images,
@@ -49,7 +49,7 @@ namespace Spotify.ObjectModel
             DateTime releaseDate,
             ReleaseDatePrecision releaseDatePrecision,
             IReadOnlyList<CountryCode> availableMarkets,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri)
         {
             this.Href = href;
@@ -61,7 +61,7 @@ namespace Spotify.ObjectModel
             this.ReleaseDate = releaseDate;
             this.ReleaseDatePrecision = releaseDatePrecision;
             this.AvailableMarkets = new ImmutableValueArray<CountryCode>(availableMarkets);
-            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
+            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         /// <summary>
@@ -72,8 +72,8 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets the name of the <see cref="SimplifiedAlbum"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the name of the <see cref="SimplifiedAlbum"/>.</returns>
-        public String Name { get; init; }
+        /// <returns>A <see cref="string"/> representing the name of the <see cref="SimplifiedAlbum"/>.</returns>
+        public string Name { get; init; }
         /// <summary>
         /// Gets or sets the type of the <see cref="SimplifiedAlbum"/>.
         /// </summary>
@@ -128,6 +128,6 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the <see cref="SimplifiedAlbum"/>, keyed by the type of the URL.
         /// </returns>
-        public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
+        public IReadOnlyDictionary<string, Uri> ExternalUrls { get; init; }
     }
 }

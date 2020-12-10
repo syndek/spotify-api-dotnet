@@ -4,14 +4,14 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
     public static class CopyrightTypeConverter
     {
-        public static CopyrightType FromSpotifyString(String copyrightType) => copyrightType switch
+        public static CopyrightType FromSpotifyString(string copyrightType) => copyrightType switch
         {
             "C" => CopyrightType.Copyright,
             "P" => CopyrightType.PerformanceCopyright,
             _ => throw new ArgumentException($"Invalid {nameof(CopyrightType)} string value: {copyrightType}", nameof(copyrightType))
         };
 
-        public static String ToSpotifyString(this CopyrightType copyrightType) => copyrightType switch
+        public static string ToSpotifyString(this CopyrightType copyrightType) => copyrightType switch
         {
             CopyrightType.Copyright => "C",
             CopyrightType.PerformanceCopyright => "P",

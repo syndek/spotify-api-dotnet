@@ -8,16 +8,16 @@ namespace Spotify.Web.RequestObjects
     {
         private readonly IReadOnlyList<TElement> elements;
 
-        internal NamedArray(String name, IReadOnlyList<TElement> elements)
+        internal NamedArray(string name, IReadOnlyList<TElement> elements)
         {
             this.Name = name;
             this.elements = elements;
         }
 
-        public TElement this[Int32 index] => this.elements[index];
+        public TElement this[int index] => this.elements[index];
 
-        public String Name { get; }
-        public Int32 Count => this.elements.Count;
+        public string Name { get; }
+        public int Count => this.elements.Count;
 
         public IEnumerator<TElement> GetEnumerator() => this.elements.GetEnumerator();
 

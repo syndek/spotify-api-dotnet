@@ -13,12 +13,12 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="Playlist"/> record with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the playlist.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the playlist.</param>
         /// <param name="uri">The Spotify URI of the playlist.</param>
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the playlist.</param>
-        /// <param name="name">A <see cref="String"/> representing the name of the playlist.</param>
+        /// <param name="name">A <see cref="string"/> representing the name of the playlist.</param>
         /// <param name="description">
-        /// A <see cref="String"/> representing the description of the playlist,
+        /// A <see cref="string"/> representing the description of the playlist,
         /// or <see langword="null"/> if none is provided.
         /// </param>
         /// <param name="images">
@@ -30,32 +30,32 @@ namespace Spotify.ObjectModel
         /// A <see cref="Paging{TItem}"/> of <see cref="PlaylistTrack"/> objects representing the tracks of the playlist.
         /// </param>
         /// <param name="isPublic">
-        /// A nullable <see cref="Boolean"/> representing the visibility of the playlist:
+        /// A nullable <see cref="bool"/> representing the visibility of the playlist:
         /// <see langword="true"/> if the playlist is public, <see langword="false"/> if the playlist is private,
         /// or <see langword="null"/> if the visibility is not relevant.
         /// </param>
         /// <param name="isCollaborative">
-        /// A <see cref="Boolean"/> indicating whether or not the <paramref name="owner"/> allows other users to modify the playlist.
+        /// A <see cref="bool"/> indicating whether or not the <paramref name="owner"/> allows other users to modify the playlist.
         /// </param>
-        /// <param name="snapshotId">A <see cref="String"/> representing the version identifier of the current playlist.</param>
+        /// <param name="snapshotId">A <see cref="string"/> representing the version identifier of the current playlist.</param>
         /// <param name="externalUrls">
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the playlist, keyed by the type of the URL.
         /// </param>
         public Playlist(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
-            String? description,
+            string name,
+            string? description,
             IReadOnlyList<Image> images,
             PublicUser owner,
             Followers followers,
             Paging<PlaylistTrack> tracks,
-            Boolean? isPublic,
-            Boolean isCollaborative,
-            String snapshotId,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            bool? isPublic,
+            bool isCollaborative,
+            string snapshotId,
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(
                 id,
                 uri,

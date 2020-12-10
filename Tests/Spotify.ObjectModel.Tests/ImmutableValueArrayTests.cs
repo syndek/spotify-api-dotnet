@@ -8,7 +8,7 @@ using Spotify.ObjectModel.Collections;
 namespace Spotify.ObjectModel.Tests
 {
     [TestClass]
-    public class ImmutableValueArrayTests : Object
+    public class ImmutableValueArrayTests : object
     {
         [TestClass]
         [TestCategory("StructuralEquality")]
@@ -25,8 +25,8 @@ namespace Spotify.ObjectModel.Tests
                 Assert.AreNotEqual(array1, array2);
 
                 // These 2 arrays *should* be equal because they *do* use structural equality.
-                var valueArray1 = new ImmutableValueArray<String>(array1);
-                var valueArray2 = new ImmutableValueArray<String>(array2);
+                var valueArray1 = new ImmutableValueArray<string>(array1);
+                var valueArray2 = new ImmutableValueArray<string>(array2);
 
                 Assert.AreNotSame(valueArray1, valueArray2);
                 Assert.AreEqual(valueArray1, valueArray2);
@@ -36,16 +36,16 @@ namespace Spotify.ObjectModel.Tests
             public void ReferenceEqualityElements_ShouldNotBeEqual()
             {
                 // These 2 arrays *should not* be equal because they *do not* use structural equality.
-                var array1 = new Object[] { new(), new(), new() };
-                var array2 = new Object[] { new(), new(), new() };
+                var array1 = new object[] { new(), new(), new() };
+                var array2 = new object[] { new(), new(), new() };
 
                 Assert.AreNotSame(array1, array2);
                 Assert.AreNotEqual(array1, array2);
 
                 // These 2 arrays also *should not* be equal.
                 // Even though they use structural equality, the elements inside *do not*.
-                var valueArray1 = new ImmutableValueArray<Object>(array1);
-                var valueArray2 = new ImmutableValueArray<Object>(array2);
+                var valueArray1 = new ImmutableValueArray<object>(array1);
+                var valueArray2 = new ImmutableValueArray<object>(array2);
 
                 Assert.AreNotSame(valueArray1, valueArray2);
                 Assert.AreNotEqual(valueArray1, valueArray2);
@@ -57,8 +57,8 @@ namespace Spotify.ObjectModel.Tests
             public void ObjectModelTypeContext_StructuralEqualityValues_ShouldBeEqual()
             {
                 // These 2 records *should* be equal as the values inside use structural equality.
-                var object1 = new ObjectModelTypeWithList<Int32>(new(1), new(2), new(3));
-                var object2 = new ObjectModelTypeWithList<Int32>(new(1), new(2), new(3));
+                var object1 = new ObjectModelTypeWithList<int>(new(1), new(2), new(3));
+                var object2 = new ObjectModelTypeWithList<int>(new(1), new(2), new(3));
 
                 Assert.AreNotSame(object1, object2);
                 Assert.AreEqual(object1.Objects, object2.Objects);
@@ -70,8 +70,8 @@ namespace Spotify.ObjectModel.Tests
             public void ObjectModelTypeContext_ReferenceEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 records *should not* be equal as the values inside use reference equality.
-                var object1 = new ObjectModelTypeWithList<Object>(new(new()), new(new()), new(new()));
-                var object2 = new ObjectModelTypeWithList<Object>(new(new()), new(new()), new(new()));
+                var object1 = new ObjectModelTypeWithList<object>(new(new()), new(new()), new(new()));
+                var object2 = new ObjectModelTypeWithList<object>(new(new()), new(new()), new(new()));
 
                 Assert.AreNotSame(object1, object2);
                 Assert.AreNotEqual(object1.Objects, object2.Objects);

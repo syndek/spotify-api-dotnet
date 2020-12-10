@@ -8,21 +8,21 @@ namespace Spotify.ObjectModel
     public record SimplifiedEpisode : LocatableObject
     {
         public SimplifiedEpisode(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
-            String description,
+            string name,
+            string description,
             IReadOnlyList<Image> images,
-            Int32 duration,
+            int duration,
             DateTime releaseDate,
             ReleaseDatePrecision releaseDatePrecision,
-            Boolean isExplicit,
-            Boolean isPlayable,
-            Boolean isExternallyHosted,
-            IReadOnlyList<String> languages,
+            bool isExplicit,
+            bool isPlayable,
+            bool isExternallyHosted,
+            IReadOnlyList<string> languages,
             Uri? audioPreviewUrl,
-            IReadOnlyDictionary<String, Uri> externalUrls,
+            IReadOnlyDictionary<string, Uri> externalUrls,
             ResumePoint? resumePoint) :
             base(id, uri)
         {
@@ -36,25 +36,25 @@ namespace Spotify.ObjectModel
             this.IsExplicit = isExplicit;
             this.IsPlayable = isPlayable;
             this.IsExternallyHosted = isExternallyHosted;
-            this.Languages = new ImmutableValueArray<String>(languages);
+            this.Languages = new ImmutableValueArray<string>(languages);
             this.AudioPreviewUrl = audioPreviewUrl;
-            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
+            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
             this.ResumePoint = resumePoint;
         }
 
         public Uri Href { get; init; }
-        public String Name { get; init; }
-        public String Description { get; init; }
+        public string Name { get; init; }
+        public string Description { get; init; }
         public IReadOnlyList<Image> Images { get; init; }
-        public Int32 Duration { get; init; }
+        public int Duration { get; init; }
         public DateTime ReleaseDate { get; init; }
         public ReleaseDatePrecision ReleaseDatePrecision { get; init; }
-        public Boolean IsExplicit { get; init; }
-        public Boolean IsPlayable { get; init; }
-        public Boolean IsExternallyHosted { get; init; }
-        public IReadOnlyList<String> Languages { get; init; }
+        public bool IsExplicit { get; init; }
+        public bool IsPlayable { get; init; }
+        public bool IsExternallyHosted { get; init; }
+        public IReadOnlyList<string> Languages { get; init; }
         public Uri? AudioPreviewUrl { get; init; }
-        public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
+        public IReadOnlyDictionary<string, Uri> ExternalUrls { get; init; }
         public ResumePoint? ResumePoint { get; init; }
     }
 }

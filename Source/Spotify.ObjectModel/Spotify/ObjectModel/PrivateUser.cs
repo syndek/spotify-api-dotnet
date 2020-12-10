@@ -11,15 +11,15 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="PrivateUser"/> record with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the user.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the user.</param>
         /// <param name="uri">The Spotify URI for the user.</param>
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the user.</param>
         /// <param name="email">
-        /// A <see cref="String"/> representing the email address of the user,
+        /// A <see cref="string"/> representing the email address of the user,
         /// or <see langword="null"/> if not provided.
         /// </param>
         /// <param name="displayName">
-        /// A <see cref="String"/> representing the display name of the user,
+        /// A <see cref="string"/> representing the display name of the user,
         /// or <see langword="null"/> if not available.
         /// </param>
         /// <param name="country">
@@ -40,16 +40,16 @@ namespace Spotify.ObjectModel
         /// external URLs for the user, keyed by the type of the URL.
         /// </param>
         public PrivateUser(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String? email,
-            String? displayName,
+            string? email,
+            string? displayName,
             CountryCode? country,
             IReadOnlyList<Image> images,
             Product? product,
             Followers followers,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri, href, displayName, images, followers, externalUrls)
         {
             this.Email = email;
@@ -61,10 +61,10 @@ namespace Spotify.ObjectModel
         /// Gets or sets the email address of the <see cref="PrivateUser"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="String"/> representing the email address of the <see cref="PrivateUser"/>,
+        /// A <see cref="string"/> representing the email address of the <see cref="PrivateUser"/>,
         /// or <see langword="null"/> if not provided.
         /// </returns>
-        public String? Email { get; init; }
+        public string? Email { get; init; }
         /// <summary>
         /// Gets or sets the country of the <see cref="PrivateUser"/>.
         /// </summary>

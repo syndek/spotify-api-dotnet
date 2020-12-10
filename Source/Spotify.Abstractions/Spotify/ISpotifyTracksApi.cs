@@ -13,25 +13,25 @@ namespace Spotify
     public interface ISpotifyTracksApi
     {
         Task<IReadOnlyList<Track>> GetTracksAsync(
-            IReadOnlyList<String> ids,
+            IReadOnlyList<string> ids,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         Task<IReadOnlyList<AudioFeatures>> GetAudioFeaturesForTracksAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task<Track> GetTrackAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         Task<AudioAnalysis> GetAudioAnalysisForTrackAsync(
-            String id,
+            string id,
             CancellationToken cancellationToken = default);
 
         Task<AudioFeatures> GetAudioFeaturesForTrackAsync(
-            String id,
+            string id,
             CancellationToken cancellationToken = default);
     }
 }

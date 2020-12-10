@@ -11,43 +11,43 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="Section"/> record with the specified values.
         /// </summary>
-        /// <param name="start">A <see cref="Single"/> representing the starting point (in seconds) of the section.</param>
-        /// <param name="duration">A <see cref="Single"/> representing the duration (in seconds) of the section.</param>
+        /// <param name="start">A <see cref="float"/> representing the starting point (in seconds) of the section.</param>
+        /// <param name="duration">A <see cref="float"/> representing the duration (in seconds) of the section.</param>
         /// <param name="confidence">
-        /// A <see cref="Single"/> representing the confidence of the reliability of the section's 'designation'.
+        /// A <see cref="float"/> representing the confidence of the reliability of the section's 'designation'.
         /// </param>
-        /// <param name="loudness">A <see cref="Single"/> representing the overall loudness (in decibels) of the section.</param>
-        /// <param name="tempo">A <see cref="Single"/> representing the overall tempo (in beats per minute) of the section.</param>
+        /// <param name="loudness">A <see cref="float"/> representing the overall loudness (in decibels) of the section.</param>
+        /// <param name="tempo">A <see cref="float"/> representing the overall tempo (in beats per minute) of the section.</param>
         /// <param name="tempoConfidence">
-        /// A <see cref="Single"/> representing the confidence of the reliability of the <paramref name="tempo"/> value.
+        /// A <see cref="float"/> representing the confidence of the reliability of the <paramref name="tempo"/> value.
         /// </param>
-        /// <param name="key">An <see cref="Int32"/> representing the estimated overall key of the section.</param>
+        /// <param name="key">An <see cref="int"/> representing the estimated overall key of the section.</param>
         /// <param name="keyConfidence">
-        /// A <see cref="Single"/> representing the confidence of the reliability of the <paramref name="key"/> value.
+        /// A <see cref="float"/> representing the confidence of the reliability of the <paramref name="key"/> value.
         /// </param>
         /// <param name="mode">
         /// A <see cref="Modality"/> value representing the modality of the section, or <see langword="null"/> if none is provided.
         /// </param>
         /// <param name="modeConfidence">
-        /// A <see cref="Single"/> representing the confidence of the reliability of the <paramref name="mode"/> value.
+        /// A <see cref="float"/> representing the confidence of the reliability of the <paramref name="mode"/> value.
         /// </param>
-        /// <param name="timeSignature">An <see cref="Int32"/> representing the estimated overall time signature of the section.</param>
+        /// <param name="timeSignature">An <see cref="int"/> representing the estimated overall time signature of the section.</param>
         /// <param name="timeSignatureConfidence">
-        /// A <see cref="Single"/> representing the confidence of the reliability of the <paramref name="timeSignature"/> value.
+        /// A <see cref="float"/> representing the confidence of the reliability of the <paramref name="timeSignature"/> value.
         /// </param>
         public Section(
-            Single start,
-            Single duration,
-            Single confidence,
-            Single loudness,
-            Single tempo,
-            Single tempoConfidence,
-            Int32 key,
-            Single keyConfidence,
+            float start,
+            float duration,
+            float confidence,
+            float loudness,
+            float tempo,
+            float tempoConfidence,
+            int key,
+            float keyConfidence,
             Modality? mode,
-            Single modeConfidence,
-            Int32 timeSignature,
-            Single timeSignatureConfidence) :
+            float modeConfidence,
+            int timeSignature,
+            float timeSignatureConfidence) :
             base(start, duration, confidence)
         {
             this.Loudness = loudness;
@@ -64,30 +64,30 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets the overall loudness (in decibels) of the <see cref="Section"/>.
         /// </summary>
-        /// <returns>A <see cref="Single"/> representing the overall loudness (in decibels) of the <see cref="Section"/>.</returns>
-        public Single Loudness { get; init; }
+        /// <returns>A <see cref="float"/> representing the overall loudness (in decibels) of the <see cref="Section"/>.</returns>
+        public float Loudness { get; init; }
         /// <summary>
         /// Gets or sets the overall tempo (in beats per minute) of the <see cref="Section"/>.
         /// </summary>
-        /// <returns>A <see cref="Single"/> representing the overall tempo (in beats per minute) of the <see cref="Section"/>.</returns>
-        public Single Tempo { get; init; }
+        /// <returns>A <see cref="float"/> representing the overall tempo (in beats per minute) of the <see cref="Section"/>.</returns>
+        public float Tempo { get; init; }
         /// <summary>
         /// Gets or sets the confidence of the reliability of the <see cref="Tempo"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>
         /// <remarks><c>0.0</c> represents low confidence in the value, while <c>1.0</c> represents high confidence.</remarks>
-        /// <returns>A <see cref="Single"/> representing the confidence of the reliability of the <see cref="Tempo"/> value.</returns>
-        public Single TempoConfidence { get; init; }
+        /// <returns>A <see cref="float"/> representing the confidence of the reliability of the <see cref="Tempo"/> value.</returns>
+        public float TempoConfidence { get; init; }
         /// <summary>
         /// Gets or sets the estimated overall key of the <see cref="Section"/>.
         /// </summary>
-        /// <returns>An <see cref="Int32"/> representing the estimated overall key of the <see cref="Section"/>.</returns>
-        public Int32 Key { get; init; }
+        /// <returns>An <see cref="int"/> representing the estimated overall key of the <see cref="Section"/>.</returns>
+        public int Key { get; init; }
         /// <summary>
         /// Gets or sets the confidence of the reliability of the <see cref="Key"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>
         /// <remarks><c>0.0</c> represents low confidence in the value, while <c>1.0</c> represents high confidence.</remarks>
-        /// <returns>A <see cref="Single"/> representing the confidence of the reliability of the <see cref="Key"/> value.</returns>
-        public Single KeyConfidence { get; init; }
+        /// <returns>A <see cref="float"/> representing the confidence of the reliability of the <see cref="Key"/> value.</returns>
+        public float KeyConfidence { get; init; }
         /// <summary>
         /// Gets or sets the modality of the <see cref="Section"/>.
         /// </summary>
@@ -100,18 +100,18 @@ namespace Spotify.ObjectModel
         /// Gets or sets the confidence of the reliability of the <see cref="Mode"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>
         /// <remarks><c>0.0</c> represents low confidence in the value, while <c>1.0</c> represents high confidence.</remarks>
-        /// <returns>A <see cref="Single"/> representing the confidence of the reliability of the <see cref="Mode"/> value.</returns>
-        public Single ModeConfidence { get; init; }
+        /// <returns>A <see cref="float"/> representing the confidence of the reliability of the <see cref="Mode"/> value.</returns>
+        public float ModeConfidence { get; init; }
         /// <summary>
         /// Gets or sets the estimated overall time signature of the <see cref="Section"/>.
         /// </summary>
-        /// <returns>An <see cref="Int32"/> representing the estimated overall time signature of the <see cref="Section"/>.</returns>
-        public Int32 TimeSignature { get; init; }
+        /// <returns>An <see cref="int"/> representing the estimated overall time signature of the <see cref="Section"/>.</returns>
+        public int TimeSignature { get; init; }
         /// <summary>
         /// Gets or sets the confidence of the reliability of the <see cref="TimeSignature"/> value, from <c>0.0</c> to <c>1.0</c>.
         /// </summary>
         /// <remarks><c>0.0</c> represents low confidence in the value, while <c>1.0</c> represents high confidence.</remarks>
-        /// <returns>A <see cref="Single"/> representing the confidence of the reliability of the <see cref="TimeSignature"/> value.</returns>
-        public Single TimeSignatureConfidence { get; init; }
+        /// <returns>A <see cref="float"/> representing the confidence of the reliability of the <see cref="TimeSignature"/> value.</returns>
+        public float TimeSignatureConfidence { get; init; }
     }
 }

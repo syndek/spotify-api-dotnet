@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
     /// <summary>
     /// Defines different Spotify subscription levels.
     /// </summary>
-    public enum Product : Int32
+    public enum Product : int
     {
         /// <summary>
         /// The Spotify Free plan (can be considered the same as 'open').

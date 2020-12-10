@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel
     /// Defines different relationships between an <see cref="Artist"/> and an <see cref="ObjectModel.Album"/>.
     /// </summary>
     [Flags]
-    public enum AlbumGroups : Int32
+    public enum AlbumGroups : int
     {
         /// <summary>
         /// The <see cref="ObjectModel.Album"/> is an album by the <see cref="Artist"/>.

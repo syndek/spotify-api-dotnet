@@ -25,9 +25,9 @@ namespace Spotify.Web
 
         public Task<Paging<Category>> GetCategoriesAsync(
             CountryCode? country = null,
-            String? locale = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            string? locale = null,
+            int? limit = null,
+            int? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -46,9 +46,9 @@ namespace Spotify.Web
         }
 
         public Task<Category> GetCategoryAsync(
-            String id,
+            string id,
             CountryCode? country = null,
-            String? locale = null,
+            string? locale = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -65,10 +65,10 @@ namespace Spotify.Web
         }
 
         public Task<Paging<SimplifiedPlaylist>> GetCategoryPlaylistsAsync(
-            String id,
+            string id,
             CountryCode? country = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -86,10 +86,10 @@ namespace Spotify.Web
         }
 
         public Task<Recommendations> GetRecommendationsAsync(
-            IEnumerable<String> seedArtists,
-            IEnumerable<String> seedTracks,
-            IEnumerable<String> seedGenres,
-            Int32? limit = null,
+            IEnumerable<string> seedArtists,
+            IEnumerable<string> seedTracks,
+            IEnumerable<string> seedGenres,
+            int? limit = null,
             CountryCode? market = null,
             TuneableTrackAttributes? minValues = null,
             TuneableTrackAttributes? maxValues = null,
@@ -97,7 +97,7 @@ namespace Spotify.Web
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
-            static IEnumerable<(String, ValueType?)> GetAttributeQueryStrings(String prefix, TuneableTrackAttributes attributes)
+            static IEnumerable<(string, ValueType?)> GetAttributeQueryStrings(string prefix, TuneableTrackAttributes attributes)
             {
                 yield return ($"{prefix}_popularity", attributes.Popularity);
                 yield return ($"{prefix}_duration", attributes.Duration);
@@ -122,7 +122,7 @@ namespace Spotify.Web
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("market", market);
 
-            void AppendAttributesToUriBuilderIfNotNull(String prefix, TuneableTrackAttributes? attributes)
+            void AppendAttributesToUriBuilderIfNotNull(string prefix, TuneableTrackAttributes? attributes)
             {
                 if (attributes is not null)
                 {
@@ -145,7 +145,7 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        public Task<IReadOnlyList<String>> GetRecommendationGenresAsync(
+        public Task<IReadOnlyList<string>> GetRecommendationGenresAsync(
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -158,11 +158,11 @@ namespace Spotify.Web
         }
 
         public Task<Paging<SimplifiedPlaylist>> GetFeaturedPlaylistsAsync(
-            String? locale = null,
+            string? locale = null,
             CountryCode? country = null,
             DateTime? timestamp = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -183,8 +183,8 @@ namespace Spotify.Web
 
         public Task<Paging<SimplifiedAlbum>> GetNewReleasesAsync(
             CountryCode? country = null,
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -204,38 +204,38 @@ namespace Spotify.Web
         #region ISpotifyBrowseApi Implementation
         Task<Paging<Category>> ISpotifyBrowseApi.GetCategoriesAsync(
             CountryCode? country,
-            String? locale,
-            Int32? limit,
-            Int32? offset,
+            string? locale,
+            int? limit,
+            int? offset,
             CancellationToken cancellationToken)
         {
             return this.GetCategoriesAsync(country, locale, limit, offset, null, cancellationToken);
         }
 
         Task<Category> ISpotifyBrowseApi.GetCategoryAsync(
-            String id,
+            string id,
             CountryCode? country,
-            String? locale,
+            string? locale,
             CancellationToken cancellationToken)
         {
             return this.GetCategoryAsync(id, country, locale, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyBrowseApi.GetCategoryPlaylistsAsync(
-            String id,
+            string id,
             CountryCode? country,
-            Int32? limit,
-            Int32? offset,
+            int? limit,
+            int? offset,
             CancellationToken cancellationToken)
         {
             return this.GetCategoryPlaylistsAsync(id, country, limit, offset, null, cancellationToken);
         }
 
         Task<Recommendations> ISpotifyBrowseApi.GetRecommendationsAsync(
-            IEnumerable<String> seedArtists,
-            IEnumerable<String> seedTracks,
-            IEnumerable<String> seedGenres,
-            Int32? limit,
+            IEnumerable<string> seedArtists,
+            IEnumerable<string> seedTracks,
+            IEnumerable<string> seedGenres,
+            int? limit,
             CountryCode? market,
             TuneableTrackAttributes? minValues,
             TuneableTrackAttributes? maxValues,
@@ -255,26 +255,26 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        Task<IReadOnlyList<String>> ISpotifyBrowseApi.GetRecommendationGenresAsync(CancellationToken cancellationToken)
+        Task<IReadOnlyList<string>> ISpotifyBrowseApi.GetRecommendationGenresAsync(CancellationToken cancellationToken)
         {
             return this.GetRecommendationGenresAsync(null, cancellationToken);
         }
 
         Task<Paging<SimplifiedAlbum>> ISpotifyBrowseApi.GetNewReleasesAsync(
             CountryCode? country,
-            Int32? limit,
-            Int32? offset,
+            int? limit,
+            int? offset,
             CancellationToken cancellationToken)
         {
             return this.GetNewReleasesAsync(country, limit, offset, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyBrowseApi.GetFeaturedPlaylistsAsync(
-            String? locale,
+            string? locale,
             CountryCode? country,
             DateTime? timestamp,
-            Int32? limit,
-            Int32? offset,
+            int? limit,
+            int? offset,
             CancellationToken cancellationToken)
         {
             return this.GetFeaturedPlaylistsAsync(locale, country, timestamp, limit, offset, null, cancellationToken);

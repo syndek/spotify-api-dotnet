@@ -14,13 +14,13 @@ namespace Spotify.ObjectModel.Collections
             this.elements = elements.ToArray();
         }
 
-        public TElement this[Int32 index] => this.elements[index];
+        public TElement this[int index] => this.elements[index];
 
-        public Int32 Count => this.elements.Count;
+        public int Count => this.elements.Count;
 
-        public override Boolean Equals(Object? obj) => (obj is ImmutableValueArray<TElement> array) && this.Equals(array);
+        public override bool Equals(object? obj) => (obj is ImmutableValueArray<TElement> array) && this.Equals(array);
 
-        public override Int32 GetHashCode()
+        public override int GetHashCode()
         {
             var hashCode = new HashCode();
 
@@ -32,7 +32,7 @@ namespace Spotify.ObjectModel.Collections
             return hashCode.ToHashCode();
         }
 
-        public Boolean Equals(ImmutableValueArray<TElement> other)
+        public bool Equals(ImmutableValueArray<TElement> other)
         {
             if (this.Count != other.Count)
             {
@@ -54,13 +54,13 @@ namespace Spotify.ObjectModel.Collections
 
         IEnumerator IEnumerable.GetEnumerator() => this.elements.GetEnumerator();
 
-        public static Boolean operator ==(ImmutableValueArray<TElement>? left, ImmutableValueArray<TElement>? right) => (left, right) switch
+        public static bool operator ==(ImmutableValueArray<TElement>? left, ImmutableValueArray<TElement>? right) => (left, right) switch
         {
             (null, null) => true,
             (not null, not null) => left.Equals(right),
             _ => false
         };
 
-        public static Boolean operator !=(ImmutableValueArray<TElement>? left, ImmutableValueArray<TElement>? right) => !(left == right);
+        public static bool operator !=(ImmutableValueArray<TElement>? left, ImmutableValueArray<TElement>? right) => !(left == right);
     }
 }

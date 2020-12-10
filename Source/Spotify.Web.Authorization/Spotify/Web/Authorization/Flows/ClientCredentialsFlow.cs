@@ -22,11 +22,11 @@ namespace Spotify.Web.Authorization.Flows
         /// Initializes a new instance of the <see cref="ClientCredentialsFlow"/> class with the specified values.
         /// </summary>
         /// <param name="httpClient">An <see cref="HttpClient"/> instance to use to make requests to the Spotify Accounts service.</param>
-        /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
+        /// <param name="clientId">A <see cref="string"/> representing a valid Spotify Web API client ID.</param>
         /// <param name="clientSecret">
-        /// A <see cref="String"/> representing the secret key of the application with the specified <paramref name="clientId"/>.
+        /// A <see cref="string"/> representing the secret key of the application with the specified <paramref name="clientId"/>.
         /// </param>
-        public ClientCredentialsFlow(HttpClient httpClient, String clientId, String clientSecret) : base(httpClient, clientId, clientSecret) { }
+        public ClientCredentialsFlow(HttpClient httpClient, string clientId, string clientSecret) : base(httpClient, clientId, clientSecret) { }
 
         /// <inheritdoc/>
         public override async ValueTask<AccessToken> GetAccessTokenAsync(CancellationToken cancellationToken = default)
@@ -37,7 +37,7 @@ namespace Spotify.Web.Authorization.Flows
             }
 
             using var content = new FormUrlEncodedContent(
-                new KeyValuePair<String?, String?>[]
+                new KeyValuePair<string?, string?>[]
                 {
                     new("grant_type", "client_credentials")
                 });

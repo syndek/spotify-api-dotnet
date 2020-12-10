@@ -18,11 +18,11 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="httpClient">
         /// An <see cref="HttpClient"/> instance to use to make requests to the Spotify Accounts service.
         /// </param>
-        /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
+        /// <param name="clientId">A <see cref="string"/> representing a valid Spotify Web API client ID.</param>
         /// <param name="clientSecret">
-        /// A <see cref="String"/> representing the secret key of the application with the specified <paramref name="clientId"/>.
+        /// A <see cref="string"/> representing the secret key of the application with the specified <paramref name="clientId"/>.
         /// </param>
-        protected SpotifyAuthorizationFlowWithClientSecret(HttpClient httpClient, String clientId, String clientSecret) : base(httpClient, clientId)
+        protected SpotifyAuthorizationFlowWithClientSecret(HttpClient httpClient, string clientId, string clientSecret) : base(httpClient, clientId)
         {
             this.BasicAuthenticationHeader = new("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}")));
         }

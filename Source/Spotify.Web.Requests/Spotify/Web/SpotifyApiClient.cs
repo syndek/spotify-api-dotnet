@@ -16,9 +16,9 @@ namespace Spotify.Web
     /// <summary>
     /// Represents a collection of endpoints defined by the Spotify Web API that share a common purpose.
     /// </summary>
-    public abstract class SpotifyApiClient : Object, IDisposable
+    public abstract class SpotifyApiClient : object, IDisposable
     {
-        internal const String BaseUrl = "https://api.spotify.com/v1";
+        internal const string BaseUrl = "https://api.spotify.com/v1";
 
         protected static readonly JsonSerializerOptions RequestObjectSerializerOptions = new()
         {

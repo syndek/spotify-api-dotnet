@@ -7,7 +7,7 @@ using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using ImageArray = IReadOnlyList<Image>;
 
     public sealed class PlaylistConverter : JsonConverter<Playlist>
@@ -26,18 +26,18 @@ namespace Spotify.ObjectModel.Serialization
             var publicUserConverter = options.GetConverter<PublicUser>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
-            String? description = null;
+            string name = string.Empty;
+            string? description = null;
             ImageArray images = Array.Empty<Image>();
             PublicUser owner = null!;
             Followers followers = null!;
             Paging<PlaylistTrack> tracks = null!;
-            Boolean? isPublic = null;
-            Boolean isCollaborative = default;
-            String snapshotId = String.Empty;
+            bool? isPublic = null;
+            bool isCollaborative = default;
+            string snapshotId = string.Empty;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())

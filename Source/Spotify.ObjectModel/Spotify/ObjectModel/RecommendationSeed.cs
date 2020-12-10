@@ -10,28 +10,28 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="RecommendationSeed"/> record with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the ID used to select the seed.</param>
+        /// <param name="id">A <see cref="string"/> representing the ID used to select the seed.</param>
         /// <param name="href">
         /// A link to the full track or artist data for the seed,
         /// or <see langword="null"/> if the seed is a genre seed.
         /// </param>
         /// <param name="type">The type of the seed.</param>
         /// <param name="initialPoolSize">
-        /// An <see cref="Int32"/> representing the number of recommended tracks available for the seed.
+        /// An <see cref="int"/> representing the number of recommended tracks available for the seed.
         /// </param>
         /// <param name="afterFilteringSize">
-        /// An <see cref="Int32"/> representing the number of tracks available after min and max filters have been applied.
+        /// An <see cref="int"/> representing the number of tracks available after min and max filters have been applied.
         /// </param>
         /// <param name="afterRelinkingSize">
-        /// An <see cref="Int32"/> representing the number of tracks available after relinking for regional availability.
+        /// An <see cref="int"/> representing the number of tracks available after relinking for regional availability.
         /// </param>
         public RecommendationSeed(
-            String id,
+            string id,
             Uri? href,
             RecommendationSeedType type,
-            Int32 initialPoolSize,
-            Int32 afterFilteringSize,
-            Int32 afterRelinkingSize)
+            int initialPoolSize,
+            int afterFilteringSize,
+            int afterRelinkingSize)
         {
             this.Id = id;
             this.Href = href;
@@ -44,8 +44,8 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets the ID used to select the <see cref="RecommendationSeed"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the ID used to select the seed.</returns>
-        public String Id { get; init; }
+        /// <returns>A <see cref="string"/> representing the ID used to select the seed.</returns>
+        public string Id { get; init; }
         /// <summary>
         /// Gets or sets a link to the full track or artist data for the <see cref="RecommendationSeed"/>.
         /// </summary>
@@ -67,22 +67,22 @@ namespace Spotify.ObjectModel
         /// Gets or sets the number of recommended tracks available for the seed.
         /// </summary>
         /// <returns>
-        /// An <see cref="Int32"/> representing the number of recommended tracks available for the seed.
+        /// An <see cref="int"/> representing the number of recommended tracks available for the seed.
         /// </returns>
-        public Int32 InitialPoolSize { get; init; }
+        public int InitialPoolSize { get; init; }
         /// <summary>
         /// Gets or sets the number of tracks available after min and max filters have been applied.
         /// </summary>
         /// <returns>
-        /// An <see cref="Int32"/> representing the number of tracks available after min and max filters have been applied.
+        /// An <see cref="int"/> representing the number of tracks available after min and max filters have been applied.
         /// </returns>
-        public Int32 AfterFilteringSize { get; init; }
+        public int AfterFilteringSize { get; init; }
         /// <summary>
         /// Gets or sets the number of tracks available after relinking for regional availability.
         /// </summary>
         /// <returns>
-        /// An <see cref="Int32"/> representing the number of tracks available after relinking for regional availability.
+        /// An <see cref="int"/> representing the number of tracks available after relinking for regional availability.
         /// </returns>
-        public Int32 AfterRelinkingSize { get; init; }
+        public int AfterRelinkingSize { get; init; }
     }
 }

@@ -14,76 +14,76 @@ namespace Spotify
     public interface ISpotifyPlaylistsApi
     {
         Task<Playlist> CreatePlaylistAsync(
-            String userId,
-            String name,
-            String? description = null,
-            Boolean? isPublic = null,
-            Boolean? isCollaborative = null,
+            string userId,
+            string name,
+            string? description = null,
+            bool? isPublic = null,
+            bool? isCollaborative = null,
             CancellationToken cancellationToken = default);
 
         Task<Playlist> GetPlaylistAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<IPlayable>> GetPlaylistItemsAsync(
-            String id,
-            Int32? limit = null,
-            Int32? offset = null,
+            string id,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetCurrentUserPlaylistsAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
-            String userId,
-            Int32? limit = null,
-            Int32? offset = null,
+            string userId,
+            int? limit = null,
+            int? offset = null,
             CancellationToken cancellationToken = default);
 
         Task ChangePlaylistDetailsAsync(
-            String id,
-            String? name = null,
-            String? description = null,
-            Boolean? isPublic = null,
-            Boolean? isCollaborative = null,
+            string id,
+            string? name = null,
+            string? description = null,
+            bool? isPublic = null,
+            bool? isCollaborative = null,
             CancellationToken cancellationToken = default);
 
         Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(
-            String id,
+            string id,
             CancellationToken cancellationToken = default);
 
         Task SetPlaylistCoverImageAsync(
-            String id,
-            String base64Image,
+            string id,
+            string base64Image,
             CancellationToken cancellationToken = default);
 
-        Task<String> ReorderPlaylistItemsAsync(
-            String id,
-            Int32 rangeStart,
-            Int32 insertBefore,
-            Int32? rangeLength = null,
-            String? snapshotId = null,
+        Task<string> ReorderPlaylistItemsAsync(
+            string id,
+            int rangeStart,
+            int insertBefore,
+            int? rangeLength = null,
+            string? snapshotId = null,
             CancellationToken cancellationToken = default);
 
         Task ReplacePlaylistItemsAsync(
-            String id,
-            IEnumerable<String> uris,
+            string id,
+            IEnumerable<string> uris,
             CancellationToken cancellationToken = default);
 
-        Task<String> AddItemsToPlaylistAsync(
-            String id,
-            IEnumerable<String> uris,
-            Int32? position = null,
+        Task<string> AddItemsToPlaylistAsync(
+            string id,
+            IEnumerable<string> uris,
+            int? position = null,
             CancellationToken cancellationToken = default);
 
-        Task<String> RemoveItemsFromPlaylistAsync(
-            String id,
-            IEnumerable<String> uris,
-            String? snapshotId = null,
+        Task<string> RemoveItemsFromPlaylistAsync(
+            string id,
+            IEnumerable<string> uris,
+            string? snapshotId = null,
             CancellationToken cancellationToken = default);
     }
 }

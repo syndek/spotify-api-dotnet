@@ -4,7 +4,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
 {
     public static class ReleaseDatePrecisionConverter
     {
-        public static ReleaseDatePrecision FromSpotifyString(String releaseDatePrecision) => releaseDatePrecision switch
+        public static ReleaseDatePrecision FromSpotifyString(string releaseDatePrecision) => releaseDatePrecision switch
         {
             "year" => ReleaseDatePrecision.Year,
             "month" => ReleaseDatePrecision.Month,
@@ -14,7 +14,7 @@ namespace Spotify.ObjectModel.Serialization.EnumConverters
                 nameof(releaseDatePrecision))
         };
 
-        public static String ToSpotifyString(this ReleaseDatePrecision releaseDatePrecision) => releaseDatePrecision switch
+        public static string ToSpotifyString(this ReleaseDatePrecision releaseDatePrecision) => releaseDatePrecision switch
         {
             ReleaseDatePrecision.Year => "year",
             ReleaseDatePrecision.Month => "month",

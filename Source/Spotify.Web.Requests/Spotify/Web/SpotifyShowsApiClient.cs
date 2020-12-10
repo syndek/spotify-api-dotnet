@@ -23,7 +23,7 @@ namespace Spotify.Web
         public SpotifyShowsApiClient(HttpClient httpClient) : base(httpClient) { }
 
         public Task<IReadOnlyList<SimplifiedShow>> GetShowsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -41,7 +41,7 @@ namespace Spotify.Web
         }
 
         public Task<Show> GetShowAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -58,9 +58,9 @@ namespace Spotify.Web
         }
 
         public Task<Paging<SimplifiedEpisode>> GetShowEpisodesAsync(
-            String id,
-            Int32? limit = null,
-            Int32? offset = null,
+            string id,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -80,22 +80,22 @@ namespace Spotify.Web
 
         #region ISpotifyShowsApi Implementation
         Task<IReadOnlyList<SimplifiedShow>> ISpotifyShowsApi.GetShowsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market,
             CancellationToken cancellationToken)
         {
             return this.GetShowsAsync(ids, market, null, cancellationToken);
         }
 
-        Task<Show> ISpotifyShowsApi.GetShowAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        Task<Show> ISpotifyShowsApi.GetShowAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetShowAsync(id, market, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedEpisode>> ISpotifyShowsApi.GetShowEpisodesAsync(
-            String id,
-            Int32? limit,
-            Int32? offset,
+            string id,
+            int? limit,
+            int? offset,
             CountryCode? market,
             CancellationToken cancellationToken)
         {

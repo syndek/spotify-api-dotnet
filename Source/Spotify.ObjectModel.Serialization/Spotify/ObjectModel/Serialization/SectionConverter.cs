@@ -13,18 +13,18 @@ namespace Spotify.ObjectModel.Serialization
                 throw new JsonException();
             }
 
-            Single start = default;
-            Single duration = default;
-            Single confidence = default;
-            Single loudness = default;
-            Single tempo = default;
-            Single tempoConfidence = default;
-            Int32 key = default;
-            Single keyConfidence = default;
+            float start = default;
+            float duration = default;
+            float confidence = default;
+            float loudness = default;
+            float tempo = default;
+            float tempoConfidence = default;
+            int key = default;
+            float keyConfidence = default;
             Modality? mode = null;
-            Single modeConfidence = default;
-            Int32 timeSignature = default;
-            Single timeSignatureConfidence = default;
+            float modeConfidence = default;
+            int timeSignature = default;
+            float timeSignatureConfidence = default;
 
             while (reader.Read())
             {
@@ -116,7 +116,7 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteNumber("tempo_confidence", value.TempoConfidence);
             writer.WriteNumber("key", value.Key);
             writer.WriteNumber("key_confidence", value.KeyConfidence);
-            writer.WriteNumber("mode", (Int32?) value.Mode ?? -1);
+            writer.WriteNumber("mode", (int?) value.Mode ?? -1);
             writer.WriteNumber("mode_confidence", value.ModeConfidence);
             writer.WriteNumber("time_signature", value.TimeSignature);
             writer.WriteNumber("time_signature_confidence", value.TimeSignatureConfidence);

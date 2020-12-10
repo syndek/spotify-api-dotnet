@@ -13,9 +13,9 @@ namespace Spotify.ObjectModel.Serialization
                 throw new JsonException();
             }
 
-            Single start = default;
-            Single duration = default;
-            Single confidence = default;
+            float start = default;
+            float duration = default;
+            float confidence = default;
 
             while (reader.Read())
             {

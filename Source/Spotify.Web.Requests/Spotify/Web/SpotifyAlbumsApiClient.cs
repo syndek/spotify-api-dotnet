@@ -26,7 +26,7 @@ namespace Spotify.Web
         /// Asynchronously get multiple <see cref="Album"/> objects from the Spotify catalog.
         /// </summary>
         /// <param name="ids">
-        /// An <see cref="IEnumerable{T}"/> of <see cref="String"/> objects
+        /// An <see cref="IEnumerable{T}"/> of <see cref="string"/> objects
         /// representing the Spotify IDs of the <see cref="Album"/> objects to get.
         /// </param>
         /// <param name="market">
@@ -37,7 +37,7 @@ namespace Spotify.Web
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         public Task<IReadOnlyList<Album?>> GetAlbumsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -57,7 +57,7 @@ namespace Spotify.Web
         /// <summary>
         /// Asynchronously get an <see cref="Album"/> from the Spotify catalog.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the <see cref="Album"/> to get.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the <see cref="Album"/> to get.</param>
         /// <param name="market">
         /// An optional <see cref="CountryCode"/> to apply
         /// <see href="https://spotify.dev/documentation/general/guides/track-relinking-guide/">track relinking</see>.
@@ -66,7 +66,7 @@ namespace Spotify.Web
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         public Task<Album> GetAlbumAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -85,7 +85,7 @@ namespace Spotify.Web
         /// <summary>
         /// Asynchronously get the tracks of an <see cref="Album"/> from the Spotify catalog.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the <see cref="Album"/> to get the tracks of.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the <see cref="Album"/> to get the tracks of.</param>
         /// <param name="limit">The maximum number of results to return.</param>
         /// <param name="offset">The index of the first result to return.</param>
         /// <param name="market">
@@ -96,9 +96,9 @@ namespace Spotify.Web
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         public Task<Paging<SimplifiedTrack>> GetAlbumTracksAsync(
-            String id,
-            Int32? limit = null,
-            Int32? offset = null,
+            string id,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -118,22 +118,22 @@ namespace Spotify.Web
 
         #region ISpotifyAlbumsApi Implementation
         Task<IReadOnlyList<Album?>> ISpotifyAlbumsApi.GetAlbumsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market,
             CancellationToken cancellationToken)
         {
             return this.GetAlbumsAsync(ids, market, null, cancellationToken);
         }
 
-        Task<Album> ISpotifyAlbumsApi.GetAlbumAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        Task<Album> ISpotifyAlbumsApi.GetAlbumAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetAlbumAsync(id, market, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedTrack>> ISpotifyAlbumsApi.GetAlbumTracksAsync(
-            String id,
-            Int32? limit,
-            Int32? offset,
+            string id,
+            int? limit,
+            int? offset,
             CountryCode? market,
             CancellationToken cancellationToken)
         {

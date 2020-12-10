@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    using SingleArray = IReadOnlyList<Single>;
+    using SingleArray = IReadOnlyList<float>;
 
     public sealed class SegmentConverter : JsonConverter<Segment>
     {
@@ -18,15 +18,15 @@ namespace Spotify.ObjectModel.Serialization
 
             var singleArrayConverter = options.GetConverter<SingleArray>();
 
-            Single start = default;
-            Single duration = default;
-            Single confidence = default;
-            Single loudnessStart = default;
-            Single loudnessEnd = default;
-            Single loudnessMax = default;
-            Single loudnessMaxTime = default;
-            SingleArray pitches = Array.Empty<Single>();
-            SingleArray timbre = Array.Empty<Single>();
+            float start = default;
+            float duration = default;
+            float confidence = default;
+            float loudnessStart = default;
+            float loudnessEnd = default;
+            float loudnessMax = default;
+            float loudnessMaxTime = default;
+            SingleArray pitches = Array.Empty<float>();
+            SingleArray timbre = Array.Empty<float>();
 
             while (reader.Read())
             {

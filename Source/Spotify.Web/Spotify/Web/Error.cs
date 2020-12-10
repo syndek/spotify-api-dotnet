@@ -13,8 +13,8 @@ namespace Spotify.Web
         /// specified <paramref name="statusCode"/> and <paramref name="message"/>.
         /// </summary>
         /// <param name="statusCode">The <see cref="HttpStatusCode"/> of the response that returned the error.</param>
-        /// <param name="message">A <see cref="String"/> representing a short description of the cause of the error.</param>
-        internal Error(HttpStatusCode statusCode, String message)
+        /// <param name="message">A <see cref="string"/> representing a short description of the cause of the error.</param>
+        internal Error(HttpStatusCode statusCode, string message)
         {
             this.StatusCode = statusCode;
             this.Message = message;
@@ -28,7 +28,7 @@ namespace Spotify.Web
         /// <summary>
         /// Gets a short description of the cause of the <see cref="Error"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing a short description of the cause of the <see cref="Error"/>.</returns>
-        internal String Message { get; }
+        /// <returns>A <see cref="string"/> representing a short description of the cause of the <see cref="Error"/>.</returns>
+        internal string Message { get; }
     }
 }

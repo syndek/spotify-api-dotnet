@@ -25,7 +25,7 @@ namespace Spotify.Web
         public SpotifyLibraryApiClient(HttpClient httpClient) : base(httpClient) { }
 
         public Task SaveAlbumsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -33,7 +33,7 @@ namespace Spotify.Web
         }
 
         public Task RemoveAlbumsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -41,8 +41,8 @@ namespace Spotify.Web
         }
 
         public Task<Paging<Saved<Album>>> GetSavedAlbumsAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -50,8 +50,8 @@ namespace Spotify.Web
             return this.GetAsync<Saved<Album>>("album", limit, offset, market, accessTokenProvider, cancellationToken);
         }
 
-        public Task<IReadOnlyList<Boolean>> CheckSavedAlbumsAsync(
-            IEnumerable<String> ids,
+        public Task<IReadOnlyList<bool>> CheckSavedAlbumsAsync(
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -59,7 +59,7 @@ namespace Spotify.Web
         }
 
         public Task SaveTracksAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -67,7 +67,7 @@ namespace Spotify.Web
         }
 
         public Task RemoveTracksAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -75,8 +75,8 @@ namespace Spotify.Web
         }
 
         public Task<Paging<Saved<Track>>> GetSavedTracksAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -84,8 +84,8 @@ namespace Spotify.Web
             return this.GetAsync<Saved<Track>>("track", limit, offset, market, accessTokenProvider, cancellationToken);
         }
 
-        public Task<IReadOnlyList<Boolean>> CheckSavedTracksAsync(
-            IEnumerable<String> ids,
+        public Task<IReadOnlyList<bool>> CheckSavedTracksAsync(
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -93,7 +93,7 @@ namespace Spotify.Web
         }
 
         public Task SaveShowsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -109,7 +109,7 @@ namespace Spotify.Web
         }
 
         public Task RemoveShowsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -127,8 +127,8 @@ namespace Spotify.Web
         }
 
         public Task<Paging<Saved<Show>>> GetSavedShowsAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -144,8 +144,8 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        public Task<IReadOnlyList<Boolean>> CheckSavedShowsAsync(
-            IEnumerable<String> ids,
+        public Task<IReadOnlyList<bool>> CheckSavedShowsAsync(
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -153,37 +153,37 @@ namespace Spotify.Web
         }
 
         private Task SaveAsync(
-            String objectType,
-            IEnumerable<String> ids,
+            string objectType,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
             return base.SendAsync(
                 new($"{SpotifyApiClient.BaseUrl}/me/{objectType}s"),
                 HttpMethod.Put,
-                new StringContent($"[{String.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json),
+                new StringContent($"[{string.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json),
                 accessTokenProvider,
                 cancellationToken);
         }
 
         private Task RemoveAsync(
-            String objectType,
-            IEnumerable<String> ids,
+            string objectType,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
             return base.SendAsync(
                 new($"{SpotifyApiClient.BaseUrl}/me/{objectType}s"),
                 HttpMethod.Delete,
-                new StringContent($"[{String.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json),
+                new StringContent($"[{string.Join(',', ids)}]", Encoding.UTF8, MediaTypeNames.Application.Json),
                 accessTokenProvider,
                 cancellationToken);
         }
 
         private Task<Paging<TObject>> GetAsync<TObject>(
-            String objectType,
-            Int32? limit,
-            Int32? offset,
+            string objectType,
+            int? limit,
+            int? offset,
             CountryCode? market,
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
@@ -201,9 +201,9 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        private Task<IReadOnlyList<Boolean>> CheckAsync(
-            String objectType,
-            IEnumerable<String> ids,
+        private Task<IReadOnlyList<bool>> CheckAsync(
+            string objectType,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -219,62 +219,62 @@ namespace Spotify.Web
         }
 
         #region ISpotifyLibraryApi Implementation
-        Task ISpotifyLibraryApi.SaveAlbumsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyLibraryApi.SaveAlbumsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.SaveAlbumsAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyLibraryApi.RemoveAlbumsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyLibraryApi.RemoveAlbumsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.RemoveAlbumsAsync(ids, null, cancellationToken);
         }
 
-        Task<Paging<Saved<Album>>> ISpotifyLibraryApi.GetSavedAlbumsAsync(Int32? limit, Int32? offset, CountryCode? market, CancellationToken cancellationToken)
+        Task<Paging<Saved<Album>>> ISpotifyLibraryApi.GetSavedAlbumsAsync(int? limit, int? offset, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetSavedAlbumsAsync(limit, offset, market, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Boolean>> ISpotifyLibraryApi.CheckSavedAlbumsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task<IReadOnlyList<bool>> ISpotifyLibraryApi.CheckSavedAlbumsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.CheckSavedAlbumsAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyLibraryApi.SaveTracksAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyLibraryApi.SaveTracksAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.SaveTracksAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyLibraryApi.RemoveTracksAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyLibraryApi.RemoveTracksAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.RemoveTracksAsync(ids, null, cancellationToken);
         }
 
-        Task<Paging<Saved<Track>>> ISpotifyLibraryApi.GetSavedTracksAsync(Int32? limit, Int32? offset, CountryCode? market, CancellationToken cancellationToken)
+        Task<Paging<Saved<Track>>> ISpotifyLibraryApi.GetSavedTracksAsync(int? limit, int? offset, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetSavedTracksAsync(limit, offset, market, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Boolean>> ISpotifyLibraryApi.CheckSavedTracksAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task<IReadOnlyList<bool>> ISpotifyLibraryApi.CheckSavedTracksAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.CheckSavedTracksAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyLibraryApi.SaveShowsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyLibraryApi.SaveShowsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.SaveShowsAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyLibraryApi.RemoveShowsAsync(IEnumerable<String> ids, CountryCode? market, CancellationToken cancellationToken)
+        Task ISpotifyLibraryApi.RemoveShowsAsync(IEnumerable<string> ids, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.RemoveShowsAsync(ids, market, null, cancellationToken);
         }
 
-        Task<Paging<Saved<Show>>> ISpotifyLibraryApi.GetSavedShowsAsync(Int32? limit, Int32? offset, CancellationToken cancellationToken)
+        Task<Paging<Saved<Show>>> ISpotifyLibraryApi.GetSavedShowsAsync(int? limit, int? offset, CancellationToken cancellationToken)
         {
             return this.GetSavedShowsAsync(limit, offset, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Boolean>> ISpotifyLibraryApi.CheckSavedShowsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task<IReadOnlyList<bool>> ISpotifyLibraryApi.CheckSavedShowsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.CheckSavedShowsAsync(ids, null, cancellationToken);
         }

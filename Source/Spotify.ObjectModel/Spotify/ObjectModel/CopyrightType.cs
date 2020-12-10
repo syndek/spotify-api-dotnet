@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
     /// <summary>
     /// Defines different types of <see cref="ObjectModel.Copyright"/>.
     /// </summary>
-    public enum CopyrightType : Int32
+    public enum CopyrightType : int
     {
         /// <summary>
         /// The <see cref="ObjectModel.Copyright"/> is the regular copyright.

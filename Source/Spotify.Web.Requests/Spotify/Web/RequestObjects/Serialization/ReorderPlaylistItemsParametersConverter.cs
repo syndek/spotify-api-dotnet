@@ -13,10 +13,10 @@ namespace Spotify.Web.RequestObjects.Serialization
                 throw new JsonException();
             }
 
-            Int32 rangeStart = default;
-            Int32 insertBefore = default;
-            Int32? rangeLength = null;
-            String? snapshotId = null;
+            int rangeStart = default;
+            int insertBefore = default;
+            int? rangeLength = null;
+            string? snapshotId = null;
 
             while (reader.Read())
             {
@@ -64,7 +64,7 @@ namespace Spotify.Web.RequestObjects.Serialization
             writer.WriteNumber("range_start", value.RangeStart);
             writer.WriteNumber("insert_before", value.InsertBefore);
 
-            if (value.RangeLength is Int32 rangeLength)
+            if (value.RangeLength is int rangeLength)
             {
                 writer.WriteNumber("range_length", rangeLength);
             }

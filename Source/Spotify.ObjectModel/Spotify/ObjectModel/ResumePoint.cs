@@ -11,12 +11,12 @@ namespace Spotify.ObjectModel
         /// Initializes a new instance of the <see cref="ResumePoint"/> record with the specified values.
         /// </summary>
         /// <param name="resumePosition">
-        /// An <see cref="Int32"/> representing the user's most recent playback position in the <see cref="Episode"/> in milliseconds.
+        /// An <see cref="int"/> representing the user's most recent playback position in the <see cref="Episode"/> in milliseconds.
         /// </param>
         /// <param name="isFullyPlayed">
-        /// A <see cref="Boolean"/> representing whether or not the <see cref="Episode"/> has been fully played by the user.
+        /// A <see cref="bool"/> representing whether or not the <see cref="Episode"/> has been fully played by the user.
         /// </param>
-        public ResumePoint(Int32 resumePosition, Boolean isFullyPlayed) : base()
+        public ResumePoint(int resumePosition, bool isFullyPlayed) : base()
         {
             this.ResumePosition = resumePosition;
             this.IsFullyPlayed = isFullyPlayed;
@@ -26,15 +26,15 @@ namespace Spotify.ObjectModel
         /// Gets or sets the resume position of the <see cref="ResumePoint"/>.
         /// </summary>
         /// <returns>
-        /// An <see cref="Int32"/> representing the user's most recent playback position in the <see cref="Episode"/> in milliseconds.
+        /// An <see cref="int"/> representing the user's most recent playback position in the <see cref="Episode"/> in milliseconds.
         /// </returns>
-        public Int32 ResumePosition { get; init; }
+        public int ResumePosition { get; init; }
         /// <summary>
         /// Gets or sets a value representing whether or not the <see cref="Episode"/> has been fully played by the user.
         /// </summary>
         /// <returns>
-        /// A <see cref="Boolean"/> representing whether or not the <see cref="Episode"/> has been fully played by the user.
+        /// A <see cref="bool"/> representing whether or not the <see cref="Episode"/> has been fully played by the user.
         /// </returns>
-        public Boolean IsFullyPlayed { get; init; }
+        public bool IsFullyPlayed { get; init; }
     }
 }

@@ -7,9 +7,9 @@ using Spotify.ObjectModel.Serialization.EnumConverters;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using ImageArray = IReadOnlyList<Image>;
-    using StringArray = IReadOnlyList<String>;
+    using StringArray = IReadOnlyList<string>;
 
     public sealed class EpisodeConverter : JsonConverter<Episode>
     {
@@ -27,20 +27,20 @@ namespace Spotify.ObjectModel.Serialization
             var stringArrayConverter = options.GetConverter<StringArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
-            String description = String.Empty;
+            string name = string.Empty;
+            string description = string.Empty;
             ImageArray images = Array.Empty<Image>();
             SimplifiedShow show = null!;
-            Int32 duration = default;
+            int duration = default;
             DateTime releaseDate = default;
             ReleaseDatePrecision releaseDatePrecision = default;
-            Boolean isExplicit = default;
-            Boolean isPlayable = default;
-            Boolean isExternallyHosted = default;
-            StringArray languages = Array.Empty<String>();
+            bool isExplicit = default;
+            bool isPlayable = default;
+            bool isExternallyHosted = default;
+            StringArray languages = Array.Empty<string>();
             Uri? audioPreviewUrl = null;
             ExternalUrls externalUrls = null!;
             ResumePoint? resumePoint = null;

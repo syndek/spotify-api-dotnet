@@ -8,19 +8,19 @@ namespace Spotify.ObjectModel
     public record SimplifiedTrack : LocatableObject
     {
         public SimplifiedTrack(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
+            string name,
             IReadOnlyList<SimplifiedArtist> artists,
-            Int32 duration,
-            Int32 discNumber,
-            Int32 trackNumber,
-            Boolean isExplicit,
-            Boolean isLocal,
+            int duration,
+            int discNumber,
+            int trackNumber,
+            bool isExplicit,
+            bool isLocal,
             IReadOnlyList<CountryCode> availableMarkets,
-            String previewUrl,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            string previewUrl,
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri)
         {
             this.Href = href;
@@ -33,19 +33,19 @@ namespace Spotify.ObjectModel
             this.IsLocal = isLocal;
             this.AvailableMarkets = new ImmutableValueArray<CountryCode>(availableMarkets);
             this.PreviewUrl = previewUrl;
-            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
+            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         public Uri Href { get; init; }
-        public String Name { get; init; }
+        public string Name { get; init; }
         public IReadOnlyList<SimplifiedArtist> Artists { get; init; }
-        public Int32 Duration { get; init; }
-        public Int32 DiscNumber { get; init; }
-        public Int32 TrackNumber { get; init; }
-        public Boolean IsExplicit { get; init; }
-        public Boolean IsLocal { get; init; }
+        public int Duration { get; init; }
+        public int DiscNumber { get; init; }
+        public int TrackNumber { get; init; }
+        public bool IsExplicit { get; init; }
+        public bool IsLocal { get; init; }
         public IReadOnlyList<CountryCode> AvailableMarkets { get; init; }
-        public String PreviewUrl { get; init; }
-        public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
+        public string PreviewUrl { get; init; }
+        public IReadOnlyDictionary<string, Uri> ExternalUrls { get; init; }
     }
 }

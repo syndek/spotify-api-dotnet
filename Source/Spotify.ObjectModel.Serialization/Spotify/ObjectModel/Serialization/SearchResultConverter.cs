@@ -76,7 +76,7 @@ namespace Spotify.ObjectModel.Serialization
 
         public override void Write(Utf8JsonWriter writer, SearchResult value, JsonSerializerOptions options)
         {
-            void WritePaging<TObject>(String propertyName, Paging<TObject>? paging, JsonConverter<Paging<TObject>> converter)
+            void WritePaging<TObject>(string propertyName, Paging<TObject>? paging, JsonConverter<Paging<TObject>> converter)
             {
                 if (paging is not null)
                 {

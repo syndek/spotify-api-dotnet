@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace Spotify.ObjectModel.Serialization
 {
     using CountryCodeArray = IReadOnlyList<CountryCode>;
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using SimplifiedArtistArray = IReadOnlyList<SimplifiedArtist>;
 
     public sealed class SimplifiedTrackConverter : JsonConverter<SimplifiedTrack>
@@ -23,18 +23,18 @@ namespace Spotify.ObjectModel.Serialization
             var simplifiedArtistArrayConverter = options.GetConverter<SimplifiedArtistArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
+            string name = string.Empty;
             SimplifiedArtistArray artists = Array.Empty<SimplifiedArtist>();
-            Int32 duration = default;
-            Int32 trackNumber = default;
-            Int32 discNumber = default;
-            Boolean isExplicit = default;
-            Boolean isLocal = default;
+            int duration = default;
+            int trackNumber = default;
+            int discNumber = default;
+            bool isExplicit = default;
+            bool isLocal = default;
             CountryCodeArray availableMarkets = Array.Empty<CountryCode>();
-            String previewUrl = String.Empty;
+            string previewUrl = string.Empty;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())

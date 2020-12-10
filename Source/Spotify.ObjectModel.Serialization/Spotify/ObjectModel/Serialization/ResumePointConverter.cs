@@ -13,8 +13,8 @@ namespace Spotify.ObjectModel.Serialization
                 throw new JsonException();
             }
 
-            Int32 resumePosition = default;
-            Boolean isFullyPlayed = default;
+            int resumePosition = default;
+            bool isFullyPlayed = default;
 
             while (reader.Read())
             {

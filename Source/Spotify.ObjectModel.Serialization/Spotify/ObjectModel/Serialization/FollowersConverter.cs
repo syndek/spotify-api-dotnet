@@ -16,7 +16,7 @@ namespace Spotify.ObjectModel.Serialization
             var uriConverter = options.GetConverter<Uri>();
 
             Uri? href = null;
-            Int32 total = default;
+            int total = default;
 
             while (reader.Read())
             {

@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Spotify.Web
 {
-    internal class SpotifyUriBuilder : Object
+    internal class SpotifyUriBuilder : object
     {
-        private readonly String path;
+        private readonly string path;
 
         private StringBuilder? queryBuilder;
 
-        public SpotifyUriBuilder(String path) : base()
+        public SpotifyUriBuilder(string path) : base()
         {
             this.path = path;
             this.queryBuilder = null;
@@ -18,7 +18,7 @@ namespace Spotify.Web
 
         private StringBuilder QueryBuilder => this.queryBuilder ??= new();
 
-        public override String ToString()
+        public override string ToString()
         {
             if (this.queryBuilder is null)
             {
@@ -28,7 +28,7 @@ namespace Spotify.Web
             return $"{this.path}?{this.queryBuilder}";
         }
 
-        public SpotifyUriBuilder AppendToQuery<TElement>(String name, TElement element)
+        public SpotifyUriBuilder AppendToQuery<TElement>(string name, TElement element)
         {
             if (this.QueryBuilder.Length > 0)
             {
@@ -40,7 +40,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendToQueryIfNotNull<TElement>(String name, TElement? element) where TElement : class
+        public SpotifyUriBuilder AppendToQueryIfNotNull<TElement>(string name, TElement? element) where TElement : class
         {
             if (element is not null)
             {
@@ -50,7 +50,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendToQueryIfNotNull<TElement>(String name, TElement? element) where TElement : struct
+        public SpotifyUriBuilder AppendToQueryIfNotNull<TElement>(string name, TElement? element) where TElement : struct
         {
             if (element is not null)
             {
@@ -60,7 +60,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendJoinToQuery<TElement>(String name, String separator, IEnumerable<TElement> elements)
+        public SpotifyUriBuilder AppendJoinToQuery<TElement>(string name, string separator, IEnumerable<TElement> elements)
         {
             if (this.QueryBuilder.Length > 0)
             {
@@ -72,7 +72,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendJoinToQuery<TElement>(String name, Char separator, IEnumerable<TElement> elements)
+        public SpotifyUriBuilder AppendJoinToQuery<TElement>(string name, char separator, IEnumerable<TElement> elements)
         {
             if (this.QueryBuilder.Length > 0)
             {
@@ -84,7 +84,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(String name, String separator, IEnumerable<TElement>? elements)
+        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(string name, string separator, IEnumerable<TElement>? elements)
         {
             if (elements is not null)
             {
@@ -94,7 +94,7 @@ namespace Spotify.Web
             return this;
         }
 
-        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(String name, Char separator, IEnumerable<TElement>? elements)
+        public SpotifyUriBuilder AppendJoinToQueryIfNotNull<TElement>(string name, char separator, IEnumerable<TElement>? elements)
         {
             if (elements is not null)
             {

@@ -15,7 +15,7 @@ namespace Spotify
             CancellationToken cancellationToken = default);
 
         Task<PublicUser> GetUserProfileAsync(
-            String id,
+            string id,
             CancellationToken cancellationToken = default);
     }
 }

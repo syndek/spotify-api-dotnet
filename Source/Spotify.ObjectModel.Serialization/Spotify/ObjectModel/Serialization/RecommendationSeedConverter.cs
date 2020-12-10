@@ -17,12 +17,12 @@ namespace Spotify.ObjectModel.Serialization
 
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri? href = null;
             RecommendationSeedType type = default;
-            Int32 initialPoolSize = default;
-            Int32 afterFilteringSize = default;
-            Int32 afterRelinkingSize = default;
+            int initialPoolSize = default;
+            int afterFilteringSize = default;
+            int afterRelinkingSize = default;
 
             while (reader.Read())
             {

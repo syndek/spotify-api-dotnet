@@ -15,12 +15,12 @@ namespace Spotify.Web.Authorization.Flows
     /// Represents an <see href="https://spotify.dev/documentation/general/guides/authorization-guide/#authorization-flows">authorization flow</see>
     /// for the Spotify Web API.
     /// </summary>
-    public abstract class SpotifyAuthorizationFlow : Object, IAccessTokenProvider, IDisposable
+    public abstract class SpotifyAuthorizationFlow : object, IAccessTokenProvider, IDisposable
     {
         /// <summary>
         /// Represents the URL of the <c>/authorize</c> endpoint of the Spotify Accounts service. This field is constant.
         /// </summary>
-        protected const String AuthorizationUrl = "https://accounts.spotify.com/authorize";
+        protected const string AuthorizationUrl = "https://accounts.spotify.com/authorize";
 
         /// <summary>
         /// The <see cref="Uri"/> of the Spotify Accounts service <c>/api/token</c> endpoint. This field is read-only.
@@ -41,7 +41,7 @@ namespace Spotify.Web.Authorization.Flows
 
         private readonly HttpClient httpClient;
 
-        private Boolean isDisposed;
+        private bool isDisposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotifyAuthorizationFlow"/> class with the
@@ -50,8 +50,8 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="httpClient">
         /// An <see cref="System.Net.Http.HttpClient"/> instance to use to make requests to the Spotify Accounts service.
         /// </param>
-        /// <param name="clientId">A <see cref="String"/> representing a valid Spotify Web API client ID.</param>
-        protected SpotifyAuthorizationFlow(HttpClient httpClient, String clientId) : base()
+        /// <param name="clientId">A <see cref="string"/> representing a valid Spotify Web API client ID.</param>
+        protected SpotifyAuthorizationFlow(HttpClient httpClient, string clientId) : base()
         {
             this.isDisposed = false;
             this.httpClient = httpClient;
@@ -72,8 +72,8 @@ namespace Spotify.Web.Authorization.Flows
         /// <summary>
         /// Gets the client ID of the application the <see cref="SpotifyAuthorizationFlow"/> is for.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the client ID of the application the <see cref="SpotifyAuthorizationFlow"/> is for.</returns>
-        protected String ClientId { get; }
+        /// <returns>A <see cref="string"/> representing the client ID of the application the <see cref="SpotifyAuthorizationFlow"/> is for.</returns>
+        protected string ClientId { get; }
 
         /// <summary>
         /// Asynchronously retrieves an <see cref="AccessToken"/>.
@@ -101,7 +101,7 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="disposing">
         /// <see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release only unmanaged resources.
         /// </param>
-        protected virtual void Dispose(Boolean disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (this.isDisposed)
             {

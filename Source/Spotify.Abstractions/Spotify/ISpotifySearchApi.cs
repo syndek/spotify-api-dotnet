@@ -13,12 +13,12 @@ namespace Spotify
     public interface ISpotifySearchApi
     {
         Task<SearchResult> SearchAsync(
-            String query,
+            string query,
             SearchResultTypes types,
             CountryCode? market = null,
-            Int32? limit = null,
-            Int32? offset = null,
-            Boolean? includeExternal = null,
+            int? limit = null,
+            int? offset = null,
+            bool? includeExternal = null,
             CancellationToken cancellationToken = default);
     }
 }

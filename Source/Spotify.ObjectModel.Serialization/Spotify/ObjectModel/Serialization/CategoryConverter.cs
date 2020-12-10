@@ -19,9 +19,9 @@ namespace Spotify.ObjectModel.Serialization
             var imageArrayConverter = options.GetConverter<ImageArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri href = null!;
-            String name = String.Empty;
+            string name = string.Empty;
             ImageArray images = Array.Empty<Image>();
 
             while (reader.Read())

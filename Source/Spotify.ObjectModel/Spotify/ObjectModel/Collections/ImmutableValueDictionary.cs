@@ -18,16 +18,16 @@ namespace Spotify.ObjectModel.Collections
 
         public IEnumerable<TKey> Keys => this.dictionary.Keys;
         public IEnumerable<TValue> Values => this.dictionary.Values;
-        public Int32 Count => this.dictionary.Count;
+        public int Count => this.dictionary.Count;
 
-        public override Boolean Equals(Object? obj) => (obj is ImmutableValueDictionary<TKey, TValue> dictionary) && this.Equals(dictionary);
+        public override bool Equals(object? obj) => (obj is ImmutableValueDictionary<TKey, TValue> dictionary) && this.Equals(dictionary);
 
         // This probably needs to be done better, but will work 'good enough' for now.
-        public override Int32 GetHashCode() => this.dictionary.GetHashCode();
+        public override int GetHashCode() => this.dictionary.GetHashCode();
 
-        public Boolean ContainsKey(TKey key) => this.dictionary.ContainsKey(key);
+        public bool ContainsKey(TKey key) => this.dictionary.ContainsKey(key);
 
-        public Boolean Equals(ImmutableValueDictionary<TKey, TValue> other)
+        public bool Equals(ImmutableValueDictionary<TKey, TValue> other)
         {
             if (this.Count != other.Count)
             {
@@ -54,17 +54,17 @@ namespace Spotify.ObjectModel.Collections
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() => this.dictionary.GetEnumerator();
 
-        public Boolean TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) => this.dictionary.TryGetValue(key, out value);
+        public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) => this.dictionary.TryGetValue(key, out value);
 
         IEnumerator IEnumerable.GetEnumerator() => this.dictionary.GetEnumerator();
 
-        public static Boolean operator ==(ImmutableValueDictionary<TKey, TValue>? left, ImmutableValueDictionary<TKey, TValue>? right) => (left, right) switch
+        public static bool operator ==(ImmutableValueDictionary<TKey, TValue>? left, ImmutableValueDictionary<TKey, TValue>? right) => (left, right) switch
         {
             (null, null) => true,
             (not null, not null) => left.Equals(right),
             _ => false
         };
 
-        public static Boolean operator !=(ImmutableValueDictionary<TKey, TValue>? left, ImmutableValueDictionary<TKey, TValue>? right) => !(left == right);
+        public static bool operator !=(ImmutableValueDictionary<TKey, TValue>? left, ImmutableValueDictionary<TKey, TValue>? right) => !(left == right);
     }
 }

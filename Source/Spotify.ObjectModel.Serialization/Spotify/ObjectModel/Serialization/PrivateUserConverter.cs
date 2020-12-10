@@ -7,7 +7,7 @@ using Spotify.ObjectModel.Serialization.EnumConverters;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using ImageArray = IReadOnlyList<Image>;
 
     public sealed class PrivateUserConverter : JsonConverter<PrivateUser>
@@ -24,11 +24,11 @@ namespace Spotify.ObjectModel.Serialization
             var imageArrayConverter = options.GetConverter<ImageArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String? email = null;
-            String? displayName = null;
+            string? email = null;
+            string? displayName = null;
             CountryCode? country = null;
             ImageArray images = Array.Empty<Image>();
             Product? product = null;

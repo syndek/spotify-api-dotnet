@@ -23,12 +23,12 @@ namespace Spotify.Web
         public SpotifySearchApiClient(HttpClient httpClient) : base(httpClient) { }
 
         public Task<SearchResult> SearchAsync(
-            String query,
+            string query,
             SearchResultTypes types,
             CountryCode? market = null,
-            Int32? limit = null,
-            Int32? offset = null,
-            Boolean? includeExternal = null,
+            int? limit = null,
+            int? offset = null,
+            bool? includeExternal = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -49,12 +49,12 @@ namespace Spotify.Web
         }
 
         Task<SearchResult> ISpotifySearchApi.SearchAsync(
-            String query,
+            string query,
             SearchResultTypes types,
             CountryCode? market,
-            Int32? limit,
-            Int32? offset,
-            Boolean? includeExternal,
+            int? limit,
+            int? offset,
+            bool? includeExternal,
             CancellationToken cancellationToken)
         {
             return this.SearchAsync(query, types, market, limit, offset, includeExternal, null, cancellationToken);

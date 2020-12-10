@@ -10,7 +10,7 @@ namespace Spotify.ObjectModel
     /// <see cref="FromToken"/> is a special value that can be used in some contexts within the Spotify API
     /// to automatically use the current user's market, and does not represent a valid country code.
     /// </remarks>
-    public enum CountryCode : Int32
+    public enum CountryCode : int
     {
         /// <summary>
         /// Use the current user's market.

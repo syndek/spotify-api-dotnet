@@ -14,57 +14,57 @@ namespace Spotify
     public interface ISpotifyLibraryApi
     {
         Task SaveAlbumsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task RemoveAlbumsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task<Paging<Saved<Album>>> GetSavedAlbumsAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Boolean>> CheckSavedAlbumsAsync(
-            IEnumerable<String> ids,
+        Task<IReadOnlyList<bool>> CheckSavedAlbumsAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task SaveTracksAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task RemoveTracksAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task<Paging<Saved<Track>>> GetSavedTracksAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Boolean>> CheckSavedTracksAsync(
-            IEnumerable<String> ids,
+        Task<IReadOnlyList<bool>> CheckSavedTracksAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task SaveShowsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
 
         Task RemoveShowsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<Saved<Show>>> GetSavedShowsAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyList<Boolean>> CheckSavedShowsAsync(
-            IEnumerable<String> ids,
+        Task<IReadOnlyList<bool>> CheckSavedShowsAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken = default);
     }
 }

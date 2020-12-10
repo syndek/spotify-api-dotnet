@@ -13,19 +13,19 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="SimplifiedArtist"/> record with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the artist.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the artist.</param>
         /// <param name="uri">The Spotify URI of the artist.</param>
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the artist.</param>
-        /// <param name="name">A <see cref="String"/> representing the name of the artist.</param>
+        /// <param name="name">A <see cref="string"/> representing the name of the artist.</param>
         /// <param name="externalUrls">
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the artist, keyed by the type of the URL.
         /// </param>
-        public SimplifiedArtist(String id, Uri uri, Uri href, String name, IReadOnlyDictionary<String, Uri> externalUrls) : base(id, uri)
+        public SimplifiedArtist(string id, Uri uri, Uri href, string name, IReadOnlyDictionary<string, Uri> externalUrls) : base(id, uri)
         {
             this.Href = href;
             this.Name = name;
-            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
+            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         /// <summary>
@@ -36,8 +36,8 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets the name of the <see cref="SimplifiedArtist"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the name of the <see cref="SimplifiedArtist"/>.</returns>
-        public String Name { get; init; }
+        /// <returns>A <see cref="string"/> representing the name of the <see cref="SimplifiedArtist"/>.</returns>
+        public string Name { get; init; }
         /// <summary>
         /// Gets or sets the known external URLs for the <see cref="SimplifiedArtist"/>.
         /// </summary>
@@ -45,6 +45,6 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the <see cref="SimplifiedArtist"/>, keyed by the type of the URL.
         /// </returns>
-        public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
+        public IReadOnlyDictionary<string, Uri> ExternalUrls { get; init; }
     }
 }

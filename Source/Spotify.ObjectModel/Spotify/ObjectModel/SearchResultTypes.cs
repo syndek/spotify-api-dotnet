@@ -6,7 +6,7 @@ namespace Spotify.ObjectModel
     /// Defines types that should be included in the result of a call to <see cref="ISpotifySearchApi.SearchAsync"/>.
     /// </summary>
     [Flags]
-    public enum SearchResultTypes : Int32
+    public enum SearchResultTypes : int
     {
         /// <summary>
         /// Albums should be included in the <see cref="SearchResult"/>.

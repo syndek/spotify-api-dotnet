@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Spotify.ObjectModel.Serialization
 {
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
 
     public sealed class SimplifiedArtistConverter : JsonConverter<SimplifiedArtist>
     {
@@ -19,10 +19,10 @@ namespace Spotify.ObjectModel.Serialization
             var externalUrlsConverter = options.GetConverter<ExternalUrls>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
+            string name = string.Empty;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())

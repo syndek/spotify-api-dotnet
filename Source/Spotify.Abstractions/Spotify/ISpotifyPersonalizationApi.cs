@@ -13,14 +13,14 @@ namespace Spotify
     public interface ISpotifyPersonalizationApi
     {
         Task<Paging<Artist>> GetTopArtistsForCurrentUserAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             TimeRange? timeRange = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<Track>> GetTopTracksForCurrentUserAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             TimeRange? timeRange = null,
             CancellationToken cancellationToken = default);
     }

@@ -7,7 +7,7 @@ namespace Spotify.Web.Authorization
     /// which allow applications to access specific Spotify Web API endpoints on behalf of a user.
     /// </summary>
     [Flags]
-    public enum AuthorizationScopes : Int32
+    public enum AuthorizationScopes : int
     {
         /// <summary>
         /// Provides write access to user-provided images.

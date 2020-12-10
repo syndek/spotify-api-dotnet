@@ -21,7 +21,7 @@ namespace Spotify.Web
         public SpotifyTracksApiClient(HttpClient httpClient) : base(httpClient) { }
 
         public Task<IReadOnlyList<Track>> GetTracksAsync(
-            IReadOnlyList<String> ids,
+            IReadOnlyList<string> ids,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -39,7 +39,7 @@ namespace Spotify.Web
         }
 
         public Task<IReadOnlyList<AudioFeatures>> GetAudioFeaturesForTracksAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -55,7 +55,7 @@ namespace Spotify.Web
         }
 
         public Task<Track> GetTrackAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -72,7 +72,7 @@ namespace Spotify.Web
         }
 
         public Task<AudioAnalysis> GetAudioAnalysisForTrackAsync(
-            String id,
+            string id,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -85,7 +85,7 @@ namespace Spotify.Web
         }
 
         public Task<AudioFeatures> GetAudioFeaturesForTrackAsync(
-            String id,
+            string id,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -99,7 +99,7 @@ namespace Spotify.Web
 
         #region ISpotifyTracksApi Implementation
         Task<IReadOnlyList<Track>> ISpotifyTracksApi.GetTracksAsync(
-            IReadOnlyList<String> ids,
+            IReadOnlyList<string> ids,
             CountryCode? market,
             CancellationToken cancellationToken)
         {
@@ -107,23 +107,23 @@ namespace Spotify.Web
         }
 
         Task<IReadOnlyList<AudioFeatures>> ISpotifyTracksApi.GetAudioFeaturesForTracksAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CancellationToken cancellationToken)
         {
             return this.GetAudioFeaturesForTracksAsync(ids, null, cancellationToken);
         }
 
-        Task<Track> ISpotifyTracksApi.GetTrackAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        Task<Track> ISpotifyTracksApi.GetTrackAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetTrackAsync(id, market, null, cancellationToken);
         }
 
-        Task<AudioAnalysis> ISpotifyTracksApi.GetAudioAnalysisForTrackAsync(String id, CancellationToken cancellationToken)
+        Task<AudioAnalysis> ISpotifyTracksApi.GetAudioAnalysisForTrackAsync(string id, CancellationToken cancellationToken)
         {
             return this.GetAudioAnalysisForTrackAsync(id, null, cancellationToken);
         }
 
-        Task<AudioFeatures> ISpotifyTracksApi.GetAudioFeaturesForTrackAsync(String id, CancellationToken cancellationToken)
+        Task<AudioFeatures> ISpotifyTracksApi.GetAudioFeaturesForTrackAsync(string id, CancellationToken cancellationToken)
         {
             return this.GetAudioFeaturesForTrackAsync(id, null, cancellationToken);
         }

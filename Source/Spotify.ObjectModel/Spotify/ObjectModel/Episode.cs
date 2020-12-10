@@ -6,22 +6,22 @@ namespace Spotify.ObjectModel
     public record Episode : SimplifiedEpisode, IPlayable
     {
         public Episode(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
-            String description,
+            string name,
+            string description,
             IReadOnlyList<Image> images,
             SimplifiedShow show,
-            Int32 duration,
+            int duration,
             DateTime releaseDate,
             ReleaseDatePrecision releaseDatePrecision,
-            Boolean isExplicit,
-            Boolean isPlayable,
-            Boolean isExternallyHosted,
-            IReadOnlyList<String> languages,
+            bool isExplicit,
+            bool isPlayable,
+            bool isExternallyHosted,
+            IReadOnlyList<string> languages,
             Uri? audioPreviewUrl,
-            IReadOnlyDictionary<String, Uri> externalUrls,
+            IReadOnlyDictionary<string, Uri> externalUrls,
             ResumePoint? resumePoint) :
             base(
                 id,

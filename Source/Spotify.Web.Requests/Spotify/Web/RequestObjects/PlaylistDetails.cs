@@ -4,7 +4,7 @@ namespace Spotify.Web.RequestObjects
 {
     internal readonly struct PlaylistDetails
     {
-        internal PlaylistDetails(String? name, String? description, Boolean? isPublic, Boolean? isCollaborative)
+        internal PlaylistDetails(string? name, string? description, bool? isPublic, bool? isCollaborative)
         {
             this.Name = name;
             this.Description = description;
@@ -12,9 +12,9 @@ namespace Spotify.Web.RequestObjects
             this.IsCollaborative = isCollaborative;
         }
 
-        internal String? Name { get; }
-        internal String? Description { get; }
-        internal Boolean? IsPublic { get; }
-        internal Boolean? IsCollaborative { get; }
+        internal string? Name { get; }
+        internal string? Description { get; }
+        internal bool? IsPublic { get; }
+        internal bool? IsCollaborative { get; }
     }
 }

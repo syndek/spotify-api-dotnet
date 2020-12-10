@@ -18,7 +18,7 @@ namespace Spotify.ObjectModel.Serialization
 
             DateTime addedAt = default;
             PublicUser addedBy = null!;
-            Boolean isLocal = default;
+            bool isLocal = default;
             IPlayable track = null!;
 
             while (reader.Read())

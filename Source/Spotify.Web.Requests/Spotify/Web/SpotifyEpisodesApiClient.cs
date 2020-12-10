@@ -24,7 +24,7 @@ namespace Spotify.Web
         /// Asynchronously get multiple <see cref="Episode"/> objects from the Spotify catalog.
         /// </summary>
         /// <param name="ids">
-        /// An <see cref="IEnumerable{T}"/> of <see cref="String"/> objects
+        /// An <see cref="IEnumerable{T}"/> of <see cref="string"/> objects
         /// representing the Spotify IDs of the <see cref="Episode"/> objects to get.
         /// </param>
         /// <param name="market">An optional <see cref="CountryCode"/> to limit results to a certain market only.</param>
@@ -32,7 +32,7 @@ namespace Spotify.Web
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         public Task<Episode> GetEpisodeAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -51,13 +51,13 @@ namespace Spotify.Web
         /// <summary>
         /// Asynchronously get an <see cref="Episode"/> from the Spotify catalog.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the <see cref="Episode"/> to get.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the <see cref="Episode"/> to get.</param>
         /// <param name="market">An optional <see cref="CountryCode"/> to limit results to a certain market only.</param>
         /// <param name="accessTokenProvider">An optional <see cref="IAccessTokenProvider"/> to use instead of the default.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         public Task<IReadOnlyList<Episode>> GetEpisodesAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -75,12 +75,12 @@ namespace Spotify.Web
         }
 
         #region ISpotifyEpisodesApi Implementation
-        Task<Episode> ISpotifyEpisodesApi.GetEpisodeAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        Task<Episode> ISpotifyEpisodesApi.GetEpisodeAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetEpisodeAsync(id, market, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Episode>> ISpotifyEpisodesApi.GetEpisodesAsync(IEnumerable<String> ids, CountryCode? market, CancellationToken cancellationToken)
+        Task<IReadOnlyList<Episode>> ISpotifyEpisodesApi.GetEpisodesAsync(IEnumerable<string> ids, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetEpisodesAsync(ids, market, null, cancellationToken);
         }

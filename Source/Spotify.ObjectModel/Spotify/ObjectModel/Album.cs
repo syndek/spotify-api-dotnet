@@ -13,10 +13,10 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="Album"/> record with the specified values.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the album.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the album.</param>
         /// <param name="uri">The Spotify URI of the album.</param>
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the album.</param>
-        /// <param name="name">A <see cref="String"/> representing the name of the album.</param>
+        /// <param name="name">A <see cref="string"/> representing the name of the album.</param>
         /// <param name="type">The type of the album.</param>
         /// <param name="images">
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="Image"/> objects
@@ -31,13 +31,13 @@ namespace Spotify.ObjectModel
         /// A <see cref="Paging{TItem}"/> of <see cref="SimplifiedTrack"/> objects representing the tracks of the album.
         /// </param>
         /// <param name="genres">
-        /// A <see cref="IReadOnlyList{T}"/> of <see cref="String"/> objects representing genres the album is associated with.
+        /// A <see cref="IReadOnlyList{T}"/> of <see cref="string"/> objects representing genres the album is associated with.
         /// </param>
-        /// <param name="popularity">An <see cref="Int32"/> representing the popularity of the album.</param>
+        /// <param name="popularity">An <see cref="int"/> representing the popularity of the album.</param>
         /// <param name="availableMarkets">
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="CountryCode"/> values representing the markets in which the album is available.
         /// </param>
-        /// <param name="label">A <see cref="String"/> representing the name of the label that released the album.</param>
+        /// <param name="label">A <see cref="string"/> representing the name of the label that released the album.</param>
         /// <param name="copyrights">
         /// A <see cref="IReadOnlyList{T}"/> of <see cref="Copyright"/> objects representing the copyright statements of the album.
         /// </param>
@@ -50,23 +50,23 @@ namespace Spotify.ObjectModel
         /// external URLs for the album, keyed by the type of the URL.
         /// </param>
         public Album(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
+            string name,
             AlbumType type,
             IReadOnlyList<Image> images,
             IReadOnlyList<SimplifiedArtist> artists,
             DateTime releaseDate,
             ReleaseDatePrecision releaseDatePrecision,
             Paging<SimplifiedTrack> tracks,
-            IReadOnlyList<String> genres,
-            Int32 popularity,
+            IReadOnlyList<string> genres,
+            int popularity,
             IReadOnlyList<CountryCode> availableMarkets,
-            String label,
+            string label,
             IReadOnlyList<Copyright> copyrights,
-            IReadOnlyDictionary<String, String> externalIds,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            IReadOnlyDictionary<string, string> externalIds,
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(
                 id,
                 uri,
@@ -82,11 +82,11 @@ namespace Spotify.ObjectModel
                 externalUrls)
         {
             this.Tracks = tracks;
-            this.Genres = new ImmutableValueArray<String>(genres);
+            this.Genres = new ImmutableValueArray<string>(genres);
             this.Popularity = popularity;
             this.Label = label;
             this.Copyrights = new ImmutableValueArray<Copyright>(copyrights);
-            this.ExternalIds = new ImmutableValueDictionary<String, String>(externalIds);
+            this.ExternalIds = new ImmutableValueDictionary<string, string>(externalIds);
         }
 
         /// <summary>
@@ -101,19 +101,19 @@ namespace Spotify.ObjectModel
         /// Gets or sets the genres associated with the <see cref="Album"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="IReadOnlyList{T}"/> of <see cref="String"/> objects representing genres the <see cref="Artist"/> is associated with.
+        /// A <see cref="IReadOnlyList{T}"/> of <see cref="string"/> objects representing genres the <see cref="Artist"/> is associated with.
         /// </returns>
-        public IReadOnlyList<String> Genres { get; init; }
+        public IReadOnlyList<string> Genres { get; init; }
         /// <summary>
         /// Gets or sets the popularity of the <see cref="Album"/>.
         /// </summary>
-        /// <returns>An <see cref="Int32"/> representing the popularity of the <see cref="Album"/>.</returns>
-        public Int32 Popularity { get; init; }
+        /// <returns>An <see cref="int"/> representing the popularity of the <see cref="Album"/>.</returns>
+        public int Popularity { get; init; }
         /// <summary>
         /// Gets or sets the name of the label that released the <see cref="Album"/>.
         /// </summary>
-        /// <returns>A <see cref="String"/> representing the name of the label that released the <see cref="Album"/>.</returns>
-        public String Label { get; init; }
+        /// <returns>A <see cref="string"/> representing the name of the label that released the <see cref="Album"/>.</returns>
+        public string Label { get; init; }
         /// <summary>
         /// Gets or sets the copyright statements of the <see cref="Album"/>.
         /// </summary>
@@ -129,6 +129,6 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external IDs for the <see cref="Album"/>, keyed by the type of the ID.
         /// </returns>
-        public IReadOnlyDictionary<String, String> ExternalIds { get; init; }
+        public IReadOnlyDictionary<string, string> ExternalIds { get; init; }
     }
 }

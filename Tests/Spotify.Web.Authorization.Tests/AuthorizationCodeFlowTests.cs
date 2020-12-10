@@ -7,12 +7,12 @@ using Spotify.Web.Authorization.Flows;
 namespace Spotify.Web.Authorization.Tests
 {
     [TestClass]
-    public class AuthorizationCodeFlowTests : Object
+    public class AuthorizationCodeFlowTests : object
     {
         [TestMethod]
         public void CreateAuthorizationUrl_NoScopes()
         {
-            const String AuthorizationUrl = "https://accounts.spotify.com/authorize" +
+            const string AuthorizationUrl = "https://accounts.spotify.com/authorize" +
                 "?response_type=code" +
                 "&client_id=CLIENT_ID" +
                 "&redirect_uri=REDIRECT_URI";
@@ -25,7 +25,7 @@ namespace Spotify.Web.Authorization.Tests
         [TestMethod]
         public void CreateAuthorizationUrl_SingleScope()
         {
-            const String AuthorizationUrl = "https://accounts.spotify.com/authorize" +
+            const string AuthorizationUrl = "https://accounts.spotify.com/authorize" +
                 "?response_type=code" +
                 "&client_id=CLIENT_ID" +
                 "&redirect_uri=REDIRECT_URI" +
@@ -42,7 +42,7 @@ namespace Spotify.Web.Authorization.Tests
         [TestMethod]
         public void CreateAuthorizationUrl_MultipleScopes()
         {
-            const String AuthorizationUrl = "https://accounts.spotify.com/authorize" +
+            const string AuthorizationUrl = "https://accounts.spotify.com/authorize" +
                 "?response_type=code" +
                 "&client_id=CLIENT_ID" +
                 "&redirect_uri=REDIRECT_URI" +

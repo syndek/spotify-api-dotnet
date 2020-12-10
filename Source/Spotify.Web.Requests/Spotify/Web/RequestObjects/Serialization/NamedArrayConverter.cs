@@ -16,7 +16,7 @@ namespace Spotify.Web.RequestObjects.Serialization
 
             var arrayConverter = (JsonConverter<IReadOnlyList<TElement>>) options.GetConverter(typeof(IReadOnlyList<TElement>));
 
-            String name = String.Empty;
+            string name = string.Empty;
             IReadOnlyList<TElement> elements = Array.Empty<TElement>();
 
             while (reader.Read())

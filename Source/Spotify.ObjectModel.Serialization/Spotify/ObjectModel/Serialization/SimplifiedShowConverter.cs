@@ -7,9 +7,9 @@ namespace Spotify.ObjectModel.Serialization
 {
     using CopyrightArray = IReadOnlyList<Copyright>;
     using CountryCodeArray = IReadOnlyList<CountryCode>;
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using ImageArray = IReadOnlyList<Image>;
-    using StringArray = IReadOnlyList<String>;
+    using StringArray = IReadOnlyList<string>;
 
     public sealed class SimplifiedShowConverter : JsonConverter<SimplifiedShow>
     {
@@ -27,19 +27,19 @@ namespace Spotify.ObjectModel.Serialization
             var stringArrayConverter = options.GetConverter<StringArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
-            String description = String.Empty;
+            string name = string.Empty;
+            string description = string.Empty;
             ImageArray images = Array.Empty<Image>();
-            Boolean isExplicit = default;
-            StringArray languages = Array.Empty<String>();
+            bool isExplicit = default;
+            StringArray languages = Array.Empty<string>();
             CountryCodeArray availableMarkets = Array.Empty<CountryCode>();
-            String mediaType = String.Empty;
-            String publisher = String.Empty;
+            string mediaType = string.Empty;
+            string publisher = string.Empty;
             CopyrightArray copyrights = Array.Empty<Copyright>();
-            Boolean? isExternallyHosted = null;
+            bool? isExternallyHosted = null;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())

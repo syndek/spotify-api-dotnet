@@ -7,7 +7,7 @@ namespace Spotify.ObjectModel.Serialization
 {
     public class SavedConverterFactory : JsonConverterFactory
     {
-        public override Boolean CanConvert(Type typeToConvert) =>
+        public override bool CanConvert(Type typeToConvert) =>
             typeToConvert.IsGenericType && typeToConvert.GetGenericTypeDefinition() == typeof(Saved<>);
 
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)

@@ -20,11 +20,11 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey,TValue}"/> containing the known
         /// external URLs for the context, keyed by the type of the URL.
         /// </param>
-        public Context(Uri uri, Uri href, IReadOnlyDictionary<String, Uri> externalUrls) : base()
+        public Context(Uri uri, Uri href, IReadOnlyDictionary<string, Uri> externalUrls) : base()
         {
             this.Uri = uri;
             this.Href = href;
-            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
+            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         /// <summary>
@@ -45,6 +45,6 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known external URLs for the
         /// <see cref="Context"/>, keyed by the type of the URL.
         /// </returns>
-        public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
+        public IReadOnlyDictionary<string, Uri> ExternalUrls { get; init; }
     }
 }

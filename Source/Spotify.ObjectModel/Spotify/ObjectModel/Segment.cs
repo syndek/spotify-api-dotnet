@@ -14,39 +14,39 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Initializes a new instance of the <see cref="Segment"/> record with the specified values.
         /// </summary>
-        /// <param name="start">A <see cref="Single"/> representing the starting point (in seconds) of the segment.</param>
-        /// <param name="duration">A <see cref="Single"/> representing the duration (in seconds) of the segment.</param>
-        /// <param name="confidence">A <see cref="Single"/> representing the confidence of the reliability of the segmentation.</param>
-        /// <param name="loudnessStart">A <see cref="Single"/> representing the onset loudness (in decibels) of the segment.</param>
-        /// <param name="loudnessEnd">A <see cref="Single"/> representing the offset loudness (in decibels) of the segment.</param>
-        /// <param name="loudnessMax">A <see cref="Single"/> representing the peak loudness (in decibels) of the segment.</param>
+        /// <param name="start">A <see cref="float"/> representing the starting point (in seconds) of the segment.</param>
+        /// <param name="duration">A <see cref="float"/> representing the duration (in seconds) of the segment.</param>
+        /// <param name="confidence">A <see cref="float"/> representing the confidence of the reliability of the segmentation.</param>
+        /// <param name="loudnessStart">A <see cref="float"/> representing the onset loudness (in decibels) of the segment.</param>
+        /// <param name="loudnessEnd">A <see cref="float"/> representing the offset loudness (in decibels) of the segment.</param>
+        /// <param name="loudnessMax">A <see cref="float"/> representing the peak loudness (in decibels) of the segment.</param>
         /// <param name="loudnessMaxTime">
-        /// A <see cref="Single"/> representing the segment-relative offset of the <paramref name="loudnessMax"/> value (in seconds).
+        /// A <see cref="float"/> representing the segment-relative offset of the <paramref name="loudnessMax"/> value (in seconds).
         /// </param>
         /// <param name="pitches">
-        /// A <see cref="IReadOnlyList{T}"/> of <see cref="Single"/> values representing the pitch content of the segment.
+        /// A <see cref="IReadOnlyList{T}"/> of <see cref="float"/> values representing the pitch content of the segment.
         /// </param>
         /// <param name="timbre">
-        /// A <see cref="IReadOnlyList{T}"/> of <see cref="Single"/> values representing the timbre of the segment.
+        /// A <see cref="IReadOnlyList{T}"/> of <see cref="float"/> values representing the timbre of the segment.
         /// </param>
         public Segment(
-            Single start,
-            Single duration,
-            Single confidence,
-            Single loudnessStart,
-            Single loudnessEnd,
-            Single loudnessMax,
-            Single loudnessMaxTime,
-            IReadOnlyList<Single> pitches,
-            IReadOnlyList<Single> timbre) :
+            float start,
+            float duration,
+            float confidence,
+            float loudnessStart,
+            float loudnessEnd,
+            float loudnessMax,
+            float loudnessMaxTime,
+            IReadOnlyList<float> pitches,
+            IReadOnlyList<float> timbre) :
             base(start, duration, confidence)
         {
             this.LoudnessStart = loudnessStart;
             this.LoudnessEnd = loudnessEnd;
             this.LoudnessMax = loudnessMax;
             this.LoudnessMaxTime = loudnessMaxTime;
-            this.Pitches = new ImmutableValueArray<Single>(pitches);
-            this.Timbre = new ImmutableValueArray<Single>(timbre);
+            this.Pitches = new ImmutableValueArray<float>(pitches);
+            this.Timbre = new ImmutableValueArray<float>(timbre);
         }
 
         /// <summary>
@@ -56,16 +56,16 @@ namespace Spotify.ObjectModel
         /// Combined with <see cref="LoudnessMax"/> and <see cref="LoudnessMaxTime"/>,
         /// these components can be used to describe the 'attack' of the <see cref="Segment"/>.
         /// </remarks>
-        /// <returns>A <see cref="Single"/> representing the onset loudness (in decibels) of the <see cref="Segment"/>.</returns>
-        public Single LoudnessStart { get; init; }
+        /// <returns>A <see cref="float"/> representing the onset loudness (in decibels) of the <see cref="Segment"/>.</returns>
+        public float LoudnessStart { get; init; }
         /// <summary>
         /// Gets or sets the offset loudness (in decibels) of the <see cref="Segment"/>.
         /// </summary>
         /// <remarks>
         /// This value should be equivalent to the <see cref="LoudnessStart"/> value of the following <see cref="Segment"/>.
         /// </remarks>
-        /// <returns>A <see cref="Single"/> representing the offset loudness (in decibels) of the segment.</returns>
-        public Single LoudnessEnd { get; init; }
+        /// <returns>A <see cref="float"/> representing the offset loudness (in decibels) of the segment.</returns>
+        public float LoudnessEnd { get; init; }
         /// <summary>
         /// Gets or sets the peak loudness (in decibels) of the <see cref="Segment"/>.
         /// </summary>
@@ -73,8 +73,8 @@ namespace Spotify.ObjectModel
         /// Combined with <see cref="LoudnessStart"/> and <see cref="LoudnessMaxTime"/>,
         /// these components can be used to describe the 'attack' of the <see cref="Segment"/>.
         /// </remarks>
-        /// <returns>A <see cref="Single"/> representing the peak loudness (in decibels) of the segment.</returns>
-        public Single LoudnessMax { get; init; }
+        /// <returns>A <see cref="float"/> representing the peak loudness (in decibels) of the segment.</returns>
+        public float LoudnessMax { get; init; }
         /// <summary>
         /// Gets or sets the segment-relative offset of the <see cref="LoudnessMax"/> value (in seconds).
         /// </summary>
@@ -83,9 +83,9 @@ namespace Spotify.ObjectModel
         /// these components can be used to describe the 'attack' of the <see cref="Segment"/>.
         /// </remarks>
         /// <returns>
-        /// A <see cref="Single"/> representing the segment-relative offset of the <see cref="LoudnessMax"/> value (in seconds).
+        /// A <see cref="float"/> representing the segment-relative offset of the <see cref="LoudnessMax"/> value (in seconds).
         /// </returns>
-        public Single LoudnessMaxTime { get; init; }
+        public float LoudnessMaxTime { get; init; }
         /// <summary>
         /// Gets or sets the pitch values of the <see cref="Segment"/>.
         /// </summary>
@@ -96,9 +96,9 @@ namespace Spotify.ObjectModel
         /// <see href="https://spotify.dev/documentation/web-api/reference/tracks/get-audio-analysis#pitch">Spotify for Developers</see> website.
         /// </remarks>
         /// <returns>
-        /// A <see cref="IReadOnlyList{T}"/> of <see cref="Single"/> values representing the pitch content of the <see cref="Segment"/>.
+        /// A <see cref="IReadOnlyList{T}"/> of <see cref="float"/> values representing the pitch content of the <see cref="Segment"/>.
         /// </returns>
-        public IReadOnlyList<Single> Pitches { get; init; }
+        public IReadOnlyList<float> Pitches { get; init; }
         /// <summary>
         /// Gets or sets the timbre of the <see cref="Segment"/>.
         /// </summary>
@@ -109,8 +109,8 @@ namespace Spotify.ObjectModel
         /// <see href="https://spotify.dev/documentation/web-api/reference/tracks/get-audio-analysis#timbre">Spotify for Developers</see> website.
         /// </remarks>
         /// <returns>
-        /// A <see cref="IReadOnlyList{T}"/> of <see cref="Single"/> values representing the timbre of the <see cref="Segment"/>.
+        /// A <see cref="IReadOnlyList{T}"/> of <see cref="float"/> values representing the timbre of the <see cref="Segment"/>.
         /// </returns>
-        public IReadOnlyList<Single> Timbre { get; init; }
+        public IReadOnlyList<float> Timbre { get; init; }
     }
 }

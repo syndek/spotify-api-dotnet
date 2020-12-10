@@ -13,8 +13,8 @@ namespace Spotify.Web.Authorization.Serialization
                 throw new JsonException();
             }
 
-            String error = String.Empty;
-            String? errorDescription = null;
+            string error = string.Empty;
+            string? errorDescription = null;
 
             while (reader.Read())
             {

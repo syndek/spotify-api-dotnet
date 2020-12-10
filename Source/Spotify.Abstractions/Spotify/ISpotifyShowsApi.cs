@@ -14,19 +14,19 @@ namespace Spotify
     public interface ISpotifyShowsApi
     {
         Task<IReadOnlyList<SimplifiedShow>> GetShowsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         Task<Show> GetShowAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         Task<Paging<SimplifiedEpisode>> GetShowEpisodesAsync(
-            String id,
-            Int32? limit = null,
-            Int32? offset = null,
+            string id,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
     }

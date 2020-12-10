@@ -8,7 +8,7 @@ using Spotify.ObjectModel.Serialization.EnumConverters;
 namespace Spotify.ObjectModel.Serialization
 {
     using CountryCodeArray = IReadOnlyList<CountryCode>;
-    using ExternalUrls = IReadOnlyDictionary<String, Uri>;
+    using ExternalUrls = IReadOnlyDictionary<string, Uri>;
     using ImageArray = IReadOnlyList<Image>;
     using SimplifiedArtistArray = IReadOnlyList<SimplifiedArtist>;
 
@@ -27,10 +27,10 @@ namespace Spotify.ObjectModel.Serialization
             var simplifiedArtistArrayConverter = options.GetConverter<SimplifiedArtistArray>();
             var uriConverter = options.GetConverter<Uri>();
 
-            String id = String.Empty;
+            string id = string.Empty;
             Uri uri = null!;
             Uri href = null!;
-            String name = String.Empty;
+            string name = string.Empty;
             AlbumType type = default;
             AlbumGroups? group = null;
             ImageArray images = null!;
@@ -85,9 +85,9 @@ namespace Spotify.ObjectModel.Serialization
                     case "release_date":
                         var date = reader.GetString()!.Split('-');
                         releaseDate = new(
-                            date.Length > 0 ? Int32.Parse(date[0]) : 1,
-                            date.Length > 1 ? Int32.Parse(date[1]) : 1,
-                            date.Length > 2 ? Int32.Parse(date[2]) : 1);
+                            date.Length > 0 ? int.Parse(date[0]) : 1,
+                            date.Length > 1 ? int.Parse(date[1]) : 1,
+                            date.Length > 2 ? int.Parse(date[2]) : 1);
                         break;
                     case "release_date_precision":
                         releaseDatePrecision = ReleaseDatePrecisionConverter.FromSpotifyString(reader.GetString()!);

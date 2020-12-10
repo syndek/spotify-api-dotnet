@@ -8,20 +8,20 @@ namespace Spotify.ObjectModel
     public record SimplifiedShow : LocatableObject
     {
         public SimplifiedShow(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
-            String description,
+            string name,
+            string description,
             IReadOnlyList<Image> images,
-            Boolean isExplicit,
-            Boolean? isExternallyHosted,
-            IReadOnlyList<String> languages,
+            bool isExplicit,
+            bool? isExternallyHosted,
+            IReadOnlyList<string> languages,
             IReadOnlyList<CountryCode> availableMarkets,
-            String mediaType,
-            String publisher,
+            string mediaType,
+            string publisher,
             IReadOnlyList<Copyright> copyrights,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(id, uri)
         {
             this.Href = href;
@@ -30,25 +30,25 @@ namespace Spotify.ObjectModel
             this.Images = new ImmutableValueArray<Image>(images);
             this.IsExplicit = isExplicit;
             this.IsExternallyHosted = isExternallyHosted;
-            this.Languages = new ImmutableValueArray<String>(languages);
+            this.Languages = new ImmutableValueArray<string>(languages);
             this.AvailableMarkets = new ImmutableValueArray<CountryCode>(availableMarkets);
             this.MediaType = mediaType;
             this.Publisher = publisher;
             this.Copyrights = new ImmutableValueArray<Copyright>(copyrights);
-            this.ExternalUrls = new ImmutableValueDictionary<String, Uri>(externalUrls);
+            this.ExternalUrls = new ImmutableValueDictionary<string, Uri>(externalUrls);
         }
 
         public Uri Href { get; init; }
-        public String Name { get; init; }
-        public String Description { get; init; }
+        public string Name { get; init; }
+        public string Description { get; init; }
         public IReadOnlyList<Image> Images { get; init; }
-        public Boolean IsExplicit { get; init; }
-        public Boolean? IsExternallyHosted { get; init; }
-        public IReadOnlyList<String> Languages { get; init; }
+        public bool IsExplicit { get; init; }
+        public bool? IsExternallyHosted { get; init; }
+        public IReadOnlyList<string> Languages { get; init; }
         public IReadOnlyList<CountryCode> AvailableMarkets { get; init; }
-        public String MediaType { get; init; }
-        public String Publisher { get; init; }
+        public string MediaType { get; init; }
+        public string Publisher { get; init; }
         public IReadOnlyList<Copyright> Copyrights { get; init; }
-        public IReadOnlyDictionary<String, Uri> ExternalUrls { get; init; }
+        public IReadOnlyDictionary<string, Uri> ExternalUrls { get; init; }
     }
 }

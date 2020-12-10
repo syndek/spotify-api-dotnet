@@ -16,26 +16,26 @@ namespace Spotify
         /// Asynchronously get multiple <see cref="Episode"/> objects from the Spotify catalog.
         /// </summary>
         /// <param name="ids">
-        /// An <see cref="IEnumerable{T}"/> of <see cref="String"/> objects
+        /// An <see cref="IEnumerable{T}"/> of <see cref="string"/> objects
         /// representing the Spotify IDs of the <see cref="Episode"/> objects to get.
         /// </param>
         /// <param name="market">An optional <see cref="CountryCode"/> to limit results to a certain market only.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<IReadOnlyList<Episode>> GetEpisodesAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Asynchronously get an <see cref="Episode"/> from the Spotify catalog.
         /// </summary>
-        /// <param name="id">A <see cref="String"/> representing the Spotify ID of the <see cref="Episode"/> to get.</param>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the <see cref="Episode"/> to get.</param>
         /// <param name="market">An optional <see cref="CountryCode"/> to limit results to a certain market only.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         Task<Episode> GetEpisodeAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             CancellationToken cancellationToken = default);
     }

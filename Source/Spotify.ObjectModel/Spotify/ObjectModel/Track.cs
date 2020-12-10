@@ -8,22 +8,22 @@ namespace Spotify.ObjectModel
     public record Track : SimplifiedTrack, IPlayable, ISaveable
     {
         public Track(
-            String id,
+            string id,
             Uri uri,
             Uri href,
-            String name,
+            string name,
             SimplifiedAlbum album,
             IReadOnlyList<SimplifiedArtist> artists,
-            Int32 duration,
-            Int32 discNumber,
-            Int32 trackNumber,
-            Boolean isExplicit,
-            Boolean isLocal,
+            int duration,
+            int discNumber,
+            int trackNumber,
+            bool isExplicit,
+            bool isLocal,
             IReadOnlyList<CountryCode> availableMarkets,
-            Int32 popularity,
-            String previewUrl,
-            IReadOnlyDictionary<String, String> externalIds,
-            IReadOnlyDictionary<String, Uri> externalUrls) :
+            int popularity,
+            string previewUrl,
+            IReadOnlyDictionary<string, string> externalIds,
+            IReadOnlyDictionary<string, Uri> externalUrls) :
             base(
                 id,
                 uri,
@@ -41,11 +41,11 @@ namespace Spotify.ObjectModel
         {
             this.Album = album;
             this.Popularity = popularity;
-            this.ExternalIds = new ImmutableValueDictionary<String, String>(externalIds);
+            this.ExternalIds = new ImmutableValueDictionary<string, string>(externalIds);
         }
 
         public SimplifiedAlbum Album { get; init; }
-        public Int32 Popularity { get; init; }
-        public IReadOnlyDictionary<String, String> ExternalIds { get; init; }
+        public int Popularity { get; init; }
+        public IReadOnlyDictionary<string, string> ExternalIds { get; init; }
     }
 }

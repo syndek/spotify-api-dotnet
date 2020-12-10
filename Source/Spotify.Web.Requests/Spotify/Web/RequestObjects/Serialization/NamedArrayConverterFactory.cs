@@ -7,7 +7,7 @@ namespace Spotify.Web.RequestObjects.Serialization
 {
     internal class NamedArrayConverterFactory : JsonConverterFactory
     {
-        public override Boolean CanConvert(Type typeToConvert) =>
+        public override bool CanConvert(Type typeToConvert) =>
             typeToConvert.IsGenericType && typeToConvert.GetGenericTypeDefinition() == typeof(NamedArray<>);
 
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)

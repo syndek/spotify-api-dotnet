@@ -13,9 +13,9 @@ namespace Spotify.Web.Authorization.Serialization
                 throw new JsonException();
             }
 
-            String accessToken = String.Empty;
-            String scope = String.Empty;
-            Int32 expiresIn = default;
+            string accessToken = string.Empty;
+            string scope = string.Empty;
+            int expiresIn = default;
 
             while (reader.Read())
             {
@@ -52,7 +52,7 @@ namespace Spotify.Web.Authorization.Serialization
 
             return new(
                 accessToken,
-                scope == String.Empty ? 0 : AuthorizationScopesConverter.FromSpotifyStrings(scope.Split(' ')),
+                scope == string.Empty ? 0 : AuthorizationScopesConverter.FromSpotifyStrings(scope.Split(' ')),
                 expiresIn);
         }
 
@@ -62,7 +62,7 @@ namespace Spotify.Web.Authorization.Serialization
 
             writer.WriteString("access_token", value.Value);
             writer.WriteString("token_type", "Bearer");
-            writer.WriteString("scope", String.Join(' ', value.Scope.ToSpotifyStrings()));
+            writer.WriteString("scope", string.Join(' ', value.Scope.ToSpotifyStrings()));
             writer.WriteNumber("expires_in", value.ExpiresAt.Second - DateTime.Now.Second);
 
             writer.WriteEndObject();

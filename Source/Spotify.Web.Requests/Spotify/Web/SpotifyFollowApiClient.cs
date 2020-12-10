@@ -21,8 +21,8 @@ namespace Spotify.Web
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
         public SpotifyFollowApiClient(HttpClient httpClient) : base(httpClient) { }
 
-        public Task<IReadOnlyList<Boolean>> CheckCurrentUserFollowsArtistsAsync(
-            IEnumerable<String> ids,
+        public Task<IReadOnlyList<bool>> CheckCurrentUserFollowsArtistsAsync(
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -38,8 +38,8 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        public Task<IReadOnlyList<Boolean>> CheckCurrentUserFollowsUsersAsync(
-            IEnumerable<String> ids,
+        public Task<IReadOnlyList<bool>> CheckCurrentUserFollowsUsersAsync(
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -55,9 +55,9 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        public Task<IReadOnlyList<Boolean>> CheckUsersFollowPlaylistAsync(
-            String id,
-            IEnumerable<String> userIds,
+        public Task<IReadOnlyList<bool>> CheckUsersFollowPlaylistAsync(
+            string id,
+            IEnumerable<string> userIds,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -73,7 +73,7 @@ namespace Spotify.Web
         }
 
         public Task FollowArtistsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -81,7 +81,7 @@ namespace Spotify.Web
         }
 
         public Task FollowUsersAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -89,8 +89,8 @@ namespace Spotify.Web
         }
 
         public Task FollowPlaylistAsync(
-            String id,
-            Boolean? publicFollow = null,
+            string id,
+            bool? publicFollow = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -108,7 +108,7 @@ namespace Spotify.Web
         }
 
         public Task UnfollowArtistsAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -116,7 +116,7 @@ namespace Spotify.Web
         }
 
         public Task UnfollowUsersAsync(
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -124,7 +124,7 @@ namespace Spotify.Web
         }
 
         public Task UnfollowPlaylistAsync(
-            String id,
+            string id,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -137,9 +137,9 @@ namespace Spotify.Web
         }
 
         private Task EditFollowing(
-            String type,
+            string type,
             HttpMethod method,
-            IEnumerable<String> ids,
+            IEnumerable<string> ids,
             IAccessTokenProvider? accessTokenProvider,
             CancellationToken cancellationToken)
         {
@@ -156,54 +156,54 @@ namespace Spotify.Web
         }
 
         #region ISpotifyFollowApi Implementation
-        Task<IReadOnlyList<Boolean>> ISpotifyFollowApi.CheckCurrentUserFollowsArtistsAsync(
-            IEnumerable<String> ids,
+        Task<IReadOnlyList<bool>> ISpotifyFollowApi.CheckCurrentUserFollowsArtistsAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken)
         {
             return this.CheckCurrentUserFollowsArtistsAsync(ids, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Boolean>> ISpotifyFollowApi.CheckCurrentUserFollowsUsersAsync(
-            IEnumerable<String> ids,
+        Task<IReadOnlyList<bool>> ISpotifyFollowApi.CheckCurrentUserFollowsUsersAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken)
         {
             return this.CheckCurrentUserFollowsUsersAsync(ids, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Boolean>> ISpotifyFollowApi.CheckUsersFollowPlaylistAsync(
-            String id,
-            IEnumerable<String> userIds,
+        Task<IReadOnlyList<bool>> ISpotifyFollowApi.CheckUsersFollowPlaylistAsync(
+            string id,
+            IEnumerable<string> userIds,
             CancellationToken cancellationToken)
         {
             return this.CheckUsersFollowPlaylistAsync(id, userIds, null, cancellationToken);
         }
 
-        Task ISpotifyFollowApi.FollowArtistsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyFollowApi.FollowArtistsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.FollowArtistsAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyFollowApi.FollowUsersAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyFollowApi.FollowUsersAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.FollowUsersAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyFollowApi.FollowPlaylistAsync(String id, Boolean? publicFollow, CancellationToken cancellationToken)
+        Task ISpotifyFollowApi.FollowPlaylistAsync(string id, bool? publicFollow, CancellationToken cancellationToken)
         {
             return this.FollowPlaylistAsync(id, publicFollow, null, cancellationToken);
         }
 
-        Task ISpotifyFollowApi.UnfollowArtistsAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyFollowApi.UnfollowArtistsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.UnfollowArtistsAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyFollowApi.UnfollowUsersAsync(IEnumerable<String> ids, CancellationToken cancellationToken)
+        Task ISpotifyFollowApi.UnfollowUsersAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
         {
             return this.UnfollowUsersAsync(ids, null, cancellationToken);
         }
 
-        Task ISpotifyFollowApi.UnfollowPlaylistAsync(String id, CancellationToken cancellationToken)
+        Task ISpotifyFollowApi.UnfollowPlaylistAsync(string id, CancellationToken cancellationToken)
         {
             return this.UnfollowPlaylistAsync(id, null, cancellationToken);
         }

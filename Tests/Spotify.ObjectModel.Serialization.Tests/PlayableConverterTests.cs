@@ -8,7 +8,7 @@ using Spotify.ObjectModel.Serialization.Tests.Resources;
 namespace Spotify.ObjectModel.Serialization.Tests
 {
     [TestClass]
-    public class PlayableConverterTests : Object
+    public class PlayableConverterTests : object
     {
         [TestMethod]
         public void RoundTripSerialization_Episode()

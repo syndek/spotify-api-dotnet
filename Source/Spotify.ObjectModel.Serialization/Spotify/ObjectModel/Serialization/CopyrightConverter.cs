@@ -15,7 +15,7 @@ namespace Spotify.ObjectModel.Serialization
                 throw new JsonException();
             }
 
-            String text = String.Empty;
+            string text = string.Empty;
             CopyrightType type = default;
 
             while (reader.Read())

@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 namespace Spotify.Web.Authorization
 {
     /// <summary>
-    /// Represents a <see cref="IAccessTokenProvider"/> that simply returns the <see cref="String"/> it was constructed with.
+    /// Represents a <see cref="IAccessTokenProvider"/> that simply returns the <see cref="string"/> it was constructed with.
     /// </summary>
-    public class SimpleAccessTokenProvider : Object, IAccessTokenProvider
+    public class SimpleAccessTokenProvider : object, IAccessTokenProvider
     {
-        private readonly String accessToken;
+        private readonly string accessToken;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleAccessTokenProvider"/> class with the specified <paramref name="accessToken"/>.
         /// </summary>
-        /// <param name="accessToken">A <see cref="String"/> representing the access token to use.</param>
-        public SimpleAccessTokenProvider(String accessToken) : base()
+        /// <param name="accessToken">A <see cref="string"/> representing the access token to use.</param>
+        public SimpleAccessTokenProvider(string accessToken) : base()
         {
             this.accessToken = accessToken;
         }

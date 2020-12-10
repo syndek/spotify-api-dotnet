@@ -26,11 +26,11 @@ namespace Spotify.Web
         public SpotifyPlaylistsApiClient(HttpClient httpClient) : base(httpClient) { }
 
         public Task<Playlist> CreatePlaylistAsync(
-            String userId,
-            String name,
-            String? description = null,
-            Boolean? isPublic = null,
-            Boolean? isCollaborative = null,
+            string userId,
+            string name,
+            string? description = null,
+            bool? isPublic = null,
+            bool? isCollaborative = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -48,7 +48,7 @@ namespace Spotify.Web
         }
 
         public Task<Playlist> GetPlaylistAsync(
-            String id,
+            string id,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -66,9 +66,9 @@ namespace Spotify.Web
         }
 
         public Task<Paging<IPlayable>> GetPlaylistItemsAsync(
-            String id,
-            Int32? limit = null,
-            Int32? offset = null,
+            string id,
+            int? limit = null,
+            int? offset = null,
             CountryCode? market = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
@@ -88,8 +88,8 @@ namespace Spotify.Web
         }
 
         public Task<Paging<SimplifiedPlaylist>> GetCurrentUserPlaylistsAsync(
-            Int32? limit = null,
-            Int32? offset = null,
+            int? limit = null,
+            int? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -106,9 +106,9 @@ namespace Spotify.Web
         }
 
         public Task<Paging<SimplifiedPlaylist>> GetUserPlaylistsAsync(
-            String userId,
-            Int32? limit = null,
-            Int32? offset = null,
+            string userId,
+            int? limit = null,
+            int? offset = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -125,11 +125,11 @@ namespace Spotify.Web
         }
 
         public Task ChangePlaylistDetailsAsync(
-            String id,
-            String? name = null,
-            String? description = null,
-            Boolean? isPublic = null,
-            Boolean? isCollaborative = null,
+            string id,
+            string? name = null,
+            string? description = null,
+            bool? isPublic = null,
+            bool? isCollaborative = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -146,7 +146,7 @@ namespace Spotify.Web
         }
 
         public Task<IReadOnlyList<Image>> GetPlaylistCoverImageAsync(
-            String id,
+            string id,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -159,8 +159,8 @@ namespace Spotify.Web
         }
 
         public Task SetPlaylistCoverImageAsync(
-            String id,
-            String base64Image,
+            string id,
+            string base64Image,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -172,12 +172,12 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        public Task<String> ReorderPlaylistItemsAsync(
-            String id,
-            Int32 rangeStart,
-            Int32 insertBefore,
-            Int32? rangeLength = null,
-            String? snapshotId = null,
+        public Task<string> ReorderPlaylistItemsAsync(
+            string id,
+            int rangeStart,
+            int insertBefore,
+            int? rangeLength = null,
+            string? snapshotId = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -196,8 +196,8 @@ namespace Spotify.Web
         }
 
         public Task ReplacePlaylistItemsAsync(
-            String id,
-            IEnumerable<String> uris,
+            string id,
+            IEnumerable<string> uris,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -212,10 +212,10 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        public Task<String> AddItemsToPlaylistAsync(
-            String id,
-            IEnumerable<String> uris,
-            Int32? position = null,
+        public Task<string> AddItemsToPlaylistAsync(
+            string id,
+            IEnumerable<string> uris,
+            int? position = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -232,10 +232,10 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        public Task<String> RemoveItemsFromPlaylistAsync(
-            String id,
-            IEnumerable<String> uris,
-            String? snapshotId = null,
+        public Task<string> RemoveItemsFromPlaylistAsync(
+            string id,
+            IEnumerable<string> uris,
+            string? snapshotId = null,
             IAccessTokenProvider? accessTokenProvider = null,
             CancellationToken cancellationToken = default)
         {
@@ -245,25 +245,25 @@ namespace Spotify.Web
 
         #region ISpotifyPlaylistsApi Implementation
         Task<Playlist> ISpotifyPlaylistsApi.CreatePlaylistAsync(
-            String userId,
-            String name,
-            String? description,
-            Boolean? isPublic,
-            Boolean? isCollaborative,
+            string userId,
+            string name,
+            string? description,
+            bool? isPublic,
+            bool? isCollaborative,
             CancellationToken cancellationToken)
         {
             return this.CreatePlaylistAsync(userId, name, description, isPublic, isCollaborative, null, cancellationToken);
         }
 
-        Task<Playlist> ISpotifyPlaylistsApi.GetPlaylistAsync(String id, CountryCode? market, CancellationToken cancellationToken)
+        Task<Playlist> ISpotifyPlaylistsApi.GetPlaylistAsync(string id, CountryCode? market, CancellationToken cancellationToken)
         {
             return this.GetPlaylistAsync(id, market, null, cancellationToken);
         }
 
         Task<Paging<IPlayable>> ISpotifyPlaylistsApi.GetPlaylistItemsAsync(
-            String id,
-            Int32? limit,
-            Int32? offset,
+            string id,
+            int? limit,
+            int? offset,
             CountryCode? market,
             CancellationToken cancellationToken)
         {
@@ -271,72 +271,72 @@ namespace Spotify.Web
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyPlaylistsApi.GetCurrentUserPlaylistsAsync(
-            Int32? limit,
-            Int32? offset,
+            int? limit,
+            int? offset,
             CancellationToken cancellationToken)
         {
             return this.GetCurrentUserPlaylistsAsync(limit, offset, null, cancellationToken);
         }
 
         Task<Paging<SimplifiedPlaylist>> ISpotifyPlaylistsApi.GetUserPlaylistsAsync(
-            String userId,
-            Int32? limit,
-            Int32? offset,
+            string userId,
+            int? limit,
+            int? offset,
             CancellationToken cancellationToken)
         {
             return this.GetUserPlaylistsAsync(userId, limit, offset, null, cancellationToken);
         }
 
         Task ISpotifyPlaylistsApi.ChangePlaylistDetailsAsync(
-            String id,
-            String? name,
-            String? description,
-            Boolean? isPublic,
-            Boolean? isCollaborative,
+            string id,
+            string? name,
+            string? description,
+            bool? isPublic,
+            bool? isCollaborative,
             CancellationToken cancellationToken)
         {
             return this.ChangePlaylistDetailsAsync(id, name, description, isPublic, isCollaborative, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Image>> ISpotifyPlaylistsApi.GetPlaylistCoverImageAsync(String id, CancellationToken cancellationToken)
+        Task<IReadOnlyList<Image>> ISpotifyPlaylistsApi.GetPlaylistCoverImageAsync(string id, CancellationToken cancellationToken)
         {
             return this.GetPlaylistCoverImageAsync(id, null, cancellationToken);
         }
 
-        Task ISpotifyPlaylistsApi.SetPlaylistCoverImageAsync(String id, String base64Image, CancellationToken cancellationToken)
+        Task ISpotifyPlaylistsApi.SetPlaylistCoverImageAsync(string id, string base64Image, CancellationToken cancellationToken)
         {
             return this.SetPlaylistCoverImageAsync(id, base64Image, null, cancellationToken);
         }
 
-        Task<String> ISpotifyPlaylistsApi.ReorderPlaylistItemsAsync(
-            String id,
-            Int32 rangeStart,
-            Int32 insertBefore,
-            Int32? rangeLength,
-            String? snapshotId,
+        Task<string> ISpotifyPlaylistsApi.ReorderPlaylistItemsAsync(
+            string id,
+            int rangeStart,
+            int insertBefore,
+            int? rangeLength,
+            string? snapshotId,
             CancellationToken cancellationToken)
         {
             return this.ReorderPlaylistItemsAsync(id, rangeStart, insertBefore, rangeLength, snapshotId, null, cancellationToken);
         }
 
-        Task ISpotifyPlaylistsApi.ReplacePlaylistItemsAsync(String id, IEnumerable<String> uris, CancellationToken cancellationToken)
+        Task ISpotifyPlaylistsApi.ReplacePlaylistItemsAsync(string id, IEnumerable<string> uris, CancellationToken cancellationToken)
         {
             return this.ReplacePlaylistItemsAsync(id, uris, null, cancellationToken);
         }
 
-        Task<String> ISpotifyPlaylistsApi.AddItemsToPlaylistAsync(
-            String id,
-            IEnumerable<String> uris,
-            Int32? position,
+        Task<string> ISpotifyPlaylistsApi.AddItemsToPlaylistAsync(
+            string id,
+            IEnumerable<string> uris,
+            int? position,
             CancellationToken cancellationToken)
         {
             return this.AddItemsToPlaylistAsync(id, uris, position, null, cancellationToken);
         }
 
-        Task<String> ISpotifyPlaylistsApi.RemoveItemsFromPlaylistAsync(
-            String id,
-            IEnumerable<String> uris,
-            String? snapshotId,
+        Task<string> ISpotifyPlaylistsApi.RemoveItemsFromPlaylistAsync(
+            string id,
+            IEnumerable<string> uris,
+            string? snapshotId,
             CancellationToken cancellationToken)
         {
             return this.RemoveItemsFromPlaylistAsync(id, uris, snapshotId, null, cancellationToken);

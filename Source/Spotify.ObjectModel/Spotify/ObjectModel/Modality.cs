@@ -5,7 +5,7 @@ namespace Spotify.ObjectModel
     /// <summary>
     /// Defines the different modalities of a track (the type of scale from which its melodic content is derived).
     /// </summary>
-    public enum Modality : Int32
+    public enum Modality : int
     {
         /// <summary>
         /// The minor mode.

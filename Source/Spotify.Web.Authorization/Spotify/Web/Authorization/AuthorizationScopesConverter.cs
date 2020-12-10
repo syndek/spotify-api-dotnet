@@ -6,7 +6,7 @@ namespace Spotify.Web.Authorization
 {
     internal static class AuthorizationScopesConverter
     {
-        internal static AuthorizationScopes FromSpotifyString(String authorizationScope) => authorizationScope switch
+        internal static AuthorizationScopes FromSpotifyString(string authorizationScope) => authorizationScope switch
         {
             "ugc-image-upload" => AuthorizationScopes.UgcImageUpload,
             "user-read-playback-state" => AuthorizationScopes.UserReadPlaybackState,
@@ -30,12 +30,12 @@ namespace Spotify.Web.Authorization
             _ => throw new ArgumentException($"Invalid {nameof(AuthorizationScopes)} string value: {authorizationScope}", nameof(authorizationScope))
         };
 
-        internal static AuthorizationScopes FromSpotifyStrings(IEnumerable<String> authorizationScopes) =>
+        internal static AuthorizationScopes FromSpotifyStrings(IEnumerable<string> authorizationScopes) =>
             authorizationScopes.Aggregate(
                 new AuthorizationScopes(),
                 (current, authorizationScope) => current | AuthorizationScopesConverter.FromSpotifyString(authorizationScope));
 
-        internal static String ToSpotifyString(this AuthorizationScopes authorizationScope) => authorizationScope switch
+        internal static string ToSpotifyString(this AuthorizationScopes authorizationScope) => authorizationScope switch
         {
             AuthorizationScopes.UgcImageUpload => "ugc-image-upload",
             AuthorizationScopes.UserReadPlaybackState => "user-read-playback-state",
@@ -59,7 +59,7 @@ namespace Spotify.Web.Authorization
             _ => throw new ArgumentException($"Invalid {nameof(AuthorizationScopes)} value: {authorizationScope}", nameof(authorizationScope))
         };
 
-        internal static IEnumerable<String> ToSpotifyStrings(this AuthorizationScopes authorizationScopes) =>
+        internal static IEnumerable<string> ToSpotifyStrings(this AuthorizationScopes authorizationScopes) =>
             from value in Enum.GetValues<AuthorizationScopes>() where authorizationScopes.HasFlag(value) select value.ToSpotifyString();
     }
 }

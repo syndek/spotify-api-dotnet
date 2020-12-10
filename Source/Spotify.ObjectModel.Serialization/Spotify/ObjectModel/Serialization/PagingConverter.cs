@@ -20,9 +20,9 @@ namespace Spotify.ObjectModel.Serialization
             var uriConverter = options.GetConverter<Uri>();
 
             IReadOnlyList<TItem>? items = null;
-            Int32 total = default;
-            Int32 limit = default;
-            Int32 offset = default;
+            int total = default;
+            int limit = default;
+            int offset = default;
             Uri href = null!;
             Uri? previous = null;
             Uri? next = null;

@@ -13,10 +13,10 @@ namespace Spotify.Web.RequestObjects.Serialization
                 throw new JsonException();
             }
 
-            String? name = null;
-            String? description = null;
-            Boolean? isPublic = null;
-            Boolean? isCollaborative = null;
+            string? name = null;
+            string? description = null;
+            bool? isPublic = null;
+            bool? isCollaborative = null;
 
             while (reader.Read())
             {
@@ -64,7 +64,7 @@ namespace Spotify.Web.RequestObjects.Serialization
             writer.WriteString("name", value.Name);
             writer.WriteString("description", value.Description);
 
-            if (value.IsPublic is Boolean isPublic)
+            if (value.IsPublic is bool isPublic)
             {
                 writer.WriteBoolean("public", isPublic);
             }
@@ -73,7 +73,7 @@ namespace Spotify.Web.RequestObjects.Serialization
                 writer.WriteNull("public");
             }
 
-            if (value.IsCollaborative is Boolean isCollaborative)
+            if (value.IsCollaborative is bool isCollaborative)
             {
                 writer.WriteBoolean("collaborative", isCollaborative);
             }

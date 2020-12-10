@@ -14,8 +14,8 @@ namespace Spotify.Web.Serialization
                 throw new JsonException();
             }
 
-            Int32 status = default;
-            String message = String.Empty;
+            int status = default;
+            string message = string.Empty;
 
             reader.Read(); // "error"
             reader.Read(); // {
@@ -62,7 +62,7 @@ namespace Spotify.Web.Serialization
             writer.WritePropertyName("error");
             writer.WriteStartObject();
 
-            writer.WriteNumber("status", (Int32) value.StatusCode);
+            writer.WriteNumber("status", (int) value.StatusCode);
             writer.WriteString("message", value.Message);
 
             writer.WriteEndObject();

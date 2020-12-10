@@ -16,16 +16,16 @@ namespace Spotify.Web.Authorization.Flows
     /// </summary>
     public class AuthorizationCodeFlowWithPkce : SpotifyAuthorizationFlow
     {
-        private readonly String code;
-        private readonly String codeVerifier;
-        private readonly String redirectUri;
+        private readonly string code;
+        private readonly string codeVerifier;
+        private readonly string redirectUri;
 
         public AuthorizationCodeFlowWithPkce(
             HttpClient httpClient,
-            String clientId,
-            String code,
-            String codeVerifier,
-            String redirectUri) :
+            string clientId,
+            string code,
+            string codeVerifier,
+            string redirectUri) :
             base(httpClient, clientId)
         {
             this.code = code;
@@ -37,19 +37,19 @@ namespace Spotify.Web.Authorization.Flows
         /// Gets or sets a token that can be used to refresh the <see cref="SpotifyAuthorizationFlow.CurrentAccessToken"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="String"/> representing a token that can be used to refresh the
+        /// A <see cref="string"/> representing a token that can be used to refresh the
         /// <see cref="SpotifyAuthorizationFlow.CurrentAccessToken"/>, or <see langword="null"/> if none was provided.
         /// </returns>
-        public String? CurrentRefreshToken { get; private set; }
+        public string? CurrentRefreshToken { get; private set; }
 
         /// <summary>
         /// Creates a <see cref="Uri"/> that can be used to allow a user to authorize an application.
         /// </summary>
-        /// <param name="clientId">A <see cref="String"/> representing the Spotify Web API client ID of the application.</param>
-        /// <param name="redirectUri">A <see cref="String"/> representing the URI to redirect to after the user grants or denies permission.</param>
-        /// <param name="codeChallenge">A <see cref="String"/> representing a code challenge. See <see cref="CreateCodeVerifierAndChallenge"/>.</param>
+        /// <param name="clientId">A <see cref="string"/> representing the Spotify Web API client ID of the application.</param>
+        /// <param name="redirectUri">A <see cref="string"/> representing the URI to redirect to after the user grants or denies permission.</param>
+        /// <param name="codeChallenge">A <see cref="string"/> representing a code challenge. See <see cref="CreateCodeVerifierAndChallenge"/>.</param>
         /// <param name="state">
-        /// A <see cref="String"/> that can provide protection against attacks such as cross-site request forgery.
+        /// A <see cref="string"/> that can provide protection against attacks such as cross-site request forgery.
         /// See <see href="https://tools.ietf.org/html/rfc6749#section-4.1">RFC-6749</see>.
         /// Technically optional, but <i>strongly</i> recommended.
         /// </param>
@@ -57,12 +57,12 @@ namespace Spotify.Web.Authorization.Flows
         /// <param name="showDialog">Whether or not to force the user to approve the application again if they’ve already done so.</param>
         /// <returns>The created <see cref="Uri"/>.</returns>
         public static Uri CreateAuthorizationUri(
-            String clientId,
-            String redirectUri,
-            String codeChallenge,
-            String? state = null,
+            string clientId,
+            string redirectUri,
+            string codeChallenge,
+            string? state = null,
             AuthorizationScopes? scopes = null,
-            Boolean? showDialog = null)
+            bool? showDialog = null)
         {
             return new SpotifyUriBuilder(SpotifyAuthorizationFlow.AuthorizationUrl)
                 .AppendToQuery("client_id", clientId)
@@ -80,11 +80,11 @@ namespace Spotify.Web.Authorization.Flows
         /// Creates a random code verifier and corresponding code challenge for use with an <see cref="AuthorizationCodeFlowWithPkce"/>.
         /// </summary>
         /// <returns>A <see cref="ValueTuple{T1, T2}"/> containing the code verifier and code challenge.</returns>
-        public static (String CodeVerifier, String CodeChallenge) CreateCodeVerifierAndChallenge()
+        public static (string CodeVerifier, string CodeChallenge) CreateCodeVerifierAndChallenge()
         {
             using var generator = RandomNumberGenerator.Create();
 
-            var bytes = new Byte[32];
+            var bytes = new byte[32];
 
             generator.GetBytes(bytes);
 
@@ -116,7 +116,7 @@ namespace Spotify.Web.Authorization.Flows
             if (base.CurrentAccessToken is null)
             {
                 using var content = new FormUrlEncodedContent(
-                    new KeyValuePair<String?, String?>[]
+                    new KeyValuePair<string?, string?>[]
                     {
                         new("grant_type", "authorization_code"),
                         new("code", this.code),
@@ -135,7 +135,7 @@ namespace Spotify.Web.Authorization.Flows
                 }
 
                 using var content = new FormUrlEncodedContent(
-                    new KeyValuePair<String?, String?>[]
+                    new KeyValuePair<string?, string?>[]
                     {
                         new("grant_type", "refresh_token"),
                         new("refresh_token", this.CurrentRefreshToken),
