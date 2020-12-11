@@ -11,15 +11,15 @@ namespace Spotify.ObjectModel
             Uri uri,
             Uri href,
             string name,
-            IReadOnlyList<SimplifiedArtist> artists,
+            IEnumerable<SimplifiedArtist> artists,
             int duration,
             int discNumber,
             int trackNumber,
             bool isExplicit,
             bool isLocal,
-            IReadOnlyList<CountryCode> availableMarkets,
+            IEnumerable<CountryCode> availableMarkets,
             string previewUrl,
-            IReadOnlyDictionary<string, Uri> externalUrls)
+            IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(id, uri)
         {
             Href = href;

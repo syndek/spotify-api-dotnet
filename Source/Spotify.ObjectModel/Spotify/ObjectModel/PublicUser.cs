@@ -33,9 +33,9 @@ namespace Spotify.ObjectModel
             Uri uri,
             Uri href,
             string? displayName,
-            IReadOnlyList<Image> images,
+            IEnumerable<Image> images,
             Followers followers,
-            IReadOnlyDictionary<string, Uri> externalUrls)
+            IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(id, uri)
         {
             Href = href;

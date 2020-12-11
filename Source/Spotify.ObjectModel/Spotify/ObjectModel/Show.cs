@@ -12,16 +12,16 @@ namespace Spotify.ObjectModel
             Uri href,
             string name,
             string description,
-            IReadOnlyList<Image> images,
+            IEnumerable<Image> images,
             Paging<SimplifiedEpisode> episodes,
             bool isExplicit,
             bool? isExternallyHosted,
-            IReadOnlyList<string> languages,
-            IReadOnlyList<CountryCode> availableMarkets,
+            IEnumerable<string> languages,
+            IEnumerable<CountryCode> availableMarkets,
             string mediaType,
             string publisher,
-            IReadOnlyList<Copyright> copyrights,
-            IReadOnlyDictionary<string, Uri> externalUrls)
+            IEnumerable<Copyright> copyrights,
+            IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(
                 id,
                 uri,

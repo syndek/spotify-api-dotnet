@@ -32,11 +32,11 @@ namespace Spotify.ObjectModel
         /// representing tatums present throughout the <see cref="Track"/>.
         /// </param>
         public AudioAnalysis(
-            IReadOnlyList<TimeInterval> bars,
-            IReadOnlyList<TimeInterval> beats,
-            IReadOnlyList<Section> sections,
-            IReadOnlyList<Segment> segments,
-            IReadOnlyList<TimeInterval> tatums)
+            IEnumerable<TimeInterval> bars,
+            IEnumerable<TimeInterval> beats,
+            IEnumerable<Section> sections,
+            IEnumerable<Segment> segments,
+            IEnumerable<TimeInterval> tatums)
         {
             Bars = new ImmutableValueArray<TimeInterval>(bars);
             Beats = new ImmutableValueArray<TimeInterval>(beats);

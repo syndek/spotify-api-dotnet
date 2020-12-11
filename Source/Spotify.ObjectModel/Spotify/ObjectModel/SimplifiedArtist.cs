@@ -20,7 +20,7 @@ namespace Spotify.ObjectModel
         /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
         /// external URLs for the artist, keyed by the type of the URL.
         /// </param>
-        public SimplifiedArtist(string id, Uri uri, Uri href, string name, IReadOnlyDictionary<string, Uri> externalUrls) : base(id, uri)
+        public SimplifiedArtist(string id, Uri uri, Uri href, string name, IEnumerable<KeyValuePair<string, Uri>> externalUrls) : base(id, uri)
         {
             Href = href;
             Name = name;

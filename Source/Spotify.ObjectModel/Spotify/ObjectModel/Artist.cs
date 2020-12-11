@@ -34,11 +34,11 @@ namespace Spotify.ObjectModel
             Uri uri,
             Uri href,
             string name,
-            IReadOnlyList<Image> images,
+            IEnumerable<Image> images,
             Followers followers,
-            IReadOnlyList<string> genres,
+            IEnumerable<string> genres,
             int popularity,
-            IReadOnlyDictionary<string, Uri> externalUrls)
+            IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(id, uri, href, name, externalUrls)
         {
             Images = new ImmutableValueArray<Image>(images);

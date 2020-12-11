@@ -47,14 +47,14 @@ namespace Spotify.ObjectModel
             Uri href,
             string name,
             string? description,
-            IReadOnlyList<Image> images,
+            IEnumerable<Image> images,
             PublicUser owner,
             Followers followers,
             Paging<PlaylistTrack> tracks,
             bool? isPublic,
             bool isCollaborative,
             string snapshotId,
-            IReadOnlyDictionary<string, Uri> externalUrls)
+            IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(
                 id,
                 uri,

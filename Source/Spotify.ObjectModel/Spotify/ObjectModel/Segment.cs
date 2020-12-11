@@ -35,8 +35,8 @@ namespace Spotify.ObjectModel
             float loudnessEnd,
             float loudnessMax,
             float loudnessMaxTime,
-            IReadOnlyList<float> pitches,
-            IReadOnlyList<float> timbre)
+            IEnumerable<float> pitches,
+            IEnumerable<float> timbre)
             : base(start, duration, confidence)
         {
             LoudnessStart = loudnessStart;

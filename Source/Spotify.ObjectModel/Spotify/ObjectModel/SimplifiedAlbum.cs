@@ -43,12 +43,12 @@ namespace Spotify.ObjectModel
             string name,
             AlbumType type,
             AlbumGroups? group,
-            IReadOnlyList<Image> images,
-            IReadOnlyList<SimplifiedArtist> artists,
+            IEnumerable<Image> images,
+            IEnumerable<SimplifiedArtist> artists,
             DateTime releaseDate,
             ReleaseDatePrecision releaseDatePrecision,
-            IReadOnlyList<CountryCode> availableMarkets,
-            IReadOnlyDictionary<string, Uri> externalUrls)
+            IEnumerable<CountryCode> availableMarkets,
+            IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(id, uri)
         {
             Href = href;

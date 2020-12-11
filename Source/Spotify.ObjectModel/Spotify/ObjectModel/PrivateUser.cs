@@ -46,10 +46,10 @@ namespace Spotify.ObjectModel
             string? email,
             string? displayName,
             CountryCode? country,
-            IReadOnlyList<Image> images,
+            IEnumerable<Image> images,
             Product? product,
             Followers followers,
-            IReadOnlyDictionary<string, Uri> externalUrls)
+            IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(id, uri, href, displayName, images, followers, externalUrls)
         {
             Email = email;

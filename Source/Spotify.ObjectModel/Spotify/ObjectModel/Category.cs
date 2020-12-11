@@ -16,7 +16,7 @@ namespace Spotify.ObjectModel
         /// <param name="href">A link to the Spotify Web API endpoint returning full details of the category.</param>
         /// <param name="name">A <see cref="string"/> representing the name of the category.</param>
         /// <param name="icons">A <see cref="IReadOnlyList{T}"/> of the category's icon in various sizes.</param>
-        public Category(string id, Uri href, string name, IReadOnlyList<Image> icons) : base(id)
+        public Category(string id, Uri href, string name, IEnumerable<Image> icons) : base(id)
         {
             Href = href;
             Name = name;
