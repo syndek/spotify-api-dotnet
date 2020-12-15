@@ -135,7 +135,7 @@ namespace Spotify.ObjectModel
         /// <summary>
         /// Gets or sets the version identifier of the current <see cref="SimplifiedPlaylist"/>.
         /// </summary>
-        /// <returnsA <see cref="string"/> representing the version identifier of the current <see cref="SimplifiedPlaylist"/>.</returns>
+        /// <returns>A <see cref="string"/> representing the version identifier of the current <see cref="SimplifiedPlaylist"/>.</returns>
         public string SnapshotId { get; init; }
 
         /// <summary>
