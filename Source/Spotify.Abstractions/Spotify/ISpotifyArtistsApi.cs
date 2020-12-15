@@ -44,7 +44,7 @@ namespace Spotify
         /// <param name="offset">The index of the first result to return.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
-        Task<Paging<Album>> GetArtistAlbumsAsync(
+        Task<Paging<SimplifiedAlbum>> GetArtistAlbumsAsync(
             string id,
             AlbumGroups? includeGroups = null,
             CountryCode? market = null,

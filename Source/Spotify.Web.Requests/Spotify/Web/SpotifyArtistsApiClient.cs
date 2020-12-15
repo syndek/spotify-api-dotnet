@@ -19,7 +19,9 @@ namespace Spotify.Web
         /// Initializes a new instance of the <see cref="SpotifyArtistsApiClient"/> class with the specified <paramref name="httpClient"/>.
         /// </summary>
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
-        public SpotifyArtistsApiClient(HttpClient httpClient) : base(httpClient) { }
+        public SpotifyArtistsApiClient(HttpClient httpClient) : base(httpClient)
+        {
+        }
 
         /// <summary>
         /// Asynchronously get multiple <see cref="Artist"/> objects from the Spotify catalog.
@@ -78,7 +80,7 @@ namespace Spotify.Web
         /// <param name="accessTokenProvider">An optional <see cref="IAccessTokenProvider"/> to use instead of the default.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
-        public Task<Paging<Album>> GetArtistAlbumsAsync(
+        public Task<Paging<SimplifiedAlbum>> GetArtistAlbumsAsync(
             string id,
             AlbumGroups? includeGroups = null,
             CountryCode? market = null,
@@ -93,7 +95,7 @@ namespace Spotify.Web
                 .AppendToQueryIfNotNull("limit", limit)
                 .AppendToQueryIfNotNull("offset", offset);
 
-            return SendAsync<Paging<Album>>(
+            return SendAsync<Paging<SimplifiedAlbum>>(
                 uriBuilder.Build(),
                 HttpMethod.Get,
                 content: null,
@@ -151,7 +153,9 @@ namespace Spotify.Web
         }
 
         #region ISpotifyArtistsApi Implementation
-        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistsAsync(IEnumerable<string> ids, CancellationToken cancellationToken)
+
+        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistsAsync(IEnumerable<string> ids,
+            CancellationToken cancellationToken)
         {
             return GetArtistsAsync(ids, null, cancellationToken);
         }
@@ -161,7 +165,7 @@ namespace Spotify.Web
             return GetArtistAsync(id, null, cancellationToken);
         }
 
-        Task<Paging<Album>> ISpotifyArtistsApi.GetArtistAlbumsAsync(
+        Task<Paging<SimplifiedAlbum>> ISpotifyArtistsApi.GetArtistAlbumsAsync(
             string id,
             AlbumGroups? includeGroups,
             CountryCode? market,
@@ -180,10 +184,12 @@ namespace Spotify.Web
             return GetArtistTopTracksAsync(id, market, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistRelatedArtistsAsync(string id, CancellationToken cancellationToken)
+        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistRelatedArtistsAsync(string id,
+            CancellationToken cancellationToken)
         {
             return GetArtistRelatedArtistsAsync(id, null, cancellationToken);
         }
+
         #endregion
     }
 }
