@@ -22,7 +22,7 @@ namespace Spotify.ObjectModel.Collections
         /// <param name="href">A link to the Spotify Web API endpoint returning the full result of the request.</param>
         /// <param name="previous">The URL for the previous page of items, or <see langword="null"/> if none.</param>
         /// <param name="next">The URL for the next page of items, or <see langword="null"/> if none.</param>
-        public Paging(IReadOnlyList<TItem> items, int total, int limit, int offset, Uri href, Uri? previous, Uri? next)
+        public Paging(IEnumerable<TItem> items, int total, int limit, int offset, Uri href, Uri? previous, Uri? next)
         {
             this.items = new ImmutableValueArray<TItem>(items);
 
