@@ -34,7 +34,7 @@ namespace Spotify.ObjectModel
             Uri href,
             string? displayName,
             IEnumerable<Image> images,
-            Followers followers,
+            Followers? followers,
             IEnumerable<KeyValuePair<string, Uri>> externalUrls)
             : base(id, uri)
         {
@@ -73,7 +73,7 @@ namespace Spotify.ObjectModel
         /// Gets or sets the <see cref="ObjectModel.Followers"/> of the <see cref="PublicUser"/>.
         /// </summary>
         /// <returns>The <see cref="ObjectModel.Followers"/> of the <see cref="PublicUser"/>.</returns>
-        public Followers Followers { get; init; }
+        public Followers? Followers { get; init; }
 
         /// <summary>
         /// Gets or sets the known external URLs for the <see cref="PublicUser"/>.

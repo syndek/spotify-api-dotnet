@@ -27,7 +27,7 @@ namespace Spotify.ObjectModel.Serialization
             Uri href = null!;
             string? displayName = null;
             ImageArray images = Array.Empty<Image>();
-            Followers followers = null!;
+            Followers? followers = null;
             ExternalUrls externalUrls = null!;
 
             while (reader.Read())
@@ -95,8 +95,13 @@ namespace Spotify.ObjectModel.Serialization
             writer.WriteString("display_name", value.DisplayName);
             writer.WritePropertyName("images");
             imageArrayConverter.Write(writer, value.Images, options);
-            writer.WritePropertyName("followers");
-            followersConverter.Write(writer, value.Followers, options);
+
+            if (value.Followers is not null)
+            {
+                writer.WritePropertyName("followers");
+                followersConverter.Write(writer, value.Followers, options);
+            }
+
             writer.WritePropertyName("external_urls");
             externalUrlsConverter.Write(writer, value.ExternalUrls, options);
             writer.WriteEndObject();

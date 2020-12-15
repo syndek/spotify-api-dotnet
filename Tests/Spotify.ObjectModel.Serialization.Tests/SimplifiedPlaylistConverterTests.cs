@@ -20,6 +20,10 @@ namespace Spotify.ObjectModel.Serialization.Tests
                 new PagingConverterFactory(),
                 new PlaylistTrackConverter(),
                 new PlayableConverter(),
+                new TrackConverter(),
+                new SimplifiedAlbumConverter(),
+                new CountryCodeConverter(),
+                new SimplifiedArtistConverter(),
                 new PublicUserConverter()
             }
         };
