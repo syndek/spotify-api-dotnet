@@ -5,8 +5,8 @@ namespace Spotify.ObjectModel.Serialization.Tests
 {
     public abstract class JsonConverterTests<TObject>
     {
-        public abstract string TestJson { get; }
-        public abstract JsonSerializerOptions SerializerOptions { get; }
+        protected abstract string TestJson { get; }
+        protected abstract JsonSerializerOptions SerializerOptions { get; }
 
         [TestMethod]
         public void RoundTripSerialization()

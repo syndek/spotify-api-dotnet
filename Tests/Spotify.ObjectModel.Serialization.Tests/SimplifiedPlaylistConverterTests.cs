@@ -10,8 +10,8 @@ namespace Spotify.ObjectModel.Serialization.Tests
         // Currently, it looks like SimplifiedPlaylist is unused in the Spotify Web API.
         // As a result, we just use a regular Playlist JSON object to test this converter.
         // It should be identical to a SimplifiedPlaylist JSON object, with an extra 'followers' field that gets ignored.
-        public override string TestJson => TestData.PlaylistJson;
-        public override JsonSerializerOptions SerializerOptions => new()
+        protected override string TestJson => TestData.PlaylistJson;
+        protected override JsonSerializerOptions SerializerOptions => new()
         {
             Converters =
             {

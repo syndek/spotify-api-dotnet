@@ -7,8 +7,8 @@ namespace Spotify.ObjectModel.Serialization.Tests
     [TestClass]
     public class ArtistConverterTests : JsonConverterTests<Artist>
     {
-        public override string TestJson => TestData.ArtistJson;
-        public override JsonSerializerOptions SerializerOptions => new JsonSerializerOptions
+        protected override string TestJson => TestData.ArtistJson;
+        protected override JsonSerializerOptions SerializerOptions => new JsonSerializerOptions
         {
             Converters =
             {
