@@ -70,10 +70,7 @@ namespace Spotify.Web
                 new NamedArrayConverterFactory()
             }
         };
-        private static readonly JsonSerializerOptions ErrorSerializerOptions = new()
-        {
-            Converters = { new ErrorConverter() }
-        };
+        private static readonly JsonSerializerOptions ErrorSerializerOptions = new() { Converters = { new ErrorConverter() } };
 
         private readonly HttpClient httpClient;
         private AuthenticationHeaderValue? currentAuthenticationHeader;
@@ -111,7 +108,7 @@ namespace Spotify.Web
         {
             using var message = await
                 CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
-                .ConfigureAwait(false);
+                    .ConfigureAwait(false);
 
             var response = await httpClient
                 .SendAsync(message, cancellationToken)
@@ -144,7 +141,7 @@ namespace Spotify.Web
         {
             using var message = await
                 CreateAuthenticatedHttpRequestMessageAsync(uri, method, content, accessTokenProvider, cancellationToken)
-                .ConfigureAwait(false);
+                    .ConfigureAwait(false);
 
             var response = await httpClient
                 .SendAsync(message, cancellationToken)

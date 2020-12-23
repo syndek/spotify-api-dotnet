@@ -136,8 +136,9 @@ namespace Spotify.Web
                 new($"{BaseUrl}/playlists/{id}"),
                 HttpMethod.Put,
                 new StringContent(
-                    JsonSerializer.Serialize(new PlaylistDetails(name, description, isPublic, isCollaborative),
-                    RequestObjectSerializerOptions),
+                    JsonSerializer.Serialize(
+                        new PlaylistDetails(name, description, isPublic, isCollaborative),
+                        RequestObjectSerializerOptions),
                     Encoding.UTF8,
                     MediaTypeNames.Application.Json),
                 accessTokenProvider,

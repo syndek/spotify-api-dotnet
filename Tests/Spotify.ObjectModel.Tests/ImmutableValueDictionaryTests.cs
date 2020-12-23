@@ -15,8 +15,18 @@ namespace Spotify.ObjectModel.Tests
             public void StructuralEqualityElements_ShouldBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
-                var dictionary1 = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
-                var dictionary2 = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+                var dictionary1 = new Dictionary<string, int>
+                {
+                    { "A", 1 },
+                    { "B", 2 },
+                    { "C", 3 }
+                };
+                var dictionary2 = new Dictionary<string, int>
+                {
+                    { "A", 1 },
+                    { "B", 2 },
+                    { "C", 3 }
+                };
 
                 Assert.AreNotSame(dictionary1, dictionary2);
                 Assert.AreNotEqual(dictionary1, dictionary2);
@@ -33,8 +43,18 @@ namespace Spotify.ObjectModel.Tests
             public void ReferenceEqualityElements_ShouldNotBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
-                var dictionary1 = new Dictionary<object, object> { { new(), new() }, { new(), new() }, { new(), new() } };
-                var dictionary2 = new Dictionary<object, object> { { new(), new() }, { new(), new() }, { new(), new() } };
+                var dictionary1 = new Dictionary<object, object>
+                {
+                    { new(), new() },
+                    { new(), new() },
+                    { new(), new() }
+                };
+                var dictionary2 = new Dictionary<object, object>
+                {
+                    { new(), new() },
+                    { new(), new() },
+                    { new(), new() }
+                };
 
                 Assert.AreNotSame(dictionary1, dictionary2);
                 Assert.AreNotEqual(dictionary1, dictionary2);
@@ -52,8 +72,18 @@ namespace Spotify.ObjectModel.Tests
             public void ReferenceEqualityKeys_StructuralEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
-                var dictionary1 = new Dictionary<object, int> { { new(), 1 }, { new(), 2 }, { new(), 3 } };
-                var dictionary2 = new Dictionary<object, int> { { new(), 1 }, { new(), 2 }, { new(), 3 } };
+                var dictionary1 = new Dictionary<object, int>
+                {
+                    { new(), 1 },
+                    { new(), 2 },
+                    { new(), 3 }
+                };
+                var dictionary2 = new Dictionary<object, int>
+                {
+                    { new(), 1 },
+                    { new(), 2 },
+                    { new(), 3 }
+                };
 
                 Assert.AreNotSame(dictionary1, dictionary2);
                 Assert.AreNotEqual(dictionary1, dictionary2);
@@ -71,8 +101,18 @@ namespace Spotify.ObjectModel.Tests
             public void StructuralEqualityKeys_ReferenceEqualityValues_ShouldNotBeEqual()
             {
                 // These 2 dictionaries *should not* be equal because they *do not* use structural equality.
-                var dictionary1 = new Dictionary<string, object> { { "A", new() }, { "B", new() }, { "C", new() } };
-                var dictionary2 = new Dictionary<string, object> { { "A", new() }, { "B", new() }, { "C", new() } };
+                var dictionary1 = new Dictionary<string, object>
+                {
+                    { "A", new() },
+                    { "B", new() },
+                    { "C", new() }
+                };
+                var dictionary2 = new Dictionary<string, object>
+                {
+                    { "A", new() },
+                    { "B", new() },
+                    { "C", new() }
+                };
 
                 Assert.AreNotSame(dictionary1, dictionary2);
                 Assert.AreNotEqual(dictionary1, dictionary2);

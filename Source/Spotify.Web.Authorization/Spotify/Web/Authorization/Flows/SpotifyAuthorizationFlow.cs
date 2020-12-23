@@ -32,10 +32,7 @@ namespace Spotify.Web.Authorization.Flows
                 new AccessRefreshTokenConverter()
             }
         };
-        private static readonly JsonSerializerOptions AuthenticationErrorSerializerOptions = new()
-        {
-            Converters = { new AuthenticationErrorConverter() }
-        };
+        private static readonly JsonSerializerOptions AuthenticationErrorSerializerOptions = new() { Converters = { new AuthenticationErrorConverter() } };
 
         private readonly HttpClient httpClient;
 

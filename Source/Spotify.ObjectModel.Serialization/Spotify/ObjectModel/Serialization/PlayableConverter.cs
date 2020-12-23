@@ -28,7 +28,6 @@ namespace Spotify.ObjectModel.Serialization
                 "track" => options.GetConverter<Track>().Read(ref reader, typeof(Track), options),
                 _ => throw new JsonException()
             };
-
         }
 
         public override void Write(Utf8JsonWriter writer, IPlayable value, JsonSerializerOptions options)

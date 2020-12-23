@@ -52,10 +52,7 @@ namespace Spotify.Web
             }
         };
 
-        private static readonly JsonSerializerOptions ErrorSerializerOptions = new()
-        {
-            Converters = { new ErrorConverter() }
-        };
+        private static readonly JsonSerializerOptions ErrorSerializerOptions = new() { Converters = { new ErrorConverter() } };
 
         internal static async Task<TObject> GetAsync<TObject>(
             this HttpClient httpClient,
@@ -67,13 +64,7 @@ namespace Spotify.Web
                 .GetAccessTokenAsync(cancellationToken)
                 .ConfigureAwait(false);
 
-            using var message = new HttpRequestMessage(HttpMethod.Get, uri)
-            {
-                Headers =
-                {
-                    Authorization = new("Bearer", accessToken.Value)
-                }
-            };
+            using var message = new HttpRequestMessage(HttpMethod.Get, uri) { Headers = { Authorization = new("Bearer", accessToken.Value) } };
 
             var response = await httpClient.SendAsync(message, cancellationToken).ConfigureAwait(false);
 

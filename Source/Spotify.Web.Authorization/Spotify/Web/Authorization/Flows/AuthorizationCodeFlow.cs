@@ -94,12 +94,7 @@ namespace Spotify.Web.Authorization.Flows
             if (CurrentAccessToken is null)
             {
                 using var content = new FormUrlEncodedContent(
-                    new KeyValuePair<string?, string?>[]
-                    {
-                        new("grant_type", "authorization_code"),
-                        new("code", code),
-                        new("redirect_uri", redirectUri)
-                    });
+                    new KeyValuePair<string?, string?>[] { new("grant_type", "authorization_code"), new("code", code), new("redirect_uri", redirectUri) });
 
                 await GetAndStoreTokenAsync(content).ConfigureAwait(false);
             }
@@ -111,11 +106,7 @@ namespace Spotify.Web.Authorization.Flows
                 }
 
                 using var content = new FormUrlEncodedContent(
-                    new KeyValuePair<string?, string?>[]
-                    {
-                        new("grant_type", "refresh_token"),
-                        new("refresh_token", CurrentRefreshToken)
-                    });
+                    new KeyValuePair<string?, string?>[] { new("grant_type", "refresh_token"), new("refresh_token", CurrentRefreshToken) });
 
                 await GetAndStoreTokenAsync(content).ConfigureAwait(false);
             }

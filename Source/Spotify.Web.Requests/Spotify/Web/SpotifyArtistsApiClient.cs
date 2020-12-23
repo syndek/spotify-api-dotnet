@@ -19,9 +19,7 @@ namespace Spotify.Web
         /// Initializes a new instance of the <see cref="SpotifyArtistsApiClient"/> class with the specified <paramref name="httpClient"/>.
         /// </summary>
         /// <param name="httpClient">An instance of <see cref="HttpClient"/> to use for requests to the Spotify Web API.</param>
-        public SpotifyArtistsApiClient(HttpClient httpClient) : base(httpClient)
-        {
-        }
+        public SpotifyArtistsApiClient(HttpClient httpClient) : base(httpClient) { }
 
         /// <summary>
         /// Asynchronously get multiple <see cref="Artist"/> objects from the Spotify catalog.
@@ -153,8 +151,8 @@ namespace Spotify.Web
         }
 
         #region ISpotifyArtistsApi Implementation
-
-        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistsAsync(IEnumerable<string> ids,
+        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistsAsync(
+            IEnumerable<string> ids,
             CancellationToken cancellationToken)
         {
             return GetArtistsAsync(ids, null, cancellationToken);
@@ -184,12 +182,12 @@ namespace Spotify.Web
             return GetArtistTopTracksAsync(id, market, null, cancellationToken);
         }
 
-        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistRelatedArtistsAsync(string id,
+        Task<IReadOnlyList<Artist>> ISpotifyArtistsApi.GetArtistRelatedArtistsAsync(
+            string id,
             CancellationToken cancellationToken)
         {
             return GetArtistRelatedArtistsAsync(id, null, cancellationToken);
         }
-
         #endregion
     }
 }

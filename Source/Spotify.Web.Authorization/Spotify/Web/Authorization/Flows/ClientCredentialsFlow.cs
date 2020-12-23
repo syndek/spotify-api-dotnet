@@ -35,10 +35,7 @@ namespace Spotify.Web.Authorization.Flows
             }
 
             using var content = new FormUrlEncodedContent(
-                new KeyValuePair<string?, string?>[]
-                {
-                    new("grant_type", "client_credentials")
-                });
+                new KeyValuePair<string?, string?>[] { new("grant_type", "client_credentials") });
 
             var token = await GetAccessRefreshTokenAsync(content, BasicAuthenticationHeader, cancellationToken);
 
