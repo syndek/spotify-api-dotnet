@@ -1,8 +1,4 @@
-﻿using Spotify.ObjectModel;
-using Spotify.ObjectModel.Collections;
-using Spotify.Web.Authorization;
-using Spotify.Web.RequestObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Mime;
@@ -10,6 +6,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Spotify.ObjectModel;
+using Spotify.ObjectModel.Collections;
+using Spotify.Web.Authorization;
+using Spotify.Web.RequestObjects;
 
 namespace Spotify.Web
 {

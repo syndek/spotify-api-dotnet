@@ -1,9 +1,9 @@
-﻿using Spotify.ObjectModel.Collections;
-using Spotify.ObjectModel.Serialization.EnumConverters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Spotify.ObjectModel.Collections;
+using Spotify.ObjectModel.Serialization.EnumConverters;
 
 namespace Spotify.ObjectModel.Serialization
 {

@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spotify.ObjectModel.Collections;
-using System.Collections.Generic;
 
 namespace Spotify.ObjectModel.Tests
 {

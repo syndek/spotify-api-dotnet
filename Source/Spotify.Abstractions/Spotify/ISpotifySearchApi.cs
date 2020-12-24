@@ -1,6 +1,6 @@
-﻿using Spotify.ObjectModel;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Spotify.ObjectModel;
 
 namespace Spotify
 {

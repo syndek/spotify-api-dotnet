@@ -1,7 +1,7 @@
-﻿using Spotify.ObjectModel.Collections;
-using System;
+﻿using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel.Serialization
 {

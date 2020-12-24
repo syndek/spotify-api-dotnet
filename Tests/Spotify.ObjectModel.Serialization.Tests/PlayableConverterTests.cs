@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Text.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spotify.ObjectModel.Serialization.Tests.Resources;
-using System.Text.Json;
 
 namespace Spotify.ObjectModel.Serialization.Tests
 {
