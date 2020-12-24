@@ -131,13 +131,13 @@ namespace Spotify.ObjectModel.Tests
             public void ObjectModelTypeContext_StructuralEqualityElements_ShouldBeEqual()
             {
                 // These 2 records *should* be equal as the values inside use structural equality.
-                var object1 = new ObjectModelTypeWithDictionary<string, int>(new Dictionary<string, ObjectModelTypeWithValue<int>>()
+                var object1 = new ObjectModelTypeWithDictionary<string, int>(new Dictionary<string, ObjectModelTypeWithValue<int>>
                 {
                     { "A", new(1) },
                     { "B", new(2) },
                     { "C", new(3) }
                 });
-                var object2 = new ObjectModelTypeWithDictionary<string, int>(new Dictionary<string, ObjectModelTypeWithValue<int>>()
+                var object2 = new ObjectModelTypeWithDictionary<string, int>(new Dictionary<string, ObjectModelTypeWithValue<int>>
                 {
                     { "A", new(1) },
                     { "B", new(2) },
@@ -154,13 +154,13 @@ namespace Spotify.ObjectModel.Tests
             public void ObjectModelTypeContext_ReferenceEqualityElements_ShouldNotBeEqual()
             {
                 // These 2 records *should not* be equal as the values inside use reference equality.
-                var object1 = new ObjectModelTypeWithDictionary<object, object>(new Dictionary<object, ObjectModelTypeWithValue<object>>()
+                var object1 = new ObjectModelTypeWithDictionary<object, object>(new Dictionary<object, ObjectModelTypeWithValue<object>>
                 {
                     { new(), new(new()) },
                     { new(), new(new()) },
                     { new(), new(new()) }
                 });
-                var object2 = new ObjectModelTypeWithDictionary<object, object>(new Dictionary<object, ObjectModelTypeWithValue<object>>()
+                var object2 = new ObjectModelTypeWithDictionary<object, object>(new Dictionary<object, ObjectModelTypeWithValue<object>>
                 {
                     { new(), new(new()) },
                     { new(), new(new()) },
@@ -178,13 +178,13 @@ namespace Spotify.ObjectModel.Tests
             {
                 // These 2 records *should not* be equal.
                 // Even though the values within ObjectModelTypeWithValue use structural equality, the keys do not.
-                var object1 = new ObjectModelTypeWithDictionary<object, int>(new Dictionary<object, ObjectModelTypeWithValue<int>>()
+                var object1 = new ObjectModelTypeWithDictionary<object, int>(new Dictionary<object, ObjectModelTypeWithValue<int>>
                 {
                     { new(), new(1) },
                     { new(), new(2) },
                     { new(), new(3) }
                 });
-                var object2 = new ObjectModelTypeWithDictionary<object, int>(new Dictionary<object, ObjectModelTypeWithValue<int>>()
+                var object2 = new ObjectModelTypeWithDictionary<object, int>(new Dictionary<object, ObjectModelTypeWithValue<int>>
                 {
                     { new(), new(1) },
                     { new(), new(2) },
@@ -202,13 +202,13 @@ namespace Spotify.ObjectModel.Tests
             {
                 // These 2 records *should not* be equal.
                 // Even though the keys use structural equality, the values within ObjectModelTypeWithValue do not.
-                var object1 = new ObjectModelTypeWithDictionary<string, object>(new Dictionary<string, ObjectModelTypeWithValue<object>>()
+                var object1 = new ObjectModelTypeWithDictionary<string, object>(new Dictionary<string, ObjectModelTypeWithValue<object>>
                 {
                     { "A", new(new()) },
                     { "B", new(new()) },
                     { "C", new(new()) }
                 });
-                var object2 = new ObjectModelTypeWithDictionary<string, object>(new Dictionary<string, ObjectModelTypeWithValue<object>>()
+                var object2 = new ObjectModelTypeWithDictionary<string, object>(new Dictionary<string, ObjectModelTypeWithValue<object>>
                 {
                     { "A", new(new()) },
                     { "B", new(new()) },

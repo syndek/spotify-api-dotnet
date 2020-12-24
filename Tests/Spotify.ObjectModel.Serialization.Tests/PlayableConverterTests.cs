@@ -65,7 +65,7 @@ namespace Spotify.ObjectModel.Serialization.Tests
         [TestMethod]
         public void NonIPlayableType()
         {
-            var options = new JsonSerializerOptions() { Converters = { new PlayableConverter() } };
+            var options = new JsonSerializerOptions { Converters = { new PlayableConverter() } };
 
             Assert.ThrowsException<JsonException>(() => JsonSerializer.Deserialize<IPlayable>(TestData.AlbumJson, options));
         }
