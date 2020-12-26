@@ -29,31 +29,6 @@ namespace Spotify.Web
         /// <param name="accessTokenProvider">An optional <see cref="IAccessTokenProvider"/> to use instead of the default.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
         /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
-        public Task<Episode> GetEpisodeAsync(
-            string id,
-            CountryCode? market = null,
-            IAccessTokenProvider? accessTokenProvider = null,
-            CancellationToken cancellationToken = default)
-        {
-            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/episodes/{id}")
-                .AppendToQueryIfNotNull("market", market);
-
-            return SendAsync<Episode>(
-                uriBuilder.Build(),
-                HttpMethod.Get,
-                content: null,
-                accessTokenProvider,
-                cancellationToken);
-        }
-
-        /// <summary>
-        /// Asynchronously get an <see cref="Episode"/> from the Spotify catalog.
-        /// </summary>
-        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the <see cref="Episode"/> to get.</param>
-        /// <param name="market">An optional <see cref="CountryCode"/> to limit results to a certain market only.</param>
-        /// <param name="accessTokenProvider">An optional <see cref="IAccessTokenProvider"/> to use instead of the default.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
-        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
         public Task<IReadOnlyList<Episode>> GetEpisodesAsync(
             IEnumerable<string> ids,
             CountryCode? market = null,
@@ -72,15 +47,40 @@ namespace Spotify.Web
                 cancellationToken);
         }
 
-        #region ISpotifyEpisodesApi Implementation
-        Task<Episode> ISpotifyEpisodesApi.GetEpisodeAsync(string id, CountryCode? market, CancellationToken cancellationToken)
+        /// <summary>
+        /// Asynchronously get an <see cref="Episode"/> from the Spotify catalog.
+        /// </summary>
+        /// <param name="id">A <see cref="string"/> representing the Spotify ID of the <see cref="Episode"/> to get.</param>
+        /// <param name="market">An optional <see cref="CountryCode"/> to limit results to a certain market only.</param>
+        /// <param name="accessTokenProvider">An optional <see cref="IAccessTokenProvider"/> to use instead of the default.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> to monitor for cancellation requests.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the asynchronous operation.</returns>
+        public Task<Episode> GetEpisodeAsync(
+            string id,
+            CountryCode? market = null,
+            IAccessTokenProvider? accessTokenProvider = null,
+            CancellationToken cancellationToken = default)
         {
-            return GetEpisodeAsync(id, market, null, cancellationToken);
+            var uriBuilder = new SpotifyUriBuilder($"{BaseUrl}/episodes/{id}")
+                .AppendToQueryIfNotNull("market", market);
+
+            return SendAsync<Episode>(
+                uriBuilder.Build(),
+                HttpMethod.Get,
+                content: null,
+                accessTokenProvider,
+                cancellationToken);
         }
 
+        #region ISpotifyEpisodesApi Implementation
         Task<IReadOnlyList<Episode>> ISpotifyEpisodesApi.GetEpisodesAsync(IEnumerable<string> ids, CountryCode? market, CancellationToken cancellationToken)
         {
             return GetEpisodesAsync(ids, market, null, cancellationToken);
+        }
+
+        Task<Episode> ISpotifyEpisodesApi.GetEpisodeAsync(string id, CountryCode? market, CancellationToken cancellationToken)
+        {
+            return GetEpisodeAsync(id, market, null, cancellationToken);
         }
         #endregion
     }
