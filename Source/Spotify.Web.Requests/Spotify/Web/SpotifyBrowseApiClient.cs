@@ -123,12 +123,14 @@ namespace Spotify.Web
 
             void AppendAttributesToUriBuilderIfNotNull(string prefix, TuneableTrackAttributes? attributes)
             {
-                if (attributes is not null)
+                if (attributes is null)
                 {
-                    foreach (var (name, attribute) in GetAttributeQueryStrings(prefix, attributes))
-                    {
-                        uriBuilder.AppendToQueryIfNotNull(name, attribute);
-                    }
+                    return;
+                }
+                
+                foreach (var (name, attribute) in GetAttributeQueryStrings(prefix, attributes))
+                {
+                    uriBuilder.AppendToQueryIfNotNull(name, attribute);
                 }
             }
 
