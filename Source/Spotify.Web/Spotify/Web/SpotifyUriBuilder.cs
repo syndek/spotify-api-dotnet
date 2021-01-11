@@ -13,19 +13,13 @@ namespace Spotify.Web
         public SpotifyUriBuilder(string path)
         {
             this.path = path;
-            queryBuilder = null;
         }
 
         private StringBuilder QueryBuilder => queryBuilder ??= new();
 
         public override string ToString()
         {
-            if (queryBuilder is null)
-            {
-                return path;
-            }
-
-            return $"{path}?{queryBuilder}";
+            return queryBuilder is null ? path : $"{path}?{queryBuilder}";
         }
 
         public SpotifyUriBuilder AppendToQuery<TElement>(string name, TElement element)
