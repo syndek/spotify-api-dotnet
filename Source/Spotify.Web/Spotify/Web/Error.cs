@@ -24,6 +24,7 @@ namespace Spotify.Web
         /// </summary>
         /// <returns>The <see cref="HttpStatusCode"/> of the response that returned the <see cref="Error"/>.</returns>
         internal HttpStatusCode StatusCode { get; }
+
         /// <summary>
         /// Gets a short description of the cause of the <see cref="Error"/>.
         /// </summary>

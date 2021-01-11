@@ -24,6 +24,7 @@
         /// </summary>
         /// <returns>The underlying <see cref="Authorization.AccessToken"/> of the <see cref="AccessRefreshToken"/>.</returns>
         public AccessToken AccessToken { get; }
+
         /// <summary>
         /// Gets a token that can be used to refresh the <see cref="AccessToken"/>.
         /// </summary>

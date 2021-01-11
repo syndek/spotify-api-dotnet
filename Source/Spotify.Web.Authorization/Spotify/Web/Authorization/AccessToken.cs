@@ -25,16 +25,19 @@ namespace Spotify.Web.Authorization
         /// </summary>
         /// <returns>A <see cref="string"/> representing the value of the <see cref="AccessToken"/>.</returns>
         public string Value { get; }
+        
         /// <summary>
         /// Gets the <see cref="AuthorizationScopes"/> the <see cref="AccessToken"/> is valid for.
         /// </summary>
         /// <returns>The <see cref="AuthorizationScopes"/> the <see cref="AccessToken"/> is valid for.</returns>
         public AuthorizationScopes Scope { get; }
+        
         /// <summary>
         /// Gets the <see cref="DateTime"/> at which the <see cref="AccessToken"/> will expire.
         /// </summary>
         /// <returns>The <see cref="DateTime"/> at which the <see cref="AccessToken"/> will expire.</returns>
         public DateTime ExpiresAt { get; }
+        
         /// <summary>
         /// Gets a value indicating whether or not the <see cref="AccessToken"/> has expired.
         /// </summary>

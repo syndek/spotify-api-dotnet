@@ -31,6 +31,7 @@
         /// <see href="https://tools.ietf.org/html/rfc6749#section-5.2">RFC 6749 Section 5.2</see>.
         /// </returns>
         internal string Error { get; }
+        
         /// <summary>
         /// Gets a detailed description of the <see cref="AuthenticationError"/>.
         /// </summary>
