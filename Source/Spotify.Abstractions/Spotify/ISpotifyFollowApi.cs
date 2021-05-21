@@ -32,7 +32,7 @@ namespace Spotify
 
         Task FollowPlaylistAsync(
             string id,
-            bool? publicFollow = false,
+            bool? publicFollow = null,
             CancellationToken cancellationToken = default);
 
         Task UnfollowArtistsAsync(

@@ -99,7 +99,7 @@ namespace Spotify.Web
                 MediaTypeNames.Application.Json);
 
             return SendAsync(
-                new Uri($"{BaseUrl}/playlists/{id}/followers"),
+                new($"{BaseUrl}/playlists/{id}/followers"),
                 HttpMethod.Put,
                 content,
                 accessTokenProvider,
