@@ -14,6 +14,11 @@ namespace Spotify.Web.Navigation
             IAccessTokenProvider accessTokenProvider,
             CancellationToken cancellationToken = default)
         {
+            if (artist is Artist original)
+            {
+                return Task.FromResult(original);
+            }
+            
             return httpClient.GetAsync<Artist>(artist.Href, accessTokenProvider, cancellationToken);
         }
 
@@ -23,6 +28,11 @@ namespace Spotify.Web.Navigation
             IAccessTokenProvider accessTokenProvider,
             CancellationToken cancellationToken = default)
         {
+            if (album is Album original)
+            {
+                return Task.FromResult(original);
+            }
+            
             return httpClient.GetAsync<Album>(album.Href, accessTokenProvider, cancellationToken);
         }
 
@@ -32,6 +42,11 @@ namespace Spotify.Web.Navigation
             IAccessTokenProvider accessTokenProvider,
             CancellationToken cancellationToken = default)
         {
+            if (track is Track original)
+            {
+                return Task.FromResult(original);
+            }
+            
             return httpClient.GetAsync<Track>(track.Href, accessTokenProvider, cancellationToken);
         }
 
@@ -41,6 +56,11 @@ namespace Spotify.Web.Navigation
             IAccessTokenProvider accessTokenProvider,
             CancellationToken cancellationToken = default)
         {
+            if (show is Show original)
+            {
+                return Task.FromResult(original);
+            }
+            
             return httpClient.GetAsync<Show>(show.Href, accessTokenProvider, cancellationToken);
         }
 
@@ -50,6 +70,11 @@ namespace Spotify.Web.Navigation
             IAccessTokenProvider accessTokenProvider,
             CancellationToken cancellationToken = default)
         {
+            if (episode is Episode original)
+            {
+                return Task.FromResult(original);
+            }
+            
             return httpClient.GetAsync<Episode>(episode.Href, accessTokenProvider, cancellationToken);
         }
     }
