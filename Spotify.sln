@@ -3,36 +3,36 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30404.54
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel", "Source\Spotify.ObjectModel\Spotify.ObjectModel.csproj", "{2D80034B-5DA4-4D72-BD8D-0993CD5394C4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8199D091-8751-419B-A22A-1AB406D5C160}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Navigation", "Source\Spotify.Web.Navigation\Spotify.Web.Navigation.csproj", "{50A93DB9-9997-4AF5-9EF2-CCE207861E57}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A5DB17EF-EF01-4FA5-A314-300ED6AF4F3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Authorization", "Source\Spotify.Web.Authorization\Spotify.Web.Authorization.csproj", "{93505A47-48F9-4CB6-9C12-510E4B049A5B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Requests", "Source\Spotify.Web.Requests\Spotify.Web.Requests.csproj", "{678E5073-842B-40DD-8FFF-94768CBB18A0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Abstractions", "Source\Spotify.Abstractions\Spotify.Abstractions.csproj", "{7CE60701-2E54-42BA-A00A-E80CC3B6DE06}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel.Serialization", "Source\Spotify.ObjectModel.Serialization\Spotify.ObjectModel.Serialization.csproj", "{7CE801B2-9E23-49DC-A87E-BB9577B96642}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web", "Source\Spotify.Web\Spotify.Web.csproj", "{C077F4D3-EFAF-4793-B501-549BAB873E10}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{8199D091-8751-419B-A22A-1AB406D5C160}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A5DB17EF-EF01-4FA5-A314-300ED6AF4F3A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{DAED2821-B5EB-4FD6-B96E-AD01FD3F7974}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{DAED2821-B5EB-4FD6-B96E-AD01FD3F7974}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0278F361-9135-4C27-B8A8-CAF3CFD5FCB7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel.Serialization.Tests", "Tests\Spotify.ObjectModel.Serialization.Tests\Spotify.ObjectModel.Serialization.Tests.csproj", "{21A923DC-FD67-48C6-9A4E-972B39B6EC5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel", "src\Spotify.ObjectModel\Spotify.ObjectModel.csproj", "{2D80034B-5DA4-4D72-BD8D-0993CD5394C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.ObjectModel.Tests", "Tests\Spotify.ObjectModel.Tests\Spotify.ObjectModel.Tests.csproj", "{D829D055-A587-4D22-AED1-12909C9E8C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Navigation", "src\Spotify.Web.Navigation\Spotify.Web.Navigation.csproj", "{50A93DB9-9997-4AF5-9EF2-CCE207861E57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Web.Authorization.Tests", "Tests\Spotify.Web.Authorization.Tests\Spotify.Web.Authorization.Tests.csproj", "{E5B95E19-2D9A-41B4-85B2-923F48CA1BBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Authorization", "src\Spotify.Web.Authorization\Spotify.Web.Authorization.csproj", "{93505A47-48F9-4CB6-9C12-510E4B049A5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web.Requests", "src\Spotify.Web.Requests\Spotify.Web.Requests.csproj", "{678E5073-842B-40DD-8FFF-94768CBB18A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Abstractions", "src\Spotify.Abstractions\Spotify.Abstractions.csproj", "{7CE60701-2E54-42BA-A00A-E80CC3B6DE06}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel.Serialization", "src\Spotify.ObjectModel.Serialization\Spotify.ObjectModel.Serialization.csproj", "{7CE801B2-9E23-49DC-A87E-BB9577B96642}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.Web", "src\Spotify.Web\Spotify.Web.csproj", "{C077F4D3-EFAF-4793-B501-549BAB873E10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spotify.ObjectModel.Serialization.Tests", "tests\Spotify.ObjectModel.Serialization.Tests\Spotify.ObjectModel.Serialization.Tests.csproj", "{21A923DC-FD67-48C6-9A4E-972B39B6EC5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.ObjectModel.Tests", "tests\Spotify.ObjectModel.Tests\Spotify.ObjectModel.Tests.csproj", "{D829D055-A587-4D22-AED1-12909C9E8C60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify.Web.Authorization.Tests", "tests\Spotify.Web.Authorization.Tests\Spotify.Web.Authorization.Tests.csproj", "{E5B95E19-2D9A-41B4-85B2-923F48CA1BBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
