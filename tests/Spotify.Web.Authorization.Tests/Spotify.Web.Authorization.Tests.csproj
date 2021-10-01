@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Spotify.Web.Authorization\Spotify.Web.Authorization.csproj" />
+    <ProjectReference Include="..\..\source\Spotify.Web.Authorization\Spotify.Web.Authorization.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Spotify.ObjectModel.Serialization\Spotify.ObjectModel.Serialization.csproj" />
+    <ProjectReference Include="..\..\source\Spotify.ObjectModel.Serialization\Spotify.ObjectModel.Serialization.csproj" />
   </ItemGroup>
 
   <ItemGroup>
