@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Spotify.ObjectModel.Serialization.Tests

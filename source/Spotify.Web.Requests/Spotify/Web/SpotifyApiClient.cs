@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Spotify.ObjectModel.Serialization;
 using Spotify.Web.Authorization;
 using Spotify.Web.RequestObjects.Serialization;

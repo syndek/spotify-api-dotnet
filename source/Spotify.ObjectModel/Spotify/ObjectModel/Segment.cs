@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel

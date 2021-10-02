@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel
@@ -17,7 +18,7 @@ namespace Spotify.ObjectModel
         /// <param name="href">A link to the Spotify Web API endpoint providing full details of the artist.</param>
         /// <param name="name">A <see cref="string"/> representing the name of the artist.</param>
         /// <param name="externalUrls">
-        /// A <see cref="IReadOnlyDictionary{TKey, TValue}"/> containing the known
+        /// A <see cref="IReadOnlyDictionary{TKey,TValue}"/> containing the known
         /// external URLs for the artist, keyed by the type of the URL.
         /// </param>
         public SimplifiedArtist(string id, Uri uri, Uri href, string name, IEnumerable<KeyValuePair<string, Uri>> externalUrls) : base(id, uri)

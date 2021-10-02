@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Spotify.Web.Authorization.Serialization;
 
 namespace Spotify.Web.Authorization.Flows
