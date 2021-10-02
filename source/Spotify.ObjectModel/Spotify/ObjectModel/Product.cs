@@ -1,4 +1,4 @@
-﻿namespace Spotify.ObjectModel
+namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Defines different Spotify subscription levels.

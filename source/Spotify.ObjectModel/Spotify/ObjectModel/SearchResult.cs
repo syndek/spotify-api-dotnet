@@ -1,4 +1,4 @@
-﻿using Spotify.ObjectModel.Collections;
+using Spotify.ObjectModel.Collections;
 
 namespace Spotify.ObjectModel
 {

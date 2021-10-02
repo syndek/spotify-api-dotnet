@@ -1,4 +1,4 @@
-﻿namespace Spotify.ObjectModel
+namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents a <see cref="SpotifyObject"/> with a unique

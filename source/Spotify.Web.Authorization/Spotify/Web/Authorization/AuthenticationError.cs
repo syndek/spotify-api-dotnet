@@ -1,4 +1,4 @@
-﻿namespace Spotify.Web.Authorization
+namespace Spotify.Web.Authorization
 {
     /// <summary>
     /// Represents an authentication error.

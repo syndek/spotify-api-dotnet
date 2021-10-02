@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Spotify.Web.Requests")]
 [assembly: InternalsVisibleTo("Spotify.Web.Authorization")]

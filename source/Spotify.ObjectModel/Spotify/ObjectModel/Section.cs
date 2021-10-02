@@ -1,4 +1,4 @@
-﻿namespace Spotify.ObjectModel
+namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents a section of an <see cref="AudioAnalysis"/> object.

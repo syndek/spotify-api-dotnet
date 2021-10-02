@@ -1,4 +1,4 @@
-﻿namespace Spotify.ObjectModel
+namespace Spotify.ObjectModel
 {
     /// <summary>
     /// Represents a generic object used to represent various time intervals within an <see cref="AudioAnalysis"/> object.
